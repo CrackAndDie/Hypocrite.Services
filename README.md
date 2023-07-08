@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://robocadsim.readthedocs.io/en/latest/index.html">
-    <img src="https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png" alt="Abdrakov.Solutions logo" width="400" height="400">
+    <img src="https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png" alt="Abdrakov.Solutions logo" width="340" height="340">
   </a>
 </p>
 <h1 align="center">Abdrakov.Solutions</h1>

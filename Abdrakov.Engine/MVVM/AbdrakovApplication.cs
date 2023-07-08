@@ -1,8 +1,10 @@
 ﻿using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
+using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Engine.Services;
 using Abdrakov.Logging.Interfaces;
 using Abdrakov.Logging.Services;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
@@ -21,7 +23,17 @@ namespace Abdrakov.Engine.MVVM
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<IBaseWindow>() as Window;
+            Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
+            return Container.Resolve<IPreviewWindow>() as Window;
+        }
+
+        private void OnPreviewDone()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var window = Container.Resolve<IBaseWindow>() as Window;
+                window.Show();
+            });
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

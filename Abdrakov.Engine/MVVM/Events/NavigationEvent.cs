@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Engine.MVVM
+namespace Abdrakov.Engine.MVVM.Events
 {
     public class NavigationEvent : PubSubEvent<ViewModelBase>
     {

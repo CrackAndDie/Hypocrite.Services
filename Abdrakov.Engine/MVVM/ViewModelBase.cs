@@ -1,4 +1,5 @@
 ﻿using Abdrakov.Engine.Interfaces;
+using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Logging.Interfaces;
 using Prism.Events;
 using Prism.Ioc;

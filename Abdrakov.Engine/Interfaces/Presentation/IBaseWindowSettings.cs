@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.Interfaces.Presentation
 {
-    public interface IPreviewWindow : IBaseWindow
+    public interface IBaseWindowSettings
     {
-        void CallPreviewDoneEvent();
     }
 }

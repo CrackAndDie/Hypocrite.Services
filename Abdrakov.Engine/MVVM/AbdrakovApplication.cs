@@ -1,6 +1,7 @@
 ﻿using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.MVVM.Events.EventArgs;
 using Abdrakov.Engine.Services;
 using Abdrakov.Logging.Interfaces;
 using Abdrakov.Logging.Services;
@@ -16,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Unity;
+using Unity.Resolution;
 
 namespace Abdrakov.Engine.MVVM
 {
@@ -38,6 +40,7 @@ namespace Abdrakov.Engine.MVVM
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // BaseWindowSettings with IBaseWindowSettings should be registered by a concrete project
             containerRegistry.RegisterInstance<ILoggingService>(Log4netLoggingService.GetMainInstance());
             containerRegistry.RegisterSingleton<IViewModelResolverService, ViewModelResolverService>();
         }

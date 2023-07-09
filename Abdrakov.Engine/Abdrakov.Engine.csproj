@@ -45,6 +45,7 @@
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Interfaces\IViewModelResolverService.cs" />
     <Compile Include="Interfaces\Presentation\IBaseWindow.cs" />
+    <Compile Include="Interfaces\Presentation\IBaseWindowSettings.cs" />
     <Compile Include="Interfaces\Presentation\IPreviewWindow.cs" />
     <Compile Include="Interfaces\Presentation\IView.cs" />
     <Compile Include="Localization\Extensions\ILocalizationProvider.cs" />
@@ -63,6 +64,7 @@
     </Compile>
     <Compile Include="Localization\Language.cs" />
     <Compile Include="MVVM\AbdrakovApplication.cs" />
+    <Compile Include="Utils\BaseWindowSettings.cs" />
     <Compile Include="MVVM\Events\PreviewDoneEvent.cs" />
     <Compile Include="MVVM\GenericNavigationParameters.cs" />
     <Compile Include="MVVM\Events\NavigationEvent.cs" />

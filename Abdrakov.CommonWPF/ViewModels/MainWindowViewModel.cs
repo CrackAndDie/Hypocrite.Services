@@ -3,6 +3,7 @@ using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Engine.Utils;
+using Abdrakov.Engine.Utils.Settings;
 using Prism.Commands;
 using Prism.Ioc;
 using System.Runtime.CompilerServices;
@@ -40,6 +41,13 @@ namespace Abdrakov.CommonWPF.ViewModels
         {
             get { return logoImage; }
             set { SetProperty(ref logoImage, value); }
+        }
+
+        private string productName;
+        public string ProductName
+        {
+            get { return productName; }
+            set { SetProperty(ref productName, value); }
         }
 
         private Visibility minimizeButtonVisibility;
@@ -93,6 +101,23 @@ namespace Abdrakov.CommonWPF.ViewModels
             RestoreWindowCommand = new DelegateCommand<object>(OnRestoreWindowCommand);
             CloseWindowCommand = new DelegateCommand<object>(OnCloseWindowCommand);
 
+            if (Container.IsRegistered<BaseWindowSettings>())
+            {
+                IWindowSettings settings = Container.Resolve<BaseWindowSettings>();
+                WindowHeaderBrush = settings.WindowHeaderBrush;
+                WindowStateBrush = settings.WindowStateBrush;
+                LogoImage = settings.LogoImage;
+                ProductName = settings.ProductName;
+                if (settings.WindowProgressVisibility != Visibility.Collapsed) 
+                { 
+                    EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);
+                }
+                else
+                {
+                    ProgressBarVisibility = Visibility.Collapsed;
+                    CheckAllDoneVisibility = Visibility.Collapsed;
+                }
+            }
         }
 
         public override void OnViewReady()
@@ -110,6 +135,12 @@ namespace Abdrakov.CommonWPF.ViewModels
         {
             MaximizeButtonVisibility = state == WindowState.Maximized ? Visibility.Collapsed : Visibility.Visible;
             RestoreButtonVisibility = state == WindowState.Maximized ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void OnProgressChanged(bool isDone)
+        {
+            ProgressBarVisibility = isDone ? Visibility.Collapsed : Visibility.Visible;
+            CheckAllDoneVisibility = isDone ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void OnMinimizeWindowCommand(object paramenter)

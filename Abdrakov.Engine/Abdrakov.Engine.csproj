@@ -44,8 +44,9 @@
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Interfaces\IViewModelResolverService.cs" />
+    <Compile Include="Interfaces\IWindowProgressService.cs" />
     <Compile Include="Interfaces\Presentation\IBaseWindow.cs" />
-    <Compile Include="Interfaces\Presentation\IBaseWindowSettings.cs" />
+    <Compile Include="Interfaces\Presentation\IWindowSettings.cs" />
     <Compile Include="Interfaces\Presentation\IPreviewWindow.cs" />
     <Compile Include="Interfaces\Presentation\IView.cs" />
     <Compile Include="Localization\Extensions\ILocalizationProvider.cs" />
@@ -64,13 +65,16 @@
     </Compile>
     <Compile Include="Localization\Language.cs" />
     <Compile Include="MVVM\AbdrakovApplication.cs" />
-    <Compile Include="Utils\BaseWindowSettings.cs" />
+    <Compile Include="MVVM\Events\WindowProgressChangedEvent.cs" />
+    <Compile Include="Services\WindowProgressService.cs" />
+    <Compile Include="Utils\Settings\BaseWindowSettings.cs" />
     <Compile Include="MVVM\Events\PreviewDoneEvent.cs" />
     <Compile Include="MVVM\GenericNavigationParameters.cs" />
     <Compile Include="MVVM\Events\NavigationEvent.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ViewModelResolverService.cs" />
+    <Compile Include="Utils\Settings\DialogWindowSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />

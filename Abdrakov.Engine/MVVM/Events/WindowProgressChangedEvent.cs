@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.MVVM.Events
 {
-    public class PreviewDoneEvent : PubSubEvent
+    public class WindowProgressChangedEvent : PubSubEvent<bool>
     {
     }
 }

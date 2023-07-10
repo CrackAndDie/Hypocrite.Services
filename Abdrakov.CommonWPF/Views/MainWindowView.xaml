@@ -32,7 +32,7 @@
 
         <otherViews:WindowHeaderView x:Name="WindowHeader"
                                      LogoImage="{Binding LogoImage}"
-                                     ProductName="{Binding MinimizeWindowCommand}"
+                                     ProductName="{Binding ProductName}"
                                      MinimizeWindowCommand="{Binding MinimizeWindowCommand}"
                                      MaximizeWindowCommand="{Binding MaximizeWindowCommand}"
                                      RestoreWindowCommand="{Binding RestoreWindowCommand}"
@@ -44,6 +44,15 @@
                                      ProgressBarVisibility="{Binding ProgressBarVisibility}"
                                      CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"
                                      WindowStateBrush="{Binding WindowStateBrush}" />
+
+        <Border BorderThickness="0" 
+                Background="Gray" 
+                Grid.Row="1">
+            <Image Source="../Resources/AbdrakovSolutions.png" 
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="100"
+                   Stretch="Uniform"/>
+        </Border>
 
         <ContentControl x:Name="frame"
                         Grid.Row="1"

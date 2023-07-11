@@ -85,6 +85,13 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref checkAllDoneVisibility, value); }
         }
 
+        private bool allowTranparency;
+        public bool AllowTranparency
+        {
+            get { return allowTranparency; }
+            set { SetProperty(ref allowTranparency, value); }
+        }
+
         #region Commands
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
@@ -108,6 +115,7 @@ namespace Abdrakov.CommonWPF.ViewModels
                 WindowStateBrush = settings.WindowStateBrush;
                 LogoImage = settings.LogoImage;
                 ProductName = settings.ProductName;
+                AllowTranparency = settings.AllowTransparency;
                 if (settings.WindowProgressVisibility != Visibility.Collapsed) 
                 { 
                     EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);

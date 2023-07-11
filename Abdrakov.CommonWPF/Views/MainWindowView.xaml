@@ -15,6 +15,7 @@
         Height="600"
         Width="900"
         WindowStyle="None"
+        AllowsTransparency="{Binding AllowTransparency}"
         SourceInitialized="Window_SourceInitialized"
         x:Name="thisWindow">
     <Grid>

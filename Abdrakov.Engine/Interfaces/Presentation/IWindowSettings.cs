@@ -17,5 +17,6 @@ namespace Abdrakov.Engine.Interfaces.Presentation
         Visibility MinimizeButtonVisibility { get; set; }
         Visibility MaxResButtonsVisibility { get; set; }
         Visibility WindowProgressVisibility { get; set; }
+        bool AllowTransparency { get; set; }
     }
 }

@@ -18,5 +18,6 @@ namespace Abdrakov.Engine.Utils.Settings
         public Visibility MinimizeButtonVisibility { get; set; } = Visibility.Collapsed;
         public Visibility MaxResButtonsVisibility { get; set; } = Visibility.Collapsed;
         public Visibility WindowProgressVisibility { get; set; } = Visibility.Collapsed;
+        public bool AllowTransparency { get; set; } = false;
     }
 }

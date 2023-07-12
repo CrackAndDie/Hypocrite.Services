@@ -50,13 +50,9 @@
     <Compile Include="Extensions\ResourceDictionaryExtensions.cs" />
     <Compile Include="Extensions\ThemeExtensions.cs" />
     <Compile Include="Extensions\XyzExtensions.cs" />
-    <Compile Include="Interfaces\ISwatch.cs" />
     <Compile Include="Interfaces\ITheme.cs" />
     <Compile Include="Interfaces\IThemeManager.cs" />
     <Compile Include="Other\Lab.cs" />
-    <Compile Include="Other\PrimaryColor.cs" />
-    <Compile Include="Other\Swatches\TestSwatch.cs" />
-    <Compile Include="Other\SwatchHelper.cs" />
     <Compile Include="Other\Xyz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Theme.cs" />

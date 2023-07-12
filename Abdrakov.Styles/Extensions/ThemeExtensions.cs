@@ -18,5 +18,22 @@ namespace Abdrakov.Styles.Extensions
             theme.PrimaryMid = primaryColor;
             theme.PrimaryDark = primaryColor.Darken();
         }
+
+        public static void SetSecondaryColor(this ITheme theme, Color secondaryColor)
+        {
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
+            theme.SecondaryLight = secondaryColor.Lighten();
+            theme.SecondaryMid = secondaryColor;
+            theme.SecondaryDark = secondaryColor.Darken();
+        }
+
+        public static void SetScrollColors(this ITheme theme, Color fore, Color back)
+        {
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
+            theme.ScrollBackground = back;
+            theme.ScrollForeground = fore;
+        }
     }
 }

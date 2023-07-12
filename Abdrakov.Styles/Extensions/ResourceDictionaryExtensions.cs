@@ -19,13 +19,16 @@ namespace Abdrakov.Styles.Extensions
         {
             if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
 
-            Color primaryLight = theme.PrimaryLight;
-            Color primaryMid = theme.PrimaryMid;
-            Color primaryDark = theme.PrimaryDark;
+            SetSolidColorBrush(resourceDictionary, "PrimaryLightBrush", theme.PrimaryLight);
+            SetSolidColorBrush(resourceDictionary, "PrimaryMidBrush", theme.PrimaryMid);
+            SetSolidColorBrush(resourceDictionary, "PrimaryDarkBrush", theme.PrimaryDark);
 
-            SetSolidColorBrush(resourceDictionary, "PrimaryLightBrush", primaryLight);
-            SetSolidColorBrush(resourceDictionary, "PrimaryMidBrush", primaryMid);
-            SetSolidColorBrush(resourceDictionary, "PrimaryDarkBrush", primaryDark);
+            SetSolidColorBrush(resourceDictionary, "SecondaryLightBrush", theme.SecondaryLight);
+            SetSolidColorBrush(resourceDictionary, "SecondaryMidBrush", theme.SecondaryMid);
+            SetSolidColorBrush(resourceDictionary, "SecondaryDarkBrush", theme.SecondaryDark);
+
+            SetSolidColorBrush(resourceDictionary, "ScrollBackgroundBrush", theme.ScrollBackground);
+            SetSolidColorBrush(resourceDictionary, "ScrollForegroundBrush", theme.ScrollForeground);
 
             if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
             {
@@ -51,6 +54,13 @@ namespace Abdrakov.Styles.Extensions
                 PrimaryLight = GetColor("PrimaryLightBrush"),
                 PrimaryMid = GetColor("PrimaryMidBrush"),
                 PrimaryDark = GetColor("PrimaryDarkBrush"),
+
+                SecondaryLight = GetColor("SecondaryLightBrush"),
+                SecondaryMid = GetColor("SecondaryMidBrush"),
+                SecondaryDark = GetColor("SecondaryDarkBrush"),
+
+                ScrollBackground = GetColor("ScrollBackgroundBrush"),
+                ScrollForeground = GetColor("ScrollForegroundBrush"),
             };
 
             Color GetColor(params string[] keys)

@@ -16,14 +16,20 @@ namespace Abdrakov.Styles
         public Color PrimaryMid { get; set; }
         public Color PrimaryDark { get; set; }
 
+        public Color SecondaryLight { get; set; }
+        public Color SecondaryMid { get; set; }
+        public Color SecondaryDark { get; set; }
+
         public Color ScrollBackground { get; set; }
         public Color ScrollForeground { get; set; }
 
-        public static Theme Create(Color primary)
+        public static Theme Create(Color primary, Color secondary, Color scrollBack, Color scrollFore)
         {
             var theme = new Theme();
 
             theme.SetPrimaryColor(primary);
+            theme.SetSecondaryColor(secondary);
+            theme.SetScrollColors(scrollFore, scrollBack);
 
             return theme;
         }

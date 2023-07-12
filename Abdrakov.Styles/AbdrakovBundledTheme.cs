@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Abdrakov.Styles
 {
-    internal class AbdrakovBundledTheme : ResourceDictionary
+    public class AbdrakovBundledTheme : ResourceDictionary
     {
         private Color _primaryColor;
         public Color PrimaryColor

@@ -29,11 +29,11 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref windowHeaderBrush, value); }
         }
 
-        private SolidColorBrush windowStateBrush;
-        public SolidColorBrush WindowStateBrush
+        private SolidColorBrush windowProgressBrush;
+        public SolidColorBrush WindowProgressBrush
         {
-            get { return windowStateBrush; }
-            set { SetProperty(ref windowStateBrush, value); }
+            get { return windowProgressBrush; }
+            set { SetProperty(ref windowProgressBrush, value); }
         }
 
         private string logoImage;
@@ -112,19 +112,18 @@ namespace Abdrakov.CommonWPF.ViewModels
             {
                 IWindowSettings settings = Container.Resolve<BaseWindowSettings>();
                 WindowHeaderBrush = settings.WindowHeaderBrush;
-                WindowStateBrush = settings.WindowStateBrush;
+                WindowProgressBrush = settings.WindowProgressBrush;
                 LogoImage = settings.LogoImage;
                 ProductName = settings.ProductName;
                 AllowTranparency = settings.AllowTransparency;
                 if (settings.WindowProgressVisibility != Visibility.Collapsed) 
                 { 
                     EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);
+                    CheckAllDoneVisibility = Visibility.Visible;
                 }
-                else
-                {
-                    ProgressBarVisibility = Visibility.Collapsed;
-                    CheckAllDoneVisibility = Visibility.Collapsed;
-                }
+                ProgressBarVisibility = Visibility.Collapsed;
+                MaximizeButtonVisibility = settings.MaxResButtonsVisibility;
+                RestoreButtonVisibility = Visibility.Collapsed;
             }
         }
 

@@ -11,7 +11,7 @@ namespace Abdrakov.Engine.Interfaces.Presentation
     public interface IWindowSettings
     {
         SolidColorBrush WindowHeaderBrush { get; set; }
-        SolidColorBrush WindowStateBrush { get; set; }
+        SolidColorBrush WindowProgressBrush { get; set; }
         string LogoImage { get; set; }
         string ProductName { get; set; }
         Visibility MinimizeButtonVisibility { get; set; }

@@ -18,6 +18,12 @@
         AllowsTransparency="{Binding AllowTransparency}"
         SourceInitialized="Window_SourceInitialized"
         x:Name="thisWindow">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="22"
+                      ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+    </WindowChrome.WindowChrome>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -44,10 +50,10 @@
                                      RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
                                      ProgressBarVisibility="{Binding ProgressBarVisibility}"
                                      CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"
-                                     WindowStateBrush="{Binding WindowStateBrush}" />
+                                     WindowStateBrush="{Binding WindowProgressBrush}" />
 
-        <Border BorderThickness="0" 
-                Background="Gray" 
+        <Border BorderThickness="0"
+                Background="{DynamicResource PrimaryMidBrush}" 
                 Grid.Row="1">
             <Image Source="../Resources/AbdrakovSolutions.png" 
                    RenderOptions.BitmapScalingMode="HighQuality" 

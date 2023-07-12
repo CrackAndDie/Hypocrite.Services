@@ -24,8 +24,12 @@ namespace Abdrakov.Engine.MVVM
     {
         protected override Window CreateShell()
         {
-            Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
-            return Container.Resolve<IPreviewWindow>() as Window;
+            if (Container.IsRegistered<IPreviewWindow>())
+            {
+                Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
+                return Container.Resolve<IPreviewWindow>() as Window;
+            }
+            return Container.Resolve<IBaseWindow>() as Window;
         }
 
         private void OnPreviewDone()

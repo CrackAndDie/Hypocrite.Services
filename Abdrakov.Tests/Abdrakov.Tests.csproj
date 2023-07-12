@@ -50,10 +50,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
-		<PackageReference Include="Prism.Unity" Version="8.1.97" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+  </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -62,6 +62,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IMainPageView.cs" />
+    <Compile Include="Modules\MainModule.cs" />
+    <Compile Include="Views\MainPageView.xaml.cs">
+      <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Abdrakov.CommonWPF\Abdrakov.CommonWPF.csproj">
+      <Project>{393ABB40-3085-4CF0-9BCA-F5FC70F075CD}</Project>
+      <Name>Abdrakov.CommonWPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">
       <Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
       <Name>Abdrakov.Engine</Name>
@@ -99,6 +108,15 @@
       <Project>{2C72B5BD-357A-40DE-B39F-12FBC087310F}</Project>
       <Name>Abdrakov.Styles</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\MainPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AbdrakovSolutions.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

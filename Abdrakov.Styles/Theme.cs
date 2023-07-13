@@ -12,6 +12,8 @@ namespace Abdrakov.Styles
 {
     public class Theme : ITheme
     {
+        public bool IsDarkMode { get; set; }
+
         public Color PrimaryLight { get; set; }
         public Color PrimaryMid { get; set; }
         public Color PrimaryDark { get; set; }
@@ -23,10 +25,11 @@ namespace Abdrakov.Styles
         public Color ScrollBackground { get; set; }
         public Color ScrollForeground { get; set; }
 
-        public static Theme Create(Color primary, Color secondary, Color scrollBack, Color scrollFore)
+        public static Theme Create(bool isDark, Color primary, Color secondary, Color scrollBack, Color scrollFore)
         {
             var theme = new Theme();
 
+            theme.IsDarkMode = isDark;
             theme.SetPrimaryColor(primary);
             theme.SetSecondaryColor(secondary);
             theme.SetScrollColors(scrollFore, scrollBack);

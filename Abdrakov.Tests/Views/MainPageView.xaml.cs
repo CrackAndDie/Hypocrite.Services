@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Abdrakov.Engine.Interfaces.Presentation;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +17,7 @@ using System.Windows.Shapes;
 
 namespace Abdrakov.Tests.Views
 {
-    /// <summary>
-    /// Interaction logic for MainPageView.xaml
-    /// </summary>
-    public partial class MainPageView : UserControl
+    public partial class MainPageView : UserControl, IView
     {
         public MainPageView()
         {

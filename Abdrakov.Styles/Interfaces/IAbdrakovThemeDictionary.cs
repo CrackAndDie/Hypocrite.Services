@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Styles.Interfaces
 {
-    public interface IThemeManager
+    public interface IAbdrakovThemeDictionary
     {
-        event EventHandler<ThemeChangedEventArgs> ThemeChanged;
-        void ChangeThemeBase(bool isDark);
     }
 }

@@ -19,6 +19,8 @@ using Abdrakov.Engine.Utils.Settings;
 using System.Windows.Media;
 using Prism.Modularity;
 using Abdrakov.Tests.Modules;
+using Abdrakov.Styles.Interfaces;
+using Abdrakov.Styles.Services;
 
 namespace Abdrakov.Tests
 {
@@ -28,8 +30,10 @@ namespace Abdrakov.Tests
         {
             Application.Current.Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
             {
-                PrimaryColor = Colors.Gray,
-            });
+                IsDarkMode = true,
+                PrimaryColor = Color.FromRgb(64, 64, 64),
+                SecondaryColor = Colors.HotPink,
+            }.SetTheme());
             base.OnStartup(e);
         }
 
@@ -56,6 +60,8 @@ namespace Abdrakov.Tests
                 WindowProgressBrush = new SolidColorBrush(Colors.Azure),
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
+
+            containerRegistry.RegisterSingleton<IAbdrakovThemeService, AbdrakovThemeService>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

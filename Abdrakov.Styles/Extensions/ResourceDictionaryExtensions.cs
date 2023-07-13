@@ -32,7 +32,7 @@ namespace Abdrakov.Styles.Extensions
 
             if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
             {
-                resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary);
+                resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary, theme.IsDarkMode);
             }
             ITheme oldTheme = resourceDictionary.GetTheme();
             resourceDictionary[CurrentThemeKey] = theme;

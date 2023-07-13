@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Interfaces\IMainPageView.cs" />
     <Compile Include="Modules\MainModule.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>

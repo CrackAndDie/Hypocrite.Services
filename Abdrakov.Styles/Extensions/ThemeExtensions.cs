@@ -35,5 +35,28 @@ namespace Abdrakov.Styles.Extensions
             theme.ScrollBackground = back;
             theme.ScrollForeground = fore;
         }
+
+        public static ITheme GetReversedTheme(this ITheme theme)
+        {
+            var primary = theme.PrimaryMid.Reverse();
+            var secondary = theme.SecondaryMid.Reverse();
+            var scrollBack = theme.ScrollBackground.Reverse();
+            var scrollFore = theme.ScrollForeground.Reverse();
+            return new Theme()
+            {
+                IsDarkMode = !theme.IsDarkMode,
+
+                PrimaryDark = primary.Darken(),
+                PrimaryMid = primary,
+                PrimaryLight = primary.Lighten(),
+
+                SecondaryDark = secondary.Darken(),
+                SecondaryMid = secondary,
+                SecondaryLight = secondary.Lighten(),
+
+                ScrollBackground = scrollBack,
+                ScrollForeground = scrollFore,
+            };
+        }
     }
 }

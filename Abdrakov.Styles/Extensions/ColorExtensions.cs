@@ -24,6 +24,11 @@ namespace Abdrakov.Styles.Extensions
             return shifted.ToColor();
         }
 
+        public static Color Reverse(this Color color)
+        {
+            return Color.FromRgb((byte)(255 - color.R), (byte)(255 - color.G), (byte)(255 - color.B));
+        }
+
         public static Color Darken(this Color color, int amount = 1) => color.ShiftLightness(amount);
 
         public static Color Lighten(this Color color, int amount = 1) => color.ShiftLightness(-amount);

@@ -4,12 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Abdrakov.Tests.Views"
+             xmlns:viewModels="clr-namespace:Abdrakov.Tests.ViewModels"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DataContext="{d:DesignInstance viewModels:MainPageViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/Button.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/ScrollViewer.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -21,13 +26,23 @@
                     <RowDefinition Height="300"/>
                     <RowDefinition Height="300"/>
                     <RowDefinition Height="300"/>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <Rectangle Fill="Red" Grid.Row="0"/>
-                <Rectangle Fill="Blue" Grid.Row="1"/>
-                <Rectangle Fill="Green" Grid.Row="2"/>
+                <Rectangle Fill="Red" Opacity="0.4" Grid.Row="0"/>
+                <Rectangle Fill="Blue" Opacity="0.4" Grid.Row="1"/>
+                <Rectangle Fill="Green" Opacity="0.4" Grid.Row="2"/>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Style="{StaticResource OutlinedRoundedButton}" Content="Test" Margin="10, 0" Command="{Binding Test1Command}"/>
+                </Grid>
+                
             </Grid>
         </ScrollViewer>
     </Grid>

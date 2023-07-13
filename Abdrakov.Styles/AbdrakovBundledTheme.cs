@@ -11,8 +11,21 @@ using System.Windows.Media;
 
 namespace Abdrakov.Styles
 {
-    public class AbdrakovBundledTheme : ResourceDictionary
+    public class AbdrakovBundledTheme : ResourceDictionary, IAbdrakovThemeDictionary
     {
+        private bool _isDarkMode = true;
+        public bool IsDarkMode
+        {
+            get => _isDarkMode;
+            set
+            {
+                if (_isDarkMode != value)
+                {
+                    _isDarkMode = value;
+                }
+            }
+        }
+
         private Color _primaryColor;
         public Color PrimaryColor
         {
@@ -22,7 +35,6 @@ namespace Abdrakov.Styles
                 if (_primaryColor != value)
                 {
                     _primaryColor = value;
-                    SetTheme();
                 }
             }
         }
@@ -36,7 +48,6 @@ namespace Abdrakov.Styles
                 if (_secondaryColor != value)
                 {
                     _secondaryColor = value;
-                    SetTheme();
                 }
             }
         }
@@ -50,7 +61,6 @@ namespace Abdrakov.Styles
                 if (_scrollForeground != value)
                 {
                     _scrollForeground = value;
-                    SetTheme();
                 }
             }
         }
@@ -64,22 +74,22 @@ namespace Abdrakov.Styles
                 if (_scrollBackground != value)
                 {
                     _scrollBackground = value;
-                    SetTheme();
                 }
             }
         }
 
-        private void SetTheme()
+        public AbdrakovBundledTheme SetTheme()
         {
             if (PrimaryColor is Color primaryColor &&
                 SecondaryColor is Color secondaryColor && 
                 ScrollBackground is Color scrollBack &&
                 ScrollForeground is Color scrollFore)
             {
-                ITheme theme = Theme.Create(primaryColor, secondaryColor, scrollBack, scrollFore);
+                ITheme theme = Theme.Create(IsDarkMode, primaryColor, secondaryColor, scrollBack, scrollFore);
 
                 ApplyTheme(theme);
             }
+            return this;
         }
 
         protected virtual void ApplyTheme(ITheme theme) =>

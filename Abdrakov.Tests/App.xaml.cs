@@ -31,8 +31,18 @@ namespace Abdrakov.Tests
             Application.Current.Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
             {
                 IsDarkMode = true,
-                PrimaryColor = Color.FromRgb(64, 64, 64),
-                SecondaryColor = Colors.HotPink,
+                DarkTheme = new InsideBundledTheme()
+                {
+                    PrimaryColor = Color.FromRgb(64, 64, 64),
+                    SecondaryColor = Colors.HotPink,
+                },
+                LightTheme = new InsideBundledTheme()
+                {
+                    PrimaryColor = Color.FromRgb(164, 164, 164),
+                    SecondaryColor = Colors.HotPink,
+                    ScrollBackground = Colors.AliceBlue,
+                    ScrollForeground = Colors.Gray,
+                }
             }.SetTheme());
             base.OnStartup(e);
         }

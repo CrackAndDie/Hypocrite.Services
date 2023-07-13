@@ -18,15 +18,6 @@ namespace Abdrakov.Styles.Other
             return GetResourceDictionary().GetTheme();
         }
 
-        public virtual void SetTheme(ITheme theme)
-        {
-            if (theme is null) throw new ArgumentNullException(nameof(theme));
-            if (Application.Current is null)
-                throw new InvalidOperationException($"Cannot set theme outside of a WPF application. Use {nameof(ResourceDictionaryExtensions)}.{nameof(ResourceDictionaryExtensions.SetTheme)} on the appropriate resource dictionary instead.");
-
-            GetResourceDictionary().SetTheme(theme);
-        }
-
         public virtual IThemeManager GetThemeManager()
         {
             if (Application.Current is null)

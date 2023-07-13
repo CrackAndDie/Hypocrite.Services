@@ -15,9 +15,11 @@ namespace Abdrakov.Styles.Extensions
         private const string CurrentThemeKey = nameof(Abdrakov) + "." + nameof(CurrentThemeKey);
         private const string ThemeManagerKey = nameof(Abdrakov) + "." + nameof(ThemeManagerKey);
 
-        public static void SetTheme(this ResourceDictionary resourceDictionary, ITheme theme)
+        public static void SetTheme(this ResourceDictionary resourceDictionary, bool isDark, ITheme darkTheme, ITheme lightTheme)
         {
             if (resourceDictionary is null) throw new ArgumentNullException(nameof(resourceDictionary));
+
+            var theme = isDark ? darkTheme : lightTheme;
 
             SetSolidColorBrush(resourceDictionary, "PrimaryLightBrush", theme.PrimaryLight);
             SetSolidColorBrush(resourceDictionary, "PrimaryMidBrush", theme.PrimaryMid);
@@ -32,7 +34,7 @@ namespace Abdrakov.Styles.Extensions
 
             if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
             {
-                resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary, theme.IsDarkMode);
+                resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary, isDark, darkTheme, lightTheme);
             }
             ITheme oldTheme = resourceDictionary.GetTheme();
             resourceDictionary[CurrentThemeKey] = theme;

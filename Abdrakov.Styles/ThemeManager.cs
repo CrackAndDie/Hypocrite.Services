@@ -16,14 +16,14 @@ namespace Abdrakov.Styles
         private ITheme _darkTheme;
         private ITheme _lightTheme;
 
-        public ThemeManager(ResourceDictionary resourceDictionary, bool isDark)
+        public ThemeManager(ResourceDictionary resourceDictionary, bool isDark, ITheme darkTheme, ITheme lightTheme)
         {
             _ResourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
             _isDark = isDark;
 
             var theme = resourceDictionary.GetTheme();
-            _darkTheme = _isDark ? theme : theme.GetReversedTheme();
-            _lightTheme = _isDark ? theme.GetReversedTheme() : theme;
+            _darkTheme = darkTheme == null ? (_isDark ? theme : theme.GetReversedTheme()) : darkTheme;
+            _lightTheme = lightTheme == null ? (_isDark ? theme.GetReversedTheme() : theme) : lightTheme;
         }
 
         public void ChangeThemeBase(bool isDark)
@@ -31,7 +31,7 @@ namespace Abdrakov.Styles
             if (isDark != _isDark)
             {
                 _isDark = isDark;
-                _ResourceDictionary.SetTheme(_isDark ? _darkTheme : _lightTheme);
+                _ResourceDictionary.SetTheme(_isDark, _darkTheme, _lightTheme);
             }
         }
 

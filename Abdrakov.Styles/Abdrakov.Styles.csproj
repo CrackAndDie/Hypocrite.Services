@@ -51,6 +51,7 @@
     <Compile Include="Extensions\ResourceDictionaryExtensions.cs" />
     <Compile Include="Extensions\ThemeExtensions.cs" />
     <Compile Include="Extensions\XyzExtensions.cs" />
+    <Compile Include="InsideBundledTheme.cs" />
     <Compile Include="Interfaces\IAbdrakovThemeDictionary.cs" />
     <Compile Include="Interfaces\IAbdrakovThemeService.cs" />
     <Compile Include="Interfaces\ITheme.cs" />
@@ -64,10 +65,10 @@
     <Compile Include="ThemeChangedEventArgs.cs" />
     <Compile Include="ThemeManager.cs" />
   </ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="MaterialDesignColors" Version="2.1.2" />
-		<PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.1.2" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Button.xaml">
       <SubType>Designer</SubType>

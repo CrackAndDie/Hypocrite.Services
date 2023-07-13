@@ -44,8 +44,6 @@ namespace Abdrakov.Styles.Extensions
             var scrollFore = theme.ScrollForeground.Reverse();
             return new Theme()
             {
-                IsDarkMode = !theme.IsDarkMode,
-
                 PrimaryDark = primary.Darken(),
                 PrimaryMid = primary,
                 PrimaryLight = primary.Lighten(),

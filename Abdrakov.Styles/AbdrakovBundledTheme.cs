@@ -26,73 +26,42 @@ namespace Abdrakov.Styles
             }
         }
 
-        private Color _primaryColor;
-        public Color PrimaryColor
+        private InsideBundledTheme _darkTheme;
+        public InsideBundledTheme DarkTheme
         {
-            get => _primaryColor;
+            get => _darkTheme;
             set
             {
-                if (_primaryColor != value)
+                if (_darkTheme != value)
                 {
-                    _primaryColor = value;
+                    _darkTheme = value;
                 }
             }
         }
 
-        private Color _secondaryColor;
-        public Color SecondaryColor
+        private InsideBundledTheme _lightTheme;
+        public InsideBundledTheme LightTheme
         {
-            get => _secondaryColor;
+            get => _lightTheme;
             set
             {
-                if (_secondaryColor != value)
+                if (_lightTheme != value)
                 {
-                    _secondaryColor = value;
-                }
-            }
-        }
-
-        private Color _scrollForeground = Color.FromRgb(136, 136, 136);
-        public Color ScrollForeground
-        {
-            get => _scrollForeground;
-            set
-            {
-                if (_scrollForeground != value)
-                {
-                    _scrollForeground = value;
-                }
-            }
-        }
-
-        private Color _scrollBackground = Color.FromRgb(63, 68, 79);
-        public Color ScrollBackground
-        {
-            get => _scrollBackground;
-            set
-            {
-                if (_scrollBackground != value)
-                {
-                    _scrollBackground = value;
+                    _lightTheme = value;
                 }
             }
         }
 
         public AbdrakovBundledTheme SetTheme()
         {
-            if (PrimaryColor is Color primaryColor &&
-                SecondaryColor is Color secondaryColor && 
-                ScrollBackground is Color scrollBack &&
-                ScrollForeground is Color scrollFore)
-            {
-                ITheme theme = Theme.Create(IsDarkMode, primaryColor, secondaryColor, scrollBack, scrollFore);
+            ITheme darkTheme = DarkTheme != null ? Theme.Create(DarkTheme) : null;
+            ITheme lightTheme = LightTheme != null ? Theme.Create(LightTheme) : null;
 
-                ApplyTheme(theme);
-            }
+            ApplyTheme(IsDarkMode, darkTheme, lightTheme);
             return this;
         }
 
-        protected virtual void ApplyTheme(ITheme theme) =>
-            this.SetTheme(theme);
+        protected virtual void ApplyTheme(bool isDark, ITheme darkTheme, ITheme lightTheme) =>
+            this.SetTheme(isDark, darkTheme, lightTheme);
     }
 }

@@ -11,6 +11,8 @@ namespace Abdrakov.Styles
 {
     public class ThemeManager : IThemeManager
     {
+        public bool IsDark => _isDark;
+
         private ResourceDictionary _ResourceDictionary;
         private bool _isDark;
         private ITheme _darkTheme;
@@ -34,10 +36,5 @@ namespace Abdrakov.Styles
                 _ResourceDictionary.SetTheme(_isDark, _darkTheme, _lightTheme);
             }
         }
-
-        public event EventHandler<ThemeChangedEventArgs> ThemeChanged;
-
-        public void OnThemeChange(ITheme oldTheme, ITheme newTheme)
-            => ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_ResourceDictionary, oldTheme, newTheme));
     }
 }

@@ -35,7 +35,7 @@
 
         <Rectangle Grid.ColumnSpan="3"
                    Grid.Row="0"
-                   Fill="{Binding WindowHeaderBrush}" />
+                   Fill="{DynamicResource PrimaryMidBrush}" />
 
         <otherViews:WindowHeaderView x:Name="WindowHeader"
                                      LogoImage="{Binding LogoImage}"
@@ -50,7 +50,7 @@
                                      RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
                                      ProgressBarVisibility="{Binding ProgressBarVisibility}"
                                      CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"
-                                     WindowStateBrush="{Binding WindowProgressBrush}" />
+                                     ThemeToggleVisibility="{Binding ThemeToggleVisibility}"/>
 
         <Border BorderThickness="0"
                 Background="{DynamicResource PrimaryMidBrush}" 

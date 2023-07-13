@@ -14,9 +14,11 @@ namespace Abdrakov.Styles.Extensions
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));
 
+            theme.PrimaryVeryLight = primaryColor.Lighten(2);
             theme.PrimaryLight = primaryColor.Lighten();
             theme.PrimaryMid = primaryColor;
             theme.PrimaryDark = primaryColor.Darken();
+            theme.PrimaryVeryDark = primaryColor.Darken(2);
         }
 
         public static void SetSecondaryColor(this ITheme theme, Color secondaryColor)
@@ -36,24 +38,33 @@ namespace Abdrakov.Styles.Extensions
             theme.ScrollForeground = fore;
         }
 
+        public static void SetOtherColors(this ITheme theme, Color fore)
+        {
+            if (theme is null) throw new ArgumentNullException(nameof(theme));
+
+            theme.TextForeground = fore;
+        }
+
         public static ITheme GetReversedTheme(this ITheme theme)
         {
             var primary = theme.PrimaryMid.Reverse();
             var secondary = theme.SecondaryMid.Reverse();
-            var scrollBack = theme.ScrollBackground.Reverse();
-            var scrollFore = theme.ScrollForeground.Reverse();
             return new Theme()
             {
+                PrimaryVeryDark = primary.Darken(2),
                 PrimaryDark = primary.Darken(),
                 PrimaryMid = primary,
                 PrimaryLight = primary.Lighten(),
+                PrimaryVeryLight = primary.Lighten(2),
 
                 SecondaryDark = secondary.Darken(),
                 SecondaryMid = secondary,
                 SecondaryLight = secondary.Lighten(),
 
-                ScrollBackground = scrollBack,
-                ScrollForeground = scrollFore,
+                ScrollBackground = theme.ScrollBackground.Reverse(),
+                ScrollForeground = theme.ScrollForeground.Reverse(),
+
+                TextForeground = theme.TextForeground.Reverse(),
             };
         }
     }

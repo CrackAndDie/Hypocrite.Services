@@ -2,6 +2,12 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Abdrakov.Engine.MVVM;
+using Abdrakov.Styles.Interfaces;
+using Abdrakov.Styles.Other.Events;
+using Prism.Commands;
+using Prism.Events;
+using Prism.Ioc;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {
@@ -24,15 +30,6 @@ namespace Abdrakov.CommonWPF.Views.Other
 
         public static readonly DependencyProperty ProductNameProperty =
             DependencyProperty.Register("ProductName", typeof(string), typeof(WindowHeaderView));
-
-        public SolidColorBrush WindowStateBrush
-        {
-            get { return (SolidColorBrush)GetValue(WindowStateBrushProperty); }
-            set { SetValue(WindowStateBrushProperty, value); }
-        }
-
-        public static readonly DependencyProperty WindowStateBrushProperty =
-            DependencyProperty.Register("WindowStateBrush", typeof(SolidColorBrush), typeof(WindowHeaderView));
 
         public Window WindowParameter
         {
@@ -124,9 +121,36 @@ namespace Abdrakov.CommonWPF.Views.Other
         public static readonly DependencyProperty CheckAllDoneVisibilityProperty =
             DependencyProperty.Register("CheckAllDoneVisibility", typeof(Visibility), typeof(WindowHeaderView));
 
+        public Visibility ThemeToggleVisibility
+        {
+            get { return (Visibility)GetValue(ThemeToggleVisibilityProperty); }
+            set { SetValue(ThemeToggleVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty ThemeToggleVisibilityProperty =
+            DependencyProperty.Register("ThemeToggleVisibility", typeof(Visibility), typeof(WindowHeaderView));
+
         public WindowHeaderView()
         {
             InitializeComponent();
+            var app = Application.Current as AbdrakovApplication;
+            if (app.Container.IsRegistered<IAbdrakovThemeService>())
+            {
+                ThemeModeToggle.IsChecked = app.Container.Resolve<IAbdrakovThemeService>().IsDark;
+            }
+            app.Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe((a) => 
+            {
+                ThemeModeToggle.IsChecked = a.IsDark;
+            });
+        }
+
+        private void ThemeModeToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var app = Application.Current as AbdrakovApplication;
+            if (app.Container.IsRegistered<IAbdrakovThemeService>())
+            {
+                app.Container.Resolve<IAbdrakovThemeService>().ApplyBase((bool)ThemeModeToggle.IsChecked);
+            }
         }
     }
 }

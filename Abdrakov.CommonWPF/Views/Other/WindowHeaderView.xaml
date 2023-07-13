@@ -113,6 +113,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="36" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="36" />
             <ColumnDefinition Width="30" />
             <ColumnDefinition Width="30" />
             <ColumnDefinition Width="30" />
@@ -129,25 +131,25 @@
                    VerticalAlignment="Center"
                    FontSize="14"
                    Text="{Binding ProductName, ElementName=windowHeaderView}"
-                   Foreground="AliceBlue">
+                   Foreground="{DynamicResource TextForegroundBrush}">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType=Window}}"
                                      Value="False">
                             <Setter Property="Foreground"
-                                    Value="AliceBlue" />
+                                    Value="{DynamicResource TextForegroundBrush}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType=Window}}"
                                      Value="True">
                             <Setter Property="Foreground"
-                                    Value="AliceBlue" />
+                                    Value="{DynamicResource TextForegroundBrush}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Grid.Column="6"
+        <Button Grid.Column="8"
                 Command="{Binding MinimizeWindowCommand, ElementName=windowHeaderView}"
                 CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
                 Visibility="{Binding MinimizeButtonVisibility, ElementName=windowHeaderView}"
@@ -156,11 +158,11 @@
             <Path Width="30"
                   Height="22"
                   Data="M 10,16 H 20"
-                  Stroke="AliceBlue"
+                  Stroke="{DynamicResource TextForegroundBrush}"
                   StrokeThickness="1" />
         </Button>
         <Button Name="maximizeButton"
-                Grid.Column="7"
+                Grid.Column="9"
                 Command="{Binding MaximizeWindowCommand, ElementName=windowHeaderView}"
                 CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
                 Visibility="{Binding MaximizeButtonVisibility, ElementName=windowHeaderView}"
@@ -168,38 +170,61 @@
             <Path Width="30"
                   Height="22"
                   Data="M 11,7 H 19 V 15 H 11 Z"
-                  Stroke="AliceBlue"
+                  Stroke="{DynamicResource TextForegroundBrush}"
                   StrokeThickness="1" />
         </Button>
         <Button Name="restoreButton"
                 Visibility="{Binding RestoreButtonVisibility, ElementName=windowHeaderView}"
-                Grid.Column="7"
+                Grid.Column="9"
                 Command="{Binding RestoreWindowCommand, ElementName=windowHeaderView}"
                 CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
                 Style="{StaticResource TitleBarButtonStyle}">
             <Path Width="30"
                   Height="22"
                   Data="M 10,8 H 17 V 15 H 10 Z M 12,8 V 6 H 19 V 13 H 17"
-                  Stroke="AliceBlue"
+                  Stroke="{DynamicResource TextForegroundBrush}"
                   StrokeThickness="1" />
         </Button>
-        <Button Grid.Column="8"
+        <Button Grid.Column="10"
                 Command="{Binding CloseWindowCommand, ElementName=windowHeaderView}"
                 CommandParameter="{Binding WindowParameter, ElementName=windowHeaderView}"
                 Style="{StaticResource TitleBarCloseButtonStyle}">
             <Path Width="30"
                   Height="22"
                   Data="M 11,7 19,15 M 11,15 19,7"
-                  Stroke="AliceBlue"
+                  Stroke="{DynamicResource TextForegroundBrush}"
                   StrokeThickness="1" />
         </Button>
+
+        <ToggleButton WindowChrome.IsHitTestVisibleInChrome="True"
+                      ToolTip="ThemeMode"
+                      Grid.Column="6"
+                      IsChecked="False"
+                      Padding="0"
+                      Foreground="Black"
+                      Background="{DynamicResource SecondaryMidBrush}"
+                      Visibility="{Binding ThemeToggleVisibility, ElementName=windowHeaderView}" 
+                      Click="ThemeModeToggleButton_Click"
+                      x:Name="ThemeModeToggle">
+            <materialDesign:PackIcon Kind="WhiteBalanceSunny">
+            </materialDesign:PackIcon>
+            <materialDesign:ToggleButtonAssist.OnContent>
+                <materialDesign:PackIcon Kind="MoonWaningCrescent" />
+            </materialDesign:ToggleButtonAssist.OnContent>
+            <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                <SolidColorBrush Color="{DynamicResource SecondaryMidBrushColor}" />
+            </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+            <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                <SolidColorBrush Color="{DynamicResource PrimaryVeryDarkBrushColor}" />
+            </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+        </ToggleButton>
 
         <ProgressBar x:Name="ProgressAsyncPB"
                      ToolTip="Обновление данных приложения"
                      Style="{StaticResource MaterialDesignCircularProgressBar}"
-                     Foreground="{Binding WindowStateBrush, ElementName=windowHeaderView}"
+                     Foreground="{DynamicResource SecondaryMidBrush}"
                      Value="0"
-                     Grid.Column="5"
+                     Grid.Column="7"
                      Width="18"
                      Height="18"
                      IsIndeterminate="True"
@@ -209,8 +234,8 @@
         <materialDesign:PackIcon Kind="CheckAll"
                                  x:Name="AllDonePI"
                                  ToolTip="Приложение готово к работе"
-                                 Foreground="{Binding WindowStateBrush, ElementName=windowHeaderView}"
-                                 Grid.Column="5"
+                                 Foreground="{DynamicResource SecondaryMidBrush}"
+                                 Grid.Column="7"
                                  VerticalAlignment="Center"
                                  Margin="10, 0"
                                  IsHitTestVisible="False"

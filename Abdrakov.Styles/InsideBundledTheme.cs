@@ -61,5 +61,17 @@ namespace Abdrakov.Styles
             }
         }
 
+        private Color _textForegorundColor = Colors.AliceBlue;
+        public Color TextForegorundColor
+        {
+            get => _textForegorundColor;
+            set
+            {
+                if (_textForegorundColor != value)
+                {
+                    _textForegorundColor = value;
+                }
+            }
+        }
     }
 }

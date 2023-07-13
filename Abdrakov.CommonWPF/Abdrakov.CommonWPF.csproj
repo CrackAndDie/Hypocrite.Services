@@ -75,6 +75,10 @@
       <Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
       <Name>Abdrakov.Logging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Abdrakov.Styles\Abdrakov.Styles.csproj">
+      <Project>{2C72B5BD-357A-40DE-B39F-12FBC087310F}</Project>
+      <Name>Abdrakov.Styles</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AbdrakovSolutions.png" />

@@ -22,20 +22,6 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref currentWindowState, value); OnStateChanged(currentWindowState); }
         }
 
-        private SolidColorBrush windowHeaderBrush;
-        public SolidColorBrush WindowHeaderBrush
-        {
-            get { return windowHeaderBrush; }
-            set { SetProperty(ref windowHeaderBrush, value); }
-        }
-
-        private SolidColorBrush windowProgressBrush;
-        public SolidColorBrush WindowProgressBrush
-        {
-            get { return windowProgressBrush; }
-            set { SetProperty(ref windowProgressBrush, value); }
-        }
-
         private string logoImage;
         public string LogoImage
         {
@@ -85,6 +71,13 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref checkAllDoneVisibility, value); }
         }
 
+        private Visibility themeToggleVisibility;
+        public Visibility ThemeToggleVisibility
+        {
+            get { return themeToggleVisibility; }
+            set { SetProperty(ref themeToggleVisibility, value); }
+        }
+
         private bool allowTranparency;
         public bool AllowTranparency
         {
@@ -111,8 +104,6 @@ namespace Abdrakov.CommonWPF.ViewModels
             if (Container.IsRegistered<BaseWindowSettings>())
             {
                 IWindowSettings settings = Container.Resolve<BaseWindowSettings>();
-                WindowHeaderBrush = settings.WindowHeaderBrush;
-                WindowProgressBrush = settings.WindowProgressBrush;
                 LogoImage = settings.LogoImage;
                 ProductName = settings.ProductName;
                 AllowTranparency = settings.AllowTransparency;
@@ -124,6 +115,8 @@ namespace Abdrakov.CommonWPF.ViewModels
                 ProgressBarVisibility = Visibility.Collapsed;
                 MaximizeButtonVisibility = settings.MaxResButtonsVisibility;
                 RestoreButtonVisibility = Visibility.Collapsed;
+
+                ThemeToggleVisibility = settings.ThemeToggleVisibility;
             }
         }
 

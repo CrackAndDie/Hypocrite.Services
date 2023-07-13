@@ -8,7 +8,7 @@ namespace Abdrakov.Styles.Interfaces
 {
     public interface IThemeManager
     {
-        event EventHandler<ThemeChangedEventArgs> ThemeChanged;
         void ChangeThemeBase(bool isDark);
+        bool IsDark { get; }
     }
 }

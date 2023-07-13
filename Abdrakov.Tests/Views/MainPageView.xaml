@@ -40,7 +40,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Style="{StaticResource OutlinedRoundedButton}" Content="Test" Margin="10, 0" Command="{Binding Test1Command}"/>
+                    <Button Style="{StaticResource OutlinedRoundedButton}" Margin="10, 0" Command="{Binding Test1Command}">
+                        <TextBlock Text="Test" Foreground="{DynamicResource TextForegroundBrush}"/>
+                    </Button>
                 </Grid>
                 
             </Grid>

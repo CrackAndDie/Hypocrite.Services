@@ -1,4 +1,9 @@
-﻿using Abdrakov.Styles.Interfaces;
+﻿using Abdrakov.Engine.MVVM;
+using Abdrakov.Styles.Interfaces;
+using Abdrakov.Styles.Other.Events;
+using Prism.Events;
+using Prism.Unity;
+using Prism.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +26,11 @@ namespace Abdrakov.Styles.Extensions
 
             var theme = isDark ? darkTheme : lightTheme;
 
+            SetSolidColorBrush(resourceDictionary, "PrimaryVeryLightBrush", theme.PrimaryVeryLight);
             SetSolidColorBrush(resourceDictionary, "PrimaryLightBrush", theme.PrimaryLight);
             SetSolidColorBrush(resourceDictionary, "PrimaryMidBrush", theme.PrimaryMid);
             SetSolidColorBrush(resourceDictionary, "PrimaryDarkBrush", theme.PrimaryDark);
+            SetSolidColorBrush(resourceDictionary, "PrimaryVeryDarkBrush", theme.PrimaryVeryDark);
 
             SetSolidColorBrush(resourceDictionary, "SecondaryLightBrush", theme.SecondaryLight);
             SetSolidColorBrush(resourceDictionary, "SecondaryMidBrush", theme.SecondaryMid);
@@ -32,6 +39,8 @@ namespace Abdrakov.Styles.Extensions
             SetSolidColorBrush(resourceDictionary, "ScrollBackgroundBrush", theme.ScrollBackground);
             SetSolidColorBrush(resourceDictionary, "ScrollForegroundBrush", theme.ScrollForeground);
 
+            SetSolidColorBrush(resourceDictionary, "TextForegroundBrush", theme.TextForeground);
+
             if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
             {
                 resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary, isDark, darkTheme, lightTheme);
@@ -39,7 +48,9 @@ namespace Abdrakov.Styles.Extensions
             ITheme oldTheme = resourceDictionary.GetTheme();
             resourceDictionary[CurrentThemeKey] = theme;
 
-            themeManager.OnThemeChange(oldTheme, theme);
+            (Application.Current as AbdrakovApplication).Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>()
+                .Publish(new ThemeChangedEventArgs(resourceDictionary, oldTheme, theme, isDark));
+            
         }
 
         public static ITheme GetTheme(this ResourceDictionary resourceDictionary)
@@ -53,9 +64,11 @@ namespace Abdrakov.Styles.Extensions
             //Attempt to simply look up the appropriate resources
             return new Theme
             {
+                PrimaryVeryLight = GetColor("PrimaryVeryLightBrush"),
                 PrimaryLight = GetColor("PrimaryLightBrush"),
                 PrimaryMid = GetColor("PrimaryMidBrush"),
                 PrimaryDark = GetColor("PrimaryDarkBrush"),
+                PrimaryVeryDark = GetColor("PrimaryVeryDarkBrush"),
 
                 SecondaryLight = GetColor("SecondaryLightBrush"),
                 SecondaryMid = GetColor("SecondaryMidBrush"),
@@ -63,6 +76,8 @@ namespace Abdrakov.Styles.Extensions
 
                 ScrollBackground = GetColor("ScrollBackgroundBrush"),
                 ScrollForeground = GetColor("ScrollForegroundBrush"),
+
+                TextForeground = GetColor("TextForegroundBrush"),
             };
 
             Color GetColor(params string[] keys)

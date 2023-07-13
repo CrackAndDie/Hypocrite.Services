@@ -9,9 +9,11 @@ namespace Abdrakov.Styles.Interfaces
 {
     public interface ITheme
     {
+        Color PrimaryVeryLight { get; set; }
         Color PrimaryLight { get; set; }
         Color PrimaryMid { get; set; }
         Color PrimaryDark { get; set; }
+        Color PrimaryVeryDark { get; set; }
 
         Color SecondaryLight { get; set; }
         Color SecondaryMid { get; set; }
@@ -19,5 +21,7 @@ namespace Abdrakov.Styles.Interfaces
 
         Color ScrollBackground { get; set; }
         Color ScrollForeground { get; set; }
+
+        Color TextForeground { get; set; }
     }
 }

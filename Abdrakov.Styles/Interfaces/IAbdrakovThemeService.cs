@@ -9,5 +9,6 @@ namespace Abdrakov.Styles.Interfaces
     public interface IAbdrakovThemeService
     {
         void ApplyBase(bool isDark);
+        bool IsDark { get; }
     }
 }

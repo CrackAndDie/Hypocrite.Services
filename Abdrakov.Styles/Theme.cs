@@ -12,9 +12,11 @@ namespace Abdrakov.Styles
 {
     public class Theme : ITheme
     {
+        public Color PrimaryVeryLight { get; set; }
         public Color PrimaryLight { get; set; }
         public Color PrimaryMid { get; set; }
         public Color PrimaryDark { get; set; }
+        public Color PrimaryVeryDark { get; set; }
 
         public Color SecondaryLight { get; set; }
         public Color SecondaryMid { get; set; }
@@ -23,6 +25,8 @@ namespace Abdrakov.Styles
         public Color ScrollBackground { get; set; }
         public Color ScrollForeground { get; set; }
 
+        public Color TextForeground { get; set; }
+
         public static Theme Create(InsideBundledTheme insideTheme)
         {
             var theme = new Theme();
@@ -30,6 +34,7 @@ namespace Abdrakov.Styles
             theme.SetPrimaryColor(insideTheme.PrimaryColor);
             theme.SetSecondaryColor(insideTheme.SecondaryColor);
             theme.SetScrollColors(insideTheme.ScrollForeground, insideTheme.ScrollBackground);
+            theme.SetOtherColors(insideTheme.TextForegorundColor);
 
             return theme;
         }

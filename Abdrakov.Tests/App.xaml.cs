@@ -28,22 +28,6 @@ namespace Abdrakov.Tests
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Application.Current.Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
-            {
-                IsDarkMode = true,
-                DarkTheme = new InsideBundledTheme()
-                {
-                    PrimaryColor = Color.FromRgb(64, 64, 64),
-                    SecondaryColor = Colors.HotPink,
-                },
-                LightTheme = new InsideBundledTheme()
-                {
-                    PrimaryColor = Color.FromRgb(164, 164, 164),
-                    SecondaryColor = Colors.HotPink,
-                    ScrollBackground = Colors.AliceBlue,
-                    ScrollForeground = Colors.Gray,
-                }
-            }.SetTheme());
             base.OnStartup(e);
         }
 
@@ -67,7 +51,6 @@ namespace Abdrakov.Tests
             {
                 ProductName = "Tests",
                 LogoImage = "pack://application:,,,/Abdrakov.Tests;component/Resources/AbdrakovSolutions.png",
-                WindowProgressBrush = new SolidColorBrush(Colors.Azure),
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
@@ -76,8 +59,32 @@ namespace Abdrakov.Tests
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
+            // should be called right here
+            ConfigureApplicationVisual();
+
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<MainModule>();
+        }
+
+        private void ConfigureApplicationVisual()
+        {
+            Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
+            {
+                IsDarkMode = true,
+                DarkTheme = new InsideBundledTheme()
+                {
+                    PrimaryColor = Color.FromRgb(64, 64, 64),
+                    SecondaryColor = Colors.HotPink,
+                },
+                LightTheme = new InsideBundledTheme()
+                {
+                    PrimaryColor = Color.FromRgb(254, 254, 254),
+                    SecondaryColor = Colors.HotPink,
+                    ScrollBackground = Colors.AliceBlue,
+                    ScrollForeground = Colors.LightGray,
+                    TextForegorundColor = Colors.Black,
+                }
+            }.SetTheme());
         }
     }
 }

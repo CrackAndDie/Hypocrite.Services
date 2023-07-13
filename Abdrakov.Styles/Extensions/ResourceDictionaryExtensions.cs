@@ -41,9 +41,17 @@ namespace Abdrakov.Styles.Extensions
 
             SetSolidColorBrush(resourceDictionary, "TextForegroundBrush", theme.TextForeground);
 
-            if (!(resourceDictionary.GetThemeManager() is ThemeManager themeManager))
+            if (theme.ExtendedColors != null)
             {
-                resourceDictionary[ThemeManagerKey] = themeManager = new ThemeManager(resourceDictionary, isDark, darkTheme, lightTheme);
+                foreach (var color in theme.ExtendedColors)
+                {
+                    SetSolidColorBrush(resourceDictionary, color.Key, color.Value);
+                }
+            }
+
+            if (!(resourceDictionary.GetThemeManager() is ThemeManager))
+            {
+                resourceDictionary[ThemeManagerKey] = new ThemeManager(resourceDictionary, isDark, darkTheme, lightTheme);
             }
             ITheme oldTheme = resourceDictionary.GetTheme();
             resourceDictionary[CurrentThemeKey] = theme;
@@ -62,6 +70,7 @@ namespace Abdrakov.Styles.Extensions
             }
 
             //Attempt to simply look up the appropriate resources
+            // There won't be ExtendedColors anymore
             return new Theme
             {
                 PrimaryVeryLight = GetColor("PrimaryVeryLightBrush"),

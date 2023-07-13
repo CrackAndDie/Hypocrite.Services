@@ -28,7 +28,7 @@
                     <RowDefinition Height="300"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <Rectangle Fill="Red" Opacity="0.4" Grid.Row="0"/>
+                <Rectangle Fill="{DynamicResource TestColorMid}" Opacity="0.4" Grid.Row="0"/>
                 <Rectangle Fill="Blue" Opacity="0.4" Grid.Row="1"/>
                 <Rectangle Fill="Green" Opacity="0.4" Grid.Row="2"/>
 

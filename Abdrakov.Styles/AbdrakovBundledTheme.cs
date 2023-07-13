@@ -52,10 +52,23 @@ namespace Abdrakov.Styles
             }
         }
 
+        private IDictionary<string, ColorPair> _extendedColors;
+        public IDictionary<string, ColorPair> ExtendedColors
+        {
+            get => _extendedColors;
+            set
+            {
+                if (_extendedColors != value)
+                {
+                    _extendedColors = value;
+                }
+            }
+        }
+
         public AbdrakovBundledTheme SetTheme()
         {
-            ITheme darkTheme = DarkTheme != null ? Theme.Create(DarkTheme) : null;
-            ITheme lightTheme = LightTheme != null ? Theme.Create(LightTheme) : null;
+            ITheme darkTheme = DarkTheme != null ? Theme.Create(DarkTheme, ExtendedColors, true) : null;
+            ITheme lightTheme = LightTheme != null ? Theme.Create(LightTheme, ExtendedColors, false) : null;
 
             ApplyTheme(IsDarkMode, darkTheme, lightTheme);
             return this;

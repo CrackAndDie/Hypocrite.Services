@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Abdrakov.CommonWPF.Views.Other"
+             xmlns:converters="clr-namespace:Abdrakov.CommonWPF.Converters"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="22"
@@ -14,6 +15,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:NullImageConverter x:Key="nullImageConverter" />
+
             <Style x:Key="TitleBarButtonStyle"
                    TargetType="{x:Type Button}">
                 <Setter Property="Foreground"
@@ -124,7 +128,7 @@
                Height="20"
                Margin="1"
                x:Name="UpperLogoImage"
-               Source="{Binding LogoImage, ElementName=windowHeaderView}"
+               Source="{Binding LogoImage, ElementName=windowHeaderView, Converter={StaticResource nullImageConverter}}"
                RenderOptions.BitmapScalingMode="Fant" />
         <TextBlock Grid.Column="1"
                    Margin="4 0 0 0"

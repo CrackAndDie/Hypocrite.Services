@@ -1,5 +1,6 @@
 ﻿using Abdrakov.Styles.Extensions;
 using Abdrakov.Styles.Interfaces;
+using Abdrakov.Styles.Other;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,9 @@ namespace Abdrakov.Styles
 
         public Color TextForeground { get; set; }
 
-        public static Theme Create(InsideBundledTheme insideTheme)
+        public IDictionary<string, Color> ExtendedColors { get; set; }
+
+        public static Theme Create(InsideBundledTheme insideTheme, IDictionary<string, ColorPair> extended, bool isDark)
         {
             var theme = new Theme();
 
@@ -35,6 +38,10 @@ namespace Abdrakov.Styles
             theme.SetSecondaryColor(insideTheme.SecondaryColor);
             theme.SetScrollColors(insideTheme.ScrollForeground, insideTheme.ScrollBackground);
             theme.SetOtherColors(insideTheme.TextForegorundColor);
+            if (extended != null)
+            {
+                theme.SetExtendedColors(extended.Select(x => new { Key = x.Key, Value = isDark ? x.Value.DarkColor : x.Value.LightColor }).ToDictionary(x => x.Key, x => x.Value));
+            }
 
             return theme;
         }

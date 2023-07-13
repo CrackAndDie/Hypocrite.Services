@@ -21,6 +21,7 @@ using Prism.Modularity;
 using Abdrakov.Tests.Modules;
 using Abdrakov.Styles.Interfaces;
 using Abdrakov.Styles.Services;
+using Abdrakov.Styles.Other;
 
 namespace Abdrakov.Tests
 {
@@ -83,6 +84,10 @@ namespace Abdrakov.Tests
                     ScrollBackground = Colors.AliceBlue,
                     ScrollForeground = Colors.LightGray,
                     TextForegorundColor = Colors.Black,
+                },
+                ExtendedColors = new Dictionary<string, ColorPair>()
+                {
+                    { "TestColor", new ColorPair(Colors.Red, Colors.Purple) },
                 }
             }.SetTheme());
         }

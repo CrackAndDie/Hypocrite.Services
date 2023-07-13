@@ -78,11 +78,11 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref themeToggleVisibility, value); }
         }
 
-        private bool allowTranparency;
-        public bool AllowTranparency
+        private bool allowTransparency;
+        public bool AllowTransparency
         {
-            get { return allowTranparency; }
-            set { SetProperty(ref allowTranparency, value); }
+            get { return allowTransparency; }
+            set { SetProperty(ref allowTransparency, value); }
         }
 
         #region Commands
@@ -106,7 +106,7 @@ namespace Abdrakov.CommonWPF.ViewModels
                 IWindowSettings settings = Container.Resolve<BaseWindowSettings>();
                 LogoImage = settings.LogoImage;
                 ProductName = settings.ProductName;
-                AllowTranparency = settings.AllowTransparency;
+                AllowTransparency = settings.AllowTransparency;
                 if (settings.WindowProgressVisibility != Visibility.Collapsed) 
                 { 
                     EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);

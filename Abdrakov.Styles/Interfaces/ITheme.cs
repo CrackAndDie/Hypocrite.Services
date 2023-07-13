@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abdrakov.Styles.Other;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,7 @@ namespace Abdrakov.Styles.Interfaces
         Color ScrollForeground { get; set; }
 
         Color TextForeground { get; set; }
+
+        IDictionary<string, Color> ExtendedColors { get; set; }
     }
 }

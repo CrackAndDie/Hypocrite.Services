@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\IAbdrakovThemeService.cs" />
     <Compile Include="Interfaces\ITheme.cs" />
     <Compile Include="Interfaces\IThemeManager.cs" />
+    <Compile Include="Other\ColorPair.cs" />
     <Compile Include="Other\Events\ThemeChangedEvent.cs" />
     <Compile Include="Other\Lab.cs" />
     <Compile Include="Other\PaletteHelper.cs" />

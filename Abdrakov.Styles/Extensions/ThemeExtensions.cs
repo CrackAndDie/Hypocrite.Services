@@ -45,6 +45,17 @@ namespace Abdrakov.Styles.Extensions
             theme.TextForeground = fore;
         }
 
+        public static void SetExtendedColors(this ITheme theme, IDictionary<string, Color> extendedColors)
+        {
+            theme.ExtendedColors = new Dictionary<string, Color>();
+            foreach (var color in extendedColors)
+            {
+                theme.ExtendedColors[color.Key + "Light"] = color.Value.Lighten();
+                theme.ExtendedColors[color.Key + "Mid"] = color.Value;
+                theme.ExtendedColors[color.Key + "Dark"] = color.Value.Darken();
+            }
+        }
+
         public static ITheme GetReversedTheme(this ITheme theme)
         {
             var primary = theme.PrimaryMid.Reverse();

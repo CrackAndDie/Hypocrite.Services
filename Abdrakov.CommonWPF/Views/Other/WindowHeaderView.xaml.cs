@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Styles.Interfaces;
 using Abdrakov.Styles.Other.Events;
@@ -129,6 +131,24 @@ namespace Abdrakov.CommonWPF.Views.Other
 
         public static readonly DependencyProperty ThemeToggleVisibilityProperty =
             DependencyProperty.Register("ThemeToggleVisibility", typeof(Visibility), typeof(WindowHeaderView));
+
+        public Visibility LanguagesComboBoxVisibility
+        {
+            get { return (Visibility)GetValue(LanguagesComboBoxVisibilityProperty); }
+            set { SetValue(LanguagesComboBoxVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty LanguagesComboBoxVisibilityProperty =
+            DependencyProperty.Register("LanguagesComboBoxVisibility", typeof(Visibility), typeof(WindowHeaderView));
+
+        public ObservableCollection<Language> AllowedLanguages
+        {
+            get { return (ObservableCollection<Language>)GetValue(AllowedLanguagesProperty); }
+            set { SetValue(AllowedLanguagesProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowedLanguagesProperty =
+            DependencyProperty.Register("AllowedLanguages", typeof(ObservableCollection<Language>), typeof(WindowHeaderView));
 
         public WindowHeaderView()
         {

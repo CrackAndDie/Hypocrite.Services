@@ -22,6 +22,8 @@ using Abdrakov.Tests.Modules;
 using Abdrakov.Styles.Interfaces;
 using Abdrakov.Styles.Services;
 using Abdrakov.Styles.Other;
+using Abdrakov.Engine.Localization;
+using System.Collections.ObjectModel;
 
 namespace Abdrakov.Tests
 {
@@ -52,6 +54,7 @@ namespace Abdrakov.Tests
             {
                 ProductName = "Tests",
                 LogoImage = "pack://application:,,,/Abdrakov.Tests;component/Resources/AbdrakovSolutions.png",
+                AllowedLanguages = new ObservableCollection<Language>() { new Language(0, "RU"), new Language(1, "EN"), },
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 

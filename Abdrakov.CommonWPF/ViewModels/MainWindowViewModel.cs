@@ -1,11 +1,13 @@
 ﻿using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
+using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Engine.Utils;
 using Abdrakov.Engine.Utils.Settings;
 using Prism.Commands;
 using Prism.Ioc;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -78,6 +80,20 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref themeToggleVisibility, value); }
         }
 
+        private Visibility languagesComboBoxVisibility;
+        public Visibility LanguagesComboBoxVisibility
+        {
+            get { return languagesComboBoxVisibility; }
+            set { SetProperty(ref languagesComboBoxVisibility, value); }
+        }
+
+        private ObservableCollection<Language> allowedLanguages;
+        public ObservableCollection<Language> AllowedLanguages
+        {
+            get { return allowedLanguages; }
+            set { SetProperty(ref allowedLanguages, value); }
+        }
+
         private bool allowTransparency;
         public bool AllowTransparency
         {
@@ -117,6 +133,9 @@ namespace Abdrakov.CommonWPF.ViewModels
                 RestoreButtonVisibility = Visibility.Collapsed;
 
                 ThemeToggleVisibility = settings.ThemeToggleVisibility;
+
+                LanguagesComboBoxVisibility = settings.AllowedLanguages.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+                AllowedLanguages = settings.AllowedLanguages;
             }
         }
 

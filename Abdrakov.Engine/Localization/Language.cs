@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.Localization
 {
-    public enum Language
+    public struct Language
     {
-        EN,
-        RU
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Language(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

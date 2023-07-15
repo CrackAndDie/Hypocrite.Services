@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Abdrakov.Engine.Localization;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ namespace Abdrakov.Engine.Interfaces.Presentation
         Visibility MaxResButtonsVisibility { get; set; }
         Visibility WindowProgressVisibility { get; set; }
         Visibility ThemeToggleVisibility { get; set; }
+        ObservableCollection<Language> AllowedLanguages { get; set; }
         bool AllowTransparency { get; set; }
     }
 }

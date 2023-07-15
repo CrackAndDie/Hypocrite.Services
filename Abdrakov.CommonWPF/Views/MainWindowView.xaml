@@ -45,12 +45,14 @@
                                      RestoreWindowCommand="{Binding RestoreWindowCommand}"
                                      CloseWindowCommand="{Binding CloseWindowCommand}"
                                      WindowParameter="{Binding ElementName=thisWindow}"
+                                     AllowedLanguages="{Binding AllowedLanguages}"
                                      MinimizeButtonVisibility="{Binding MinimizeButtonVisibility}"
                                      MaximizeButtonVisibility="{Binding MaximizeButtonVisibility}"
                                      RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
                                      ProgressBarVisibility="{Binding ProgressBarVisibility}"
                                      CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"
-                                     ThemeToggleVisibility="{Binding ThemeToggleVisibility}"/>
+                                     ThemeToggleVisibility="{Binding ThemeToggleVisibility}"
+                                     LanguagesComboBoxVisibility="{Binding LanguagesComboBoxVisibility}"/>
 
         <Border BorderThickness="0"
                 Background="{DynamicResource PrimaryMidBrush}" 

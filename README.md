@@ -94,6 +94,49 @@ internal class MainModule : IModule
 }
 ```
 
+<h3>Preview window:</h3>  
+
+You can create your own preview window using *Abdrakov.Solutions*. Your preview window has to implement *IPreviewWindow* interface. Here is the sample preview window that shows up for 4 seconds:
+```cs
+public partial class PreviewWindowView : Window, IPreviewWindow
+{
+    private DispatcherTimer timer;
+    public PreviewWindowView()
+    {
+        InitializeComponent();
+
+        timer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromSeconds(4),
+        };
+        timer.Tick += (s, a) => { CallPreviewDoneEvent(); };
+        timer.Start();
+    }
+
+    public void CallPreviewDoneEvent()
+    {
+        timer.Stop();
+        var cont = (Application.Current as AbdrakovApplication).Container;
+        cont.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Publish();
+        this.Close();
+    }
+}
+```
+
+Your preview window should be also registered like this:
+```cs
+protected override void RegisterTypes(IContainerRegistry containerRegistry)
+{
+    base.RegisterTypes(containerRegistry);
+
+    containerRegistry.RegisterSingleton<IPreviewWindow, PreviewWindowView>();
+
+    // ...
+}
+```
+
+Registered Window under *IBaseWindow* interface will be shown up after *PreviewDoneEvent* event call.
+
 <h3>Theme registrations:</h3>  
 
 Abdrakov.Solutions supports realtime theme change (Dark/Light) and flexible colors (brushes) registrations. Here is the sample code to register *IAbdrakovThemeService* in your App (if you don't want the theme change service in your project you can skip this registration):
@@ -158,4 +201,8 @@ protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     // ...
 }
 ```
-If you won't register any of the theme it will be gererated automaticaly by reversing colors of the existing theme.
+If you won't register any of the theme it will be gererated automaticaly by reversing colors of the existing theme.  
+Registered colors and brushes could be used as DynamicResources like that:
+```xaml
+<Rectangle Fill="{DynamicResource TestMidBrush}"/>
+```

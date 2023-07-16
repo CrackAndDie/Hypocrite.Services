@@ -52,6 +52,9 @@ namespace Abdrakov.Tests
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             base.RegisterTypes(containerRegistry);
+
+            containerRegistry.RegisterSingleton<IPreviewWindow, PreviewWindowView>();
+
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
                 ProductName = "Tests",

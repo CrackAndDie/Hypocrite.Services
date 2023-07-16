@@ -17,7 +17,8 @@
         WindowStyle="None"
         AllowsTransparency="{Binding AllowTransparency}"
         SourceInitialized="Window_SourceInitialized"
-        x:Name="thisWindow">
+        x:Name="thisWindow"
+        WindowStartupLocation="CenterScreen">
     
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="22"

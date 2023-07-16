@@ -95,23 +95,29 @@ namespace Abdrakov.Engine.Localization.Extensions
 			if (_scopedProviders.Count == 0)
 			{
 				var currentAssembly = Assembly.GetExecutingAssembly();
-				var assemblyName = currentAssembly.GetName().Name;
-				var providersInfo = currentAssembly.GetManifestResourceNames()
-				.Where(x => x.StartsWith($"{assemblyName}.Localization."))
-				.Select(x => x.Substring($"{assemblyName}.Localization.".Length))
-				.Select(x => x.Split('.'))
-				.Select(x => x.TakeWhile((s, i) => i < x.Count() - 1))
-				.Select(x => string.Join(".", x))
-				.Select(x => (Provider: new ResxLocalizationProvider(currentAssembly, x), Name: x))
-				.ToArray();
-
-				foreach (var (Provider, Name) in providersInfo)
-				{
-					AddScopedProvider(Name, Provider);
-					// AddScopedProvider($"engine.{Name}", Provider);
-				}
-			}
+				InitializeExternal(currentAssembly);
+            }
 		}
+
+		public static void InitializeExternal(Assembly assembly)
+		{
+            var assemblyName = assembly.GetName().Name;
+            var providersInfo = assembly.GetManifestResourceNames()
+                .Where(x => x.StartsWith($"{assemblyName}.Localization."))
+                .Select(x => x.Substring($"{assemblyName}.Localization.".Length))
+                .Select(x => x.Split('.'))
+                .Select(x => x.TakeWhile((s, i) => i < x.Count() - 1))
+                .Select(x => string.Join(".", x))
+                .AsParallel()
+                .Select(x => (Provider: new ResxLocalizationProvider(assembly, x), Name: x))
+                .ToArray();
+
+            foreach (var (Provider, Name) in providersInfo)
+            {
+                AddScopedProvider(Name, Provider);
+                AddScopedProvider($"core.{Name}", Provider);
+            }
+        }
 
 		public static string Translate(object obj, CultureInfo culture = null)
 		{

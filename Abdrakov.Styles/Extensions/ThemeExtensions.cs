@@ -50,9 +50,9 @@ namespace Abdrakov.Styles.Extensions
             theme.ExtendedColors = new Dictionary<string, Color>();
             foreach (var color in extendedColors)
             {
-                theme.ExtendedColors[color.Key + "Light"] = color.Value.Lighten();
-                theme.ExtendedColors[color.Key + "Mid"] = color.Value;
-                theme.ExtendedColors[color.Key + "Dark"] = color.Value.Darken();
+                theme.ExtendedColors[color.Key + "LightBrush"] = color.Value.Lighten();
+                theme.ExtendedColors[color.Key + "MidBrush"] = color.Value;
+                theme.ExtendedColors[color.Key + "DarkBrush"] = color.Value.Darken();
             }
         }
 

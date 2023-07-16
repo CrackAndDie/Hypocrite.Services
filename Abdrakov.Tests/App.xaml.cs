@@ -32,23 +32,7 @@ namespace Abdrakov.Tests
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var currentAssembly = Assembly.GetExecutingAssembly();
-            var assemblyName = currentAssembly.GetName().Name;
-            var providersInfo = currentAssembly.GetManifestResourceNames()
-                .Where(x => x.StartsWith($"{assemblyName}.Localization."))
-                .Select(x => x.Substring($"{assemblyName}.Localization.".Length))
-                .Select(x => x.Split('.'))
-                .Select(x => x.TakeWhile((s, i) => i < x.Count() - 1))
-                .Select(x => string.Join(".", x))
-                .AsParallel()
-                .Select(x => (Provider: new ResxLocalizationProvider(currentAssembly, x), Name: x))
-                .ToArray();
-
-            foreach (var (Provider, Name) in providersInfo)
-            {
-                LocalizationManager.AddScopedProvider(Name, Provider);
-                // LocalizationManager.AddScopedProvider($"core.{Name}", Provider);
-            }
+            LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly());
             base.OnStartup(e);
         }
 
@@ -108,7 +92,7 @@ namespace Abdrakov.Tests
                 },
                 ExtendedColors = new Dictionary<string, ColorPair>()
                 {
-                    { "TestColor", new ColorPair(Colors.Red, Colors.Purple) },
+                    { "Test", new ColorPair(Colors.Red, Colors.Purple) },
                 }
             }.SetTheme());
         }

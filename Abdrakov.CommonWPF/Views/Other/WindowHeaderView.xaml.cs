@@ -1,15 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Abdrakov.Engine.Localization;
+using Abdrakov.Engine.Localization.Extensions;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Styles.Interfaces;
 using Abdrakov.Styles.Other.Events;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Ioc;
+using System.Diagnostics;
+using System.Globalization;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {
@@ -148,7 +152,20 @@ namespace Abdrakov.CommonWPF.Views.Other
         }
 
         public static readonly DependencyProperty AllowedLanguagesProperty =
-            DependencyProperty.Register("AllowedLanguages", typeof(ObservableCollection<Language>), typeof(WindowHeaderView));
+            DependencyProperty.Register("AllowedLanguages", typeof(ObservableCollection<Language>), typeof(WindowHeaderView), new PropertyMetadata(null, AllowedLanguagesChanged));
+
+        private static void AllowedLanguagesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((WindowHeaderView)d).AllowedLanguagesChanged(e.NewValue as ObservableCollection<Language>);
+        }
+
+        private void AllowedLanguagesChanged(ObservableCollection<Language> val)
+        {
+            if (val != null)
+            {
+                LanguagesComboBox.SelectedItem = val.FirstOrDefault(x => x.Name.ToLower() == LocalizationManager.CurrentLanguage.TwoLetterISOLanguageName);
+            }
+        }
 
         public WindowHeaderView()
         {
@@ -170,6 +187,15 @@ namespace Abdrakov.CommonWPF.Views.Other
             if (app.Container.IsRegistered<IAbdrakovThemeService>())
             {
                 app.Container.Resolve<IAbdrakovThemeService>().ApplyBase((bool)ThemeModeToggle.IsChecked);
+            }
+        }
+
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Language item = (Language)LanguagesComboBox.SelectedItem;
+            if (!string.IsNullOrEmpty(item.Name))
+            {
+                LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
             }
         }
     }

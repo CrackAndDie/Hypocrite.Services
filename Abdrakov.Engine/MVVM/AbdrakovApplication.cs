@@ -8,6 +8,7 @@ using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
+using Abdrakov.Engine.Localization.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,12 @@ namespace Abdrakov.Engine.MVVM
 {
     public class AbdrakovApplication : PrismApplication
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            LocalizationManager.Initialize();
+            base.OnStartup(e);
+        }
+
         protected override Window CreateShell()
         {
             if (Container.IsRegistered<IPreviewWindow>())

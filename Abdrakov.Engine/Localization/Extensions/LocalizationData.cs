@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 
-namespace Shell.Engine.Localization.Extension
+namespace Abdrakov.Engine.Localization.Extensions
 {
 	public class LocalizationData : IWeakEventListener, INotifyPropertyChanged, IDisposable
 	{

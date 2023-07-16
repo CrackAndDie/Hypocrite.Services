@@ -58,11 +58,6 @@
     <Compile Include="Localization\Extensions\ResxLocalizationProvider.cs" />
     <Compile Include="Localization\Extensions\Translation\ScopedTranslationProvider.cs" />
     <Compile Include="Localization\Extensions\Translation\TranslationProviderBase.cs" />
-    <Compile Include="Localization\Gui.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Gui.resx</DependentUpon>
-    </Compile>
     <Compile Include="Localization\Language.cs" />
     <Compile Include="MVVM\AbdrakovApplication.cs" />
     <Compile Include="MVVM\Events\CloseDialogEvent.cs" />
@@ -85,12 +80,6 @@
       <Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
       <Name>Abdrakov.Logging</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Gui.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Gui.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

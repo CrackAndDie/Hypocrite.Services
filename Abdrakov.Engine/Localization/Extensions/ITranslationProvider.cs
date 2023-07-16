@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Shell.Engine.Localization.Extension
+namespace Abdrakov.Engine.Localization.Extensions
 {
 	public interface ITranslationProvider
 	{

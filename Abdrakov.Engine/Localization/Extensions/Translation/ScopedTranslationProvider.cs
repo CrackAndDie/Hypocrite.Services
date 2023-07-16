@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Shell.Engine.Localization.Extension.Translation
+namespace Abdrakov.Engine.Localization.Extensions.Translation
 {
 	public class ScopedTranslationProvider<T> : TranslationProviderBase<T>
 	{

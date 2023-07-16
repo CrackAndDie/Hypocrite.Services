@@ -33,6 +33,24 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        
+
+        <Border BorderThickness="0"
+                Background="{DynamicResource PrimaryMidBrush}" 
+                Grid.Row="1">
+            <Image Source="../Resources/AbdrakovSolutions.png" 
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="100"
+                   Stretch="Uniform"/>
+        </Border>
+
+        <ContentControl x:Name="frame"
+                        Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
+                        prism:RegionManager.RegionManager="{Binding RegionManager}" />
+        
         <Rectangle Grid.ColumnSpan="3"
                    Grid.Row="0"
                    Fill="{DynamicResource PrimaryMidBrush}" />
@@ -53,21 +71,5 @@
                                      CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"
                                      ThemeToggleVisibility="{Binding ThemeToggleVisibility}"
                                      LanguagesComboBoxVisibility="{Binding LanguagesComboBoxVisibility}"/>
-
-        <Border BorderThickness="0"
-                Background="{DynamicResource PrimaryMidBrush}" 
-                Grid.Row="1">
-            <Image Source="../Resources/AbdrakovSolutions.png" 
-                   RenderOptions.BitmapScalingMode="HighQuality" 
-                   Margin="100"
-                   Stretch="Uniform"/>
-        </Border>
-
-        <ContentControl x:Name="frame"
-                        Grid.Row="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
-                        prism:RegionManager.RegionManager="{Binding RegionManager}" />
     </Grid>
 </Window>

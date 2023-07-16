@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 
-namespace Shell.Engine.Localization.Extension
+namespace Abdrakov.Engine.Localization.Extensions
 {
 	public static class LocalizationManager
 	{
@@ -108,7 +108,7 @@ namespace Shell.Engine.Localization.Extension
 				foreach (var (Provider, Name) in providersInfo)
 				{
 					AddScopedProvider(Name, Provider);
-					AddScopedProvider($"engine.{Name}", Provider);
+					// AddScopedProvider($"engine.{Name}", Provider);
 				}
 			}
 		}

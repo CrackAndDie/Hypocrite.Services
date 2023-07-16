@@ -4,10 +4,10 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace Shell.Engine.Localization.Extension
+namespace Abdrakov.Engine.Localization.Extensions
 {
-	public class LocalizedResourceExtension : DynamicResourceExtension
-	{
+	public class LocalizedResourceExtension : MarkupExtension
+    {
 		public LocalizedResourceExtension(string key)
 		{
 			Key = key;

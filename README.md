@@ -15,10 +15,10 @@ This is the main repo for all the Abdrakov projects. This project fully supports
 
 When you created your WPF app you should rewrite your *App.xaml* and *App.xaml.cs* files as follows:
 ```xaml
-<engine:AbdrakovApplication x:Class="Abdrakov.Tests.App"
+<engine:AbdrakovApplication x:Class="YourNamespace.App"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:local="clr-namespace:Abdrakov.Tests"
+                            xmlns:local="clr-namespace:YourNamespace"
                             xmlns:engine="clr-namespace:Abdrakov.Engine.MVVM;assembly=Abdrakov.Engine">
 </engine:AbdrakovApplication>
 ```
@@ -206,3 +206,50 @@ Registered colors and brushes could be used as DynamicResources like that:
 ```xaml
 <Rectangle Fill="{DynamicResource TestMidBrush}"/>
 ```
+
+<h3>Localization:</h3>  
+
+*Abdrakov.Solutions* also provides you a great realtime localization solution. To use it you should create a folder *Localization* in your project and make some changes in your *App.xaml.cs* file:
+```cs
+public partial class App : AbdrakovApplication
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly());  // initialization of LocalizationManager static service
+        // ...
+        base.OnStartup(e);
+    }
+
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        base.RegisterTypes(containerRegistry);
+
+        // ...
+
+        containerRegistry.RegisterInstance(new BaseWindowSettings()
+        {
+            // ...
+            AllowedLanguages = new ObservableCollection<Language>() { new Language(0, "RU"), new Language(1, "EN"), },  // available languages in your app
+        });
+
+        // ...
+    }
+}
+```
+
+In the *Localization* folder you create Resource files with translations and call it as follows - "FileName"."Language".resx (Gui.resx or Gui.ru.resx). Default resource file doesn't need to have the "Language" part.  
+
+Now to use localization features you should add the reference in you markup file ```xmlns:l="clr-namespace:Abdrakov.Engine.Localization.Extensions;assembly=Abdrakov.Engine"``` and use it like this:
+```xaml
+<TextBlock Text="{l:LocalizedResource MainPage.TestText}"
+            Foreground="{DynamicResource TextForegroundBrush}" />
+```
+(I have this in my *.resx* files):  
+![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/d7e8969d-1f9e-4f2d-938a-d6e9c483f16c)
+![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/56e85807-d49f-448e-8fe1-f49d0b4158ce)
+
+To change current localization you can change *LocalizationManager.CurrentLanguage* property like this:
+```cs
+LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
+```
+In this examle *item* is an instance of *Language* class.

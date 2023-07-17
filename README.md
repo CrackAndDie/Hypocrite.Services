@@ -249,4 +249,12 @@ To change current localization you can change *LocalizationManager.CurrentLangua
 ```cs
 LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
 ```
-In this examle *item* is an instance of *Language* class.
+In this examle *item* is an instance of *Language* class.  
+
+<h3>Window progress indicator:</h3>  
+
+There is also a progress indicator on the *MainWindowView* header that could be used to show user current window status. To handle this status you can resolve *IWindowProgressService* service and use *AddWaiter()* method to add waiter to the service and *RemoveWaiter()* when the job is done. You can also handle *WindowProgressChangedEvent* by yourself using *IEventAggregator*.  
+
+<h3>Logging:</h3>  
+
+To log your app's work you can resolve *ILoggingService* that is just an adapter of *Log4netLoggingService*. 

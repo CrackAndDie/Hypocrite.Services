@@ -89,8 +89,6 @@ namespace Abdrakov.Tests
                 {
                     PrimaryColor = Color.FromRgb(254, 254, 254),
                     SecondaryColor = Colors.HotPink,
-                    ScrollBackground = Colors.AliceBlue,
-                    ScrollForeground = Colors.LightGray,
                     TextForegorundColor = Colors.Black,
                 },
                 ExtendedColors = new Dictionary<string, ColorPair>()

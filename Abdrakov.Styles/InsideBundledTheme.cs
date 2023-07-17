@@ -35,32 +35,6 @@ namespace Abdrakov.Styles
             }
         }
 
-        private Color _scrollForeground = Color.FromRgb(136, 136, 136);
-        public Color ScrollForeground
-        {
-            get => _scrollForeground;
-            set
-            {
-                if (_scrollForeground != value)
-                {
-                    _scrollForeground = value;
-                }
-            }
-        }
-
-        private Color _scrollBackground = Color.FromRgb(63, 68, 79);
-        public Color ScrollBackground
-        {
-            get => _scrollBackground;
-            set
-            {
-                if (_scrollBackground != value)
-                {
-                    _scrollBackground = value;
-                }
-            }
-        }
-
         private Color _textForegorundColor = Colors.AliceBlue;
         public Color TextForegorundColor
         {

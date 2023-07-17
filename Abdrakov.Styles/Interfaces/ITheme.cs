@@ -16,12 +16,11 @@ namespace Abdrakov.Styles.Interfaces
         Color PrimaryDark { get; set; }
         Color PrimaryVeryDark { get; set; }
 
+        Color NonPrimary { get; set; }
+
         Color SecondaryLight { get; set; }
         Color SecondaryMid { get; set; }
         Color SecondaryDark { get; set; }
-
-        Color ScrollBackground { get; set; }
-        Color ScrollForeground { get; set; }
 
         Color TextForeground { get; set; }
 

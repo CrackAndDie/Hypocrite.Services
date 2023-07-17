@@ -19,12 +19,11 @@ namespace Abdrakov.Styles
         public Color PrimaryDark { get; set; }
         public Color PrimaryVeryDark { get; set; }
 
+        public Color NonPrimary { get; set; }
+
         public Color SecondaryLight { get; set; }
         public Color SecondaryMid { get; set; }
         public Color SecondaryDark { get; set; }
-
-        public Color ScrollBackground { get; set; }
-        public Color ScrollForeground { get; set; }
 
         public Color TextForeground { get; set; }
 
@@ -36,7 +35,6 @@ namespace Abdrakov.Styles
 
             theme.SetPrimaryColor(insideTheme.PrimaryColor);
             theme.SetSecondaryColor(insideTheme.SecondaryColor);
-            theme.SetScrollColors(insideTheme.ScrollForeground, insideTheme.ScrollBackground);
             theme.SetOtherColors(insideTheme.TextForegorundColor);
             if (extended != null)
             {

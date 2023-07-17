@@ -52,8 +52,8 @@
                     <Button Style="{StaticResource OutlinedRoundedButton}" 
                             Margin="10, 0" 
                             Command="{Binding Test1Command}">
-                        <TextBlock Text="{l:LocalizedResource MainPage.TestText}" 
-                                   Foreground="{DynamicResource TextForegroundBrush}"/>
+                        <TextBlock Text="{l:LocalizedResource MainPage.TestText}"
+                                   Foreground="{DynamicResource TextForegroundBrush}" />
                     </Button>
 
                     <ComboBox Style="{StaticResource AbdrakovComboBox}"

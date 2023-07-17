@@ -30,7 +30,7 @@ namespace Abdrakov.Styles.Extensions
             var fy = xyz_lab(xyz.Y / LabConstants.WhitePointY);
             var fz = xyz_lab(xyz.Z / LabConstants.WhitePointZ);
 
-            var l = 116 * fy - 16;
+            var l = 116 * fy - 16; // min -16 max 101
             var a = 500 * (fx - fy);
             var b = 200 * (fy - fz);
             return new Lab(l, a, b);

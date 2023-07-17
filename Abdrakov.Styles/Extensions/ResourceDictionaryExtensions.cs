@@ -32,12 +32,11 @@ namespace Abdrakov.Styles.Extensions
             SetSolidColorBrush(resourceDictionary, "PrimaryDarkBrush", theme.PrimaryDark);
             SetSolidColorBrush(resourceDictionary, "PrimaryVeryDarkBrush", theme.PrimaryVeryDark);
 
+            SetSolidColorBrush(resourceDictionary, "NonPrimaryBrush", theme.NonPrimary);
+
             SetSolidColorBrush(resourceDictionary, "SecondaryLightBrush", theme.SecondaryLight);
             SetSolidColorBrush(resourceDictionary, "SecondaryMidBrush", theme.SecondaryMid);
             SetSolidColorBrush(resourceDictionary, "SecondaryDarkBrush", theme.SecondaryDark);
-
-            SetSolidColorBrush(resourceDictionary, "ScrollBackgroundBrush", theme.ScrollBackground);
-            SetSolidColorBrush(resourceDictionary, "ScrollForegroundBrush", theme.ScrollForeground);
 
             SetSolidColorBrush(resourceDictionary, "TextForegroundBrush", theme.TextForeground);
 
@@ -79,12 +78,11 @@ namespace Abdrakov.Styles.Extensions
                 PrimaryDark = GetColor("PrimaryDarkBrush"),
                 PrimaryVeryDark = GetColor("PrimaryVeryDarkBrush"),
 
+                NonPrimary = GetColor("NonPrimaryBrush"),
+
                 SecondaryLight = GetColor("SecondaryLightBrush"),
                 SecondaryMid = GetColor("SecondaryMidBrush"),
                 SecondaryDark = GetColor("SecondaryDarkBrush"),
-
-                ScrollBackground = GetColor("ScrollBackgroundBrush"),
-                ScrollForeground = GetColor("ScrollForegroundBrush"),
 
                 TextForeground = GetColor("TextForegroundBrush"),
             };

@@ -166,8 +166,6 @@ private void ConfigureApplicationVisual()
         {
             PrimaryColor = Color.FromRgb(254, 254, 254),  // primary color of light theme
             SecondaryColor = Colors.HotPink,  // secondary color of light theme
-            ScrollBackground = Colors.AliceBlue,  // scrollviewer background of light theme (should be removed in the next versions)
-            ScrollForeground = Colors.LightGray,  // scrollviewer foreground of light theme (should be removed in the next versions)
             TextForegorundColor = Colors.Black,  // text foreground of light theme
         },
         ExtendedColors = new Dictionary<string, ColorPair>()  // your external color registrations
@@ -183,11 +181,10 @@ Every external color registration gives you three dynamic Brushes and Colors (li
 - PrimaryMidBrush
 - PrimaryDarkBrush
 - PrimaryVeryDarkBrush
+- NonPrimaryBrush  // PrimaryLightBrush in the dark theme, PrimaryDarkBrush in the light
 - SecondaryLightBrush
 - SecondaryMidBrush
 - SecondaryDarkBrush
-- ScrollBackgroundBrush
-- ScrollForegroundBrush
 - TextForegroundBrush
 
 *ConfigureApplicationVisual* should be called in *ConfigureModuleCatalog* overrided method like this:

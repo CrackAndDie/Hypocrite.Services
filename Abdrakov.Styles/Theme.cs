@@ -13,11 +13,9 @@ namespace Abdrakov.Styles
 {
     public class Theme : ITheme
     {
-        public Color PrimaryVeryLight { get; set; }
         public Color PrimaryLight { get; set; }
         public Color PrimaryMid { get; set; }
         public Color PrimaryDark { get; set; }
-        public Color PrimaryVeryDark { get; set; }
 
         public Color NonPrimary { get; set; }
 

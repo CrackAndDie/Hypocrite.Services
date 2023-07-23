@@ -8,12 +8,12 @@ using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.Localization.Extensions;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Styles.Interfaces;
-using Abdrakov.Styles.Other.Events;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Ioc;
 using System.Diagnostics;
 using System.Globalization;
+using Abdrakov.Styles.Other.Event;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {

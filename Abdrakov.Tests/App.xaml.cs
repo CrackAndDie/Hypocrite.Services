@@ -33,6 +33,8 @@ namespace Abdrakov.Tests
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            ConfigureApplicationVisual();
+
             Thread.CurrentThread.Name = "MainThread";
             LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly());
             base.OnStartup(e);
@@ -70,9 +72,6 @@ namespace Abdrakov.Tests
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            // should be called right here
-            ConfigureApplicationVisual();
-
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<MainModule>();
         }

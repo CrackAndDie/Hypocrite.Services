@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Styles.Other.Events
+namespace Abdrakov.Styles.Other.Event
 {
     public class ThemeChangedEvent : PubSubEvent<ThemeChangedEventArgs>
     {

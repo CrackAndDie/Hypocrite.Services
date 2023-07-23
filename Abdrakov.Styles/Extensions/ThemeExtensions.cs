@@ -14,11 +14,9 @@ namespace Abdrakov.Styles.Extensions
         {
             if (theme is null) throw new ArgumentNullException(nameof(theme));
 
-            theme.PrimaryVeryLight = primaryColor.Lighten(2);
             theme.PrimaryLight = primaryColor.Lighten();
             theme.PrimaryMid = primaryColor;
             theme.PrimaryDark = primaryColor.Darken();
-            theme.PrimaryVeryDark = primaryColor.Darken(2);
             theme.NonPrimary = primaryColor.ToLab().L > 50 ? primaryColor.Darken() : primaryColor.Lighten();
         }
 
@@ -43,9 +41,7 @@ namespace Abdrakov.Styles.Extensions
             theme.ExtendedColors = new Dictionary<string, Color>();
             foreach (var color in extendedColors)
             {
-                theme.ExtendedColors[color.Key + "LightBrush"] = color.Value.Lighten();
-                theme.ExtendedColors[color.Key + "MidBrush"] = color.Value;
-                theme.ExtendedColors[color.Key + "DarkBrush"] = color.Value.Darken();
+                theme.ExtendedColors[color.Key + "Brush"] = color.Value;
             }
         }
 
@@ -55,11 +51,9 @@ namespace Abdrakov.Styles.Extensions
             var secondary = theme.SecondaryMid.Reverse();
             return new Theme()
             {
-                PrimaryVeryDark = primary.Darken(2),
                 PrimaryDark = primary.Darken(),
                 PrimaryMid = primary,
                 PrimaryLight = primary.Lighten(),
-                PrimaryVeryLight = primary.Lighten(2),
 
                 SecondaryDark = secondary.Darken(),
                 SecondaryMid = secondary,

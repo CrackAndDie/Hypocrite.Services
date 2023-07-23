@@ -10,11 +10,9 @@ namespace Abdrakov.Styles.Interfaces
 {
     public interface ITheme
     {
-        Color PrimaryVeryLight { get; set; }
         Color PrimaryLight { get; set; }
         Color PrimaryMid { get; set; }
         Color PrimaryDark { get; set; }
-        Color PrimaryVeryDark { get; set; }
 
         Color NonPrimary { get; set; }
 

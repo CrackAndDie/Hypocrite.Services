@@ -1,6 +1,5 @@
 ﻿using Abdrakov.Engine.MVVM;
 using Abdrakov.Styles.Interfaces;
-using Abdrakov.Styles.Other.Events;
 using Prism.Events;
 using Prism.Unity;
 using Prism.Ioc;
@@ -12,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Abdrakov.Styles.Other.Event;
+using System.Web.UI;
 
 namespace Abdrakov.Styles.Extensions
 {
@@ -26,11 +27,9 @@ namespace Abdrakov.Styles.Extensions
 
             var theme = isDark ? darkTheme : lightTheme;
 
-            SetSolidColorBrush(resourceDictionary, "PrimaryVeryLightBrush", theme.PrimaryVeryLight);
             SetSolidColorBrush(resourceDictionary, "PrimaryLightBrush", theme.PrimaryLight);
             SetSolidColorBrush(resourceDictionary, "PrimaryMidBrush", theme.PrimaryMid);
             SetSolidColorBrush(resourceDictionary, "PrimaryDarkBrush", theme.PrimaryDark);
-            SetSolidColorBrush(resourceDictionary, "PrimaryVeryDarkBrush", theme.PrimaryVeryDark);
 
             SetSolidColorBrush(resourceDictionary, "NonPrimaryBrush", theme.NonPrimary);
 
@@ -55,9 +54,12 @@ namespace Abdrakov.Styles.Extensions
             ITheme oldTheme = resourceDictionary.GetTheme();
             resourceDictionary[CurrentThemeKey] = theme;
 
-            (Application.Current as AbdrakovApplication).Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>()
+            var cont = (Application.Current as AbdrakovApplication).Container;
+            if (cont.IsRegistered<IEventAggregator>())
+            {
+                cont.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>()
                 .Publish(new ThemeChangedEventArgs(resourceDictionary, oldTheme, theme, isDark));
-            
+            }
         }
 
         public static ITheme GetTheme(this ResourceDictionary resourceDictionary)
@@ -72,11 +74,9 @@ namespace Abdrakov.Styles.Extensions
             // There won't be ExtendedColors anymore
             return new Theme
             {
-                PrimaryVeryLight = GetColor("PrimaryVeryLightBrush"),
                 PrimaryLight = GetColor("PrimaryLightBrush"),
                 PrimaryMid = GetColor("PrimaryMidBrush"),
                 PrimaryDark = GetColor("PrimaryDarkBrush"),
-                PrimaryVeryDark = GetColor("PrimaryVeryDarkBrush"),
 
                 NonPrimary = GetColor("NonPrimaryBrush"),
 

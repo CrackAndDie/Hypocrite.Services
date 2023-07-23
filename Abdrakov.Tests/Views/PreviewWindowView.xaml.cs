@@ -1,7 +1,6 @@
 ﻿using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Engine.MVVM.Events;
-using Abdrakov.Styles.Other.Events;
 using Prism.Events;
 using Prism.Ioc;
 using System;

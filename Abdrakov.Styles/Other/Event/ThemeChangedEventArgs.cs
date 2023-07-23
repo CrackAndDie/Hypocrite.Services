@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Abdrakov.Styles
+namespace Abdrakov.Styles.Other.Event
 {
-    public class ThemeChangedEventArgs : EventArgs
+    public class ThemeChangedEventArgs
     {
         public ThemeChangedEventArgs(ResourceDictionary resourceDictionary, ITheme oldTheme, ITheme newTheme, bool isDark)
         {

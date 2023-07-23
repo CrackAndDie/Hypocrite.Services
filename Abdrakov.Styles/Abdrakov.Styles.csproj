@@ -57,14 +57,19 @@
     <Compile Include="Interfaces\ITheme.cs" />
     <Compile Include="Interfaces\IThemeManager.cs" />
     <Compile Include="Other\ColorPair.cs" />
-    <Compile Include="Other\Events\ThemeChangedEvent.cs" />
+    <Compile Include="Other\Event\ThemeChangedEvent.cs" />
+    <Compile Include="Other\Event\ThemeChangedEventArgs.cs" />
     <Compile Include="Other\Lab.cs" />
     <Compile Include="Other\PaletteHelper.cs" />
     <Compile Include="Other\Xyz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AbdrakovThemeService.cs" />
+    <Compile Include="Styles\Converters\ArcEndPointConverter.cs" />
+    <Compile Include="Styles\Converters\ArcSizeConverter.cs" />
+    <Compile Include="Styles\Converters\NonZeroConverter.cs" />
+    <Compile Include="Styles\Converters\RotateTransformCentreConverter.cs" />
+    <Compile Include="Styles\Converters\StartPointConverter.cs" />
     <Compile Include="Theme.cs" />
-    <Compile Include="ThemeChangedEventArgs.cs" />
     <Compile Include="ThemeManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

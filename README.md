@@ -166,8 +166,6 @@ private void ConfigureApplicationVisual()
         {
             PrimaryColor = Color.FromRgb(254, 254, 254),  // primary color of light theme
             SecondaryColor = Colors.HotPink,  // secondary color of light theme
-            ScrollBackground = Colors.AliceBlue,  // scrollviewer background of light theme (should be removed in the next versions)
-            ScrollForeground = Colors.LightGray,  // scrollviewer foreground of light theme (should be removed in the next versions)
             TextForegorundColor = Colors.Black,  // text foreground of light theme
         },
         ExtendedColors = new Dictionary<string, ColorPair>()  // your external color registrations
@@ -183,11 +181,10 @@ Every external color registration gives you three dynamic Brushes and Colors (li
 - PrimaryMidBrush
 - PrimaryDarkBrush
 - PrimaryVeryDarkBrush
+- NonPrimaryBrush  // PrimaryLightBrush in the dark theme, PrimaryDarkBrush in the light
 - SecondaryLightBrush
 - SecondaryMidBrush
 - SecondaryDarkBrush
-- ScrollBackgroundBrush
-- ScrollForegroundBrush
 - TextForegroundBrush
 
 *ConfigureApplicationVisual* should be called in *ConfigureModuleCatalog* overrided method like this:
@@ -252,4 +249,12 @@ To change current localization you can change *LocalizationManager.CurrentLangua
 ```cs
 LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
 ```
-In this examle *item* is an instance of *Language* class.
+In this examle *item* is an instance of *Language* class.  
+
+<h3>Window progress indicator:</h3>  
+
+There is also a progress indicator on the *MainWindowView* header that could be used to show user current window status. To handle this status you can resolve *IWindowProgressService* service and use *AddWaiter()* method to add waiter to the service and *RemoveWaiter()* when the job is done. You can also handle *WindowProgressChangedEvent* by yourself using *IEventAggregator*.  
+
+<h3>Logging:</h3>  
+
+To log your app's work you can resolve *ILoggingService* that is just an adapter of *Log4netLoggingService*. 

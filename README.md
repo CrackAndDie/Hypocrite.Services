@@ -175,33 +175,35 @@ private void ConfigureApplicationVisual()
     }.SetTheme());
 }
 ```
-Every external color registration gives you three dynamic Brushes and Colors (like *TestLightBrush*, *TestMidBrush*, *TestDarkBrush* and *TestLightBrushColor*, *TestMidBrushColor*, *TestDarkBrushColor*) and you can also use this brushes (also colors with a prefix *...Color* at the end) in your project: 
-- PrimaryVeryLightBrush
+Every external color registration gives you dynamic Brush and Color (like *TestBrush* and *TestBrushColor*). You can also use this brushes (also colors with a prefix *...Color* at the end) in your project: 
 - PrimaryLightBrush
 - PrimaryMidBrush
 - PrimaryDarkBrush
-- PrimaryVeryDarkBrush
 - NonPrimaryBrush  // PrimaryLightBrush in the dark theme, PrimaryDarkBrush in the light
 - SecondaryLightBrush
 - SecondaryMidBrush
 - SecondaryDarkBrush
 - TextForegroundBrush
 
-*ConfigureApplicationVisual* should be called in *ConfigureModuleCatalog* overrided method like this:
+*ConfigureApplicationVisual* could be called in *OnStartup* overrided method like this:
 ```cs
-protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+protected override void OnStartup(StartupEventArgs e)
 {
-    // should be called right here
     ConfigureApplicationVisual();
-
-    base.ConfigureModuleCatalog(moduleCatalog);
-    // ...
+    //...
+    base.OnStartup(e);
+    //...
 }
 ```
 If you won't register any of the theme it will be gererated automaticaly by reversing colors of the existing theme.  
 Registered colors and brushes could be used as DynamicResources like that:
 ```xaml
-<Rectangle Fill="{DynamicResource TestMidBrush}"/>
+<Rectangle Fill="{DynamicResource TestBrush}"/>
+```
+
+There is also a *ThemeChangedEvent* event that is called through *IEventAggregator* with *ThemeChangedEventArgs*. You can subscribe like this (*IEventAggregator* is already resolved in *ViewModelBase*):
+```c#
+(Application.Current as AbdrakovApplication).Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe(YourMethod);
 ```
 
 <h3>Localization:</h3>  

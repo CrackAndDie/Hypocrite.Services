@@ -18,9 +18,6 @@ namespace Abdrakov.Tests.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        [Dependency]
-        public ILoggingService Logger { get; set; }
-
         private bool _mode = true;
 
         public ICommand Test1Command { get; private set; }
@@ -34,7 +31,7 @@ namespace Abdrakov.Tests.ViewModels
                 {
                     Container.Resolve<IAbdrakovThemeService>().ApplyBase(_mode);
                 }
-                Logger.Info($"Current mode is {_mode}");
+                LoggingService.Info($"Current mode is {_mode}");
             });
         }
 

@@ -77,6 +77,7 @@ namespace Abdrakov.Engine.MVVM
         public IRegionManager RegionManager => Container.Resolve<IRegionManager>();
         public ILoggingService LoggingService => Container.Resolve<ILoggingService>();
         public IDialogService DialogService => Container.Resolve<IDialogService>();
+        public IWindowProgressService WindowProgressService => Container.Resolve<IWindowProgressService>();
         public string ViewModelName => viewModelName;
         public NavigationParameters CurrentNavigationParameters { get; private set; }
 

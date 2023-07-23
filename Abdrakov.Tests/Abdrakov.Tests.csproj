@@ -115,6 +115,10 @@
       <Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
       <Name>Abdrakov.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Abdrakov.Logging\Abdrakov.Logging.csproj">
+      <Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
+      <Name>Abdrakov.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Abdrakov.Styles\Abdrakov.Styles.csproj">
       <Project>{2C72B5BD-357A-40DE-B39F-12FBC087310F}</Project>
       <Name>Abdrakov.Styles</Name>

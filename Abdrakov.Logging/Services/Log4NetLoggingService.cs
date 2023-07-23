@@ -1,6 +1,11 @@
 ﻿using Abdrakov.Logging.Extensions;
 using Abdrakov.Logging.Interfaces;
 using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Core;
+using log4net.Layout;
+using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +80,22 @@ namespace Abdrakov.Logging.Services
         {
             if (mainInstance == null)
             {
+                var patternLayout = new PatternLayout();
+                patternLayout.ConversionPattern = "%date | %thread | %level | %message%newline";
+                patternLayout.ActivateOptions();
+
+                // creating the regular console appender
+                var fileAppender = new FileAppender()
+                {
+                    Layout = patternLayout,
+                    Name = "fileAppender",
+                    Threshold = Level.All,
+                    AppendToFile = false,
+                    File = "cadlog.log",
+                };
+                fileAppender.ActivateOptions();
+                BasicConfigurator.Configure(fileAppender);
+
                 mainInstance = new Log4netLoggingService();
                 mainInstance.LogWpfBindingErrors();
             }

@@ -25,6 +25,7 @@ using Abdrakov.Styles.Other;
 using Abdrakov.Engine.Localization;
 using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
+using System.Threading;
 
 namespace Abdrakov.Tests
 {
@@ -32,6 +33,7 @@ namespace Abdrakov.Tests
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Thread.CurrentThread.Name = "MainThread";
             LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly());
             base.OnStartup(e);
         }

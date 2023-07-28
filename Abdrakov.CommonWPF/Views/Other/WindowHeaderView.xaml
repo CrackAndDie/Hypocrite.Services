@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Abdrakov.CommonWPF.Views.Other"
              xmlns:converters="clr-namespace:Abdrakov.CommonWPF.Converters"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="22"
              d:DesignWidth="800"
@@ -14,16 +13,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/ProgressBar.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/ComboBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:NullImageConverter x:Key="nullImageConverter" />
 
             <Style x:Key="TitleBarButtonStyle"
                    TargetType="{x:Type Button}">
-                <Setter Property="Foreground"
-                        Value="{DynamicResource WindowTextBrush}" />
                 <Setter Property="Padding"
                         Value="0" />
                 <Setter Property="WindowChrome.IsHitTestVisibleInChrome"
@@ -65,8 +60,6 @@
 
             <Style x:Key="TitleBarCloseButtonStyle"
                    TargetType="{x:Type Button}">
-                <Setter Property="Foreground"
-                        Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
                 <Setter Property="Padding"
                         Value="0" />
                 <Setter Property="WindowChrome.IsHitTestVisibleInChrome"
@@ -157,57 +150,13 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Grid Grid.Column="5"
-              Width="54"
-              Visibility="{Binding LanguagesComboBoxVisibility, ElementName=windowHeaderView}">
-            <ComboBox Width="42"
-                      ItemsSource="{Binding AllowedLanguages, ElementName=windowHeaderView}"
-                      Style="{StaticResource AbdrakovComboBox}"
-                      BorderBrush="{DynamicResource SecondaryMidBrush}"
-                      DisplayMemberPath="Name"
-                      Height="17"
-                      FontSize="10"
-                      VerticalContentAlignment="Center"
-                      HorizontalContentAlignment="Center"
-                      Foreground="{DynamicResource TextForegroundBrush}"
-                      FontWeight="SemiBold"
-                      WindowChrome.IsHitTestVisibleInChrome="True"
-                      x:Name="LanguagesComboBox"
-                      SelectionChanged="LanguagesComboBox_SelectionChanged"/>
-        </Grid>
-
-        <Grid Grid.Column="6"
-              Width="40"
-              Visibility="{Binding ThemeToggleVisibility, ElementName=windowHeaderView}">
-            <ToggleButton WindowChrome.IsHitTestVisibleInChrome="True"
-                          ToolTip="ThemeMode"
-                          IsChecked="False"
-                          Padding="0"
-                          Foreground="{DynamicResource TextForegroundBrush}"
-                          Background="{DynamicResource SecondaryMidBrush}"
-                          Click="ThemeModeToggleButton_Click"
-                          x:Name="ThemeModeToggle">
-                <materialDesign:PackIcon Kind="WhiteBalanceSunny">
-                </materialDesign:PackIcon>
-                <materialDesign:ToggleButtonAssist.OnContent>
-                    <materialDesign:PackIcon Kind="MoonWaningCrescent" />
-                </materialDesign:ToggleButtonAssist.OnContent>
-                <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
-                    <SolidColorBrush Color="{DynamicResource SecondaryMidBrushColor}" />
-                </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
-                <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
-                    <SolidColorBrush Color="{DynamicResource PrimaryVeryDarkBrushColor}" />
-                </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
-            </ToggleButton>
-        </Grid>
-
         <Grid Grid.Column="7">
             <Grid Width="36"
                   Visibility="{Binding ProgressBarVisibility, ElementName=windowHeaderView}">
                 <ProgressBar x:Name="ProgressAsyncPB"
                              ToolTip="Обновление данных приложения"
                              Style="{StaticResource AbdrakovCircularProgressBar}"
-                             Foreground="{DynamicResource SecondaryMidBrush}"
+                             Foreground="{DynamicResource WindowStatusBrush}"
                              Value="0"
                              Width="18"
                              Height="18"
@@ -216,7 +165,7 @@
             </Grid>
             <Grid Width="36"
                   Visibility="{Binding CheckAllDoneVisibility, ElementName=windowHeaderView}">
-                <Path Fill="{DynamicResource SecondaryMidBrush}"
+                <Path Fill="{DynamicResource WindowStatusBrush}"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
                       IsHitTestVisible="False"

@@ -64,8 +64,6 @@
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
-    <PackageReference Include="MaterialDesignColors" Version="2.1.2" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">

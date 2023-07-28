@@ -13,12 +13,25 @@ using Prism.Unity;
 using Abdrakov.Styles.Interfaces;
 using Unity;
 using Abdrakov.Logging.Interfaces;
+using System.Collections.ObjectModel;
+using Abdrakov.Engine.Localization.Extensions;
+using Abdrakov.Engine.Localization;
+using System.Globalization;
 
 namespace Abdrakov.Tests.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
         private bool _mode = true;
+
+        private Language _language;
+        public Language SelectedLanguage
+        {
+            get { return _language; }
+            set { SetProperty(ref _language, value); OnSelectedLanguageChanged(value); }
+        }
+
+        public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
         public ICommand Test1Command { get; private set; }
 
@@ -38,6 +51,11 @@ namespace Abdrakov.Tests.ViewModels
         public override void OnViewReady()
         {
             base.OnViewReady();
+        }
+
+        private void OnSelectedLanguageChanged(Language lang)
+        {
+            LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(lang.Name.ToLower());
         }
     }
 }

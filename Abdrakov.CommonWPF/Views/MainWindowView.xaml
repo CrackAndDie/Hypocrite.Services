@@ -15,7 +15,7 @@
         Height="600"
         Width="900"
         WindowStyle="None"
-        AllowsTransparency="{Binding AllowTransparency}"
+        AllowsTransparency="{Binding SmoothAppear}"
         SourceInitialized="Window_SourceInitialized"
         x:Name="thisWindow"
         WindowStartupLocation="CenterScreen">
@@ -37,7 +37,7 @@
         
 
         <Border BorderThickness="0"
-                Background="{DynamicResource PrimaryMidBrush}" 
+                Background="{DynamicResource WindowBrush}" 
                 Grid.Row="1">
             <Image Source="../Resources/AbdrakovSolutions.png" 
                    RenderOptions.BitmapScalingMode="HighQuality" 
@@ -52,9 +52,8 @@
                         prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
                         prism:RegionManager.RegionManager="{Binding RegionManager}" />
         
-        <Rectangle Grid.ColumnSpan="3"
-                   Grid.Row="0"
-                   Fill="{DynamicResource PrimaryMidBrush}" />
+        <Rectangle Grid.Row="0"
+                   Fill="{DynamicResource WindowBrush}" />
 
         <otherViews:WindowHeaderView x:Name="WindowHeader"
                                      LogoImage="{Binding LogoImage}"
@@ -64,13 +63,10 @@
                                      RestoreWindowCommand="{Binding RestoreWindowCommand}"
                                      CloseWindowCommand="{Binding CloseWindowCommand}"
                                      WindowParameter="{Binding ElementName=thisWindow}"
-                                     AllowedLanguages="{Binding AllowedLanguages}"
                                      MinimizeButtonVisibility="{Binding MinimizeButtonVisibility}"
                                      MaximizeButtonVisibility="{Binding MaximizeButtonVisibility}"
                                      RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
                                      ProgressBarVisibility="{Binding ProgressBarVisibility}"
-                                     CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"
-                                     ThemeToggleVisibility="{Binding ThemeToggleVisibility}"
-                                     LanguagesComboBoxVisibility="{Binding LanguagesComboBoxVisibility}"/>
+                                     CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"/>
     </Grid>
 </Window>

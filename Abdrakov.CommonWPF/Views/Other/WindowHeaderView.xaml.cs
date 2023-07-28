@@ -127,76 +127,9 @@ namespace Abdrakov.CommonWPF.Views.Other
         public static readonly DependencyProperty CheckAllDoneVisibilityProperty =
             DependencyProperty.Register("CheckAllDoneVisibility", typeof(Visibility), typeof(WindowHeaderView));
 
-        public Visibility ThemeToggleVisibility
-        {
-            get { return (Visibility)GetValue(ThemeToggleVisibilityProperty); }
-            set { SetValue(ThemeToggleVisibilityProperty, value); }
-        }
-
-        public static readonly DependencyProperty ThemeToggleVisibilityProperty =
-            DependencyProperty.Register("ThemeToggleVisibility", typeof(Visibility), typeof(WindowHeaderView));
-
-        public Visibility LanguagesComboBoxVisibility
-        {
-            get { return (Visibility)GetValue(LanguagesComboBoxVisibilityProperty); }
-            set { SetValue(LanguagesComboBoxVisibilityProperty, value); }
-        }
-
-        public static readonly DependencyProperty LanguagesComboBoxVisibilityProperty =
-            DependencyProperty.Register("LanguagesComboBoxVisibility", typeof(Visibility), typeof(WindowHeaderView));
-
-        public ObservableCollection<Language> AllowedLanguages
-        {
-            get { return (ObservableCollection<Language>)GetValue(AllowedLanguagesProperty); }
-            set { SetValue(AllowedLanguagesProperty, value); }
-        }
-
-        public static readonly DependencyProperty AllowedLanguagesProperty =
-            DependencyProperty.Register("AllowedLanguages", typeof(ObservableCollection<Language>), typeof(WindowHeaderView), new PropertyMetadata(null, AllowedLanguagesChanged));
-
-        private static void AllowedLanguagesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((WindowHeaderView)d).AllowedLanguagesChanged(e.NewValue as ObservableCollection<Language>);
-        }
-
-        private void AllowedLanguagesChanged(ObservableCollection<Language> val)
-        {
-            if (val != null)
-            {
-                LanguagesComboBox.SelectedItem = val.FirstOrDefault(x => x.Name.ToLower() == LocalizationManager.CurrentLanguage.TwoLetterISOLanguageName);
-            }
-        }
-
         public WindowHeaderView()
         {
             InitializeComponent();
-            var app = Application.Current as AbdrakovApplication;
-            if (app.Container.IsRegistered<IAbdrakovThemeService>())
-            {
-                ThemeModeToggle.IsChecked = app.Container.Resolve<IAbdrakovThemeService>().IsDark;
-            }
-            app.Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe((a) => 
-            {
-                ThemeModeToggle.IsChecked = a.IsDark;
-            });
-        }
-
-        private void ThemeModeToggleButton_Click(object sender, RoutedEventArgs e)
-        {
-            var app = Application.Current as AbdrakovApplication;
-            if (app.Container.IsRegistered<IAbdrakovThemeService>())
-            {
-                app.Container.Resolve<IAbdrakovThemeService>().ApplyBase((bool)ThemeModeToggle.IsChecked);
-            }
-        }
-
-        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Language item = (Language)LanguagesComboBox.SelectedItem;
-            if (!string.IsNullOrEmpty(item.Name))
-            {
-                LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
-            }
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Logging.Interfaces;
 using Prism.Events;
-using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System.Windows;
 using Unity;

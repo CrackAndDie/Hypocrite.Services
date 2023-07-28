@@ -27,18 +27,6 @@ namespace Abdrakov.Styles.Extensions
 
             var theme = isDark ? darkTheme : lightTheme;
 
-            SetSolidColorBrush(resourceDictionary, "PrimaryLightBrush", theme.PrimaryLight);
-            SetSolidColorBrush(resourceDictionary, "PrimaryMidBrush", theme.PrimaryMid);
-            SetSolidColorBrush(resourceDictionary, "PrimaryDarkBrush", theme.PrimaryDark);
-
-            SetSolidColorBrush(resourceDictionary, "NonPrimaryBrush", theme.NonPrimary);
-
-            SetSolidColorBrush(resourceDictionary, "SecondaryLightBrush", theme.SecondaryLight);
-            SetSolidColorBrush(resourceDictionary, "SecondaryMidBrush", theme.SecondaryMid);
-            SetSolidColorBrush(resourceDictionary, "SecondaryDarkBrush", theme.SecondaryDark);
-
-            SetSolidColorBrush(resourceDictionary, "TextForegroundBrush", theme.TextForeground);
-
             if (theme.ExtendedColors != null)
             {
                 foreach (var color in theme.ExtendedColors)
@@ -69,46 +57,7 @@ namespace Abdrakov.Styles.Extensions
             {
                 return theme;
             }
-
-            //Attempt to simply look up the appropriate resources
-            // There won't be ExtendedColors anymore
-            return new Theme
-            {
-                PrimaryLight = GetColor("PrimaryLightBrush"),
-                PrimaryMid = GetColor("PrimaryMidBrush"),
-                PrimaryDark = GetColor("PrimaryDarkBrush"),
-
-                NonPrimary = GetColor("NonPrimaryBrush"),
-
-                SecondaryLight = GetColor("SecondaryLightBrush"),
-                SecondaryMid = GetColor("SecondaryMidBrush"),
-                SecondaryDark = GetColor("SecondaryDarkBrush"),
-
-                TextForeground = GetColor("TextForegroundBrush"),
-            };
-
-            Color GetColor(params string[] keys)
-            {
-                foreach (string key in keys)
-                {
-                    if (TryGetColor(key, out Color color))
-                    {
-                        return color;
-                    }
-                }
-                throw new InvalidOperationException($"Could not locate required resource with key(s) '{string.Join(", ", keys)}'");
-            }
-
-            bool TryGetColor(string key, out Color color)
-            {
-                if (resourceDictionary[key] is SolidColorBrush brush)
-                {
-                    color = brush.Color;
-                    return true;
-                }
-                color = default;
-                return false;
-            }
+            return null;
         }
 
         public static IThemeManager GetThemeManager(this ResourceDictionary resourceDictionary)

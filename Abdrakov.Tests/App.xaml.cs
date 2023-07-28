@@ -31,12 +31,19 @@ namespace Abdrakov.Tests
 {
     public partial class App : AbdrakovApplication
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public App() : base()
         {
             ConfigureApplicationVisual();
+        }
 
+        protected override void OnStartup(StartupEventArgs e)
+        {
             Thread.CurrentThread.Name = "MainThread";
-            LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly());
+            LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly(), new ObservableCollection<Language>()
+            {
+                new Language() { Name = "EN" },
+                new Language() { Name = "RU" },
+            });
             base.OnStartup(e);
         }
 
@@ -63,7 +70,7 @@ namespace Abdrakov.Tests
             {
                 ProductName = "Tests",
                 LogoImage = "pack://application:,,,/Abdrakov.Tests;component/Resources/AbdrakovSolutions.png",
-                AllowedLanguages = new ObservableCollection<Language>() { new Language(0, "RU"), new Language(1, "EN"), },
+                SmoothAppear = true,
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
@@ -81,20 +88,22 @@ namespace Abdrakov.Tests
             Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
             {
                 IsDarkMode = true,
-                DarkTheme = new InsideBundledTheme()
-                {
-                    PrimaryColor = Color.FromRgb(64, 64, 64),
-                    SecondaryColor = Colors.HotPink,
-                },
-                LightTheme = new InsideBundledTheme()
-                {
-                    PrimaryColor = Color.FromRgb(254, 254, 254),
-                    SecondaryColor = Colors.HotPink,
-                    TextForegorundColor = Colors.Black,
-                },
                 ExtendedColors = new Dictionary<string, ColorPair>()
                 {
+                    { "TextForeground", new ColorPair(Colors.AliceBlue, Colors.Black) },
+                    { "WindowStatus", new ColorPair(Colors.Cyan, Colors.Cyan) },
+                    { "Window", new ColorPair(Color.FromRgb(64, 64, 64), Color.FromRgb(254, 254, 254)) },
+
                     { "Test", new ColorPair(Colors.Red, Colors.Purple) },
+
+                    { "ButtonBorder", new ColorPair(Colors.Cyan, Colors.Cyan) },
+
+                    { "ComboBoxBorder", new ColorPair(Colors.Cyan, Colors.Cyan) },
+                    { "ComboBoxBackground", new ColorPair(Color.FromRgb(64, 64, 64), Color.FromRgb(254, 254, 254)) },
+                    { "ComboBoxHoverBackground", new ColorPair(Color.FromRgb(84, 84, 84), Color.FromRgb(234, 234, 234)) },
+
+                    { "ScrollBackground", new ColorPair(Color.FromRgb(63, 68, 79), Colors.AliceBlue) },
+                    { "ScrollForeground", new ColorPair(Color.FromRgb(136, 136, 136), Colors.LightGray) },
                 }
             }.SetTheme());
         }

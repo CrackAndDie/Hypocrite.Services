@@ -46,12 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbdrakovBundledTheme.cs" />
-    <Compile Include="Extensions\ColorExtensions.cs" />
-    <Compile Include="Extensions\LabExtensions.cs" />
     <Compile Include="Extensions\ResourceDictionaryExtensions.cs" />
     <Compile Include="Extensions\ThemeExtensions.cs" />
-    <Compile Include="Extensions\XyzExtensions.cs" />
-    <Compile Include="InsideBundledTheme.cs" />
     <Compile Include="Interfaces\IAbdrakovThemeDictionary.cs" />
     <Compile Include="Interfaces\IAbdrakovThemeService.cs" />
     <Compile Include="Interfaces\ITheme.cs" />
@@ -59,9 +55,7 @@
     <Compile Include="Other\ColorPair.cs" />
     <Compile Include="Other\Event\ThemeChangedEvent.cs" />
     <Compile Include="Other\Event\ThemeChangedEventArgs.cs" />
-    <Compile Include="Other\Lab.cs" />
     <Compile Include="Other\PaletteHelper.cs" />
-    <Compile Include="Other\Xyz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AbdrakovThemeService.cs" />
     <Compile Include="Styles\Converters\ArcEndPointConverter.cs" />
@@ -73,25 +67,11 @@
     <Compile Include="ThemeManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MaterialDesignColors" Version="2.1.2" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\Button.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\ComboBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\ProgressBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\ScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

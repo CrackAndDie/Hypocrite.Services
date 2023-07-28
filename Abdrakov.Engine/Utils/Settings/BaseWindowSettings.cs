@@ -18,8 +18,6 @@ namespace Abdrakov.Engine.Utils.Settings
         public Visibility MinimizeButtonVisibility { get; set; } = Visibility.Visible;
         public Visibility MaxResButtonsVisibility { get; set; } = Visibility.Visible;
         public Visibility WindowProgressVisibility { get; set; } = Visibility.Visible;
-        public Visibility ThemeToggleVisibility { get; set; } = Visibility.Visible;
-        public ObservableCollection<Language> AllowedLanguages { get; set; } = new ObservableCollection<Language>();
-        public bool AllowTransparency { get; set; } = true;
+        public bool SmoothAppear { get; set; } = true;
     }
 }

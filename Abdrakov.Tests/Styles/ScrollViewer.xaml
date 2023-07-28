@@ -1,43 +1,37 @@
-﻿<ResourceDictionary x:Class="Abdrakov.Styles.Styles.ScrollViewer"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Abdrakov.Styles.Styles"
-             mc:Ignorable="d" >
-    <!--ScrollBar-->
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="StandardBorderBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="VerticalBackground"
-                     Color="{DynamicResource PrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollBackgroundBrushColor}" />
     <SolidColorBrush x:Key="HorizontalBackground"
-                     Color="{DynamicResource PrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollBackgroundBrushColor}" />
     <SolidColorBrush x:Key="StandardBackgroundBrush"
-                     Color="{DynamicResource PrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollBackgroundBrushColor}" />
     <SolidColorBrush x:Key="HoverBorderBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="SelectedBackgroundBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="SelectedForegroundBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="DisabledForegroundBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="NormalBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="NormalBorderBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="HorizontalNormalBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <SolidColorBrush x:Key="HorizontalNormalBorderBrush"
-                     Color="{DynamicResource NonPrimaryBrushColor}" />
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
     <LinearGradientBrush x:Key="ListBoxBackgroundBrush"
                          StartPoint="0,0"
                          EndPoint="1,0.001">
         <GradientBrush.GradientStops>
             <GradientStopCollection>
-                <GradientStop Color="{DynamicResource NonPrimaryBrushColor}"
+                <GradientStop Color="{DynamicResource ScrollForegroundBrushColor}"
                               Offset="0.0" />
-                <GradientStop Color="{DynamicResource NonPrimaryBrushColor}"
+                <GradientStop Color="{DynamicResource ScrollForegroundBrushColor}"
                               Offset="0.6" />
                 <GradientStop Color="#DDDDDD"
                               Offset="1.2" />
@@ -49,7 +43,7 @@
                          EndPoint="0,1">
         <GradientBrush.GradientStops>
             <GradientStopCollection>
-                <GradientStop Color="{DynamicResource NonPrimaryBrushColor}"
+                <GradientStop Color="{DynamicResource ScrollForegroundBrushColor}"
                               Offset="0.0" />
                 <GradientStop Color="#CCC"
                               Offset="1.0" />
@@ -69,7 +63,7 @@
                               Offset="0.1" />
                 <GradientStop Color="#EEE"
                               Offset="0.9" />
-                <GradientStop Color="{DynamicResource NonPrimaryBrushColor}"
+                <GradientStop Color="{DynamicResource ScrollForegroundBrushColor}"
                               Offset="1.0" />
             </GradientStopCollection>
         </GradientBrush.GradientStops>
@@ -302,7 +296,7 @@
                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
                         <Rectangle Grid.Row="1"
                                    Grid.Column="1"
-                                   Fill="{DynamicResource PrimaryBrushColor}" />
+                                   Fill="{DynamicResource ScrollBackgroundBrush}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

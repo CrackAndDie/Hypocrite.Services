@@ -73,32 +73,11 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref checkAllDoneVisibility, value); }
         }
 
-        private Visibility themeToggleVisibility;
-        public Visibility ThemeToggleVisibility
+        private bool smoothAppear;
+        public bool SmoothAppear
         {
-            get { return themeToggleVisibility; }
-            set { SetProperty(ref themeToggleVisibility, value); }
-        }
-
-        private Visibility languagesComboBoxVisibility;
-        public Visibility LanguagesComboBoxVisibility
-        {
-            get { return languagesComboBoxVisibility; }
-            set { SetProperty(ref languagesComboBoxVisibility, value); }
-        }
-
-        private ObservableCollection<Language> allowedLanguages;
-        public ObservableCollection<Language> AllowedLanguages
-        {
-            get { return allowedLanguages; }
-            set { SetProperty(ref allowedLanguages, value); }
-        }
-
-        private bool allowTransparency;
-        public bool AllowTransparency
-        {
-            get { return allowTransparency; }
-            set { SetProperty(ref allowTransparency, value); }
+            get { return smoothAppear; }
+            set { SetProperty(ref smoothAppear, value); }
         }
 
         #region Commands
@@ -122,7 +101,7 @@ namespace Abdrakov.CommonWPF.ViewModels
                 IWindowSettings settings = Container.Resolve<BaseWindowSettings>();
                 LogoImage = settings.LogoImage;
                 ProductName = settings.ProductName;
-                AllowTransparency = settings.AllowTransparency;
+                SmoothAppear = settings.SmoothAppear;
                 if (settings.WindowProgressVisibility != Visibility.Collapsed) 
                 { 
                     EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);
@@ -131,11 +110,6 @@ namespace Abdrakov.CommonWPF.ViewModels
                 ProgressBarVisibility = Visibility.Collapsed;
                 MaximizeButtonVisibility = settings.MaxResButtonsVisibility;
                 RestoreButtonVisibility = Visibility.Collapsed;
-
-                ThemeToggleVisibility = settings.ThemeToggleVisibility;
-
-                LanguagesComboBoxVisibility = settings.AllowedLanguages.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
-                AllowedLanguages = settings.AllowedLanguages;
             }
         }
 

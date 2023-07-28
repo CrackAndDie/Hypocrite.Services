@@ -22,10 +22,8 @@ namespace Abdrakov.Styles
         {
             _ResourceDictionary = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
             _isDark = isDark;
-
-            var theme = resourceDictionary.GetTheme();
-            _darkTheme = darkTheme == null ? (_isDark ? theme : theme.GetReversedTheme()) : darkTheme;
-            _lightTheme = lightTheme == null ? (_isDark ? theme.GetReversedTheme() : theme) : lightTheme;
+            _darkTheme = darkTheme;
+            _lightTheme = lightTheme;
         }
 
         public void ChangeThemeBase(bool isDark)

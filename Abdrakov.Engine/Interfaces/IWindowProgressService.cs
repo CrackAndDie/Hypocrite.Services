@@ -9,7 +9,7 @@ namespace Abdrakov.Engine.Interfaces
     public interface IWindowProgressService
     {
         void AddWaiter();
-        void RemoveWaiter();
+        bool RemoveWaiter();
         void CallStateChangeEvent(bool isEmpty);
     }
 }

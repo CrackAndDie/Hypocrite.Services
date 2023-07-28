@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 namespace Abdrakov.Engine.Localization.Extensions
 {
-	public class LocalizedResourceExtension : MarkupExtension
+	public class LocalizedResourceExtension : DynamicResourceExtension
     {
 		public LocalizedResourceExtension(string key)
 		{

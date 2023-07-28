@@ -1,10 +1,5 @@
-﻿<ResourceDictionary x:Class="Abdrakov.Styles.Styles.ComboBox"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:local="clr-namespace:Abdrakov.Styles.Styles">
-
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ControlTemplate x:Key="ComboBoxToggleButton"
                      TargetType="{x:Type ToggleButton}">
         <Grid>
@@ -15,26 +10,28 @@
             <Border x:Name="Border"
                     Grid.ColumnSpan="2"
                     CornerRadius="4"
-                    Background="{DynamicResource PrimaryMidBrush}"
-                    BorderBrush="{DynamicResource SecondaryMidBrush}"
+                    Background="{DynamicResource ComboBoxBackgroundBrush}"
+                    BorderBrush="{DynamicResource ComboBoxBorderBrush}"
                     BorderThickness="1" />
             <Path x:Name="Arrow"
                   Grid.Column="1"
-                  Fill="{DynamicResource SecondaryMidBrush}"
+                  Fill="{DynamicResource ComboBoxBorderBrush}"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   Margin="0,1,0,0"
                   Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" />
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+            <Trigger Property="ToggleButton.IsMouseOver"
+                     Value="true">
                 <Setter TargetName="Border"
-                        Property="BorderThickness" 
+                        Property="BorderThickness"
                         Value="2" />
             </Trigger>
-            <Trigger Property="ToggleButton.IsChecked" Value="true">
+            <Trigger Property="ToggleButton.IsChecked"
+                     Value="true">
                 <Setter TargetName="Border"
-                        Property="BorderThickness" 
+                        Property="BorderThickness"
                         Value="2" />
                 <Setter TargetName="Arrow"
                         Property="Data"
@@ -68,8 +65,8 @@
                 Value="{DynamicResource TextForegroundBrush}" />
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
-        <Setter Property="HorizontalContentAlignment" 
-                Value="Center"/>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
         <Setter Property="TextBlock.TextAlignment"
                 Value="Center" />
         <Setter Property="Template">
@@ -78,14 +75,14 @@
                     <Border Name="Border"
                             Padding="2"
                             SnapsToDevicePixels="true">
-                        <ContentPresenter HorizontalAlignment="Stretch"/>
+                        <ContentPresenter HorizontalAlignment="Stretch" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsHighlighted"
                                  Value="true">
                             <Setter TargetName="Border"
                                     Property="Background"
-                                    Value="{DynamicResource PrimaryDarkBrush}" />
+                                    Value="{DynamicResource ComboBoxHoverBackgroundBrush}" />
                         </Trigger>
                         <!--<Trigger Property="IsEnabled"
                                  Value="false">
@@ -117,10 +114,10 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource TextForegroundBrush}" />
         <Setter Property="ItemContainerStyle"
-                Value="{StaticResource AbdrakovComboBoxItem}"/>
+                Value="{StaticResource AbdrakovComboBoxItem}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ComboBox}" >
+                <ControlTemplate TargetType="{x:Type ComboBox}">
                     <Grid>
                         <ToggleButton Name="ToggleButton"
                                       Template="{StaticResource ComboBoxToggleButton}"
@@ -136,7 +133,7 @@
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                           Margin="3,2,18,3"
                                           VerticalAlignment="Center"
-                                          HorizontalAlignment="Center"/>
+                                          HorizontalAlignment="Center" />
                         <TextBox x:Name="PART_EditableTextBox"
                                  Style="{x:Null}"
                                  Template="{StaticResource ComboBoxTextBox}"
@@ -160,10 +157,10 @@
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border x:Name="DropDownBorder"
-                                        Background="{DynamicResource PrimaryMidBrush}"
+                                        Background="{DynamicResource ComboBoxBackgroundBrush}"
                                         BorderThickness="2"
                                         CornerRadius="4"
-                                        BorderBrush="{DynamicResource SecondaryMidBrush}" />
+                                        BorderBrush="{DynamicResource ComboBoxBorderBrush}" />
                                 <ScrollViewer Margin="4,6,4,6"
                                               SnapsToDevicePixels="True">
                                     <StackPanel IsItemsHost="True"

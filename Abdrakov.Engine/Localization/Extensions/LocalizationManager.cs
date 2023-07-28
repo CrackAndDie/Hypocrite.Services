@@ -4,6 +4,7 @@ using Abdrakov.Logging.Interfaces;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -26,6 +27,16 @@ namespace Abdrakov.Engine.Localization.Extensions
 					Thread.CurrentThread.CurrentUICulture = value;
 					CurrentLanguageChanged?.Invoke(null, EventArgs.Empty);
 				}
+			}
+		}
+
+		private static ObservableCollection<Language> _languages;
+		public static ObservableCollection<Language> Languages
+		{
+			get => _languages;
+			private set
+			{
+				_languages = value;
 			}
 		}
 
@@ -95,11 +106,11 @@ namespace Abdrakov.Engine.Localization.Extensions
 			if (_scopedProviders.Count == 0)
 			{
 				var currentAssembly = Assembly.GetExecutingAssembly();
-				InitializeExternal(currentAssembly);
+				InitializeExternal(currentAssembly, null);
             }
 		}
 
-		public static void InitializeExternal(Assembly assembly)
+		public static void InitializeExternal(Assembly assembly, ObservableCollection<Language> languages)
 		{
             var assemblyName = assembly.GetName().Name;
             var providersInfo = assembly.GetManifestResourceNames()
@@ -117,6 +128,11 @@ namespace Abdrakov.Engine.Localization.Extensions
                 AddScopedProvider(Name, Provider);
                 AddScopedProvider($"core.{Name}", Provider);
             }
+
+			if (languages != null)
+			{
+				Languages = languages;
+			}
         }
 
 		public static string Translate(object obj, CultureInfo culture = null)

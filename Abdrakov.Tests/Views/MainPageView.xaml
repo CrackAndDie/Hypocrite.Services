@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Abdrakov.Tests.Views"
              xmlns:viewModels="clr-namespace:Abdrakov.Tests.ViewModels"
-             xmlns:l="clr-namespace:Abdrakov.Engine.Localization.Extensions;assembly=Abdrakov.Engine"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DataContext="{d:DesignInstance viewModels:MainPageViewModel}"
@@ -15,9 +14,9 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/ComboBox.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/Button.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/ScrollViewer.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Tests;component/Styles/ComboBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Tests;component/Styles/Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Tests;component/Styles/ScrollViewer.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -26,33 +25,24 @@
                       Style="{StaticResource AbdrakovScrollViewer}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition Height="300"/>
                     <RowDefinition Height="100"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="300"/>
                 </Grid.RowDefinitions>
-                <Rectangle Fill="{DynamicResource TestBrush}" 
-                           Opacity="0.4" 
-                           Grid.Row="0"/>
-                <Rectangle Fill="Blue" 
-                           Opacity="0.4" 
-                           Grid.Row="1"/>
-                <Rectangle Fill="Green" 
-                           Opacity="0.4" 
-                           Grid.Row="2"/>
 
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Button Style="{StaticResource OutlinedRoundedButton}" 
-                            Margin="10, 0" 
+                    <Button Style="{StaticResource OutlinedRoundedButton}"
+                            Margin="10, 0"
                             Command="{Binding Test1Command}">
-                        <TextBlock Text="{l:LocalizedResource MainPage.TestText}"
+                        <TextBlock Text="{LocalizedResource MainPage.TestText}"
                                    Foreground="{DynamicResource TextForegroundBrush}" />
                     </Button>
 
@@ -60,12 +50,22 @@
                               Margin="10, 0"
                               Grid.Column="1"
                               Height="46"
-                              FontSize="20">
-                        <ComboBoxItem Content="{l:LocalizedResource MainPage.Element1}"/>
-                        <ComboBoxItem Content="{l:LocalizedResource MainPage.Element2}"/>
+                              FontSize="20"
+                              ItemsSource="{Binding Languages}"
+                              SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                              DisplayMemberPath="Name">
                     </ComboBox>
                 </Grid>
                 
+                <Rectangle Fill="{DynamicResource TestBrush}" 
+                           Opacity="0.4" 
+                           Grid.Row="1"/>
+                <Rectangle Fill="Blue" 
+                           Opacity="0.4" 
+                           Grid.Row="2"/>
+                <Rectangle Fill="Green"
+                           Opacity="0.4"
+                           Grid.Row="3" />
             </Grid>
         </ScrollViewer>
     </Grid>

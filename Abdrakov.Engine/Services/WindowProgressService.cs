@@ -29,9 +29,9 @@ namespace Abdrakov.Engine.Services
             waiterList.Add(true);
         }
 
-        public void RemoveWaiter()
+        public bool RemoveWaiter()
         {
-            waiterList.Remove(true);
+            return waiterList.Remove(true);
         }
 
         public void CallStateChangeEvent(bool isEmpty)

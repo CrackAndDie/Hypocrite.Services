@@ -72,9 +72,7 @@ As you can see there is a *BaseWindowSettings* registration that gives you quite
 - *MinimizeButtonVisibility* - How should be Minimize button be shown (default is Visible)
 - *MaxResButtonsVisibility* - How should be Maximize and Restore buttons be shown (default is Visible)
 - *WindowProgressVisibility* - How should be Progress state be shown (default is Visible)
-- *ThemeToggleVisibility* - How should be Theme toggler be shown (default is Visible)
-- *AllowedLanguages* - ObservableCollection of Languages available in app (it is empty by default so it won't be shown)
-- *AllowTransparency* - I don't remember why there is the setting (default is True)
+- *SmoothAppear* - How sould be window appeared (true - smooth, false - as usual)
 
 You can use *Regions.MAIN_REGION* to navigate in the *MainWindowView*:
 ```cs
@@ -157,17 +155,6 @@ private void ConfigureApplicationVisual()
     Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
     {
         IsDarkMode = true,  // default theme on app startup
-        DarkTheme = new InsideBundledTheme()  // dark theme registration
-        {
-            PrimaryColor = Color.FromRgb(64, 64, 64),  // primary color of dark theme
-            SecondaryColor = Colors.HotPink,  // secondary color of dark theme
-        },
-        LightTheme = new InsideBundledTheme()  // light theme registration
-        {
-            PrimaryColor = Color.FromRgb(254, 254, 254),  // primary color of light theme
-            SecondaryColor = Colors.HotPink,  // secondary color of light theme
-            TextForegorundColor = Colors.Black,  // text foreground of light theme
-        },
         ExtendedColors = new Dictionary<string, ColorPair>()  // your external color registrations
         {
             { "Test", new ColorPair(Colors.Red, Colors.Purple) },
@@ -175,15 +162,12 @@ private void ConfigureApplicationVisual()
     }.SetTheme());
 }
 ```
-Every external color registration gives you dynamic Brush and Color (like *TestBrush* and *TestBrushColor*). You can also use this brushes (also colors with a prefix *...Color* at the end) in your project: 
-- PrimaryLightBrush
-- PrimaryMidBrush
-- PrimaryDarkBrush
-- NonPrimaryBrush  // PrimaryLightBrush in the dark theme, PrimaryDarkBrush in the light
-- SecondaryLightBrush
-- SecondaryMidBrush
-- SecondaryDarkBrush
-- TextForegroundBrush
+Every color registration gives you dynamic Brush and Color (like *TestBrush* and *TestBrushColor*).  
+
+Here is the names that should be registered in your app:
+- *TextForeground* - The colors of the product name and window buttons
+- *WindowStatus* - The colors of the window progress indicator
+- *Window* - The colors of the window and window header backgrounds
 
 *ConfigureApplicationVisual* could be called in *OnStartup* overrided method like this:
 ```cs
@@ -214,33 +198,22 @@ public partial class App : AbdrakovApplication
 {
     protected override void OnStartup(StartupEventArgs e)
     {
-        LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly());  // initialization of LocalizationManager static service
+        LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly(), new ObservableCollection<Language>()
+        {
+            new Language() { Name = "EN" },
+            new Language() { Name = "RU" },
+        });  // initialization of LocalizationManager static service
         // ...
         base.OnStartup(e);
-    }
-
-    protected override void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        base.RegisterTypes(containerRegistry);
-
-        // ...
-
-        containerRegistry.RegisterInstance(new BaseWindowSettings()
-        {
-            // ...
-            AllowedLanguages = new ObservableCollection<Language>() { new Language(0, "RU"), new Language(1, "EN"), },  // available languages in your app
-        });
-
-        // ...
     }
 }
 ```
 
 In the *Localization* folder you create Resource files with translations and call it as follows - "FileName"."Language".resx (Gui.resx or Gui.ru.resx). Default resource file doesn't need to have the "Language" part.  
 
-Now to use localization features you should add the reference in you markup file ```xmlns:l="clr-namespace:Abdrakov.Engine.Localization.Extensions;assembly=Abdrakov.Engine"``` and use it like this:
+Now you can use it like this:
 ```xaml
-<TextBlock Text="{l:LocalizedResource MainPage.TestText}"
+<TextBlock Text="{LocalizedResource MainPage.TestText}"
             Foreground="{DynamicResource TextForegroundBrush}" />
 ```
 (I have this in my *.resx* files):  
@@ -260,3 +233,5 @@ There is also a progress indicator on the *MainWindowView* header that could be 
 <h3>Logging:</h3>  
 
 To log your app's work you can resolve *ILoggingService* that is just an adapter of *Log4netLoggingService* or use *LoggingService* property of *ViewModelBase*.  
+
+You can find the log file in you running assembly directory called *cadlog.log*.

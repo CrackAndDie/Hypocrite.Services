@@ -16,6 +16,7 @@
         Width="900"
         WindowStyle="None"
         AllowsTransparency="{Binding SmoothAppear}"
+        Opacity="{Binding WindowOpacity, Mode=TwoWay}"
         SourceInitialized="Window_SourceInitialized"
         x:Name="thisWindow"
         WindowStartupLocation="CenterScreen">

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.CommonWPF.Views
 {
-    public static class Regions
+    public static partial class Regions
     {
         public static string MAIN_REGION = "MainRegion";
     }

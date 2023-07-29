@@ -9,6 +9,8 @@ using Prism.Commands;
 using Prism.Ioc;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -80,6 +82,13 @@ namespace Abdrakov.CommonWPF.ViewModels
             set { SetProperty(ref smoothAppear, value); }
         }
 
+        private float windowOpacity;
+        public float WindowOpacity
+        {
+            get { return windowOpacity; }
+            set { SetProperty(ref windowOpacity, value); }
+        }
+
         #region Commands
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
@@ -117,6 +126,29 @@ namespace Abdrakov.CommonWPF.ViewModels
         {
             base.OnViewReady();
             EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
+
+            if (SmoothAppear)
+            {
+                Task.Run(() =>
+                {
+                    for (int i = 0; i <= 100; i++)
+                    {
+                        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            WindowOpacity = i / 100f;
+                        });
+                        Thread.Sleep(5);
+                    }
+                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        SmoothAppear = false;
+                    });
+                });
+            }
+            else
+            {
+                WindowOpacity = 1.0f;
+            }
         }
 
         private void OnPageChanged(ViewModelBase vm)

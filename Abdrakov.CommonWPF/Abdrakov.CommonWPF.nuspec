@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Abdrakov.Solutions</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <title>Abdrakov.Solutions</title>
     <authors>crackanddie</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -11,12 +11,13 @@
     <iconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</iconUrl>
     <projectUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</projectUrl>
     <description>A powerful base for MVVM apps with Prism</description>
-    <releaseNotes>Smooth appear added, Regions are partial now</releaseNotes>
+    <releaseNotes>Bugs fixed</releaseNotes>
     <copyright>Copyright ©  2023</copyright>
     <tags>Prism MVVM</tags>
     <dependencies>
       <dependency id="Prism.Wpf" version="8.1.97" />
       <dependency id="Prism.Unity" version="8.1.97" />
+      <dependency id="log4net" version="2.0.12" />
     </dependencies>
   </metadata>
   <files>

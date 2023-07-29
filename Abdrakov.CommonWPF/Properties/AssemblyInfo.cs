@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Abdrakov.CommonWPF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Abdrakov.Solutions")]
+[assembly: AssemblyDescription("A powerful base for MVVM apps with Prism")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Abdrakov.CommonWPF")]
+[assembly: AssemblyCompany("Abdrakov corp.")]
+[assembly: AssemblyProduct("Abdrakov.Solutions")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

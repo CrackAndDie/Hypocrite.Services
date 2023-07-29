@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Abdrakov.Solutions</id>
+    <version>1.0.2</version>
+    <title>Abdrakov.Solutions</title>
+    <authors>crackanddie</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">NUGET_LICENSE.txt</license>
+    <readme>docs\NUGET_README.md</readme>
+    <iconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</iconUrl>
+    <projectUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</projectUrl>
+    <description>A powerful base for MVVM apps with Prism</description>
+    <releaseNotes>Some additions</releaseNotes>
+    <copyright>Copyright ©  2023</copyright>
+    <tags>Prism MVVM</tags>
+    <dependencies>
+      <dependency id="Prism.Wpf" version="8.1.97" />
+      <dependency id="Prism.Unity" version="8.1.97" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Abdrakov.CommonWPF.dll" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.CommonWPF.pdb" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.Engine.dll" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.Engine.pdb" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.Logging.dll" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.Logging.pdb" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.Styles.dll" target="lib/Abdrakov.Solutions" />
+    <file src="bin\Release\Abdrakov.Styles.pdb" target="lib/Abdrakov.Solutions" />
+    <file src="NUGET_README.md" target="docs\" />
+    <file src="NUGET_LICENSE.txt" target="" />
+  </files>
+</package>

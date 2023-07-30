@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\RegionManagerExtensions.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Interfaces\IViewModelResolverService.cs" />
     <Compile Include="Interfaces\IWindowProgressService.cs" />

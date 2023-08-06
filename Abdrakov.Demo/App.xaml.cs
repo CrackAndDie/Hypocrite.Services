@@ -68,8 +68,8 @@ namespace Abdrakov.Demo
 
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
-                ProductName = "Tests",
-                LogoImage = "pack://application:,,,/Abdrakov.Tests;component/Resources/AbdrakovSolutions.png",
+                ProductName = "Abdrakov.Demo",
+                LogoImage = "pack://application:,,,/Abdrakov.Demo;component/Resources/AbdrakovSolutions.png",
                 SmoothAppear = true,
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();

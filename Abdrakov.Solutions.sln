@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33801.447
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Engine", "Abdrakov.Engine\Abdrakov.Engine.csproj", "{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.CommonWPF", "Abdra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Styles", "Abdrakov.Styles\Abdrakov.Styles.csproj", "{2C72B5BD-357A-40DE-B39F-12FBC087310F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Tests", "Abdrakov.Tests\Abdrakov.Tests.csproj", "{B2543ED7-73B4-4FF4-9642-F2486686B437}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Demo", "Abdrakov.Demo\Abdrakov.Demo.csproj", "{B2543ED7-73B4-4FF4-9642-F2486686B437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

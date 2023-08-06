@@ -18,7 +18,7 @@ using Abdrakov.Engine.Localization.Extensions;
 using Abdrakov.Engine.Localization;
 using System.Globalization;
 
-namespace Abdrakov.Tests.ViewModels
+namespace Abdrakov.Demo.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {

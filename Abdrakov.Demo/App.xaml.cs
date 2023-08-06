@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using Abdrakov.CommonWPF.Views;
 using System.ComponentModel;
-using Abdrakov.Tests.Interfaces;
-using Abdrakov.Tests.Views;
+using Abdrakov.Demo.Interfaces;
+using Abdrakov.Demo.Views;
 using Abdrakov.Engine.Utils.Settings;
 using System.Windows.Media;
 using Prism.Modularity;
-using Abdrakov.Tests.Modules;
+using Abdrakov.Demo.Modules;
 using Abdrakov.Styles.Interfaces;
 using Abdrakov.Styles.Services;
 using Abdrakov.Styles.Other;
@@ -27,7 +27,7 @@ using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
 
-namespace Abdrakov.Tests
+namespace Abdrakov.Demo
 {
     public partial class App : AbdrakovApplication
     {

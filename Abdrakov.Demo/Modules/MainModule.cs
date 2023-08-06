@@ -1,5 +1,5 @@
 ﻿using Abdrakov.CommonWPF.Views;
-using Abdrakov.Tests.Views;
+using Abdrakov.Demo.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Tests.Modules
+namespace Abdrakov.Demo.Modules
 {
     internal class MainModule : IModule
     {

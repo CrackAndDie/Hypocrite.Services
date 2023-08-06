@@ -60,16 +60,16 @@ namespace Abdrakov.Engine.MVVM
             return parameters;
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public virtual void OnNavigatedTo(NavigationContext navigationContext)
         {
             CurrentNavigationParameters = navigationContext.Parameters;
         }
 
-        public void OnNavigatedFrom(NavigationContext navigationContext)
+        public virtual void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
 
-        public bool IsNavigationTarget(NavigationContext navigationContext) => false;
+        public virtual bool IsNavigationTarget(NavigationContext navigationContext) => false;
 
         public AbdrakovApplication Application => System.Windows.Application.Current as AbdrakovApplication;
         public IContainerProvider Container => Application.Container;

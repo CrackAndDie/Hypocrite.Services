@@ -239,3 +239,10 @@ There is also a progress indicator on the *MainWindowView* header that could be 
 To log your app's work you can resolve *ILoggingService* that is just an adapter of *Log4netLoggingService* or use *LoggingService* property of *ViewModelBase*.  
 
 You can find the log file in you running assembly directory called *cadlog.log*.
+
+<h2>Powered by:</h2>  
+
+- *Abdrakov.Solutions*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
+- [Prism](https://github.com/PrismLibrary/Prism)
+- [log4net](https://github.com/apache/logging-log4net)
+- *Abdrakov.Styles* is a rewritten part of [MaterialDesignXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)

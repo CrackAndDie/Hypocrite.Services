@@ -11,7 +11,17 @@
 
 <h2>About:</h2>  
 
-A package that helps You to create a powerful, flexible and loosely coupled WPF application. It fully supports Prism features and MVVM pattern.
+A package that helps You to create a powerful, flexible and loosely coupled WPF application. It fully supports Prism features and MVVM pattern.  
+
+<h2>Download:</h2>  
+
+<h3>.NET CLI:</h3>  
+
+```dotnet add package Abdrakov.Solutions```
+
+<h3>Package Reference:</h3>  
+
+```<PackageReference Include="Abdrakov.Solutions" Version="*" />```
 
 <h2>Getting started:</h2>  
 

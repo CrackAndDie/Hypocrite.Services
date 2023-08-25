@@ -11,7 +11,7 @@
 
 <h2>About:</h2>  
 
-This is the main repo for all the Abdrakov projects. This project fully supports Prism features and MVVM pattern. 
+A package that helps You to create a powerful, flexible and loosely coupled WPF application. It fully supports Prism features and MVVM pattern.
 
 <h2>Getting started:</h2>  
 

@@ -21,7 +21,14 @@ A package that helps You to create a powerful, flexible and loosely coupled WPF 
 
 <h3>Package Reference:</h3>  
 
-```<PackageReference Include="Abdrakov.Solutions" Version="*" />```
+```<PackageReference Include="Abdrakov.Solutions" Version="*" />```  
+
+<h2>Demo:</h2>  
+
+Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov.Solutions/releases)  
+
+<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/9b6aa1ef-f08e-4379-8783-fad1c8d37a8d" alt="image1" width="440">  
+<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/572b0bbf-f6b9-4935-acd6-18e394e4a5a9" alt="image2" width="440">  
 
 <h2>Getting started:</h2>  
 

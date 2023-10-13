@@ -52,12 +52,14 @@
     <Compile Include="Interfaces\IAbdrakovThemeService.cs" />
     <Compile Include="Interfaces\ITheme.cs" />
     <Compile Include="Interfaces\IThemeManager.cs" />
+    <Compile Include="Interfaces\IThemeSwitcherService.cs" />
     <Compile Include="Other\ColorPair.cs" />
     <Compile Include="Other\Event\ThemeChangedEvent.cs" />
     <Compile Include="Other\Event\ThemeChangedEventArgs.cs" />
     <Compile Include="Other\PaletteHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AbdrakovThemeService.cs" />
+    <Compile Include="Services\ThemeSwitcherService.cs" />
     <Compile Include="Styles\Converters\ArcEndPointConverter.cs" />
     <Compile Include="Styles\Converters\ArcSizeConverter.cs" />
     <Compile Include="Styles\Converters\NonZeroConverter.cs" />

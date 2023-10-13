@@ -17,6 +17,8 @@ using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using Abdrakov.Engine.Localization;
 using System.Globalization;
+using Abdrakov.Demo.Resources.Themes;
+using Abdrakov.Styles.Services;
 
 namespace Abdrakov.Demo.ViewModels
 {
@@ -43,6 +45,10 @@ namespace Abdrakov.Demo.ViewModels
                 if (Container.IsRegistered<IAbdrakovThemeService>())
                 {
                     Container.Resolve<IAbdrakovThemeService>().ApplyBase(_mode);
+                }
+                if (Container.IsRegistered<ThemeSwitcherService<Themes>>())
+                {
+                    Container.Resolve<ThemeSwitcherService<Themes>>().ChangeTheme(_mode ? Themes.Dark : Themes.Light);
                 }
                 LoggingService.Info($"Current mode is {_mode}");
             });

@@ -21,7 +21,6 @@ using Prism.Modularity;
 using Abdrakov.Demo.Modules;
 using Abdrakov.Styles.Interfaces;
 using Abdrakov.Styles.Services;
-using Abdrakov.Styles.Other;
 using Abdrakov.Engine.Localization;
 using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;

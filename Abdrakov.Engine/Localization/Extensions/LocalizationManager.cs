@@ -15,7 +15,9 @@ namespace Abdrakov.Engine.Localization.Extensions
 {
 	public static class LocalizationManager
 	{
-		private static CultureInfo _currentLanguage = Thread.CurrentThread.CurrentUICulture;
+        public static string DefaultSeparation => ".";
+
+        private static CultureInfo _currentLanguage = Thread.CurrentThread.CurrentUICulture;
 		public static CultureInfo CurrentLanguage
 		{
 			get => _currentLanguage;
@@ -75,7 +77,7 @@ namespace Abdrakov.Engine.Localization.Extensions
 
 		public static string GetValue(string key)
 		{
-			return GetValue("Gui", key, CultureInfo.CurrentUICulture);
+			return GetValue("Gui", key, CurrentLanguage);
 		}
 
 		public static string GetValue(string scope, string key, CultureInfo culture = null)

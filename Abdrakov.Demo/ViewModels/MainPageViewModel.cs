@@ -33,6 +33,8 @@ namespace Abdrakov.Demo.ViewModels
             set { SetProperty(ref _language, value); OnSelectedLanguageChanged(value); }
         }
 
+        public string TestTag => "MainPage.TestText";
+
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
         public ICommand Test1Command { get; private set; }
@@ -42,10 +44,6 @@ namespace Abdrakov.Demo.ViewModels
             Test1Command = new DelegateCommand(() =>
             {
                 _mode = !_mode;
-                if (Container.IsRegistered<IAbdrakovThemeService>())
-                {
-                    Container.Resolve<IAbdrakovThemeService>().ApplyBase(_mode);
-                }
                 if (Container.IsRegistered<ThemeSwitcherService<Themes>>())
                 {
                     Container.Resolve<ThemeSwitcherService<Themes>>().ChangeTheme(_mode ? Themes.Dark : Themes.Light);

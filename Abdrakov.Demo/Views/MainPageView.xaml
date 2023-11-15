@@ -42,7 +42,7 @@
                     <Button Style="{StaticResource OutlinedRoundedButton}"
                             Margin="10, 0"
                             Command="{Binding Test1Command}">
-                        <TextBlock Text="{LocalizedResource MainPage.TestText}"
+                        <TextBlock Text="{LocalizedResource {Binding TestTag}}"
                                    Foreground="{DynamicResource TextForegroundBrush}" />
                     </Button>
 

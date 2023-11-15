@@ -7,6 +7,7 @@ using Abdrakov.Engine.Utils;
 using Abdrakov.Engine.Utils.Settings;
 using Prism.Commands;
 using Prism.Ioc;
+using System;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -141,7 +142,14 @@ namespace Abdrakov.CommonWPF.ViewModels
                     }
                     System.Windows.Application.Current.Dispatcher.Invoke(() =>
                     {
-                        SmoothAppear = false;
+                        try
+                        {
+                            SmoothAppear = false;
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            // cannot be changed after window is shown
+                        }
                     });
                 });
             }

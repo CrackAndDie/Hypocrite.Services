@@ -1,10 +1,15 @@
-﻿using Abdrakov.Styles.Interfaces;
+﻿using Abdrakov.Engine.MVVM;
+using Abdrakov.Styles.Events;
+using Abdrakov.Styles.Interfaces;
+using Prism.Events;
+using Prism.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace Abdrakov.Styles.Services
 {
@@ -31,6 +36,9 @@ namespace Abdrakov.Styles.Services
             {
                 return false;
             }
+
+            T oldTheme = CurrentTheme;
+
             var dic = mainDictionary.Value;
             dic.BeginInit();
             dic.MergedDictionaries.RemoveAt(0);
@@ -39,6 +47,9 @@ namespace Abdrakov.Styles.Services
                 Source = new Uri(ThemeSources[theme], UriKind.RelativeOrAbsolute)
             });
             dic.EndInit();
+
+            PublishEvent(dic.MergedDictionaries[0], oldTheme, CurrentTheme);
+
             return true;
         }
 
@@ -79,6 +90,16 @@ namespace Abdrakov.Styles.Services
                 throw new NotImplementedException("Current theme could not be found");
             }
             return ThemeSources.FirstOrDefault(x => x.Value == currDic.Source.OriginalString).Key;
+        }
+
+        private void PublishEvent(ResourceDictionary dic, T oldTheme, T newTheme)
+        {
+            var cont = (Application.Current as AbdrakovApplication).Container;
+            if (cont.IsRegistered<IEventAggregator>())
+            {
+                cont.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent<T>>()
+                .Publish(new ThemeChangedEventArgs<T>(dic, oldTheme, newTheme));
+            }
         }
     }
 }

@@ -13,7 +13,6 @@ using Prism.Events;
 using Prism.Ioc;
 using System.Diagnostics;
 using System.Globalization;
-using Abdrakov.Styles.Other.Event;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {

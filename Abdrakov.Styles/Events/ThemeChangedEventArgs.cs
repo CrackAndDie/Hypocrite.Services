@@ -6,21 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Abdrakov.Styles.Other.Event
+namespace Abdrakov.Styles.Events
 {
-    public class ThemeChangedEventArgs
+    public class ThemeChangedEventArgs<T>
     {
-        public ThemeChangedEventArgs(ResourceDictionary resourceDictionary, ITheme oldTheme, ITheme newTheme, bool isDark)
+        public ThemeChangedEventArgs(ResourceDictionary resourceDictionary, T oldTheme, T newTheme)
         {
             ResourceDictionary = resourceDictionary;
             OldTheme = oldTheme;
             NewTheme = newTheme;
-            IsDark = isDark;
         }
 
         public ResourceDictionary ResourceDictionary { get; }
-        public ITheme NewTheme { get; }
-        public ITheme OldTheme { get; }
-        public bool IsDark { get; }
+        public T NewTheme { get; }
+        public T OldTheme { get; }
     }
 }

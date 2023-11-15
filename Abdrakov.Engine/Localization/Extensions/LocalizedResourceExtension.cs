@@ -162,7 +162,7 @@ namespace Abdrakov.Engine.Localization.Extensions
                 {
                     try
                     {
-                        var name = "LocExtension." + dp.OwnerType.FullName + "." + dp.Name;
+                        var name = "LocalizedResource." + dp.OwnerType.FullName + "." + dp.Name;
                         if (endPoint.TargetPropertyIndex != -1)
                             name += $"[{endPoint.TargetPropertyIndex}]";
 
@@ -339,6 +339,42 @@ namespace Abdrakov.Engine.Localization.Extensions
         }
 
         /// <summary>
+        /// Removes an item from the resource buffer (threadsafe).
+        /// </summary>
+        /// <param name="key">The key.</param>
+        internal static void SafeRemoveItemFromResourceBuffer(string key)
+        {
+            lock (ResourceBufferLock)
+            {
+                if (_resourceBuffer.ContainsKey(key))
+                    _resourceBuffer.Remove(key);
+            }
+        }
+
+        private void ClearItemFromResourceBuffer(DictionaryEventArgs dictionaryEventArgs)
+        {
+            if (dictionaryEventArgs.Type == DictionaryEventType.ValueChanged && (dictionaryEventArgs.Tag is ValueChangedEventArgs vceArgs))
+            {
+                string ciName = (vceArgs.Tag as CultureInfo)?.Name;
+
+                lock (ResolveLock)
+                {
+                    foreach (var key in _resourceBuffer.Keys.ToList())
+                    {
+                        if (key.EndsWith(vceArgs.Key))
+                        {
+                            if (ciName == null || key.StartsWith(ciName))
+                            {
+                                if (_resourceBuffer[key] != vceArgs.Value)
+                                    SafeRemoveItemFromResourceBuffer(key);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Get the name of a property (regular or DependencyProperty).
         /// </summary>
         /// <param name="property">The property object.</param>
@@ -376,42 +412,6 @@ namespace Abdrakov.Engine.Localization.Extensions
         protected CultureInfo GetForcedCultureOrDefault()
         {
             return LocalizationManager.CurrentLanguage ?? LocalizationManager.NeutralCulture;
-        }
-
-        /// <summary>
-        /// Removes an item from the resource buffer (threadsafe).
-        /// </summary>
-        /// <param name="key">The key.</param>
-        internal static void SafeRemoveItemFromResourceBuffer(string key)
-        {
-            lock (ResourceBufferLock)
-            {
-                if (_resourceBuffer.ContainsKey(key))
-                    _resourceBuffer.Remove(key);
-            }
-        }
-
-        private void ClearItemFromResourceBuffer(DictionaryEventArgs dictionaryEventArgs)
-        {
-            if (dictionaryEventArgs.Type == DictionaryEventType.ValueChanged && (dictionaryEventArgs.Tag is ValueChangedEventArgs vceArgs))
-            {
-                string ciName = (vceArgs.Tag as CultureInfo)?.Name;
-
-                lock (ResolveLock)
-                {
-                    foreach (var key in _resourceBuffer.Keys.ToList())
-                    {
-                        if (key.EndsWith(vceArgs.Key))
-                        {
-                            if (ciName == null || key.StartsWith(ciName))
-                            {
-                                if (_resourceBuffer[key] != vceArgs.Value)
-                                    SafeRemoveItemFromResourceBuffer(key);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         protected override void OnFirstTargetAdded()

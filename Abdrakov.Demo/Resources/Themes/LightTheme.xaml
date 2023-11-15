@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="TextForegroundBrush"
                      Color="{DynamicResource TextForegroundBrushColor}" />
 
-    <Color x:Key="WindowStatusBrushColor">Cyan</Color>
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
     <SolidColorBrush x:Key="WindowStatusBrush"
                      Color="{DynamicResource WindowStatusBrushColor}" />
 
@@ -16,11 +16,11 @@
     <SolidColorBrush x:Key="TestBrush"
                      Color="{DynamicResource TestBrushColor}" />
 
-    <Color x:Key="ButtonBorderBrushColor">Cyan</Color>
+    <Color x:Key="ButtonBorderBrushColor">#dbe1e8</Color>
     <SolidColorBrush x:Key="ButtonBorderBrush"
                      Color="{DynamicResource ButtonBorderBrushColor}" />
 
-    <Color x:Key="ComboBoxBorderBrushColor">Cyan</Color>
+    <Color x:Key="ComboBoxBorderBrushColor">#dbe1e8</Color>
     <SolidColorBrush x:Key="ComboBoxBorderBrush"
                      Color="{DynamicResource ComboBoxBorderBrushColor}" />
 

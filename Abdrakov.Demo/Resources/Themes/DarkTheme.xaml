@@ -39,4 +39,8 @@
     <Color x:Key="ScrollForegroundBrushColor">#1a293d</Color>
     <SolidColorBrush x:Key="ScrollForegroundBrush"
                      Color="{DynamicResource ScrollForegroundBrushColor}" />
+
+    <Color x:Key="ArrowBrushColor">#070c13</Color>
+    <SolidColorBrush x:Key="ArrowBrush"
+                     Color="{DynamicResource ArrowBrushColor}" />
 </ResourceDictionary>

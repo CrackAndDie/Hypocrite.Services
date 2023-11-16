@@ -32,6 +32,11 @@ Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov
 
 <h2>Getting started:</h2>  
 
+<h3>Topics:</h3>  
+
+- [First steps](#first-steps)
+- [Preview window](#preview-window)
+
 <h3>First steps:</h3>  
 
 When you created your WPF app you should rewrite your *App.xaml* and *App.xaml.cs* files as follows:

@@ -72,7 +72,7 @@ namespace YourNamespace
             base.RegisterTypes(containerRegistry);
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
-                ProductName = "Tests",
+                ProductName = "Abdrakov.Demo",
                 LogoImage = "pack://application:,,,/Abdrakov.Tests;component/Resources/AbdrakovSolutions.png",
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
@@ -158,49 +158,97 @@ Registered Window under *IBaseWindow* interface will be shown up after *PreviewD
 
 <h3>Theme registrations:</h3>  
 
-Abdrakov.Solutions supports realtime theme change (Dark/Light) and flexible colors (brushes) registrations. Here is the sample code to register *IAbdrakovThemeService* in your App (if you don't want the theme change service in your project you can skip this registration):
+Abdrakov.Solutions supports realtime theme change and flexible object registrations. Here is the sample code to register *ThemeSwitcherService* in your App (if you don't want the theme change service in your project you can skip this registration):
 ```cs
-protected override void RegisterTypes(IContainerRegistry containerRegistry)
+containerRegistry.RegisterInstance(new ThemeSwitcherService<Themes>()
 {
-    base.RegisterTypes(containerRegistry);
-    // ...
-    containerRegistry.RegisterSingleton<IAbdrakovThemeService, AbdrakovThemeService>();
-}
-```
-
-Using the *IAbdrakovThemeService* you can change an App's theme in realtime using method *ApplyBase(isDark)* and get current theme using property *IsDark*.  
-Here is the sample code to register themes and colors in your App:
-```cs
-private void ConfigureApplicationVisual()
-{
-    Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
+    NameOfDictionary = "ThemeHolder",
+    ThemeSources = new Dictionary<Themes, string>()
     {
-        IsDarkMode = true,  // default theme on app startup
-        ExtendedColors = new Dictionary<string, ColorPair>()  // your external color registrations
-        {
-            { "Test", new ColorPair(Colors.Red, Colors.Purple) },
-        }
-    }.SetTheme());
-}
+        { Themes.Dark, "/Abdrakov.Demo;component/Resources/Themes/DarkTheme.xaml" },
+        { Themes.Light, "/Abdrakov.Demo;component/Resources/Themes/LightTheme.xaml" },
+    },
+});
 ```
-Every color registration gives you dynamic Brush and Color (like *TestBrush* and *TestBrushColor*).  
 
-Here is the names that should be registered in your app:
-- *TextForeground* - The colors of the product name and window buttons
-- *WindowStatus* - The colors of the window progress indicator
-- *Window* - The colors of the window and window header backgrounds
-
-*ConfigureApplicationVisual* could be called in *OnStartup* overrided method like this:
-```cs
-protected override void OnStartup(StartupEventArgs e)
+In my app *Themes* is an enum of themes for the app:
+```c#
+public enum Themes
 {
-    ConfigureApplicationVisual();
-    //...
-    base.OnStartup(e);
-    //...
+    Dark,
+    Light
 }
 ```
-If you won't register any of the theme it will be gererated automaticaly by reversing colors of the existing theme.  
+
+Using the *ThemeSwitcherService* you can change an App's theme in realtime using method *ChangeTheme(theme)* and get current theme using method *GetCurrentTheme()*.   
+
+For proper work of *ThemeSwitcherService* You should create *ResourceDictionaries* for each theme You have and a *ResourceDictionary* that will hold all the changes of themes. So in my project I created *DarkTheme.xaml*, *LightTheme.xaml* and *ThemeHolder.xaml*.  
+*DarkTheme.xaml*:
+```xaml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="TextForegroundBrushColor">AliceBlue</Color>
+    <SolidColorBrush x:Key="TextForegroundBrush" 
+                     Color="{DynamicResource TextForegroundBrushColor}"/>
+
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
+    <SolidColorBrush x:Key="WindowStatusBrush"
+                     Color="{DynamicResource WindowStatusBrushColor}" />
+
+    <Color x:Key="WindowBrushColor">#070c13</Color>
+    <SolidColorBrush x:Key="WindowBrush"
+                     Color="{DynamicResource WindowBrushColor}" />
+</ResourceDictionary>
+```
+*LightTheme.xaml*:
+```xaml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="TextForegroundBrushColor">Black</Color>
+    <SolidColorBrush x:Key="TextForegroundBrush"
+                     Color="{DynamicResource TextForegroundBrushColor}" />
+    
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
+    <SolidColorBrush x:Key="WindowStatusBrush"
+                     Color="{DynamicResource WindowStatusBrushColor}" />
+    
+    <Color x:Key="WindowBrushColor">#fefefe</Color>
+    <SolidColorBrush x:Key="WindowBrush"
+                     Color="{DynamicResource WindowBrushColor}" />
+</ResourceDictionary>
+```
+*ThemeHolder.xaml*:
+```xaml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Abdrakov.Demo;component/Resources/Themes/DarkTheme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+```
+
+Here are the colors and brushes that should be registered in your app:
+- *TextForegroundBrush(Color)* - The colors of the product name and window buttons
+- *WindowStatusBrush(Color)* - The colors of the window progress indicator
+- *WindowBrush(Color)* - The colors of the window and window header backgrounds
+
+The holder of *.xaml* theme files (*ThemeHolder.xaml*) should be merged into Your app resources like this:
+```xaml
+<engine:AbdrakovApplication x:Class="Abdrakov.Demo.App"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="clr-namespace:Abdrakov.Demo"
+                            xmlns:engine="clr-namespace:Abdrakov.Engine.MVVM;assembly=Abdrakov.Engine">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Abdrakov.Demo;component/Resources/Themes/ThemeHolder.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</engine:AbdrakovApplication>
+```
+  
 Registered colors and brushes could be used as DynamicResources like that:
 ```xaml
 <Rectangle Fill="{DynamicResource TestBrush}"/>
@@ -237,6 +285,11 @@ Now you can use it like this:
 <TextBlock Text="{LocalizedResource MainPage.TestText}"
             Foreground="{DynamicResource TextForegroundBrush}" />
 ```
+Or via *Binding*s:
+```xaml
+<TextBlock Text="{LocalizedResource {Binding TestText}}"
+            Foreground="{DynamicResource TextForegroundBrush}" />
+```
 (I have this in my *.resx* files):  
 ![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/d7e8969d-1f9e-4f2d-938a-d6e9c483f16c)
 ![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/56e85807-d49f-448e-8fe1-f49d0b4158ce)
@@ -263,3 +316,4 @@ You can find the log file in you running assembly directory called *cadlog.log*.
 - [Prism](https://github.com/PrismLibrary/Prism)
 - [log4net](https://github.com/apache/logging-log4net)
 - *Abdrakov.Styles* is a rewritten part of [MaterialDesignXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
+- *Abdrakov.Engine.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)

@@ -36,6 +36,10 @@ Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov
 
 - [First steps](#first-steps)
 - [Preview window](#preview-window)
+- [Theme registrations](#theme-registrations)
+- [Localization](#localization)
+- [Window progress indicator](#window-progress-indicator)
+- [Logging](#logging)
 
 <h3>First steps:</h3>  
 

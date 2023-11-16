@@ -194,7 +194,7 @@
                                     Value="4" />
                             <Setter TargetName="DropDownBorder"
                                     Property="Margin"
-                                    Value="0,2,0,0" />
+                                    Value="0,2,0,2" />
                         </Trigger>
                         <Trigger Property="IsEditable"
                                  Value="true">

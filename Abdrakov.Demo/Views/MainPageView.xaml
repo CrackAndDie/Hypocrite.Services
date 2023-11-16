@@ -39,14 +39,14 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Style="{StaticResource OutlinedRoundedButton}"
-                            Margin="10, 0"
-                            Command="{Binding Test1Command}">
-                        <TextBlock Text="{LocalizedResource {Binding TestTag}}"
+                            Margin="15, 0"
+                            Command="{Binding ChangeThemeCommand}">
+                        <TextBlock Text="{LocalizedResource {Binding ChangeThemeTag}}"
                                    Foreground="{DynamicResource TextForegroundBrush}" />
                     </Button>
 
                     <ComboBox Style="{StaticResource AbdrakovComboBox}"
-                              Margin="10, 0"
+                              Margin="15, 0"
                               Grid.Column="1"
                               Height="46"
                               FontSize="20"
@@ -55,7 +55,7 @@
                               DisplayMemberPath="Name">
                     </ComboBox>
 
-                    <Grid Margin="10"
+                    <Grid Margin="15"
                           Grid.Column="2">
                         <Border x:Name="mask"
                                 Background="White"

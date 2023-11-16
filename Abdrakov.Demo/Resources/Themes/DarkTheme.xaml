@@ -4,11 +4,11 @@
     <SolidColorBrush x:Key="TextForegroundBrush" 
                      Color="{DynamicResource TextForegroundBrushColor}"/>
 
-    <Color x:Key="WindowStatusBrushColor">Cyan</Color>
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
     <SolidColorBrush x:Key="WindowStatusBrush"
                      Color="{DynamicResource WindowStatusBrushColor}" />
 
-    <Color x:Key="WindowBrushColor">#404040</Color>
+    <Color x:Key="WindowBrushColor">#070c13</Color>
     <SolidColorBrush x:Key="WindowBrush"
                      Color="{DynamicResource WindowBrushColor}" />
 
@@ -16,27 +16,27 @@
     <SolidColorBrush x:Key="TestBrush"
                      Color="{DynamicResource TestBrushColor}" />
 
-    <Color x:Key="ButtonBorderBrushColor">Cyan</Color>
+    <Color x:Key="ButtonBorderBrushColor">#1a293d</Color>
     <SolidColorBrush x:Key="ButtonBorderBrush"
                      Color="{DynamicResource ButtonBorderBrushColor}" />
 
-    <Color x:Key="ComboBoxBorderBrushColor">Cyan</Color>
+    <Color x:Key="ComboBoxBorderBrushColor">#1a293d</Color>
     <SolidColorBrush x:Key="ComboBoxBorderBrush"
                      Color="{DynamicResource ComboBoxBorderBrushColor}" />
 
-    <Color x:Key="ComboBoxBackgroundBrushColor">#404040</Color>
+    <Color x:Key="ComboBoxBackgroundBrushColor">#1a293d</Color>
     <SolidColorBrush x:Key="ComboBoxBackgroundBrush"
                      Color="{DynamicResource ComboBoxBackgroundBrushColor}" />
 
-    <Color x:Key="ComboBoxHoverBackgroundBrushColor">#545454</Color>
+    <Color x:Key="ComboBoxHoverBackgroundBrushColor">#18273c</Color>
     <SolidColorBrush x:Key="ComboBoxHoverBackgroundBrush"
                      Color="{DynamicResource ComboBoxHoverBackgroundBrushColor}" />
 
-    <Color x:Key="ScrollBackgroundBrushColor">#3f444f</Color>
+    <Color x:Key="ScrollBackgroundBrushColor">#070c13</Color>
     <SolidColorBrush x:Key="ScrollBackgroundBrush"
                      Color="{DynamicResource ScrollBackgroundBrushColor}" />
 
-    <Color x:Key="ScrollForegroundBrushColor">#888888</Color>
+    <Color x:Key="ScrollForegroundBrushColor">#1a293d</Color>
     <SolidColorBrush x:Key="ScrollForegroundBrush"
                      Color="{DynamicResource ScrollForegroundBrushColor}" />
 </ResourceDictionary>

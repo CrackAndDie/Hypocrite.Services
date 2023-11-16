@@ -33,15 +33,15 @@ namespace Abdrakov.Demo.ViewModels
             set { SetProperty(ref _language, value); OnSelectedLanguageChanged(value); }
         }
 
-        public string TestTag => "MainPage.TestText";
+        public string ChangeThemeTag => "MainPage.ChangeTheme";
 
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
-        public ICommand Test1Command { get; private set; }
+        public ICommand ChangeThemeCommand { get; private set; }
 
         public MainPageViewModel()
         {
-            Test1Command = new DelegateCommand(() =>
+            ChangeThemeCommand = new DelegateCommand(() =>
             {
                 _mode = !_mode;
                 if (Container.IsRegistered<ThemeSwitcherService<Themes>>())

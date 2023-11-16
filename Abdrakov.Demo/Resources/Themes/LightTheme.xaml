@@ -24,11 +24,11 @@
     <SolidColorBrush x:Key="ComboBoxBorderBrush"
                      Color="{DynamicResource ComboBoxBorderBrushColor}" />
 
-    <Color x:Key="ComboBoxBackgroundBrushColor">#fefefe</Color>
+    <Color x:Key="ComboBoxBackgroundBrushColor">#ffffff</Color>
     <SolidColorBrush x:Key="ComboBoxBackgroundBrush"
                      Color="{DynamicResource ComboBoxBackgroundBrushColor}" />
 
-    <Color x:Key="ComboBoxHoverBackgroundBrushColor">#eaeaea</Color>
+    <Color x:Key="ComboBoxHoverBackgroundBrushColor">#fefefe</Color>
     <SolidColorBrush x:Key="ComboBoxHoverBackgroundBrush"
                      Color="{DynamicResource ComboBoxHoverBackgroundBrushColor}" />
 

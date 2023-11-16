@@ -27,8 +27,8 @@ A package that helps You to create a powerful, flexible and loosely coupled WPF 
 
 Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov.Solutions/releases)  
 
-<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/9b6aa1ef-f08e-4379-8783-fad1c8d37a8d" alt="image1" width="440">  
-<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/572b0bbf-f6b9-4935-acd6-18e394e4a5a9" alt="image2" width="440">  
+<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/b35455e9-f6f4-4c3a-bd5a-b6b71dac4223" alt="image1" width="440">  
+<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/db299c87-7bb2-4489-972c-3065708d0b24" alt="image2" width="440">  
 
 <h2>Getting started:</h2>  
 
@@ -217,7 +217,7 @@ For proper work of *ThemeSwitcherService* You should create *ResourceDictionarie
                      Color="{DynamicResource WindowBrushColor}" />
 </ResourceDictionary>
 ```
-*ThemeHolder.xaml*:
+*ThemeHolder.xaml* (You should set here a default theme):
 ```xaml
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -296,9 +296,9 @@ Or via *Binding*s:
 
 To change current localization you can change *LocalizationManager.CurrentLanguage* property like this:
 ```cs
-LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
+LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(lang.Name.ToLower());
 ```
-In this examle *item* is an instance of *Language* class.  
+In this examle *lang* is an instance of *Language* class.  
 
 <h3>Window progress indicator:</h3>  
 
@@ -315,5 +315,4 @@ You can find the log file in you running assembly directory called *cadlog.log*.
 - *Abdrakov.Solutions*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
 - [Prism](https://github.com/PrismLibrary/Prism)
 - [log4net](https://github.com/apache/logging-log4net)
-- *Abdrakov.Styles* is a rewritten part of [MaterialDesignXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
 - *Abdrakov.Engine.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)

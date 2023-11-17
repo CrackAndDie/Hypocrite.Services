@@ -18,8 +18,10 @@ using System.Windows.Media;
 
 namespace Abdrakov.CommonWPF.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase, IViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
+        private IWindowSettings _windowSettings;
+
         private WindowState currentWindowState;
         public WindowState CurrentWindowState
         {
@@ -108,18 +110,22 @@ namespace Abdrakov.CommonWPF.ViewModels
 
             if (Container.IsRegistered<BaseWindowSettings>())
             {
-                IWindowSettings settings = Container.Resolve<BaseWindowSettings>();
-                LogoImage = settings.LogoImage;
-                ProductName = settings.ProductName;
-                SmoothAppear = settings.SmoothAppear;
-                if (settings.WindowProgressVisibility != Visibility.Collapsed) 
+                _windowSettings = Container.Resolve<BaseWindowSettings>();
+                LogoImage = _windowSettings.LogoImage;
+                ProductName = _windowSettings.ProductName;
+                SmoothAppear = _windowSettings.SmoothAppear;
+
+                if (_windowSettings.WindowProgressVisibility != Visibility.Collapsed) 
                 { 
                     EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);
-                    CheckAllDoneVisibility = Visibility.Visible;
                 }
+                CheckAllDoneVisibility = _windowSettings.WindowProgressVisibility;
                 ProgressBarVisibility = Visibility.Collapsed;
-                MaximizeButtonVisibility = settings.MaxResButtonsVisibility;
+
+                MaximizeButtonVisibility = _windowSettings.MaxResButtonsVisibility;
                 RestoreButtonVisibility = Visibility.Collapsed;
+
+                MinimizeButtonVisibility = _windowSettings.MinimizeButtonVisibility;
             }
         }
 
@@ -166,14 +172,20 @@ namespace Abdrakov.CommonWPF.ViewModels
 
         private void OnStateChanged(WindowState state)
         {
-            MaximizeButtonVisibility = state == WindowState.Maximized ? Visibility.Collapsed : Visibility.Visible;
-            RestoreButtonVisibility = state == WindowState.Maximized ? Visibility.Visible : Visibility.Collapsed;
+            if (_windowSettings.MaxResButtonsVisibility != Visibility.Collapsed)
+            {
+                MaximizeButtonVisibility = state == WindowState.Maximized ? Visibility.Collapsed : Visibility.Visible;
+                RestoreButtonVisibility = state == WindowState.Maximized ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         private void OnProgressChanged(bool isDone)
         {
-            ProgressBarVisibility = isDone ? Visibility.Collapsed : Visibility.Visible;
-            CheckAllDoneVisibility = isDone ? Visibility.Visible : Visibility.Collapsed;
+            if (_windowSettings.WindowProgressVisibility != Visibility.Collapsed)
+            {
+                ProgressBarVisibility = isDone ? Visibility.Collapsed : Visibility.Visible;
+                CheckAllDoneVisibility = isDone ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         private void OnMinimizeWindowCommand(object paramenter)

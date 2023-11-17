@@ -88,6 +88,7 @@ namespace Abdrakov.Demo
         {
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<MainModule>();
+            moduleCatalog.AddModule<HeaderModule>();
         }
     }
 }

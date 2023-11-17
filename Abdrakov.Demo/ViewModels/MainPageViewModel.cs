@@ -24,8 +24,6 @@ namespace Abdrakov.Demo.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private bool _mode = true;
-
         private Language _language;
         public Language SelectedLanguage
         {
@@ -43,12 +41,12 @@ namespace Abdrakov.Demo.ViewModels
         {
             ChangeThemeCommand = new DelegateCommand(() =>
             {
-                _mode = !_mode;
                 if (Container.IsRegistered<ThemeSwitcherService<Themes>>())
                 {
-                    Container.Resolve<ThemeSwitcherService<Themes>>().ChangeTheme(_mode ? Themes.Dark : Themes.Light);
+                    var service = Container.Resolve<ThemeSwitcherService<Themes>>();
+                    service.ChangeTheme(service.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
+                    LoggingService.Info($"Current theme is {service.CurrentTheme}");
                 }
-                LoggingService.Info($"Current mode is {_mode}");
             });
         }
 

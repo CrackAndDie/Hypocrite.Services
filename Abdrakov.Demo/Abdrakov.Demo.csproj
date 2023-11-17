@@ -64,9 +64,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\IMainPageView.cs" />
+    <Compile Include="Modules\HeaderModule.cs" />
     <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Resources\Themes\Themes.cs" />
+    <Compile Include="ViewModels\HeaderViewModels\LeftControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\HeaderViews\LeftControlView.xaml.cs">
+      <DependentUpon>LeftControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeaderViews\RightControlView.xaml.cs">
+      <DependentUpon>RightControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +146,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeaderViews\LeftControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeaderViews\RightControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

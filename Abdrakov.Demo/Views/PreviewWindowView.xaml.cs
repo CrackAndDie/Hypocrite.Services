@@ -18,7 +18,7 @@ namespace Abdrakov.Demo.Views
 
             timer = new DispatcherTimer()
             {
-                Interval = TimeSpan.FromSeconds(4),
+                Interval = TimeSpan.FromSeconds(2),
             };
             timer.Tick += (s, a) => { CallPreviewDoneEvent(); };
             timer.Start();

@@ -56,7 +56,7 @@ namespace Abdrakov.Engine.Services
             var viewModelAssemblyName = assembly.GetName().Name;
             var viewName = viewType.FullName;
             var suffix = viewName.EndsWith("View") ? "Model" : "ViewModel";
-            var viewModelName = viewName.Replace(".Views.", ".ViewModels.") + suffix;
+            var viewModelName = viewName.Replace("Views", "ViewModels") + suffix;
             if (viewModelName.StartsWith($"{viewAssemblyName}."))
             {
                 viewModelName = $"{viewModelAssemblyName}." + viewModelName.Substring($"{viewAssemblyName}.".Length);

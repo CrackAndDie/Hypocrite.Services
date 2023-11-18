@@ -40,6 +40,7 @@ Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov
 - [Localization](#localization)
 - [Window progress indicator](#window-progress-indicator)
 - [Logging](#logging)
+- [Custom controls on window header](#custom-controls-on-window-header)
 
 <h3>First steps:</h3>  
 
@@ -317,7 +318,29 @@ There is also a progress indicator on the *MainWindowView* header that could be 
 
 To log your app's work you can resolve *ILoggingService* that is just an adapter of *Log4netLoggingService* or use *LoggingService* property of *ViewModelBase*.  
 
-You can find the log file in you running assembly directory called *cadlog.log*.
+You can find the log file in you running assembly directory called *cadlog.log*.  
+
+<h3>Custom controls on window header:</h3>  
+
+You can also create some Your custom control on the window header. There are two regions used for this - *Regions.HEADER_RIGHT_REGION* and *Regions.HEADER_LEFT_REGION*. The left one is on the left side of header progress bar and the right one is on the right side. The height of the header is 22 pixels. Here is an example of how to register there Your views:
+```c#
+internal class HeaderModule : IModule
+{
+    public void OnInitialized(IContainerProvider containerProvider)
+    {
+        var region = containerProvider.Resolve<IRegionManager>();
+
+        region.RegisterViewWithRegion(Regions.HEADER_RIGHT_REGION, typeof(RightControlView));
+        region.RegisterViewWithRegion(Regions.HEADER_LEFT_REGION, typeof(LeftControlView));
+    }
+
+    public void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterForNavigation<RightControlView>();
+        containerRegistry.RegisterForNavigation<LeftControlView>();
+    }
+}
+```
 
 <h2>Powered by:</h2>  
 

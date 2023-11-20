@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Unity;
 using Unity.Resolution;
+using Mono.Cecil;
 
 namespace Abdrakov.Engine.MVVM
 {

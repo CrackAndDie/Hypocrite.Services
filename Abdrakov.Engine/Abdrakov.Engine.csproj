@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\CecilExtensions.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\RegionManagerExtensions.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Interfaces\IViewModelResolverService.cs" />
@@ -80,8 +82,11 @@
     <Compile Include="Localization\Extensions\Translation\TranslationProviderBase.cs" />
     <Compile Include="Localization\Language.cs" />
     <Compile Include="MVVM\AbdrakovApplication.cs" />
+    <Compile Include="MVVM\Attributes\BindableAttribute.cs" />
+    <Compile Include="MVVM\BindableObject.cs" />
     <Compile Include="MVVM\Events\CloseDialogEvent.cs" />
     <Compile Include="MVVM\Events\WindowProgressChangedEvent.cs" />
+    <Compile Include="MVVM\ReactivePropertyResolver.cs" />
     <Compile Include="Services\WindowProgressService.cs" />
     <Compile Include="Utils\Settings\BaseWindowSettings.cs" />
     <Compile Include="MVVM\Events\PreviewDoneEvent.cs" />
@@ -94,6 +99,7 @@
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abdrakov.Logging\Abdrakov.Logging.csproj">

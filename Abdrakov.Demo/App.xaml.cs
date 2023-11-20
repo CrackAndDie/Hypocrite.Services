@@ -26,6 +26,7 @@ using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
 using Abdrakov.Demo.Resources.Themes;
+using Mono.Cecil;
 
 namespace Abdrakov.Demo
 {
@@ -43,6 +44,12 @@ namespace Abdrakov.Demo
                 new Language() { Name = "EN" },
                 new Language() { Name = "RU" },
             });
+
+            var reactiveResolver = new ReactivePropertyResolver()
+            {
+                // ModuleDefinition = new ModuleDefinition(),
+            };
+
             base.OnStartup(e);
         }
 
@@ -50,6 +57,7 @@ namespace Abdrakov.Demo
         {
             var viewModelService = Container.Resolve<IViewModelResolverService>();
             viewModelService.RegisterViewModelAssembly(Assembly.GetExecutingAssembly());
+
 
             return base.CreateShell();
         }

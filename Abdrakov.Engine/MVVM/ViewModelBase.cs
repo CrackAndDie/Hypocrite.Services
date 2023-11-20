@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace Abdrakov.Engine.MVVM
 {
-    public class ViewModelBase : BindableBase, IViewModel, INavigationAware
+    public class ViewModelBase : BindableObject, IViewModel, INavigationAware
     {
         public ViewModelBase()
         {

@@ -2,6 +2,7 @@
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.MVVM.Attributes;
 using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Engine.Utils;
 using Abdrakov.Engine.Utils.Settings;

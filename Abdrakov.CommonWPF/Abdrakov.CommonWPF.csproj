@@ -108,4 +108,16 @@
     <Content Include="AbdrakovSolutions.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--
+	<UsingTask TaskName="WeavingTask"
+              AssemblyFile="$(OutputPath)Abdrakov.Weaver.dll" />
+
+	<Target Name="AfterBuild" AfterTargets="AfterBuild" Condition=" '$(OutputType)' == 'Library' ">
+		<WeavingTask AssemblyPath="$(OutputPath)$(AssemblyName).dll" />
+	</Target>
+	
+  <Target Name="AfterBuild" Condition="$(OutputFilesModified) == 'True'">
+    <Exec Command="&quot;$(MSBuildBinPath)\MSBuild.exe&quot; &#xD;&#xA;		&quot;$(OutputPath)Resources\PostBuild.msbuild&quot; &#xD;&#xA;		/property:AssemblyPath=$(AssemblyName).dll" />
+  </Target>
+  -->
 </Project>

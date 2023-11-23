@@ -1,5 +1,6 @@
 ﻿using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.MVVM.Attributes;
 using Abdrakov.Styles.Services;
 using Prism.Commands;
 using Prism.Ioc;
@@ -17,12 +18,8 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
     public class LeftControlViewModel : ViewModelBase
     {
         #region Commands
-        private ICommand changeThemeCommand;
-        public ICommand ChangeThemeCommand 
-        { 
-            get { return changeThemeCommand; }
-            set { SetProperty(ref changeThemeCommand, value); }
-        }
+        [Bindable]
+        public ICommand ChangeThemeCommand { get; set; }
         #endregion
 
         public override void OnDependenciesReady()

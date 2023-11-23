@@ -1,17 +1,17 @@
-﻿using Abdrakov.Engine.Extensions;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-using Mono.Cecil.Rocks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
+using Mono.Cecil;
+using Mono.Cecil.Rocks;
+using Abdrakov.Weaver.Extensions;
+using Mono.Cecil.Cil;
+using Abdrakov.Weaver.Interfaces;
 
-namespace Abdrakov.Engine.MVVM
+namespace Abdrakov.Weaver.Resolvers
 {
-    public class ReactivePropertyResolver
+    public class ReactivePropertyResolver : IResolver
     {
         public ModuleDefinition ModuleDefinition { get; set; }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Abdrakov.Engine.MVVM
                     }
 
                     // Declare a field to store the property value
-                    var field = new FieldDefinition("$" + property.Name, FieldAttributes.Private, property.PropertyType);
+                    var field = new FieldDefinition("$" + property.Name, Mono.Cecil.FieldAttributes.Private, property.PropertyType);
                     targetType.Fields.Add(field);
 
                     // Remove old field (the generated backing field for the auto property)

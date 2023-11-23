@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\CecilExtensions.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\RegionManagerExtensions.cs" />
@@ -86,13 +85,12 @@
     <Compile Include="MVVM\BindableObject.cs" />
     <Compile Include="MVVM\Events\CloseDialogEvent.cs" />
     <Compile Include="MVVM\Events\WindowProgressChangedEvent.cs" />
-    <Compile Include="MVVM\ReactivePropertyResolver.cs" />
+    <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Services\WindowProgressService.cs" />
     <Compile Include="Utils\Settings\BaseWindowSettings.cs" />
     <Compile Include="MVVM\Events\PreviewDoneEvent.cs" />
     <Compile Include="MVVM\GenericNavigationParameters.cs" />
     <Compile Include="MVVM\Events\NavigationEvent.cs" />
-    <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ViewModelResolverService.cs" />
   </ItemGroup>

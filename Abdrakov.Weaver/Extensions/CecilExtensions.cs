@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Engine.Extensions
+namespace Abdrakov.Weaver.Extensions
 {
     /// <summary>
     /// Mono.Cecil extension methods.

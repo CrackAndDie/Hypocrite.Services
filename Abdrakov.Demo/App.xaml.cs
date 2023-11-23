@@ -26,6 +26,7 @@ using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
 using Abdrakov.Demo.Resources.Themes;
+using log4net.Repository.Hierarchy;
 using Mono.Cecil;
 
 namespace Abdrakov.Demo
@@ -44,11 +45,6 @@ namespace Abdrakov.Demo
                 new Language() { Name = "EN" },
                 new Language() { Name = "RU" },
             });
-
-            var reactiveResolver = new ReactivePropertyResolver()
-            {
-                // ModuleDefinition = new ModuleDefinition(),
-            };
 
             base.OnStartup(e);
         }

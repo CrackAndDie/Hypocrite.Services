@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Styles", "Abdrakov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Demo", "Abdrakov.Demo\Abdrakov.Demo.csproj", "{B2543ED7-73B4-4FF4-9642-F2486686B437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Weaver", "Abdrakov.Weaver\Abdrakov.Weaver.csproj", "{AED65F1B-625C-476B-B7A4-FF9D932BA142}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED65F1B-625C-476B-B7A4-FF9D932BA142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED65F1B-625C-476B-B7A4-FF9D932BA142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED65F1B-625C-476B-B7A4-FF9D932BA142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED65F1B-625C-476B-B7A4-FF9D932BA142}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

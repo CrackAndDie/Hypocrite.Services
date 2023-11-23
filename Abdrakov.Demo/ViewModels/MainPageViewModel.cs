@@ -19,6 +19,11 @@ using Abdrakov.Engine.Localization;
 using System.Globalization;
 using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Styles.Services;
+using Abdrakov.Engine.MVVM.Attributes;
+using System.Windows.Media;
+using System.Security.Policy;
+using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Styles.Events;
 
 namespace Abdrakov.Demo.ViewModels
 {
@@ -32,6 +37,9 @@ namespace Abdrakov.Demo.ViewModels
         }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
+
+        [Bindable]
+        public SolidColorBrush BindableBrush { get; set; }
 
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
@@ -48,6 +56,24 @@ namespace Abdrakov.Demo.ViewModels
                     LoggingService.Info($"Current theme is {service.CurrentTheme}");
                 }
             });
+
+            SubscribeToThemeChange();
+        }
+
+        private void SubscribeToThemeChange()
+        {
+            var service = Container.Resolve<ThemeSwitcherService<Themes>>();
+            SetTheme(service.CurrentTheme);
+
+            EventAggregator.GetEvent<ThemeChangedEvent<Themes>>().Subscribe((a) =>
+            {
+                SetTheme(a.NewTheme);
+            });
+
+            void SetTheme(Themes theme)
+            {
+                BindableBrush = theme == Themes.Dark ? Brushes.Blue : Brushes.Azure;
+            }
         }
 
         public override void OnViewReady()

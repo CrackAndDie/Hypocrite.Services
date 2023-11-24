@@ -27,7 +27,6 @@ using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
 using Abdrakov.Demo.Resources.Themes;
 using log4net.Repository.Hierarchy;
-using Mono.Cecil;
 
 namespace Abdrakov.Demo
 {

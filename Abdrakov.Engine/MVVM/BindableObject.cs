@@ -17,6 +17,7 @@ namespace Abdrakov.Engine.MVVM
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangingEventHandler PropertyChanging;
 
         /// <summary>
         /// Checks if a property already matches a desired value. Sets the property and
@@ -30,14 +31,9 @@ namespace Abdrakov.Engine.MVVM
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        public virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(storage, value)) return false;
-
-            storage = value;
-            RaisePropertyChanged(propertyName);
-
-            return true;
+            return SetPropertyWithCallback(ref storage, value, null, propertyName);
         }
 
         /// <summary>
@@ -53,15 +49,27 @@ namespace Abdrakov.Engine.MVVM
         /// <param name="onChanged">Action that is called after the property value has been changed.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected virtual bool SetPropertyWithCallback<T>(ref T storage, T value, Action onChanged, [CallerMemberName] string propertyName = null)
+        public virtual bool SetPropertyWithCallback<T>(ref T storage, T value, Action onChanged, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(storage, value)) return false;
 
+            RaisePropertyChanging(propertyName);
             storage = value;
             onChanged?.Invoke();
             RaisePropertyChanged(propertyName);
 
             return true;
+        }
+
+        /// <summary>
+        /// Raises this object's PropertyChanging event.
+        /// </summary>
+        /// <param name="propertyName">Name of the property used to notify listeners. This
+        /// value is optional and can be provided automatically when invoked from compilers
+        /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        protected void RaisePropertyChanging([CallerMemberName] string propertyName = null)
+        {
+            OnPropertyChanging(new PropertyChangingEventArgs(propertyName));
         }
 
         /// <summary>
@@ -73,6 +81,15 @@ namespace Abdrakov.Engine.MVVM
         protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Raises this object's PropertyChanging event.
+        /// </summary>
+        /// <param name="args">The PropertyChangedEventArgs</param>
+        protected virtual void OnPropertyChanging(PropertyChangingEventArgs args)
+        {
+            PropertyChanging?.Invoke(this, args);
         }
 
         /// <summary>

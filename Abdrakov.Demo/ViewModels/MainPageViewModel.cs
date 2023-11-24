@@ -19,11 +19,11 @@ using Abdrakov.Engine.Localization;
 using System.Globalization;
 using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Styles.Services;
-using Abdrakov.Engine.MVVM.Attributes;
 using System.Windows.Media;
 using System.Security.Policy;
 using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Styles.Events;
+using Abdrakov.Engine.MVVM.Attributes;
 
 namespace Abdrakov.Demo.ViewModels
 {

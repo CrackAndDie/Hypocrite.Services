@@ -82,7 +82,7 @@
     <Compile Include="Localization\Extensions\Translation\TranslationProviderBase.cs" />
     <Compile Include="Localization\Language.cs" />
     <Compile Include="MVVM\AbdrakovApplication.cs" />
-    <Compile Include="MVVM\Attributes\BindableAttribute.cs" />
+    <Compile Include="MVVM\Attributes\NotifyAttribute.cs" />
     <Compile Include="MVVM\BindableObject.cs" />
     <Compile Include="MVVM\Events\CloseDialogEvent.cs" />
     <Compile Include="MVVM\Events\WindowProgressChangedEvent.cs" />

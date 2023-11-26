@@ -58,7 +58,7 @@
                     <Grid Margin="15"
                           Grid.Column="2">
                         <Border x:Name="mask"
-                                Background="White"
+                                Background="{DynamicResource WindowBrush}"
                                 CornerRadius="8"/>
                         <UniformGrid Columns="3">
                             <UniformGrid.OpacityMask>

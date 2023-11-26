@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.MVVM.Attributes
 {
+    /// <summary>
+    /// Attribute that marks property for INotifyPropertyChanged weaving. Provided by Abdrakov.Fody package.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class BindableAttribute : Attribute
+    public sealed class NotifyAttribute : Attribute
     {
     }
 }

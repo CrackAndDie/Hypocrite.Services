@@ -38,7 +38,7 @@ namespace Abdrakov.Demo.ViewModels
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
 
-        [Bindable]
+        [Notify]
         public SolidColorBrush BindableBrush { get; set; }
 
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
@@ -72,7 +72,7 @@ namespace Abdrakov.Demo.ViewModels
 
             void SetTheme(Themes theme)
             {
-                BindableBrush = theme == Themes.Dark ? Brushes.Blue : Brushes.Azure;
+                BindableBrush = theme == Themes.Dark ? Brushes.Blue : Brushes.BlueViolet;
             }
         }
 

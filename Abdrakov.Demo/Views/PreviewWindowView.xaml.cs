@@ -1,4 +1,5 @@
-﻿using Abdrakov.Engine.Interfaces.Presentation;
+﻿using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Engine.MVVM.Events;
 using Prism.Events;

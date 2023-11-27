@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.Localization.Extensions.Deps
 {
     /// <summary>
     /// Defines information about target object property.
     /// </summary>
-    internal class TargetPropertyInfo
+    public class TargetPropertyInfo
     {
         /// <summary>
         /// Gets the target property.

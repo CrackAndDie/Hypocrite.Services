@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,6 +19,8 @@ namespace Abdrakov.Engine.MVVM
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
+
+        // public ObservableCollection<IObservable> PropertyChangedObservables { get; set; } = new ObservableCollection<System.IObservable>();
 
         /// <summary>
         /// Checks if a property already matches a desired value. Sets the property and

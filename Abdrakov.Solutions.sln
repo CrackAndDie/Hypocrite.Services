@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Logging", "Abdrako
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.CommonWPF", "Abdrakov.CommonWPF\Abdrakov.CommonWPF.csproj", "{393ABB40-3085-4CF0-9BCA-F5FC70F075CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Styles", "Abdrakov.Styles\Abdrakov.Styles.csproj", "{2C72B5BD-357A-40DE-B39F-12FBC087310F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Demo", "Abdrakov.Demo\Abdrakov.Demo.csproj", "{B2543ED7-73B4-4FF4-9642-F2486686B437}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{393ABB40-3085-4CF0-9BCA-F5FC70F075CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{393ABB40-3085-4CF0-9BCA-F5FC70F075CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{393ABB40-3085-4CF0-9BCA-F5FC70F075CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C72B5BD-357A-40DE-B39F-12FBC087310F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C72B5BD-357A-40DE-B39F-12FBC087310F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C72B5BD-357A-40DE-B39F-12FBC087310F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C72B5BD-357A-40DE-B39F-12FBC087310F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Release|Any CPU.ActiveCfg = Release|Any CPU

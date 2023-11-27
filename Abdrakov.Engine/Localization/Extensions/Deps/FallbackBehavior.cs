@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Abdrakov.Engine.Localization.Extensions.Deps
+﻿namespace Abdrakov.Engine.Localization.Extensions.Deps
 {
     /// <summary>
     /// Behavior when key is not found at the localization provider.

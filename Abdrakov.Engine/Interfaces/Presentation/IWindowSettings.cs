@@ -1,12 +1,4 @@
-﻿using Abdrakov.Engine.Localization;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
+﻿using Abdrakov.Engine.Utils;
 
 namespace Abdrakov.Engine.Interfaces.Presentation
 {

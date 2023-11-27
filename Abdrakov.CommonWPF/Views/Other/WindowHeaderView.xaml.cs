@@ -3,17 +3,13 @@ using System.Windows;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using Abdrakov.Engine.Localization;
-using Abdrakov.Engine.Localization.Extensions;
-using Abdrakov.Engine.MVVM;
-using Abdrakov.Styles.Interfaces;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Ioc;
 using System.Diagnostics;
 using System.Globalization;
 using Prism.Regions;
+using Abdrakov.CommonWPF.MVVM;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {

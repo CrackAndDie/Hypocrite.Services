@@ -1,7 +1,6 @@
 ﻿using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.MVVM;
-using Abdrakov.Styles;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -19,14 +18,15 @@ using Abdrakov.Engine.Utils.Settings;
 using System.Windows.Media;
 using Prism.Modularity;
 using Abdrakov.Demo.Modules;
-using Abdrakov.Styles.Interfaces;
-using Abdrakov.Styles.Services;
 using Abdrakov.Engine.Localization;
 using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
 using Abdrakov.Demo.Resources.Themes;
 using log4net.Repository.Hierarchy;
+using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Localization;
+using Abdrakov.CommonWPF.Services;
 
 namespace Abdrakov.Demo
 {
@@ -65,6 +65,7 @@ namespace Abdrakov.Demo
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             base.RegisterTypes(containerRegistry);
+            base.RegisterDefaults(containerRegistry);
 
             containerRegistry.RegisterSingleton<IPreviewWindow, PreviewWindowView>();
 
@@ -76,7 +77,7 @@ namespace Abdrakov.Demo
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
-            containerRegistry.RegisterInstance(new ThemeSwitcherService<Themes>()
+            containerRegistry.RegisterInstance<IThemeSwitcherService<Themes>>(new ThemeSwitcherService<Themes>()
             {
                 NameOfDictionary = "ThemeHolder",
                 ThemeSources = new Dictionary<Themes, string>()

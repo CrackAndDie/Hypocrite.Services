@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,23 @@ namespace Abdrakov.Engine.Extensions
              
             bindableObject.SetProperty(ref backingField, newValue, propertyName);
             return newValue;
+        }
+
+        /// <summary>
+        /// WhenPropertyChanged allows you to observe whenever the value of a
+        /// property on an object has changed, providing an initial value when
+        /// the Observable is set up, unlike ObservableForProperty(). Use this
+        /// method in constructors to set up bindings between properties that also
+        /// need an initial setup.
+        /// </summary>
+        /// <param name="sender">The object where the property chain starts.</param>
+        /// <param name="property1">The first property chain to reference. This will be a expression pointing to a end property or field.</param>
+        public static IObservable<TRet> WhenPropertyChanged<TSender, TRet>(
+            this TSender sender,
+            Expression<Func<TSender, TRet>> property)
+        {
+            // return sender!.WhenAny(property1, (IObservedChange<TSender, TRet> c1) => c1.Value);
+            return null;
         }
     }
 }

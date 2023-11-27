@@ -14,7 +14,7 @@
     <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Abdrakov.Styles;component/Styles/ProgressBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Abdrakov.CommonWPF;component/Styles/Styles/ProgressBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:NullImageConverter x:Key="nullImageConverter" />

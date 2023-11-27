@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.Localization.Extensions.Deps
 {
@@ -13,7 +8,7 @@ namespace Abdrakov.Engine.Localization.Extensions.Deps
     /// Some properties are sealing (Setter.Value and Binding.Source) and cannot change, so
     /// if we use such provider, it stay same but it's value free to change.
     /// </summary>
-    internal class BindingValueProvider : INotifyPropertyChanged
+    public class BindingValueProvider : INotifyPropertyChanged
     {
         /// <summary>
         /// Property info of <see cref="Value" /> property.

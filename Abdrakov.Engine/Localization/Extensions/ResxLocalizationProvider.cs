@@ -12,7 +12,9 @@ namespace Abdrakov.Engine.Localization.Extensions
 {
 	public class ResxLocalizationProvider : ILocalizationProvider
 	{
-		public ResxLocalizationProvider(Assembly assembly, string file)
+        public static CultureInfo NeutralCulture { get; } = CultureInfo.GetCultureInfoByIetfLanguageTag("en");
+
+        public ResxLocalizationProvider(Assembly assembly, string file)
 			 : this(new ResourceManager(assembly.GetName().Name + ".Localization." + file, assembly))
 		{
 		}
@@ -47,7 +49,7 @@ namespace Abdrakov.Engine.Localization.Extensions
 					var languageTag = culture.IetfLanguageTag;
 					if (languageTag == "")
 					{
-						languageTag = LocalizationManager.NeutralCulture.IetfLanguageTag;
+						languageTag = NeutralCulture.IetfLanguageTag;
 					}
 
 					if (!allResources.ContainsKey(languageTag))
@@ -83,7 +85,7 @@ namespace Abdrakov.Engine.Localization.Extensions
 		{
 			if (culture == null)
 			{
-				culture = LocalizationManager.NeutralCulture;
+				culture = NeutralCulture;
 			}
 
 			if (allResources.TryGetValue(culture.IetfLanguageTag, out var dictionary))

@@ -1,6 +1,6 @@
-﻿using Abdrakov.Demo.Resources.Themes;
-using Abdrakov.Engine.MVVM;
-using Abdrakov.Styles.Services;
+﻿using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.Demo.Resources.Themes;
+using Abdrakov.Engine.Interfaces;
 using Prism.Commands;
 using Prism.Ioc;
 using System;
@@ -29,9 +29,9 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
 
         private void ChangeTheme()
         {
-            if (Container.IsRegistered<ThemeSwitcherService<Themes>>())
+            if (Container.IsRegistered<IThemeSwitcherService<Themes>>())
             {
-                var service = Container.Resolve<ThemeSwitcherService<Themes>>();
+                var service = Container.Resolve<IThemeSwitcherService<Themes>>();
                 service.ChangeTheme(service.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
                 LoggingService.Info($"Current theme is {service.CurrentTheme}");
             }

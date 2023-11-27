@@ -51,7 +51,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\NullImageConverter.cs" />
+    <Compile Include="Extensions\RegionManagerExtensions.cs" />
+    <Compile Include="Localization\LanguageChangedEventManager.cs" />
+    <Compile Include="Localization\LocalizationManager.cs" />
+    <Compile Include="Localization\LocalizedResourceExtension.cs" />
+    <Compile Include="Localization\ScopedTranslationProvider.cs" />
+    <Compile Include="Localization\WPFDeps\DefaultConverter.cs" />
+    <Compile Include="Localization\WPFDeps\DependencyObjectHelper.cs" />
+    <Compile Include="Localization\WPFDeps\EndpointReachedEventArgs.cs" />
+    <Compile Include="Localization\WPFDeps\IDictionaryEventListener.cs" />
+    <Compile Include="Localization\WPFDeps\INestedMarkupExtension.cs" />
+    <Compile Include="Localization\WPFDeps\NestedMarkupExtension.cs" />
+    <Compile Include="Localization\WPFDeps\ParentChangedNotifier.cs" />
+    <Compile Include="Localization\WPFDeps\ParentChangedNotifierHelper.cs" />
+    <Compile Include="Localization\WPFDeps\ParentNotifiers.cs" />
+    <Compile Include="Localization\WPFDeps\SafeTargetInfo.cs" />
+    <Compile Include="Localization\WPFDeps\SimpleProvideValuesServiceProvider.cs" />
+    <Compile Include="Localization\WPFDeps\TargetInfo.cs" />
+    <Compile Include="Localization\WPFDeps\TargetObjectsList.cs" />
+    <Compile Include="Localization\WPFDeps\TargetPath.cs" />
+    <Compile Include="MVVM\AbdrakovApplication.cs" />
+    <Compile Include="MVVM\GenericNavigationParameters.cs" />
+    <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ViewModelResolverService.cs" />
+    <Compile Include="Styles\Events\ThemeChangedEvent.cs" />
+    <Compile Include="Styles\Events\ThemeChangedEventArgs.cs" />
+    <Compile Include="Services\ThemeSwitcherService.cs" />
+    <Compile Include="Styles\Styles\Converters\ArcEndPointConverter.cs" />
+    <Compile Include="Styles\Styles\Converters\ArcSizeConverter.cs" />
+    <Compile Include="Styles\Styles\Converters\NonZeroConverter.cs" />
+    <Compile Include="Styles\Styles\Converters\RotateTransformCentreConverter.cs" />
+    <Compile Include="Styles\Styles\Converters\StartPointConverter.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\DialogWindowView.xaml.cs">
       <DependentUpon>DialogWindowView.xaml</DependentUpon>
@@ -77,15 +108,15 @@
       <Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
       <Name>Abdrakov.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Abdrakov.Styles\Abdrakov.Styles.csproj">
-      <Project>{2C72B5BD-357A-40DE-B39F-12FBC087310F}</Project>
-      <Name>Abdrakov.Styles</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AbdrakovSolutions.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Styles\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DialogWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,10 +1,10 @@
-﻿using Abdrakov.Engine.Interfaces;
+﻿using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Engine.MVVM.Attributes;
 using Abdrakov.Engine.MVVM.Events;
-using Abdrakov.Engine.Utils;
 using Abdrakov.Engine.Utils.Settings;
 using Prism.Commands;
 using Prism.Ioc;
@@ -116,17 +116,17 @@ namespace Abdrakov.CommonWPF.ViewModels
                 ProductName = _windowSettings.ProductName;
                 SmoothAppear = _windowSettings.SmoothAppear;
 
-                if (_windowSettings.WindowProgressVisibility != Visibility.Collapsed) 
+                if ((Visibility)_windowSettings.WindowProgressVisibility != Visibility.Collapsed) 
                 { 
                     EventAggregator.GetEvent<WindowProgressChangedEvent>().Subscribe(OnProgressChanged);
                 }
-                CheckAllDoneVisibility = _windowSettings.WindowProgressVisibility;
+                CheckAllDoneVisibility = (Visibility)_windowSettings.WindowProgressVisibility;
                 ProgressBarVisibility = Visibility.Collapsed;
 
-                MaximizeButtonVisibility = _windowSettings.MaxResButtonsVisibility;
+                MaximizeButtonVisibility = (Visibility)_windowSettings.MaxResButtonsVisibility;
                 RestoreButtonVisibility = Visibility.Collapsed;
 
-                MinimizeButtonVisibility = _windowSettings.MinimizeButtonVisibility;
+                MinimizeButtonVisibility = (Visibility)_windowSettings.MinimizeButtonVisibility;
             }
         }
 
@@ -166,14 +166,14 @@ namespace Abdrakov.CommonWPF.ViewModels
             }
         }
 
-        private void OnPageChanged(ViewModelBase vm)
+        private void OnPageChanged(EngineViewModelBase vm)
         {
             
         }
 
         private void OnStateChanged(WindowState state)
         {
-            if (_windowSettings.MaxResButtonsVisibility != Visibility.Collapsed)
+            if ((Visibility)_windowSettings.MaxResButtonsVisibility != Visibility.Collapsed)
             {
                 MaximizeButtonVisibility = state == WindowState.Maximized ? Visibility.Collapsed : Visibility.Visible;
                 RestoreButtonVisibility = state == WindowState.Maximized ? Visibility.Visible : Visibility.Collapsed;
@@ -182,7 +182,7 @@ namespace Abdrakov.CommonWPF.ViewModels
 
         private void OnProgressChanged(bool isDone)
         {
-            if (_windowSettings.WindowProgressVisibility != Visibility.Collapsed)
+            if ((Visibility)_windowSettings.WindowProgressVisibility != Visibility.Collapsed)
             {
                 ProgressBarVisibility = isDone ? Visibility.Collapsed : Visibility.Visible;
                 CheckAllDoneVisibility = isDone ? Visibility.Visible : Visibility.Collapsed;

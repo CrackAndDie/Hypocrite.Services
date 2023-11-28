@@ -9,33 +9,61 @@ namespace Abdrakov.Engine.MVVM.ObserverLogics
 {
     internal class PropertyChangedObservable<T> : Observable<T>
     {
-        private PropertyChangedEventHandler _handler;
+        private BindableObject _bindable;
         private PropertyInfo _property;
+        private bool _onChanged;
 
-        public PropertyChangedObservable(PropertyChangedEventHandler handler, PropertyInfo property) 
+        public PropertyChangedObservable(BindableObject bindable, PropertyInfo property, bool onChanged = true) 
         {
-            _handler = handler;
-            _handler += Preparer;
+            _onChanged = onChanged;
+
+            _bindable = bindable;
+            if (_onChanged)
+                _bindable.PropertyChanged += Preparer;
+            else
+                _bindable.PropertyChanging += Preparer;
 
             _property = property;
         }
 
-        private void Preparer(object sender, PropertyChangedEventArgs e)
+        private void Preparer(object sender, EventArgs e)
         {
-            if (e.PropertyName == _property.Name)
+            string propName = "";
+            if (e is PropertyChangedEventArgs ea)
             {
-                OnPropertyChanged((T)_property.GetValue(sender));
+                propName = ea.PropertyName;
+            }
+            else if (e is PropertyChangingEventArgs ea2)
+            {
+                propName = ea2.PropertyName;
+            }
+
+            if (_property != null)
+            {
+                if (propName == _property.Name)
+                {
+                    OnNextOuter((T)_property.GetValue(sender));
+                }
+            }
+            // check for any property change if "_property" is null
+            else
+            {
+                OnNextOuter((T)sender.GetType().GetRuntimeProperty(propName).GetValue(sender));
             }
         }
 
-        public void OnPropertyChanged(T value)
+        public void OnNextOuter(T value)
         {
             OnNext(value);
         }
 
         protected override void Dispose(bool disposing)
         {
-            _handler -= Preparer;
+            if (_onChanged)
+                _bindable.PropertyChanged -= Preparer;
+            else
+                _bindable.PropertyChanging -= Preparer;
+
             base.Dispose(disposing);
         }
     }

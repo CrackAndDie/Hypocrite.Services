@@ -26,30 +26,30 @@ using Abdrakov.CommonWPF.Localization;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.CommonWPF.Styles.Events;
 using Abdrakov.Engine.Extensions;
+using System.Diagnostics;
 
 namespace Abdrakov.Demo.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private Language _language;
-        public Language SelectedLanguage
-        {
-            get { return _language; }
-            set { SetProperty(ref _language, value); OnSelectedLanguageChanged(value); }
-        }
-
-        public string ChangeThemeTag => "MainPage.ChangeTheme";
-
+        [Notify]
+        public Language SelectedLanguage { get; set; }
         [Notify]
         public SolidColorBrush BindableBrush { get; set; }
 
+        public string ChangeThemeTag => "MainPage.ChangeTheme";
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
+        #region Commands
+        [Notify]
         public ICommand ChangeThemeCommand { get; private set; }
+        #endregion
 
-        public MainPageViewModel()
+        public override void OnDependenciesReady()
         {
-            this.WhenPropertyChanged(x => x.BindableBrush);
+            base.OnDependenciesReady();
+
+            this.WhenPropertyChanged(x => x.SelectedLanguage).Subscribe(OnSelectedLanguageChanged);
 
             ChangeThemeCommand = new DelegateCommand(() =>
             {

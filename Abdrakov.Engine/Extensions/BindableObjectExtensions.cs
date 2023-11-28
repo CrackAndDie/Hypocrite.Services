@@ -1,8 +1,10 @@
 ﻿using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.MVVM.ObserverLogics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,19 +53,72 @@ namespace Abdrakov.Engine.Extensions
         }
 
         /// <summary>
-        /// WhenPropertyChanged allows you to observe whenever the value of a
-        /// property on an object has changed, providing an initial value when
-        /// the Observable is set up, unlike ObservableForProperty(). Use this
-        /// method in constructors to set up bindings between properties that also
-        /// need an initial setup.
+        /// WhenPropertyChanged returns an Observable representing the
+        /// property change notifications for a specific property on a
+        /// BindableObject.
         /// </summary>
         /// <param name="sender">The object where the property chain starts.</param>
-        /// <param name="property1">The first property chain to reference. This will be a expression pointing to a end property or field.</param>
+        /// <param name="property">The first property chain to reference. This will be a expression pointing to a end property or field.</param>
         public static IObservable<TRet> WhenPropertyChanged<TSender, TRet>(
             this TSender sender,
             Expression<Func<TSender, TRet>> property)
         {
-            // return sender!.WhenAny(property1, (IObservedChange<TSender, TRet> c1) => c1.Value);
+            var mi = property.Body.GetMemberInfo();
+            if (mi.MemberType == MemberTypes.Property && mi is PropertyInfo pi && sender is BindableObject bindableObject)
+            {
+                return new PropertyChangedObservable<TRet>(bindableObject, pi);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// WhenAnyPropertyChanged returns an Observable representing the
+        /// property change notifications for any property on a
+        /// BindableObject.
+        /// </summary>
+        /// <param name="sender">The object where the property chain starts.</param>
+        public static IObservable<TRet> WhenAnyPropertyChanged<TSender, TRet>(
+            this TSender sender)
+        {
+            if (sender is BindableObject bindableObject)
+            {
+                return new PropertyChangedObservable<TRet>(bindableObject, null);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// WhenPropertyChanging returns an Observable representing the
+        /// property changing notifications for a specific property on a
+        /// BindableObject.
+        /// </summary>
+        /// <param name="sender">The object where the property chain starts.</param>
+        /// <param name="property">The first property chain to reference. This will be a expression pointing to a end property or field.</param>
+        public static IObservable<TRet> WhenPropertyChanging<TSender, TRet>(
+            this TSender sender,
+            Expression<Func<TSender, TRet>> property)
+        {
+            var mi = property.Body.GetMemberInfo();
+            if (mi.MemberType == MemberTypes.Property && mi is PropertyInfo pi && sender is BindableObject bindableObject)
+            {
+                return new PropertyChangedObservable<TRet>(bindableObject, pi, false);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// WhenAnyPropertyChanging returns an Observable representing the
+        /// property changing notifications for any property on a
+        /// BindableObject.
+        /// </summary>
+        /// <param name="sender">The object where the property chain starts.</param>
+        public static IObservable<TRet> WhenAnyPropertyChanging<TSender, TRet>(
+            this TSender sender)
+        {
+            if (sender is BindableObject bindableObject)
+            {
+                return new PropertyChangedObservable<TRet>(bindableObject, null, false);
+            }
             return null;
         }
     }

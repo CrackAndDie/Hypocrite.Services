@@ -1,6 +1,7 @@
 ﻿using Abdrakov.CommonWPF.MVVM;
 using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Engine.Interfaces;
+using Abdrakov.Engine.MVVM.Attributes;
 using Prism.Commands;
 using Prism.Ioc;
 using System;
@@ -17,7 +18,8 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
     public class LeftControlViewModel : ViewModelBase
     {
         #region Commands
-        public ICommand ChangeThemeCommand { get; set; }
+        [Notify]
+        public ICommand ChangeThemeCommand { get; private set; }
         #endregion
 
         public override void OnDependenciesReady()

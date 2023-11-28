@@ -41,6 +41,7 @@ Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov
 - [Window progress indicator](#window-progress-indicator)
 - [Logging](#logging)
 - [Custom controls on window header](#custom-controls-on-window-header)
+- [Observables and Observers](#observables-and-observers)
 
 <h3>First steps:</h3>  
 
@@ -341,6 +342,22 @@ internal class HeaderModule : IModule
     }
 }
 ```
+
+<h3>Observables and Observers:</h3>  
+
+*Abdrakov.Solutions* provides You some methods to observe property changes in a bindable class. An example:
+```c#
+this.WhenPropertyChanged(x => x.BindableBrush).Subscribe((b) =>
+{
+    Debug.WriteLine($"Current brush is: {b}");
+});
+```  
+Where *BindableBrush* is declared as:
+```c#
+[Notify]
+public SolidColorBrush BindableBrush { get; set; }
+```  
+You should use [DynamicData](https://github.com/reactivemarbles/DynamicData) or [ReactiveUI](https://github.com/reactiveui/ReactiveUI) that provide more powerful work with *Observer* pattern.
 
 <h2>Powered by:</h2>  
 

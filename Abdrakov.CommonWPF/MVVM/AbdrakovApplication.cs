@@ -1,5 +1,7 @@
 ﻿using Abdrakov.CommonWPF.Localization;
 using Abdrakov.CommonWPF.Services;
+using Abdrakov.Container;
+using Abdrakov.Container.PrismAdapter;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Localization.Extensions;
@@ -15,9 +17,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Unity;
+using System.Threading.Tasks;
 
 namespace Abdrakov.CommonWPF.MVVM
 {
@@ -79,10 +80,8 @@ namespace Abdrakov.CommonWPF.MVVM
 
         protected override IContainerExtension CreateContainerExtension()
         {
-            var container = new UnityContainer();
-            container.AddExtension(new Diagnostic());
-
-            return new UnityContainerExtension(container);
+            var container = new AbdrakovContainer();
+            return new AbdrakovContainerExtension(container);
         }
     }
 }

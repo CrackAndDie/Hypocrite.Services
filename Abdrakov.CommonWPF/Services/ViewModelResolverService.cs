@@ -1,4 +1,6 @@
-﻿using Abdrakov.Engine.Interfaces;
+﻿using Abdrakov.Container;
+using Abdrakov.Container.Interfaces;
+using Abdrakov.Engine.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -69,8 +71,8 @@ namespace Abdrakov.CommonWPF.Services
             return viewModelType;
         }
 
-        [Dependency]
-        public IUnityContainer Container { get; set; }
+        [Injection]
+        public IAbdrakovContainer Container { get; set; }
 
         private readonly IList<Assembly> assemblies = new List<Assembly>();
     }

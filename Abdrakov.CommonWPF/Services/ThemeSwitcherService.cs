@@ -1,5 +1,6 @@
 ﻿using Abdrakov.CommonWPF.MVVM;
 using Abdrakov.CommonWPF.Styles.Events;
+using Abdrakov.Container;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.MVVM;
 using Prism.Events;
@@ -21,6 +22,9 @@ namespace Abdrakov.CommonWPF.Services
         public T CurrentTheme => GetCurrentTheme();
 
         private readonly Lazy<ResourceDictionary> mainDictionary;
+
+        [Injection]
+        private IEventAggregator eventAggregator;
 
         public ThemeSwitcherService()
         {
@@ -95,12 +99,8 @@ namespace Abdrakov.CommonWPF.Services
 
         private void PublishEvent(ResourceDictionary dic, T oldTheme, T newTheme)
         {
-            var cont = (Application.Current as AbdrakovApplication).Container;
-            if (cont.IsRegistered<IEventAggregator>())
-            {
-                cont.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent<T>>()
+            eventAggregator.GetEvent<ThemeChangedEvent<T>>()
                 .Publish(new ThemeChangedEventArgs<T>(dic, oldTheme, newTheme));
-            }
         }
     }
 }

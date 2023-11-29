@@ -1,4 +1,5 @@
 ﻿using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.Container;
 using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.MVVM.Attributes;
@@ -17,6 +18,9 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
 {
     public class LeftControlViewModel : ViewModelBase
     {
+        [Injection]
+        private IThemeSwitcherService<Themes> themeSwitcherService;
+
         #region Commands
         [Notify]
         public ICommand ChangeThemeCommand { get; private set; }
@@ -31,12 +35,8 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
 
         private void ChangeTheme()
         {
-            if (Container.IsRegistered<IThemeSwitcherService<Themes>>())
-            {
-                var service = Container.Resolve<IThemeSwitcherService<Themes>>();
-                service.ChangeTheme(service.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
-                LoggingService.Info($"Current theme is {service.CurrentTheme}");
-            }
+            themeSwitcherService.ChangeTheme(themeSwitcherService.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
+            LoggingService.Info($"Current theme is {themeSwitcherService.CurrentTheme}");
         }
     }
 }

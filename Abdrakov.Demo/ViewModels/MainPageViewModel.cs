@@ -27,6 +27,7 @@ using Abdrakov.Engine.Interfaces;
 using Abdrakov.CommonWPF.Styles.Events;
 using Abdrakov.Engine.Extensions;
 using System.Diagnostics;
+using Abdrakov.Container;
 
 namespace Abdrakov.Demo.ViewModels
 {
@@ -36,6 +37,9 @@ namespace Abdrakov.Demo.ViewModels
         public Language SelectedLanguage { get; set; }
         [Notify]
         public SolidColorBrush BindableBrush { get; set; }
+
+        [Injection]
+        private IThemeSwitcherService<Themes> themeSwitcherService;
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
@@ -66,8 +70,7 @@ namespace Abdrakov.Demo.ViewModels
 
         private void SubscribeToThemeChange()
         {
-            var service = Container.Resolve<IThemeSwitcherService<Themes>>();
-            SetTheme(service.CurrentTheme);
+            SetTheme(themeSwitcherService.CurrentTheme);
 
             EventAggregator.GetEvent<ThemeChangedEvent<Themes>>().Subscribe((a) =>
             {

@@ -15,7 +15,7 @@ namespace Abdrakov.Engine.Services
         private readonly ObservableCollection<bool> waiterList = new ObservableCollection<bool>();
         private readonly IEventAggregator _eventAggregator;
 
-        internal WindowProgressService(IEventAggregator ea)
+        public WindowProgressService(IEventAggregator ea)
         {
             _eventAggregator = ea;
             waiterList.CollectionChanged += (s, a) =>

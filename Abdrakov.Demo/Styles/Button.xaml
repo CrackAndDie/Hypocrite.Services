@@ -22,7 +22,7 @@
                     <Border x:Name="borderInside"
                             CornerRadius="4"
                             BorderThickness="1"
-                            Background="Transparent"
+                            Background="{DynamicResource ComboBoxBackgroundBrush}"
                             BorderBrush="{DynamicResource ButtonBorderBrush}">
                         <ContentPresenter x:Name="contentPresenter"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"

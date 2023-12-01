@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="TextForegroundBrushColor">AliceBlue</Color>
+    <SolidColorBrush x:Key="TextForegroundBrush" 
+                     Color="{DynamicResource TextForegroundBrushColor}"/>
+
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
+    <SolidColorBrush x:Key="WindowStatusBrush"
+                     Color="{DynamicResource WindowStatusBrushColor}" />
+
+    <Color x:Key="WindowBrushColor">#070c13</Color>
+    <SolidColorBrush x:Key="WindowBrush"
+                     Color="{DynamicResource WindowBrushColor}" />
+
+    <Color x:Key="TestBrushColor">Red</Color>
+    <SolidColorBrush x:Key="TestBrush"
+                     Color="{DynamicResource TestBrushColor}" />
+
+    <Color x:Key="ButtonBorderBrushColor">#1a293d</Color>
+    <SolidColorBrush x:Key="ButtonBorderBrush"
+                     Color="{DynamicResource ButtonBorderBrushColor}" />
+
+    <Color x:Key="ComboBoxBorderBrushColor">#1a293d</Color>
+    <SolidColorBrush x:Key="ComboBoxBorderBrush"
+                     Color="{DynamicResource ComboBoxBorderBrushColor}" />
+
+    <Color x:Key="ComboBoxBackgroundBrushColor">#1a293d</Color>
+    <SolidColorBrush x:Key="ComboBoxBackgroundBrush"
+                     Color="{DynamicResource ComboBoxBackgroundBrushColor}" />
+
+    <Color x:Key="ComboBoxHoverBackgroundBrushColor">#18273c</Color>
+    <SolidColorBrush x:Key="ComboBoxHoverBackgroundBrush"
+                     Color="{DynamicResource ComboBoxHoverBackgroundBrushColor}" />
+
+    <Color x:Key="ScrollBackgroundBrushColor">#070c13</Color>
+    <SolidColorBrush x:Key="ScrollBackgroundBrush"
+                     Color="{DynamicResource ScrollBackgroundBrushColor}" />
+
+    <Color x:Key="ScrollForegroundBrushColor">#1a293d</Color>
+    <SolidColorBrush x:Key="ScrollForegroundBrush"
+                     Color="{DynamicResource ScrollForegroundBrushColor}" />
+
+    <Color x:Key="ArrowBrushColor">#070c13</Color>
+    <SolidColorBrush x:Key="ArrowBrush"
+                     Color="{DynamicResource ArrowBrushColor}" />
+</ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using Abdrakov.Engine.Interfaces.Presentation;
+﻿using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.MVVM;
 using Abdrakov.Engine.MVVM.Events;
 using Prism.Events;
@@ -18,7 +19,7 @@ namespace Abdrakov.Demo.Views
 
             timer = new DispatcherTimer()
             {
-                Interval = TimeSpan.FromSeconds(4),
+                Interval = TimeSpan.FromSeconds(2),
             };
             timer.Tick += (s, a) => { CallPreviewDoneEvent(); };
             timer.Start();

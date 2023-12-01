@@ -1,7 +1,6 @@
 ﻿using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.MVVM;
-using Abdrakov.Styles;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -19,13 +18,15 @@ using Abdrakov.Engine.Utils.Settings;
 using System.Windows.Media;
 using Prism.Modularity;
 using Abdrakov.Demo.Modules;
-using Abdrakov.Styles.Interfaces;
-using Abdrakov.Styles.Services;
-using Abdrakov.Styles.Other;
 using Abdrakov.Engine.Localization;
 using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
+using Abdrakov.Demo.Resources.Themes;
+using log4net.Repository.Hierarchy;
+using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Localization;
+using Abdrakov.CommonWPF.Services;
 
 namespace Abdrakov.Demo
 {
@@ -33,7 +34,6 @@ namespace Abdrakov.Demo
     {
         public App() : base()
         {
-            ConfigureApplicationVisual();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -44,6 +44,7 @@ namespace Abdrakov.Demo
                 new Language() { Name = "EN" },
                 new Language() { Name = "RU" },
             });
+
             base.OnStartup(e);
         }
 
@@ -51,6 +52,7 @@ namespace Abdrakov.Demo
         {
             var viewModelService = Container.Resolve<IViewModelResolverService>();
             viewModelService.RegisterViewModelAssembly(Assembly.GetExecutingAssembly());
+
 
             return base.CreateShell();
         }
@@ -63,6 +65,7 @@ namespace Abdrakov.Demo
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             base.RegisterTypes(containerRegistry);
+            base.RegisterDefaults(containerRegistry);
 
             containerRegistry.RegisterSingleton<IPreviewWindow, PreviewWindowView>();
 
@@ -74,38 +77,22 @@ namespace Abdrakov.Demo
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
-            containerRegistry.RegisterSingleton<IAbdrakovThemeService, AbdrakovThemeService>();
+            containerRegistry.RegisterInstance<IThemeSwitcherService<Themes>>(new ThemeSwitcherService<Themes>()
+            {
+                NameOfDictionary = "ThemeHolder",
+                ThemeSources = new Dictionary<Themes, string>()
+                {
+                    { Themes.Dark, "/Abdrakov.Demo;component/Resources/Themes/DarkTheme.xaml" },
+                    { Themes.Light, "/Abdrakov.Demo;component/Resources/Themes/LightTheme.xaml" },
+                },
+            });
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<MainModule>();
-        }
-
-        private void ConfigureApplicationVisual()
-        {
-            Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
-            {
-                IsDarkMode = true,
-                ExtendedColors = new Dictionary<string, ColorPair>()
-                {
-                    { "TextForeground", new ColorPair(Colors.AliceBlue, Colors.Black) },
-                    { "WindowStatus", new ColorPair(Colors.Cyan, Colors.Cyan) },
-                    { "Window", new ColorPair(Color.FromRgb(64, 64, 64), Color.FromRgb(254, 254, 254)) },
-
-                    { "Test", new ColorPair(Colors.Red, Colors.Purple) },
-
-                    { "ButtonBorder", new ColorPair(Colors.Cyan, Colors.Cyan) },
-
-                    { "ComboBoxBorder", new ColorPair(Colors.Cyan, Colors.Cyan) },
-                    { "ComboBoxBackground", new ColorPair(Color.FromRgb(64, 64, 64), Color.FromRgb(254, 254, 254)) },
-                    { "ComboBoxHoverBackground", new ColorPair(Color.FromRgb(84, 84, 84), Color.FromRgb(234, 234, 234)) },
-
-                    { "ScrollBackground", new ColorPair(Color.FromRgb(63, 68, 79), Colors.AliceBlue) },
-                    { "ScrollForeground", new ColorPair(Color.FromRgb(136, 136, 136), Colors.LightGray) },
-                }
-            }.SetTheme());
+            moduleCatalog.AddModule<HeaderModule>();
         }
     }
 }

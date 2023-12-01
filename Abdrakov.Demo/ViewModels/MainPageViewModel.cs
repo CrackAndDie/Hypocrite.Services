@@ -10,42 +10,77 @@ using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
-using Abdrakov.Styles.Interfaces;
 using Unity;
 using Abdrakov.Logging.Interfaces;
 using System.Collections.ObjectModel;
 using Abdrakov.Engine.Localization.Extensions;
 using Abdrakov.Engine.Localization;
 using System.Globalization;
+using Abdrakov.Demo.Resources.Themes;
+using System.Windows.Media;
+using System.Security.Policy;
+using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.MVVM.Attributes;
+using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Localization;
+using Abdrakov.Engine.Interfaces;
+using Abdrakov.CommonWPF.Styles.Events;
+using Abdrakov.Engine.Extensions;
+using System.Diagnostics;
+using Abdrakov.Container;
 
 namespace Abdrakov.Demo.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private bool _mode = true;
+        [Notify]
+        public Language SelectedLanguage { get; set; }
+        [Notify]
+        public SolidColorBrush BindableBrush { get; set; }
 
-        private Language _language;
-        public Language SelectedLanguage
-        {
-            get { return _language; }
-            set { SetProperty(ref _language, value); OnSelectedLanguageChanged(value); }
-        }
+        [Injection]
+        private IThemeSwitcherService<Themes> ThemeSwitcherService { get; set; }
 
+        public string ChangeThemeTag => "MainPage.ChangeTheme";
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
-        public ICommand Test1Command { get; private set; }
+        #region Commands
+        [Notify]
+        public ICommand ChangeThemeCommand { get; private set; }
+        #endregion
 
-        public MainPageViewModel()
+        public override void OnDependenciesReady()
         {
-            Test1Command = new DelegateCommand(() =>
+            base.OnDependenciesReady();
+
+            this.WhenPropertyChanged(x => x.SelectedLanguage).Subscribe(OnSelectedLanguageChanged);
+
+            ChangeThemeCommand = new DelegateCommand(() =>
             {
-                _mode = !_mode;
-                if (Container.IsRegistered<IAbdrakovThemeService>())
+                if (Container.IsRegistered<IThemeSwitcherService<Themes>>())
                 {
-                    Container.Resolve<IAbdrakovThemeService>().ApplyBase(_mode);
+                    var service = Container.Resolve<IThemeSwitcherService<Themes>>();
+                    service.ChangeTheme(service.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
+                    LoggingService.Info($"Current theme is {service.CurrentTheme}");
                 }
-                LoggingService.Info($"Current mode is {_mode}");
             });
+
+            SubscribeToThemeChange();
+        }
+
+        private void SubscribeToThemeChange()
+        {
+            SetTheme(ThemeSwitcherService.CurrentTheme);
+
+            EventAggregator.GetEvent<ThemeChangedEvent<Themes>>().Subscribe((a) =>
+            {
+                SetTheme(a.NewTheme);
+            });
+
+            void SetTheme(Themes theme)
+            {
+                BindableBrush = theme == Themes.Dark ? Brushes.Blue : Brushes.BlueViolet;
+            }
         }
 
         public override void OnViewReady()

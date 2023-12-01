@@ -18,12 +18,23 @@ namespace Abdrakov.Logging.Services
     {
         public Log4netLoggingService()
         {
-            logger = LogManager.GetLogger("FlowLogger");
-        }
+            var patternLayout = new PatternLayout();
+            patternLayout.ConversionPattern = "%date | %thread | %level | %message%newline";
+            patternLayout.ActivateOptions();
 
-        public Log4netLoggingService(string name)
-        {
-            logger = LogManager.GetLogger(name);
+            var fileAppender = new FileAppender()
+            {
+                Layout = patternLayout,
+                Name = "fileAppender",
+                Threshold = Level.All,
+                AppendToFile = false,
+                File = "cadlog.log",
+            };
+            fileAppender.ActivateOptions();
+            BasicConfigurator.Configure(fileAppender);
+
+            logger = LogManager.GetLogger("Log4netLogger");
+            this.LogWpfBindingErrors();
         }
 
         public void Debug(string message)
@@ -76,34 +87,6 @@ namespace Abdrakov.Logging.Services
             logger.Fatal(message, exception);
         }
 
-        public static Log4netLoggingService GetMainInstance()
-        {
-            if (mainInstance == null)
-            {
-                var patternLayout = new PatternLayout();
-                patternLayout.ConversionPattern = "%date | %thread | %level | %message%newline";
-                patternLayout.ActivateOptions();
-
-                // creating the regular console appender
-                var fileAppender = new FileAppender()
-                {
-                    Layout = patternLayout,
-                    Name = "fileAppender",
-                    Threshold = Level.All,
-                    AppendToFile = false,
-                    File = "cadlog.log",
-                };
-                fileAppender.ActivateOptions();
-                BasicConfigurator.Configure(fileAppender);
-
-                mainInstance = new Log4netLoggingService();
-                mainInstance.LogWpfBindingErrors();
-            }
-
-            return mainInstance;
-        }
-
-        private static Log4netLoggingService mainInstance = null;
         private readonly ILog logger;
     }
 }

@@ -27,10 +27,21 @@ A package that helps You to create a powerful, flexible and loosely coupled WPF 
 
 Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov.Solutions/releases)  
 
-<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/9b6aa1ef-f08e-4379-8783-fad1c8d37a8d" alt="image1" width="440">  
-<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/572b0bbf-f6b9-4935-acd6-18e394e4a5a9" alt="image2" width="440">  
+<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/b35455e9-f6f4-4c3a-bd5a-b6b71dac4223" alt="image1" width="440">  
+<img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/db299c87-7bb2-4489-972c-3065708d0b24" alt="image2" width="440">  
 
 <h2>Getting started:</h2>  
+
+<h3>Topics:</h3>  
+
+- [First steps](#first-steps)
+- [Preview window](#preview-window)
+- [Theme registrations](#theme-registrations)
+- [Localization](#localization)
+- [Window progress indicator](#window-progress-indicator)
+- [Logging](#logging)
+- [Custom controls on window header](#custom-controls-on-window-header)
+- [Observables and Observers](#observables-and-observers)
 
 <h3>First steps:</h3>  
 
@@ -72,7 +83,7 @@ namespace YourNamespace
             base.RegisterTypes(containerRegistry);
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
-                ProductName = "Tests",
+                ProductName = "Abdrakov.Demo",
                 LogoImage = "pack://application:,,,/Abdrakov.Tests;component/Resources/AbdrakovSolutions.png",
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
@@ -158,49 +169,97 @@ Registered Window under *IBaseWindow* interface will be shown up after *PreviewD
 
 <h3>Theme registrations:</h3>  
 
-Abdrakov.Solutions supports realtime theme change (Dark/Light) and flexible colors (brushes) registrations. Here is the sample code to register *IAbdrakovThemeService* in your App (if you don't want the theme change service in your project you can skip this registration):
+Abdrakov.Solutions supports realtime theme change and flexible object registrations. Here is the sample code to register *ThemeSwitcherService* in your App (if you don't want the theme change service in your project you can skip this registration):
 ```cs
-protected override void RegisterTypes(IContainerRegistry containerRegistry)
+containerRegistry.RegisterInstance(new ThemeSwitcherService<Themes>()
 {
-    base.RegisterTypes(containerRegistry);
-    // ...
-    containerRegistry.RegisterSingleton<IAbdrakovThemeService, AbdrakovThemeService>();
-}
-```
-
-Using the *IAbdrakovThemeService* you can change an App's theme in realtime using method *ApplyBase(isDark)* and get current theme using property *IsDark*.  
-Here is the sample code to register themes and colors in your App:
-```cs
-private void ConfigureApplicationVisual()
-{
-    Resources.MergedDictionaries.Add(new AbdrakovBundledTheme()
+    NameOfDictionary = "ThemeHolder",
+    ThemeSources = new Dictionary<Themes, string>()
     {
-        IsDarkMode = true,  // default theme on app startup
-        ExtendedColors = new Dictionary<string, ColorPair>()  // your external color registrations
-        {
-            { "Test", new ColorPair(Colors.Red, Colors.Purple) },
-        }
-    }.SetTheme());
-}
+        { Themes.Dark, "/Abdrakov.Demo;component/Resources/Themes/DarkTheme.xaml" },
+        { Themes.Light, "/Abdrakov.Demo;component/Resources/Themes/LightTheme.xaml" },
+    },
+});
 ```
-Every color registration gives you dynamic Brush and Color (like *TestBrush* and *TestBrushColor*).  
 
-Here is the names that should be registered in your app:
-- *TextForeground* - The colors of the product name and window buttons
-- *WindowStatus* - The colors of the window progress indicator
-- *Window* - The colors of the window and window header backgrounds
-
-*ConfigureApplicationVisual* could be called in *OnStartup* overrided method like this:
-```cs
-protected override void OnStartup(StartupEventArgs e)
+In my app *Themes* is an enum of themes for the app:
+```c#
+public enum Themes
 {
-    ConfigureApplicationVisual();
-    //...
-    base.OnStartup(e);
-    //...
+    Dark,
+    Light
 }
 ```
-If you won't register any of the theme it will be gererated automaticaly by reversing colors of the existing theme.  
+
+Using the *ThemeSwitcherService* you can change an App's theme in realtime using method *ChangeTheme(theme)* and get current theme using method *GetCurrentTheme()*.   
+
+For proper work of *ThemeSwitcherService* You should create *ResourceDictionaries* for each theme You have and a *ResourceDictionary* that will hold all the changes of themes. So in my project I created *DarkTheme.xaml*, *LightTheme.xaml* and *ThemeHolder.xaml*.  
+*DarkTheme.xaml*:
+```xaml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="TextForegroundBrushColor">AliceBlue</Color>
+    <SolidColorBrush x:Key="TextForegroundBrush" 
+                     Color="{DynamicResource TextForegroundBrushColor}"/>
+
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
+    <SolidColorBrush x:Key="WindowStatusBrush"
+                     Color="{DynamicResource WindowStatusBrushColor}" />
+
+    <Color x:Key="WindowBrushColor">#070c13</Color>
+    <SolidColorBrush x:Key="WindowBrush"
+                     Color="{DynamicResource WindowBrushColor}" />
+</ResourceDictionary>
+```
+*LightTheme.xaml*:
+```xaml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="TextForegroundBrushColor">Black</Color>
+    <SolidColorBrush x:Key="TextForegroundBrush"
+                     Color="{DynamicResource TextForegroundBrushColor}" />
+    
+    <Color x:Key="WindowStatusBrushColor">#2f80ed</Color>
+    <SolidColorBrush x:Key="WindowStatusBrush"
+                     Color="{DynamicResource WindowStatusBrushColor}" />
+    
+    <Color x:Key="WindowBrushColor">#fefefe</Color>
+    <SolidColorBrush x:Key="WindowBrush"
+                     Color="{DynamicResource WindowBrushColor}" />
+</ResourceDictionary>
+```
+*ThemeHolder.xaml* (You should set here a default theme):
+```xaml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Abdrakov.Demo;component/Resources/Themes/DarkTheme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+```
+
+Here are the colors and brushes that should be registered in your app:
+- *TextForegroundBrush(Color)* - The colors of the product name and window buttons
+- *WindowStatusBrush(Color)* - The colors of the window progress indicator
+- *WindowBrush(Color)* - The colors of the window and window header backgrounds
+
+The holder of *.xaml* theme files (*ThemeHolder.xaml*) should be merged into Your app resources like this:
+```xaml
+<engine:AbdrakovApplication x:Class="Abdrakov.Demo.App"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="clr-namespace:Abdrakov.Demo"
+                            xmlns:engine="clr-namespace:Abdrakov.Engine.MVVM;assembly=Abdrakov.Engine">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Abdrakov.Demo;component/Resources/Themes/ThemeHolder.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</engine:AbdrakovApplication>
+```
+  
 Registered colors and brushes could be used as DynamicResources like that:
 ```xaml
 <Rectangle Fill="{DynamicResource TestBrush}"/>
@@ -237,15 +296,20 @@ Now you can use it like this:
 <TextBlock Text="{LocalizedResource MainPage.TestText}"
             Foreground="{DynamicResource TextForegroundBrush}" />
 ```
+Or via *Binding*s:
+```xaml
+<TextBlock Text="{LocalizedResource {Binding TestText}}"
+            Foreground="{DynamicResource TextForegroundBrush}" />
+```
 (I have this in my *.resx* files):  
 ![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/d7e8969d-1f9e-4f2d-938a-d6e9c483f16c)
 ![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/56e85807-d49f-448e-8fe1-f49d0b4158ce)
 
 To change current localization you can change *LocalizationManager.CurrentLanguage* property like this:
 ```cs
-LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(item.Name.ToLower());
+LocalizationManager.CurrentLanguage = CultureInfo.GetCultureInfo(lang.Name.ToLower());
 ```
-In this examle *item* is an instance of *Language* class.  
+In this examle *lang* is an instance of *Language* class.  
 
 <h3>Window progress indicator:</h3>  
 
@@ -255,11 +319,49 @@ There is also a progress indicator on the *MainWindowView* header that could be 
 
 To log your app's work you can resolve *ILoggingService* that is just an adapter of *Log4netLoggingService* or use *LoggingService* property of *ViewModelBase*.  
 
-You can find the log file in you running assembly directory called *cadlog.log*.
+You can find the log file in you running assembly directory called *cadlog.log*.  
+
+<h3>Custom controls on window header:</h3>  
+
+You can also create some Your custom control on the window header. There are two regions used for this - *Regions.HEADER_RIGHT_REGION* and *Regions.HEADER_LEFT_REGION*. The left one is on the left side of header progress bar and the right one is on the right side. The height of the header is 22 pixels. Here is an example of how to register there Your views:
+```c#
+internal class HeaderModule : IModule
+{
+    public void OnInitialized(IContainerProvider containerProvider)
+    {
+        var region = containerProvider.Resolve<IRegionManager>();
+
+        region.RegisterViewWithRegion(Regions.HEADER_RIGHT_REGION, typeof(RightControlView));
+        region.RegisterViewWithRegion(Regions.HEADER_LEFT_REGION, typeof(LeftControlView));
+    }
+
+    public void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterForNavigation<RightControlView>();
+        containerRegistry.RegisterForNavigation<LeftControlView>();
+    }
+}
+```
+
+<h3>Observables and Observers:</h3>  
+
+*Abdrakov.Solutions* provides You some methods to observe property changes in a bindable class. An example:
+```c#
+this.WhenPropertyChanged(x => x.BindableBrush).Subscribe((b) =>
+{
+    Debug.WriteLine($"Current brush is: {b}");
+});
+```  
+Where *BindableBrush* is declared as:
+```c#
+[Notify]
+public SolidColorBrush BindableBrush { get; set; }
+```  
+You should use [DynamicData](https://github.com/reactivemarbles/DynamicData) or [ReactiveUI](https://github.com/reactiveui/ReactiveUI) that provide more powerful work with *Observer* pattern.
 
 <h2>Powered by:</h2>  
 
 - *Abdrakov.Solutions*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
 - [Prism](https://github.com/PrismLibrary/Prism)
 - [log4net](https://github.com/apache/logging-log4net)
-- *Abdrakov.Styles* is a rewritten part of [MaterialDesignXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
+- *Abdrakov.Engine.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)

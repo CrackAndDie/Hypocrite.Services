@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MainPage.Element1" xml:space="preserve">
-    <value>Element1</value>
+  <data name="Header.RightText" xml:space="preserve">
+    <value>This is a right text</value>
   </data>
-  <data name="MainPage.Element2" xml:space="preserve">
-    <value>Element2</value>
-  </data>
-  <data name="MainPage.TestText" xml:space="preserve">
-    <value>Test</value>
+  <data name="MainPage.ChangeTheme" xml:space="preserve">
+    <value>Switch theme</value>
   </data>
 </root>

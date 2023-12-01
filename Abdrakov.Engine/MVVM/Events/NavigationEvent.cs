@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.MVVM.Events
 {
-    public class NavigationEvent : PubSubEvent<ViewModelBase>
+    public class NavigationEvent : PubSubEvent<EngineViewModelBase>
     {
     }
 }

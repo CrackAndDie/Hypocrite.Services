@@ -53,6 +53,11 @@
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.0.4" />
+    <PackageReference Include="Abdrakov.Fody" Version="1.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -64,8 +69,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\IMainPageView.cs" />
+    <Compile Include="Modules\HeaderModule.cs" />
     <Compile Include="Modules\MainModule.cs" />
+    <Compile Include="Resources\Themes\Themes.cs" />
+    <Compile Include="ViewModels\HeaderViewModels\LeftControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\HeaderViews\LeftControlView.xaml.cs">
+      <DependentUpon>LeftControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeaderViews\RightControlView.xaml.cs">
+      <DependentUpon>RightControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
@@ -110,12 +124,20 @@
       <Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
       <Name>Abdrakov.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Abdrakov.Styles\Abdrakov.Styles.csproj">
-      <Project>{2C72B5BD-357A-40DE-B39F-12FBC087310F}</Project>
-      <Name>Abdrakov.Styles</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Themes\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\LightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\ThemeHolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +147,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeaderViews\LeftControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeaderViews\RightControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,13 +1,4 @@
 ﻿using Abdrakov.Engine.Interfaces.Presentation;
-using Abdrakov.Engine.Localization;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
 
 namespace Abdrakov.Engine.Utils.Settings
 {

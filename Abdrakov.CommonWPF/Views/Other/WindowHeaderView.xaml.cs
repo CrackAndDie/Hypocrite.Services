@@ -3,17 +3,13 @@ using System.Windows;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using Abdrakov.Engine.Localization;
-using Abdrakov.Engine.Localization.Extensions;
-using Abdrakov.Engine.MVVM;
-using Abdrakov.Styles.Interfaces;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Ioc;
 using System.Diagnostics;
 using System.Globalization;
-using Abdrakov.Styles.Other.Event;
+using Prism.Regions;
+using Abdrakov.CommonWPF.MVVM;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {
@@ -127,9 +123,21 @@ namespace Abdrakov.CommonWPF.Views.Other
         public static readonly DependencyProperty CheckAllDoneVisibilityProperty =
             DependencyProperty.Register("CheckAllDoneVisibility", typeof(Visibility), typeof(WindowHeaderView));
 
+        public IRegionManager RegionManager 
+        {
+            get { return (IRegionManager)GetValue(RegionManagerProperty); }
+            set { SetValue(RegionManagerProperty, value); }
+        }
+
+        public static readonly DependencyProperty RegionManagerProperty =
+            DependencyProperty.Register("RegionManager", typeof(IRegionManager), typeof(WindowHeaderView));
+
         public WindowHeaderView()
         {
             InitializeComponent();
+
+            // cringe but I don't want to create a vm for the shite
+            RegionManager = (Application.Current as AbdrakovApplication)?.Container?.Resolve<IRegionManager>();
         }
     }
 }

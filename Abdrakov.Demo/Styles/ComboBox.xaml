@@ -5,7 +5,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="32" />
             </Grid.ColumnDefinitions>
             <Border x:Name="Border"
                     Grid.ColumnSpan="2"
@@ -15,11 +15,11 @@
                     BorderThickness="1" />
             <Path x:Name="Arrow"
                   Grid.Column="1"
-                  Fill="{DynamicResource ComboBoxBorderBrush}"
+                  Fill="{DynamicResource ArrowBrush}"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   Margin="0,1,0,0"
-                  Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z" />
+                  Data="M0,0 L0,2 L8,10 L16,2 L16,0 L8,8 z" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="ToggleButton.IsMouseOver"
@@ -35,7 +35,7 @@
                         Value="2" />
                 <Setter TargetName="Arrow"
                         Property="Data"
-                        Value="M0,0 L0,-2 L4,-6 L8,-2 L8,0 L4,-4 z" />
+                        Value="M0,0 L0,-2 L8,-10 L16,-2 L16,0 L8,-8 z" />
                 <Setter TargetName="Arrow"
                         Property="Margin"
                         Value="0,6,0,0" />
@@ -139,7 +139,7 @@
                                  Template="{StaticResource ComboBoxTextBox}"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Center"
-                                 Margin="3,3,23,3"
+                                 Margin="3,3,34,3"
                                  Focusable="True"
                                  Background="#FF3F3F3F"
                                  Foreground="Green"
@@ -194,7 +194,7 @@
                                     Value="4" />
                             <Setter TargetName="DropDownBorder"
                                     Property="Margin"
-                                    Value="0,2,0,0" />
+                                    Value="0,2,0,2" />
                         </Trigger>
                         <Trigger Property="IsEditable"
                                  Value="true">

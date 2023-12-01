@@ -24,7 +24,7 @@ namespace Abdrakov.CommonWPF.Services
         private readonly Lazy<ResourceDictionary> mainDictionary;
 
         [Injection]
-        private IEventAggregator eventAggregator;
+        private IEventAggregator EventAggregator { get; set; }
 
         public ThemeSwitcherService()
         {
@@ -99,7 +99,7 @@ namespace Abdrakov.CommonWPF.Services
 
         private void PublishEvent(ResourceDictionary dic, T oldTheme, T newTheme)
         {
-            eventAggregator.GetEvent<ThemeChangedEvent<T>>()
+            EventAggregator.GetEvent<ThemeChangedEvent<T>>()
                 .Publish(new ThemeChangedEventArgs<T>(dic, oldTheme, newTheme));
         }
     }

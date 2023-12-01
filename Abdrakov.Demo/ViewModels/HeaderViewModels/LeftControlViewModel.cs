@@ -19,7 +19,7 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
     public class LeftControlViewModel : ViewModelBase
     {
         [Injection]
-        private IThemeSwitcherService<Themes> themeSwitcherService;
+        private IThemeSwitcherService<Themes> ThemeSwitcherService { get; set; }
 
         #region Commands
         [Notify]
@@ -35,8 +35,8 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
 
         private void ChangeTheme()
         {
-            themeSwitcherService.ChangeTheme(themeSwitcherService.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
-            LoggingService.Info($"Current theme is {themeSwitcherService.CurrentTheme}");
+            ThemeSwitcherService.ChangeTheme(ThemeSwitcherService.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
+            LoggingService.Info($"Current theme is {ThemeSwitcherService.CurrentTheme}");
         }
     }
 }

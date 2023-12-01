@@ -65,11 +65,14 @@
                                 <VisualBrush Visual="{Binding ElementName=mask}"/>
                             </UniformGrid.OpacityMask>
                             <Rectangle Fill="{DynamicResource TestBrush}"
-                                       Opacity="0.8" />
+                                       Opacity="0.8" 
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                             <Rectangle Fill="{Binding BindableBrush}"
-                                       Opacity="0.8" />
+                                       Opacity="0.8"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
                             <Rectangle Fill="Green"
-                                       Opacity="0.8" />
+                                       Opacity="0.8"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
                         </UniformGrid>
                     </Grid>
                 </Grid>

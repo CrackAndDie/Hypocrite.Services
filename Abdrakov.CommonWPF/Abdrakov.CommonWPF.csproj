@@ -98,7 +98,7 @@
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
-    <PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.0.3" />
+    <PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">

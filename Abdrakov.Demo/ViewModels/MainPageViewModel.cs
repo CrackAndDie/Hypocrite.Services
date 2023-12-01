@@ -39,7 +39,7 @@ namespace Abdrakov.Demo.ViewModels
         public SolidColorBrush BindableBrush { get; set; }
 
         [Injection]
-        private IThemeSwitcherService<Themes> themeSwitcherService;
+        private IThemeSwitcherService<Themes> ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
@@ -70,7 +70,7 @@ namespace Abdrakov.Demo.ViewModels
 
         private void SubscribeToThemeChange()
         {
-            SetTheme(themeSwitcherService.CurrentTheme);
+            SetTheme(ThemeSwitcherService.CurrentTheme);
 
             EventAggregator.GetEvent<ThemeChangedEvent<Themes>>().Subscribe((a) =>
             {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonWPF.Localization.Deps
 {
     /// <summary>
     /// This class helps tracking the path to a specific endpoint.

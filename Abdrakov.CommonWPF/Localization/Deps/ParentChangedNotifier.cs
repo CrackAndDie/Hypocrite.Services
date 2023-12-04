@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonWPF.Localization.Deps
 {
     /// <summary>
     /// A class that helps listening to changes on the Parent property of FrameworkElement objects.

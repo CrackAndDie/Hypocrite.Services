@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonWPF.Localization.Deps
 {
     /// <summary>
     /// A memory safe dictionary storage for <see cref="ParentChangedNotifier"/> instances.

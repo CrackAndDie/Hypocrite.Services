@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonWPF.Localization.Deps
 {
     /// <summary>
     /// An extension to the <see cref="T:XAMLMarkupExtensions.Base.TargetInfo" /> class with WeakReference instead of direct object linking.

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.CommonWPF", "Abdra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Demo", "Abdrakov.Demo\Abdrakov.Demo.csproj", "{B2543ED7-73B4-4FF4-9642-F2486686B437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.CommonAvalonia", "Abdrakov.CommonAvalonia\Abdrakov.CommonAvalonia.csproj", "{40877987-7B0B-4AEA-BA2A-DF6CDC1FF8D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2543ED7-73B4-4FF4-9642-F2486686B437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40877987-7B0B-4AEA-BA2A-DF6CDC1FF8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40877987-7B0B-4AEA-BA2A-DF6CDC1FF8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40877987-7B0B-4AEA-BA2A-DF6CDC1FF8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40877987-7B0B-4AEA-BA2A-DF6CDC1FF8D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

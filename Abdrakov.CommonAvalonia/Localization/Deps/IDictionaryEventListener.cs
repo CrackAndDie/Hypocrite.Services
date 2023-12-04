@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Avalonia;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonAvalonia.Localization.Deps
 {
     /// <summary>
     /// Interface for listeners on dictionary events of the <see cref="LocalizeDictionary"/> class.
@@ -17,7 +15,7 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The event arguments.</param>
-        void ResourceChanged(DependencyObject sender, DictionaryEventArgs e);
+        void ResourceChanged(StyledElement sender, DictionaryEventArgs e);
     }
 
     /// <summary>

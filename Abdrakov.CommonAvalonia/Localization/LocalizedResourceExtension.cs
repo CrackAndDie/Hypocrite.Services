@@ -1,26 +1,25 @@
-﻿using Abdrakov.Engine.Localization.Extensions.Deps;
+﻿using Abdrakov.CommonAvalonia.Localization.Deps;
+using Abdrakov.Engine.Localization.Extensions;
+using Abdrakov.Engine.Localization.Extensions.Deps;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Data;
+using Avalonia.Data.Converters;
+using Avalonia.Markup.Xaml;
+using Avalonia.Metadata;
+using Avalonia.Threading;
 using System;
-using System.ComponentModel;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Media.Media3D;
-using System.Windows.Threading;
-using Abdrakov.CommonWPF.Localization.Deps;
-using Abdrakov.Engine.Localization.Extensions;
+using System.Reflection;
+using System.Text;
 
-namespace Abdrakov.CommonWPF.Localization
+namespace Abdrakov.CommonAvalonia.Localization
 {
-    [ContentProperty("ResourceIdentifierKey")]
-    public class LocalizedResourceExtension : NestedMarkupExtension, INotifyPropertyChanged, IWeakEventListener, IDisposable
+    public class LocalizedResourceExtension : NestedMarkupExtension, INotifyPropertyChanged, IDisposable
     {
         /// <summary>
         /// Gets or sets the Key to a .resx object
@@ -34,7 +33,6 @@ namespace Abdrakov.CommonWPF.Localization
                 {
                     _key = value;
                     UpdateNewValue();
-
                     OnNotifyPropertyChanged(nameof(Key));
                 }
             }
@@ -84,12 +82,12 @@ namespace Abdrakov.CommonWPF.Localization
         /// <summary>
         /// Cached DependencyProperty for this object
         /// </summary>
-        private DependencyProperty cacheDPThis;
+        private AvaloniaProperty cacheDPThis;
 
         /// <summary>
         /// Cached DependencyProperty for key string
         /// </summary>
-        private DependencyProperty cacheDPKey;
+        private AvaloniaProperty cacheDPKey;
 
         /// <summary>
         /// The last endpoint that was used for this extension.
@@ -131,18 +129,18 @@ namespace Abdrakov.CommonWPF.Localization
         }
 
         public LocalizedResourceExtension(object key)
-		{
-            if (key is TemplateBindingExpression tbe)
-            {
-                var newBinding = new Binding();
+        {
+            //if (key is TemplateBindingExpression tbe)
+            //{
+            //    var newBinding = new Binding();
 
-                var tb = tbe.TemplateBindingExtension;
-                newBinding.Converter = tb.Converter;
-                newBinding.ConverterParameter = tb.ConverterParameter;
-                newBinding.Path = new PropertyPath(tb.Property.Name);
-                newBinding.RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent);
-                key = newBinding;
-            }
+            //    var tb = tbe.TemplateBindingExtension;
+            //    newBinding.Converter = tb.Converter;
+            //    newBinding.ConverterParameter = tb.ConverterParameter;
+            //    newBinding.Path = tb.Property.Name;
+            //    newBinding.RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent);
+            //    key = newBinding;
+            //}
 
             if (key is Binding binding)
                 _binding = binding;
@@ -154,11 +152,11 @@ namespace Abdrakov.CommonWPF.Localization
         /// <inheritdoc/>
         public override object FormatOutput(TargetInfo endPoint, TargetInfo info)
         {
-            if (_binding != null && endPoint.TargetObject is DependencyObject dpo && endPoint.TargetProperty is DependencyProperty dp)
+            if (_binding != null && endPoint.TargetObject is StyledElement dpo && endPoint.TargetProperty is AvaloniaProperty dp)
             {
                 if (GetIsInDesignMode(dpo))
                 {
-                    _key = $"Binding: {_binding.Path.Path}";
+                    _key = $"Binding: {_binding.Path}";
                 }
                 else
                 {
@@ -170,21 +168,18 @@ namespace Abdrakov.CommonWPF.Localization
 
                         if (name != cacheDPName)
                         {
-                            MethodInfo mi = typeof(DependencyProperty).GetMethod("FromName", BindingFlags.Static | BindingFlags.NonPublic);
+                            MethodInfo mi = typeof(AvaloniaProperty).GetMethod("FromName", BindingFlags.Static | BindingFlags.NonPublic);
 
-                            cacheDPThis = mi.Invoke(null, new object[] { name, typeof(LocalizedResourceExtension) }) as DependencyProperty
-                                ?? DependencyProperty.RegisterAttached(name, typeof(NestedMarkupExtension), typeof(LocalizedResourceExtension),
-                                               new PropertyMetadata(null));
+                            cacheDPThis = mi.Invoke(null, new object[] { name, typeof(LocalizedResourceExtension) }) as AvaloniaProperty;
 
-                            cacheDPKey = mi.Invoke(null, new object[] { name + ".Key", typeof(LocalizedResourceExtension) }) as DependencyProperty
-                                ?? DependencyProperty.RegisterAttached(name + ".Key", typeof(string), typeof(LocalizedResourceExtension),
-                                                new PropertyMetadata("", (d, e) => { (d?.GetValue(cacheDPThis) as LocalizedResourceExtension)?.UpdateNewValue(); }));
+                            cacheDPKey = mi.Invoke(null, new object[] { name + ".Key", typeof(LocalizedResourceExtension) }) as AvaloniaProperty;
                             cacheDPName = name;
                         }
 
                         if (dpo.GetValue(cacheDPThis) == null)
                         {
-                            BindingOperations.SetBinding(dpo, cacheDPKey, _binding);
+                            var instantiated = _binding.Initiate(dpo, cacheDPKey);
+                            BindingOperations.Apply(dpo, cacheDPKey, instantiated, null);
                             dpo.SetValue(cacheDPThis, this);
                         }
 
@@ -192,7 +187,7 @@ namespace Abdrakov.CommonWPF.Localization
                     }
                     catch
                     {
-                        _key = _binding.Path.Path;
+                        _key = _binding.Path;
                     }
                 }
             }
@@ -204,13 +199,10 @@ namespace Abdrakov.CommonWPF.Localization
             else
                 _lastEndpoint = SafeTargetInfo.FromTargetInfo(endPoint);
 
-            var targetObject = endPoint.TargetObject as DependencyObject;
+            var targetObject = endPoint.TargetObject as StyledElement;
 
             // Get target type. Change ImageSource to BitmapSource in order to use our own converter.
             var targetType = info.TargetPropertyType;
-
-            if (targetType == typeof(ImageSource))
-                targetType = typeof(BitmapSource);
 
             // In case of a list target, get the correct list element type.
             if ((info.TargetPropertyIndex != -1) && typeof(IList).IsAssignableFrom(info.TargetPropertyType))
@@ -224,10 +216,8 @@ namespace Abdrakov.CommonWPF.Localization
             var epProp = GetPropertyName(endPoint.TargetProperty);
             var epName = "";
 
-            if (endPoint.TargetObject is FrameworkElement)
-                epName = ((FrameworkElement)endPoint.TargetObject).GetValueSync<string>(FrameworkElement.NameProperty);
-            else if (endPoint.TargetObject is FrameworkContentElement)
-                epName = ((FrameworkContentElement)endPoint.TargetObject).GetValueSync<string>(FrameworkContentElement.NameProperty);
+            if (endPoint.TargetObject is Control)
+                epName = ((Control)endPoint.TargetObject).Name;
 
             var resKeyBase = ci.Name + ":" + targetType.Name + ":";
             // Check, if the key is already in our resource buffer.
@@ -387,9 +377,9 @@ namespace Abdrakov.CommonWPF.Localization
 
             if (property is PropertyInfo info)
                 epProp = info.Name;
-            else if (property is DependencyProperty)
+            else if (property is AvaloniaProperty)
             {
-                epProp = ((DependencyProperty)property).Name;
+                epProp = ((AvaloniaProperty)property).Name;
             }
 
             // What are these names during design time good for? Any suggestions?
@@ -416,22 +406,7 @@ namespace Abdrakov.CommonWPF.Localization
             return LocalizationManager.CurrentLanguage ?? ResxLocalizationProvider.NeutralCulture;
         }
 
-        protected override void OnFirstTargetAdded()
-        {
-            base.OnFirstTargetAdded();
-
-            LanguageChangedEventManager.AddListener(this);
-        }
-
-        /// <inheritdoc />
-        protected override void OnLastTargetRemoved()
-        {
-            base.OnLastTargetRemoved();
-
-            LanguageChangedEventManager.RemoveListener(this);
-        }
-
-        public void ResourceChanged(DependencyObject sender, DictionaryEventArgs e)
+        public void ResourceChanged(StyledElement sender, DictionaryEventArgs e)
         {
             ClearItemFromResourceBuffer(e);
             if (sender == null)
@@ -442,7 +417,7 @@ namespace Abdrakov.CommonWPF.Localization
 
             // Update, if this object is in our endpoint list.
             var targetDOs = (from p in GetTargetPropertyPaths()
-                             select p.EndPoint.TargetObject as DependencyObject);
+                             select p.EndPoint.TargetObject as StyledElement);
 
             foreach (var dObj in targetDOs)
             {
@@ -454,22 +429,22 @@ namespace Abdrakov.CommonWPF.Localization
                         UpdateNewValue();
                         break;
                     }
-                    if (!(doParent is Visual) && !(doParent is Visual3D) && !(doParent is FrameworkContentElement))
+                    if (!(doParent is Visual) && !(doParent is Control))
                     {
                         UpdateNewValue();
                         break;
                     }
                     try
                     {
-                        DependencyObject doParent2;
+                        StyledElement doParent2;
 
-                        if (doParent is FrameworkContentElement element)
+                        if (doParent is Control element)
                             doParent2 = element.Parent;
                         else
-                            doParent2 = doParent.GetParent(true);
+                            doParent2 = doParent.Parent;
 
-                        if (doParent2 == null && doParent is FrameworkElement)
-                            doParent2 = ((FrameworkElement)doParent).Parent;
+                        if (doParent2 == null && doParent is Control)
+                            doParent2 = ((Control)doParent).Parent;
 
                         doParent = doParent2;
                     }
@@ -503,34 +478,11 @@ namespace Abdrakov.CommonWPF.Localization
         /// Gets the status of the design mode
         /// </summary>
         /// <returns>TRUE if in design mode, else FALSE</returns>
-        public bool GetIsInDesignMode(DependencyObject obj)
+        public bool GetIsInDesignMode(StyledElement obj)
         {
             lock (SyncRoot)
             {
-                if (_isInDesignMode.HasValue)
-                    return _isInDesignMode.Value;
-
-                if (obj.Dispatcher?.Thread == null || !obj.Dispatcher.Thread.IsAlive)
-                {
-                    _isInDesignMode = false;
-                    return _isInDesignMode.Value;
-                }
-
-                if (!obj.Dispatcher.CheckAccess())
-                {
-                    try
-                    {
-                        _isInDesignMode = (bool)obj.Dispatcher.Invoke(DispatcherPriority.Normal, TimeSpan.FromMilliseconds(100), new Func<DependencyObject, bool>(GetIsInDesignMode));
-                    }
-                    catch (Exception)
-                    {
-                        _isInDesignMode = default(bool);
-                    }
-
-                    return _isInDesignMode.Value;
-                }
-                _isInDesignMode = DesignerProperties.GetIsInDesignMode(obj);
-                return _isInDesignMode.Value;
+                return true;
             }
         }
         #endregion

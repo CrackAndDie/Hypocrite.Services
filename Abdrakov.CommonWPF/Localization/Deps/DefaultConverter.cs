@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Windows;
 using Abdrakov.Engine.Localization.Extensions.Deps;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonWPF.Localization.Deps
 {
     /// <summary>
     /// Implements a standard converter that calls itself all known type converters.

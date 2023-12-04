@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Avalonia;
+using Avalonia.Threading;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonAvalonia.Localization.Deps
 {
     /// <summary>
     /// Extension methods for dependency objects.
@@ -19,12 +18,12 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
         /// <param name="property">The property.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <returns>The value.</returns>
-        public static T GetValueSync<T>(this DependencyObject obj, DependencyProperty property)
+        public static T GetValueSync<T>(this StyledElement obj, StyledProperty<T> property)
         {
             if (obj.CheckAccess())
                 return (T)obj.GetValue(property);
             else
-                return (T)obj.Dispatcher.Invoke(new Func<object>(() => obj.GetValue(property)));
+                return (T)Dispatcher.UIThread.Invoke(new Func<object>(() => obj.GetValue(property)));
         }
 
         /// <summary>
@@ -34,12 +33,12 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
         /// <param name="property">The property.</param>
         /// <param name="value">The value.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        public static void SetValueSync<T>(this DependencyObject obj, DependencyProperty property, T value)
+        public static void SetValueSync<T>(this StyledElement obj, StyledProperty<T> property, T value)
         {
             if (obj.CheckAccess())
                 obj.SetValue(property, value);
             else
-                obj.Dispatcher.Invoke(new Action(() => obj.SetValue(property, value)));
+                Dispatcher.UIThread.Invoke(new Action(() => obj.SetValue(property, value)));
         }
     }
 }

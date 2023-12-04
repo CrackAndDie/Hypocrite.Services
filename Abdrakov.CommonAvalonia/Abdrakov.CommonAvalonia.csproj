@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
+	  <AppDesignerFolder>Properties</AppDesignerFolder>
+	  <RootNamespace>Abdrakov.CommonAvalonia</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\AbdrakovSolutions.png" />
+    <None Remove="Resources\error.png" />
+    <None Remove="Resources\info.png" />
+    <None Remove="Resources\warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Resources\AbdrakovSolutions.png" />
+    <AvaloniaResource Include="Resources\error.png" />
+    <AvaloniaResource Include="Resources\info.png" />
+    <AvaloniaResource Include="Resources\warning.png" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.0.5" />
+		<PackageReference Include="Prism.Avalonia" Version="8.1.97.11000" />
+		<PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11000" />
+		<PackageReference Include="Abdrakov.Container.AvaloniaPrismAdapter" Version="1.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">
+			<Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
+			<Name>Abdrakov.Engine</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Abdrakov.Logging\Abdrakov.Logging.csproj">
+			<Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
+			<Name>Abdrakov.Logging</Name>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="AbdrakovSolutions.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="NUGET_README.md" Pack="true" PackagePath="\" />
+		<None Include="NUGET_LICENSE.txt" Pack="true" PackagePath="\" />
+	</ItemGroup>
+</Project>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonAvalonia.Localization.Deps
 {
     /// <summary>
     /// Markup extensions that implement this interface shall be able to return their target objects.

@@ -1,23 +1,25 @@
-﻿using System;
+﻿using Abdrakov.Engine.Localization.Extensions.Deps;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Data;
+using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
+using Avalonia.Metadata;
+using Avalonia.Styling;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Markup;
-using System.Windows;
-using System.Xaml;
-using Abdrakov.Engine.Localization.Extensions.Deps;
 
-namespace Abdrakov.CommonWPF.Localization.WPFDeps
+namespace Abdrakov.CommonAvalonia.Localization.Deps
 {
     /// <summary>
     /// This class walks up the tree of markup extensions to support nesting.
     /// Based on <see href="https://github.com/SeriousM/WPFLocalizationExtension"/>
     /// </summary>
-    [MarkupExtensionReturnType(typeof(object))]
+    // [MarkupExtensionOption(typeof(object))]
     public abstract class NestedMarkupExtension : MarkupExtension, INestedMarkupExtension, IDisposable, IObjectDependency
     {
         /// <summary>
@@ -169,7 +171,7 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
                         {
                             window.Closed += delegate (object sender, EventArgs args) { EndpointReachedEvent.ClearListenersForRootObject(rootObjectHashCode); };
                         }
-                        else if (rootObject.RootObject is FrameworkElement frameworkElement)
+                        else if (rootObject.RootObject is Control frameworkElement)
                         {
                             void frameworkElementUnloadedHandler(object sender, RoutedEventArgs args)
                             {
@@ -211,7 +213,7 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
             // Reconfigure existing binding and return BindingValueProvider.
             else if (targetObject is Binding binding && targetProperty is PropertyInfo bpi && bpi.Name == nameof(Binding.Source))
             {
-                binding.Path = new PropertyPath(nameof(BindingValueProvider.Value));
+                binding.Path = nameof(BindingValueProvider.Value);
                 binding.Mode = BindingMode.TwoWay;
 
                 targetObject = new BindingValueProvider();
@@ -238,7 +240,7 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
                     if (pi.GetIndexParameters().Any())
                         throw new InvalidOperationException("Indexers are not supported!");
                 }
-                else if (targetProperty is DependencyProperty dp)
+                else if (targetProperty is AvaloniaProperty dp)
                 {
                     targetPropertyType = dp.PropertyType;
                 }
@@ -248,7 +250,7 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
 
             // If the service.TargetObject is System.Windows.SharedDp (= not a DependencyObject and not a PropertyInfo), we return "this".
             // The SharedDp will call this instance later again.
-            if (!(targetObject is DependencyObject) && !(targetProperty is PropertyInfo))
+            if (!(targetObject is StyledElement) && !(targetProperty is PropertyInfo))
                 return this;
 
             // If the target object is a DictionaryEntry we presumably are facing a resource scenario.
@@ -365,9 +367,9 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
             if ((value == null) && !forceNull)
                 return;
 
-            if (info.TargetObject is DependencyObject depObject)
+            if (info.TargetObject is StyledElement depObject)
             {
-                if (depObject.IsSealed)
+                if (depObject.GetType().IsSealed)
                     return;
             }
 
@@ -376,8 +378,8 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
                 value = Activator.CreateInstance(info.TargetPropertyType);
 
             // Set the value.
-            if (info.TargetProperty is DependencyProperty dp)
-                ((DependencyObject)info.TargetObject).SetValueSync(dp, value);
+            if (info.TargetProperty is AvaloniaProperty dp)
+                ((StyledElement)info.TargetObject).SetValueSync((StyledProperty<object>)dp, value);
             else
             {
                 PropertyInfo pi = (PropertyInfo)info.TargetProperty;
@@ -405,10 +407,10 @@ namespace Abdrakov.CommonWPF.Localization.WPFDeps
         /// <returns>The value.</returns>
         public static object GetPropertyValue(TargetInfo info)
         {
-            if (info.TargetProperty is DependencyProperty tP)
+            if (info.TargetProperty is StyledElement tP)
             {
-                if (info.TargetObject is DependencyObject tO)
-                    return tO.GetValueSync<object>(tP);
+                if (info.TargetObject is AvaloniaProperty tO)
+                    return tP.GetValue(tO);
                 else
                     return null;
             }

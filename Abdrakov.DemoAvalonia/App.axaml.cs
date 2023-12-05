@@ -31,8 +31,8 @@ namespace Abdrakov.DemoAvalonia
 
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
-                ProductName = "Abdrakov.Demo",
-                LogoImage = "/Resources/AbdrakovSolutions.png",
+                ProductName = "Abdrakov.DemoAvalonia",
+                LogoImage = "avares://Abdrakov.DemoAvalonia/Resources/AbdrakovSolutions.png",
                 SmoothAppear = true,
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();

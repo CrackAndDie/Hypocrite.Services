@@ -16,7 +16,8 @@ namespace Abdrakov.CommonAvalonia.Services
     {
         public string NameOfDictionary { get; set; }
         public IDictionary<T, string> ThemeSources { get; set; }
-        public T CurrentTheme => GetCurrentTheme();
+        private T _currentTheme;
+        public T CurrentTheme => _currentTheme;
 
         private readonly Lazy<ResourceDictionary> mainDictionary;
 
@@ -43,9 +44,12 @@ namespace Abdrakov.CommonAvalonia.Services
 
             var dic = mainDictionary.Value;
             dic.MergedDictionaries.RemoveAt(0);
-            dic.MergedDictionaries.Add(new ResourceInclude(new Uri(ThemeSources[theme])));
+            Uri uri = new Uri(ThemeSources[theme]);
+            dic.MergedDictionaries.Add(new ResourceInclude(uri) { Source = uri });
 
             PublishEvent(dic.MergedDictionaries[0], oldTheme, CurrentTheme);
+
+            _currentTheme = theme;
 
             return true;
         }
@@ -75,23 +79,13 @@ namespace Abdrakov.CommonAvalonia.Services
 
         private ResourceDictionary LoadMainDictionary()
         {
-            var resourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x => (x as ResourceInclude).Source.OriginalString.Contains(NameOfDictionary));
+            // Theme holder should be always the first one
+            var resourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
             if (resourceDictionary == null)
             {
                 throw new KeyNotFoundException($"Could not load main resource dictionary: {NameOfDictionary}");
             }
             return resourceDictionary as ResourceDictionary;
-        }
-
-        private T GetCurrentTheme()
-        {
-            var dic = mainDictionary.Value;
-            var currDic = dic.MergedDictionaries.FirstOrDefault();
-            if (currDic == null)
-            {
-                throw new NotImplementedException("Current theme could not be found");
-            }
-            return ThemeSources.FirstOrDefault(x => x.Value == (currDic as ResourceInclude).Source.OriginalString).Key;
         }
 
         private void PublishEvent(IResourceProvider dic, T oldTheme, T newTheme)

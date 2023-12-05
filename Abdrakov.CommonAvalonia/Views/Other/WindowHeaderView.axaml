@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="22"
              x:Class="Abdrakov.CommonAvalonia.Views.Other.WindowHeaderView"
 			 xmlns:views="clr-namespace:Abdrakov.CommonAvalonia.Views;assembly=Abdrakov.CommonAvalonia"
 			 xmlns:prism="http://prismlibrary.com/"
@@ -15,12 +15,56 @@
 			<Setter Property="IsTabStop"
 					Value="False" />
 		</Style>
+		<Style Selector="Button.TitleBarButtonStyle /template/ ContentPresenter">
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+		<Style Selector="Button:pointerover.TitleBarButtonStyle /template/ ContentPresenter">
+			<Setter Property="Background"
+					Value="Gray" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+		<Style Selector="Button:pressed.TitleBarButtonStyle /template/ ContentPresenter">
+			<Setter Property="Background"
+					Value="DarkGray" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+						Value="0" />
+		</Style>
 
 		<Style Selector="Button.TitleBarCloseButtonStyle">
 			<Setter Property="Padding"
 					Value="0" />
 			<Setter Property="IsTabStop"
 					Value="False" />
+		</Style>
+		<Style Selector="Button.TitleBarCloseButtonStyle /template/ ContentPresenter">
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+		<Style Selector="Button:pointerover.TitleBarCloseButtonStyle /template/ ContentPresenter">
+			<Setter Property="Background"
+					Value="Red" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+		<Style Selector="Button:pressed.TitleBarCloseButtonStyle /template/ ContentPresenter">
+			<Setter Property="Background"
+					Value="DarkRed" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
 		</Style>
 	</UserControl.Styles>
 	<Grid>
@@ -103,6 +147,7 @@
                       Height="22"
                       UseLayoutRounding="True"
                       RenderOptions.EdgeMode="Aliased"
+					  Stroke="{DynamicResource TextForegroundBrush}"
                       Data="M 10,16 H 20"
                       StrokeThickness="1">
 				</Path>
@@ -119,6 +164,7 @@
                           Height="22"
                           UseLayoutRounding="True"
                           RenderOptions.EdgeMode="Aliased"
+						  Stroke="{DynamicResource TextForegroundBrush}"
                           Data="M 11,8 H 19 V 16 H 11 Z"
                           StrokeThickness="1">
 					</Path>
@@ -134,6 +180,7 @@
                           Height="22"
                           UseLayoutRounding="True"
                           RenderOptions.EdgeMode="Aliased"
+						  Stroke="{DynamicResource TextForegroundBrush}"
                           Data="M 10,9 H 17 V 16 H 10 Z M 12,9 V 7 H 19 V 14 H 17"
                           StrokeThickness="1">
 					</Path>
@@ -150,6 +197,7 @@
                       Height="22"
                       UseLayoutRounding="True"
                       RenderOptions.EdgeMode="Aliased"
+					  Stroke="{DynamicResource TextForegroundBrush}"
                       Data="M 11,7 19,15 M 11,15 19,7"
                       StrokeThickness="1">
 				</Path>

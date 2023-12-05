@@ -13,6 +13,8 @@ using Prism.Modularity;
 using Prism.Regions;
 using System.Collections.Generic;
 using System.Reflection;
+using Abdrakov.DemoAvalonia.Views;
+using Abdrakov.DemoAvalonia.Modules;
 
 namespace Abdrakov.DemoAvalonia
 {
@@ -29,6 +31,8 @@ namespace Abdrakov.DemoAvalonia
             base.RegisterTypes(containerRegistry);
             base.RegisterDefaults(containerRegistry);
 
+            containerRegistry.RegisterSingleton<IPreviewWindow, PreviewWindowView>();
+
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
                 ProductName = "Abdrakov.DemoAvalonia",
@@ -42,8 +46,8 @@ namespace Abdrakov.DemoAvalonia
                 NameOfDictionary = "ThemeHolder",
                 ThemeSources = new Dictionary<Themes, string>()
                 {
-                    { Themes.Dark, "/Resources/Themes/DarkTheme.axaml" },
-                    { Themes.Light, "/Resources/Themes/LightTheme.axaml" },
+                    { Themes.Dark, "avares://Abdrakov.DemoAvalonia/Resources/Themes/DarkTheme.axaml" },
+                    { Themes.Light, "avares://Abdrakov.DemoAvalonia/Resources/Themes/LightTheme.axaml" },
                 },
             });
         }
@@ -58,7 +62,9 @@ namespace Abdrakov.DemoAvalonia
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            // Register modules
+            base.ConfigureModuleCatalog(moduleCatalog);
+
+            moduleCatalog.AddModule<HeaderModule>();
         }
 
         /// <summary>Called after <seealso cref="Initialize"/>.</summary>

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.Demo", "Abdrakov.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abdrakov.CommonAvalonia", "Abdrakov.CommonAvalonia\Abdrakov.CommonAvalonia.csproj", "{40877987-7B0B-4AEA-BA2A-DF6CDC1FF8D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.DemoAvalonia", "Abdrakov.AvaloniaDemo\Abdrakov.DemoAvalonia.csproj", "{729B4E8D-AF66-4604-9D7E-412B372820C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abdrakov.DemoAvalonia", "Abdrakov.DemoAvalonia\Abdrakov.DemoAvalonia.csproj", "{729B4E8D-AF66-4604-9D7E-412B372820C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

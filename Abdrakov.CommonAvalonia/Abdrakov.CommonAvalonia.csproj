@@ -4,6 +4,7 @@
 	  <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
 	  <AppDesignerFolder>Properties</AppDesignerFolder>
 	  <RootNamespace>Abdrakov.CommonAvalonia</RootNamespace>
+	  <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +23,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="Avalonia" Version="11.0.5" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
 		<PackageReference Include="Prism.Avalonia" Version="8.1.97.11000" />
 		<PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11000" />
 		<PackageReference Include="Abdrakov.Container.AvaloniaPrismAdapter" Version="1.0.4" />
+
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -44,5 +48,8 @@
 	<ItemGroup>
 		<None Include="NUGET_README.md" Pack="true" PackagePath="\" />
 		<None Include="NUGET_LICENSE.txt" Pack="true" PackagePath="\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Styles\Styles\Converters\" />
 	</ItemGroup>
 </Project>

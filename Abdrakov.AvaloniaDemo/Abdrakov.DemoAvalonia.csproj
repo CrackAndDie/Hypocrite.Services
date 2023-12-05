@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\AbdrakovSolutions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Resources\AbdrakovSolutions.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">
+			<Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
+			<Name>Abdrakov.Engine</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Abdrakov.Logging\Abdrakov.Logging.csproj">
+			<Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
+			<Name>Abdrakov.Logging</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Abdrakov.CommonAvalonia\Abdrakov.CommonAvalonia.csproj">
+			<Project>{729B4E8D-AF66-4604-9D7E-412B372820C1}</Project>
+			<Name>Abdrakov.CommonAvalonia</Name>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

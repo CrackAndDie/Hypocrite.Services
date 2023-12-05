@@ -31,7 +31,7 @@ namespace Abdrakov.CommonAvalonia.MVVM
 
         public override void Initialize()
         {
-            AvaloniaXamlLoader.Load(this);
+            // AvaloniaXamlLoader.Load(this);
             LocalizationManager.Initialize();
             base.Initialize();              // <-- Required
         }

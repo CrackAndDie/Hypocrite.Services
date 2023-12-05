@@ -24,7 +24,7 @@ namespace Abdrakov.CommonAvalonia.Localization.Deps
         /// <param name="parameter">An optional parameter to be used in the converter logic.</param>
         /// <param name="culture">The culture of the conversion.</param>
         /// <returns>The value to be passed to the target dependency property.</returns>
-        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
                 return null;
@@ -76,7 +76,7 @@ namespace Abdrakov.CommonAvalonia.Localization.Deps
         /// <param name="parameter">An optional parameter to be used in the converter logic.</param>
         /// <param name="culture">The culture of the conversion.</param>
         /// <returns>The value to be passed to the source object.</returns>
-        public object ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return Convert(value, targetType, parameter, culture);
         }

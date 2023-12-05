@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		x:Class="Abdrakov.CommonAvalonia.Views.MainWindowView"
+        xmlns:otherViews="clr-namespace:Abdrakov.CommonAvalonia.Views.Other"
+        xmlns:viewModels="clr-namespace:Abdrakov.CommonAvalonia.ViewModels"
+		xmlns:local="clr-namespace:Abdrakov.CommonAvalonia.Views;assembly=Abdrakov.CommonAvalonia"
+        xmlns:prism="http://prismlibrary.com/"
+		xmlns:prismRegions="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowState="{Binding CurrentWindowState, Mode=TwoWay}"
+        Height="600"
+        Width="900"
+        Opacity="{Binding WindowOpacity, Mode=TwoWay}"
+        x:Name="thisWindow"
+        WindowStartupLocation="CenterScreen"
+		SystemDecorations="None"
+		mc:Ignorable="d">
+	<Grid RowDefinitions="22,*" ColumnDefinitions="*">
+		<Border BorderThickness="0"
+                Background="{DynamicResource WindowBrush}"
+                Grid.Row="1">
+			<Image Source="../Resources/AbdrakovSolutions.png"
+                   Margin="100"
+                   Stretch="Uniform"/>
+		</Border>
+
+		<ContentControl x:Name="frame"
+                        Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+					    prismRegions:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
+                        prismRegions:RegionManager.RegionManager="{Binding RegionManager}" />
+
+		<Rectangle Grid.Row="0"
+                   Fill="{DynamicResource WindowBrush}" />
+
+		<otherViews:WindowHeaderView x:Name="WindowHeader"/>
+	</Grid>
+</Window>

@@ -32,10 +32,6 @@ namespace Abdrakov.Demo
 {
     public partial class App : AbdrakovApplication
     {
-        public App() : base()
-        {
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             Thread.CurrentThread.Name = "MainThread";

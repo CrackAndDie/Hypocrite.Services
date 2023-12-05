@@ -15,6 +15,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using Abdrakov.DemoAvalonia.Views;
 using Abdrakov.DemoAvalonia.Modules;
+using Abdrakov.CommonAvalonia.Localization;
+using System.Threading;
+using Abdrakov.Engine.Localization;
+using System.Collections.ObjectModel;
 
 namespace Abdrakov.DemoAvalonia
 {
@@ -22,8 +26,23 @@ namespace Abdrakov.DemoAvalonia
     {
         public override void Initialize()
         {
+            Thread.CurrentThread.Name = "MainThread";
+            LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly(), new ObservableCollection<Language>()
+            {
+                new Language() { Name = "EN" },
+                new Language() { Name = "RU" },
+            });
+
             AvaloniaXamlLoader.Load(this);
             base.Initialize();              // <-- Required
+        }
+
+        protected override AvaloniaObject CreateShell()
+        {
+            var viewModelService = Container.Resolve<IViewModelResolverService>();
+            viewModelService.RegisterViewModelAssembly(Assembly.GetExecutingAssembly());
+
+            return base.CreateShell();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -52,26 +71,11 @@ namespace Abdrakov.DemoAvalonia
             });
         }
 
-        protected override AvaloniaObject CreateShell()
-        {
-            var viewModelService = Container.Resolve<IViewModelResolverService>();
-            viewModelService.RegisterViewModelAssembly(Assembly.GetExecutingAssembly());
-
-            return base.CreateShell();
-        }
-
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             base.ConfigureModuleCatalog(moduleCatalog);
-
+            moduleCatalog.AddModule<MainModule>();
             moduleCatalog.AddModule<HeaderModule>();
-        }
-
-        /// <summary>Called after <seealso cref="Initialize"/>.</summary>
-        protected override void OnInitialized()
-        {
-            // Register initial Views to Region.
-            var regionManager = Container.Resolve<IRegionManager>();
         }
     }
 }

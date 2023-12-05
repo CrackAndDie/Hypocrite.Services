@@ -38,4 +38,19 @@
 			<Name>Abdrakov.CommonAvalonia</Name>
 		</ProjectReference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Localization\Gui.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Gui.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Localization\Gui.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Gui.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
 </Project>

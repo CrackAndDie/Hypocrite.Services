@@ -378,8 +378,8 @@ namespace Abdrakov.CommonAvalonia.Localization.Deps
                 value = Activator.CreateInstance(info.TargetPropertyType);
 
             // Set the value.
-            if (info.TargetProperty is AvaloniaProperty dp)
-                ((StyledElement)info.TargetObject).SetValueSync((StyledProperty<object>)dp, value);
+            if (info.TargetProperty is AvaloniaProperty dp && value is string str)
+                ((StyledElement)info.TargetObject).SetValueSync((StyledProperty<string>)dp, str);
             else
             {
                 PropertyInfo pi = (PropertyInfo)info.TargetProperty;

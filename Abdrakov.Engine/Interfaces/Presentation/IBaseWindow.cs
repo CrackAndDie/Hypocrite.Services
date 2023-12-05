@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.Interfaces.Presentation
 {
-    public interface IBaseWindow
+    public interface IBaseWindow : IView
     {
         
     }

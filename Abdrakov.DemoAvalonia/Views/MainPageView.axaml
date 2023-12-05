@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 d:DesignWidth="800"
+			 d:DesignHeight="450"
+             x:Class="Abdrakov.DemoAvalonia.Views.MainPageView"
+			 xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+			 x:CompileBindings="False">
+	<Grid>
+		<ScrollViewer HorizontalScrollBarVisibility="Disabled">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="100" />
+					<RowDefinition Height="300" />
+					<RowDefinition Height="300" />
+					<RowDefinition Height="300" />
+				</Grid.RowDefinitions>
+
+				<Grid Grid.Row="0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+
+					<Button Margin="15, 0"
+                            Command="{Binding ChangeThemeCommand}">
+						<TextBlock Text="{LocalizedResource {Binding ChangeThemeTag}}"
+                                   Foreground="{DynamicResource TextForegroundBrush}" />
+					</Button>
+
+					<ComboBox Margin="15, 0"
+                              Grid.Column="1"
+                              Height="46"
+                              FontSize="20"
+                              ItemsSource="{Binding Languages}"
+                              SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+							  DisplayMemberBinding="{Binding Name}">
+					</ComboBox>
+
+					<Grid Margin="15"
+                          Grid.Column="2">
+						<Border x:Name="mask"
+                                Background="{DynamicResource WindowBrush}"
+                                CornerRadius="8"/>
+						<UniformGrid Columns="3">
+							<!--<UniformGrid.OpacityMask>
+								<VisualBrush Visual="{Binding ElementName=mask}"/>
+							</UniformGrid.OpacityMask>-->
+							<Rectangle Fill="{DynamicResource TestBrush}"
+                                       Opacity="0.8" />
+							<Rectangle Fill="{Binding BindableBrush}"
+                                       Opacity="0.8"/>
+							<Rectangle Fill="Green"
+                                       Opacity="0.8" />
+						</UniformGrid>
+					</Grid>
+				</Grid>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

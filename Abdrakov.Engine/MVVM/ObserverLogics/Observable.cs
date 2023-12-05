@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Abdrakov.Engine.MVVM.ObserverLogics
 {
-    internal class Observable<T> : IObservable<T>, IDisposable
+    public class Observable<T> : IObservable<T>, IDisposable
     {
         private IDictionary<int, IObserver<T>> subscribers = new Dictionary<int, IObserver<T>>();
         private readonly object thisLock = new object();

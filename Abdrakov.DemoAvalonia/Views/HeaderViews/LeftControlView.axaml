@@ -17,6 +17,8 @@
 					Value="False" />
 		</Style>
 		<Style Selector="Button.LeftControlButtonStyle /template/ ContentPresenter">
+            <Setter Property="Background"
+					Value="Transparent" />
 			<Setter Property="BorderThickness"
 					Value="0" />
 			<Setter Property="CornerRadius"
@@ -41,10 +43,12 @@
 	</UserControl.Styles>
 	<Grid HorizontalAlignment="Right">
 		<Button x:Name="headerLeftButton"
+                VerticalAlignment="Stretch"
 				Classes="LeftControlButtonStyle"
                 Command="{Binding ChangeThemeCommand}">
 			<TextBlock Margin="8,0"
                        Text="T"
+                       VerticalAlignment="Center"
 					   Foreground="{DynamicResource TextForegroundBrush}">
 			</TextBlock>
 		</Button>

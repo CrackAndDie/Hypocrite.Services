@@ -30,7 +30,7 @@
                             Height="46"
                             HorizontalAlignment="Stretch"
                             Command="{Binding ChangeThemeCommand}">
-                        <TextBlock Text="{LocalizedStatic {Binding ChangeThemeTag}}"
+                        <TextBlock Text="{LocalizedResource {Binding ChangeThemeTag}}"
                                    Foreground="{DynamicResource TextForegroundBrush}"
 								   VerticalAlignment="Center"
                                    HorizontalAlignment="Center"/>

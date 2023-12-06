@@ -82,6 +82,9 @@ namespace Abdrakov.Engine.MVVM.ObserverLogics
             {
                 int k = key++;
                 subscribers.Add(k, observer);
+
+                OnSubscribed(observer);
+
                 return new AnonymousDisposable(() =>
                 {
                     lock (thisLock)
@@ -91,6 +94,8 @@ namespace Abdrakov.Engine.MVVM.ObserverLogics
                 });
             }
         }
+
+        protected virtual void OnSubscribed(IObserver<T> observer) { }
     }
 
     class AnonymousDisposable : IDisposable

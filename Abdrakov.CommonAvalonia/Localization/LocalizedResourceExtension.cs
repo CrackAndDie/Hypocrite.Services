@@ -19,7 +19,7 @@ using System.Text;
 
 namespace Abdrakov.CommonAvalonia.Localization
 {
-    public class LocalizedStaticExtension : IBinding
+    public class LocalizedResourceExtension : IBinding
     {
         /// <summary>
         /// Gets or sets the Key to a .resx object
@@ -42,6 +42,11 @@ namespace Abdrakov.CommonAvalonia.Localization
         private string _key;
 
         /// <summary>
+        /// Holds the Binding to get the key
+        /// </summary>
+        private Binding _binding = null;
+
+        /// <summary>
         /// Gets or sets the initialize value.
         /// This is ONLY used to support the localize extension in blend!
         /// </summary>
@@ -50,9 +55,16 @@ namespace Abdrakov.CommonAvalonia.Localization
         [ConstructorArgument("key")]
         public object InitializeValue { get; set; }
 
-        public LocalizedStaticExtension(object key)
+        public LocalizedResourceExtension(object key)
         {
-            Key = key?.ToString();
+            if (key is Binding binding)
+            {
+                _binding = binding;
+            }
+            else
+            {
+                Key = key?.ToString();
+            }
         }
         public IBinding ProvideValue(IServiceProvider serviceProvider)
         {
@@ -65,18 +77,18 @@ namespace Abdrakov.CommonAvalonia.Localization
             object? anchor,
             bool enableDataValidation)
         {
-            if (Key is null)
+            if (Key is null && _binding == null)
             {
                 return null;
             }
 
-            var source = GetResourceObservable(Key);
+            var source = GetResourceObservable(Key, _binding);
             return InstancedBinding.OneWay(source);
         }
 
-        private IObservable<object?> GetResourceObservable(string key)
+        private IObservable<object?> GetResourceObservable(string key, Binding b = null)
         {
-            return new LocalizationChangedObservable(key);
+            return new LocalizationChangedObservable(key, b);
         }
     }
 }

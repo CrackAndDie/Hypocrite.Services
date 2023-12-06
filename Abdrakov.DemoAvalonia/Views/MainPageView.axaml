@@ -32,6 +32,7 @@
                             Command="{Binding ChangeThemeCommand}">
                         <TextBlock Text="{LocalizedResource {Binding ChangeThemeTag}}"
                                    Foreground="{DynamicResource TextForegroundBrush}"
+								   FontSize="20"
 								   VerticalAlignment="Center"
                                    HorizontalAlignment="Center"/>
                     </Button>
@@ -51,8 +52,9 @@
                           Grid.Column="2">
                         <Border x:Name="mask"
                                 Background="{DynamicResource WindowBrush}"
-                                CornerRadius="8"/>
-                        <UniformGrid Columns="3">
+                                CornerRadius="8"
+								ClipToBounds="True">
+                        <UniformGrid Columns="3" ClipToBounds="True">
                             <!--<UniformGrid.OpacityMask>
 								<VisualBrush Visual="{Binding ElementName=mask}"/>
 							</UniformGrid.OpacityMask>-->
@@ -63,6 +65,7 @@
                             <Rectangle Fill="Green"
                                        Opacity="0.8" />
                         </UniformGrid>
+							</Border>
                     </Grid>
                 </Grid>
             </Grid>

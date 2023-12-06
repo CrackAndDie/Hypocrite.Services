@@ -42,6 +42,7 @@
                             Margin="15, 0"
                             Command="{Binding ChangeThemeCommand}">
                         <TextBlock Text="{LocalizedResource {Binding ChangeThemeTag}}"
+                                   FontSize="20"
                                    Foreground="{DynamicResource TextForegroundBrush}" />
                     </Button>
 

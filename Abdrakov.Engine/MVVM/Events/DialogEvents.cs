@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.MVVM.Events
 {
-    public class CloseDialogEvent : PubSubEvent
+    public class DialogClosedEvent : PubSubEvent
+    {
+    }
+
+    public class DialogOpenedEvent : PubSubEvent
     {
     }
 }

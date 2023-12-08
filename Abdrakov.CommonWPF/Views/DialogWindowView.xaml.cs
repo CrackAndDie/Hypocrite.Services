@@ -1,9 +1,9 @@
-﻿using Abdrakov.Engine.MVVM.Events;
+﻿using Abdrakov.Container;
+using Abdrakov.Engine.MVVM.Events;
 using Abdrakov.Logging.Interfaces;
 using Prism.Events;
 using Prism.Services.Dialogs;
 using System.Windows;
-using Unity;
 
 namespace Abdrakov.CommonWPF.Views
 {
@@ -18,7 +18,7 @@ namespace Abdrakov.CommonWPF.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            EventAggregator?.GetEvent<CloseDialogEvent>().Subscribe(OnDialogClosedEvent, ThreadOption.UIThread);
+            EventAggregator?.GetEvent<DialogClosedEvent>().Subscribe(OnDialogClosedEvent, ThreadOption.UIThread);
         }
 
         private void OnDialogClosedEvent()
@@ -28,10 +28,9 @@ namespace Abdrakov.CommonWPF.Views
 
         public IDialogResult Result { get; set; }
 
-        [Dependency]
+        [Injection]
         public IEventAggregator EventAggregator { get; set; }
-
-        [Dependency]
+        [Injection]
         public ILoggingService LoggingService { get; set; }
     }
 }

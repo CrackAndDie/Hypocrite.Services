@@ -19,6 +19,7 @@ namespace Abdrakov.CommonWPF.Services
     {
         public string NameOfDictionary { get; set; }
         public IDictionary<T, string> ThemeSources { get; set; }
+        public IDictionary<string, Dictionary<string, Dictionary<string, object>>> AdditionalResources { get; set; }
         public T CurrentTheme => GetCurrentTheme();
 
         private readonly Lazy<ResourceDictionary> mainDictionary;
@@ -54,6 +55,23 @@ namespace Abdrakov.CommonWPF.Services
             dic.EndInit();
 
             PublishEvent(dic.MergedDictionaries[0], oldTheme, CurrentTheme);
+
+            return true;
+        }
+
+        public bool ChangeAdditionalResource(string category, string type)
+        {
+            if (!AdditionalResources.ContainsKey(category) || !AdditionalResources[category].ContainsKey(type))
+            {
+                return false;
+            }
+
+            var requestedValues = AdditionalResources[category][type];
+            var dic = mainDictionary.Value;
+            foreach (var k in requestedValues.Keys)
+            {
+                dic[k] = requestedValues[k];
+            }
 
             return true;
         }

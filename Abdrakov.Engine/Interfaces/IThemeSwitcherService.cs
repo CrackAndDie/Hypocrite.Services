@@ -20,6 +20,10 @@ namespace Abdrakov.Engine.Interfaces
         /// </summary>
         IDictionary<T, string> ThemeSources { get; set; }
         /// <summary>
+        /// Additional resources should be like: Category -> CurrentType -> Resources. See Demo project for more info
+        /// </summary>
+        IDictionary<string, Dictionary<string, Dictionary<string, object>>> AdditionalResources { get; set; }
+        /// <summary>
         /// Current theme of an application
         /// </summary>
         T CurrentTheme { get; }
@@ -31,6 +35,13 @@ namespace Abdrakov.Engine.Interfaces
         /// <param name="theme">The theme that should be applied to an application</param>
         /// <returns>Is the theme applied. The theme could not be applied if it is not registered</returns>
         bool ChangeTheme(T theme);
+        /// <summary>
+        /// Changes additional resources in main dictionary
+        /// </summary>
+        /// <param name="category">The name of category</param>
+        /// <param name="type">The name of requested type</param>
+        /// <returns>True if rseource was found and applied</returns>
+        bool ChangeAdditionalResource(string category, string type);
         /// <summary>
         /// Wrapper for the Application.TryFindResource
         /// </summary>

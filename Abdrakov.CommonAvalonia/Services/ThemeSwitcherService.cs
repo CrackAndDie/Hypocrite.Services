@@ -16,21 +16,24 @@ namespace Abdrakov.CommonAvalonia.Services
     {
         public string NameOfDictionary { get; set; }
         public IDictionary<T, string> ThemeSources { get; set; }
+        public IDictionary<string, Dictionary<string, Dictionary<string, object>>> AdditionalResources { get; set; }
+
         private T _currentTheme;
         public T CurrentTheme => _currentTheme;
 
         private readonly Lazy<ResourceDictionary> mainDictionary;
-
+        
         [Injection]
         private IEventAggregator EventAggregator { get; set; }
 
-        public ThemeSwitcherService()
+        public ThemeSwitcherService(T startupTheme)
         {
             if (!typeof(T).IsEnum)
             {
                 throw new ArgumentException("T must be an enumerated type");
             }
             mainDictionary = new Lazy<ResourceDictionary>(LoadMainDictionary);
+            _currentTheme = startupTheme;
         }
 
         public bool ChangeTheme(T theme)
@@ -50,6 +53,23 @@ namespace Abdrakov.CommonAvalonia.Services
             PublishEvent(dic.MergedDictionaries[0], oldTheme, CurrentTheme);
 
             _currentTheme = theme;
+
+            return true;
+        }
+
+        public bool ChangeAdditionalResource(string category, string type)
+        {
+            if (!AdditionalResources.ContainsKey(category) || !AdditionalResources[category].ContainsKey(type))
+            {
+                return false;
+            }
+
+            var requestedValues = AdditionalResources[category][type];
+            var dic = mainDictionary.Value;
+            foreach (var k in requestedValues.Keys)
+            {
+                dic[k] = requestedValues[k];
+            }
 
             return true;
         }
@@ -79,7 +99,7 @@ namespace Abdrakov.CommonAvalonia.Services
 
         private ResourceDictionary LoadMainDictionary()
         {
-            // Theme holder should be always the first one
+            // Theme holder should be always the first one in avalonia, cause there is no way of getting ResourceDicitonary name or path
             var resourceDictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
             if (resourceDictionary == null)
             {

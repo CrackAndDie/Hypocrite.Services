@@ -60,7 +60,7 @@ namespace Abdrakov.DemoAvalonia
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
-            containerRegistry.RegisterInstance<IThemeSwitcherService<Themes>>(new ThemeSwitcherService<Themes>()
+            containerRegistry.RegisterInstance<IThemeSwitcherService<Themes>>(new ThemeSwitcherService<Themes>(Themes.Dark)
             {
                 NameOfDictionary = "ThemeHolder",
                 ThemeSources = new Dictionary<Themes, string>()

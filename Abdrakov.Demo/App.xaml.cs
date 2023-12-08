@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Abdrakov.CommonWPF.Views;
 using System.ComponentModel;
-using Abdrakov.Demo.Interfaces;
 using Abdrakov.Demo.Views;
 using Abdrakov.Engine.Utils.Settings;
 using System.Windows.Media;

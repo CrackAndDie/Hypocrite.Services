@@ -1,4 +1,5 @@
-﻿using Abdrakov.Engine.MVVM;
+﻿using Abdrakov.Container.Interfaces;
+using Abdrakov.Engine.MVVM;
 using Avalonia.Controls;
 using Prism.Ioc;
 using Prism.Regions;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace Abdrakov.CommonAvalonia.MVVM
 {
-    public class ViewModelBase : EngineViewModelBase, INavigationAware
+    public class ViewModelBase : EngineViewModelBase, INavigationAware, IRequireInjection
     {
         public ViewModelBase()
         {
@@ -17,14 +18,22 @@ namespace Abdrakov.CommonAvalonia.MVVM
             LoggingService.Debug($"Constructing '{ViewModelName}'");
         }
 
-        public override void OnDependenciesReady()
+        public override void OnViewAttached()
         {
-            base.OnDependenciesReady();
+            base.OnViewAttached();
 
             if (View is Control frameworkElement)
             {
                 frameworkElement.Loaded += (obj, args) => OnViewReady();
             }
+        }
+
+        public virtual void OnInjectionsReady()
+        {
+        }
+
+        public virtual void OnResolveReady()
+        {
         }
 
         public virtual void OnNavigatedTo(NavigationContext navigationContext)

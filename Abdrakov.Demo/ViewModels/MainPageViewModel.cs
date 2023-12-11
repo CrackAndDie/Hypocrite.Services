@@ -49,9 +49,9 @@ namespace Abdrakov.Demo.ViewModels
         public ICommand ChangeThemeCommand { get; private set; }
         #endregion
 
-        public override void OnDependenciesReady()
+        public override void OnViewAttached()
         {
-            base.OnDependenciesReady();
+            base.OnViewAttached();
 
             this.WhenPropertyChanged(x => x.SelectedLanguage).Subscribe(OnSelectedLanguageChanged);
 

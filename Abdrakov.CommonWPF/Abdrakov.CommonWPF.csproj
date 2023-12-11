@@ -14,7 +14,7 @@
 		<PackageDescription>A powerful base for MVVM apps with Prism</PackageDescription>
 		<Copyright>Copyright ©  2023</Copyright>
 		<PackageTags>Prism MVVM DI Reactive</PackageTags>
-		<PackageVersion>1.1.5</PackageVersion>
+		<PackageVersion>1.1.10</PackageVersion>
 		<PackageProjectUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</RepositoryUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
@@ -35,7 +35,7 @@
 	<ItemGroup>
 		<PackageReference Include="Prism.Unity" Version="8.1.97" />
 		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
-		<PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.1.2" />
+		<PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.1.7" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">

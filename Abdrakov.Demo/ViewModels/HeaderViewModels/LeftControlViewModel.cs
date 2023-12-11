@@ -26,9 +26,9 @@ namespace Abdrakov.Demo.ViewModels.HeaderViewModels
         public ICommand ChangeThemeCommand { get; private set; }
         #endregion
 
-        public override void OnDependenciesReady()
+        public override void OnViewAttached()
         {
-            base.OnDependenciesReady();
+            base.OnViewAttached();
             // command registranion here
             ChangeThemeCommand = new DelegateCommand(ChangeTheme);
         }

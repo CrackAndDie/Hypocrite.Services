@@ -14,9 +14,9 @@ namespace Abdrakov.Engine.MVVM
             viewModelName = GetType().FullName;
         }
 
-        public virtual void OnDependenciesReady()
+        public virtual void OnViewAttached()
         {
-            LoggingService.Debug($"OnDependenciesReady '{ViewModelName}'");
+            LoggingService.Debug($"OnViewAttached '{ViewModelName}'");
         }
 
         public virtual void OnViewReady()
@@ -29,7 +29,7 @@ namespace Abdrakov.Engine.MVVM
              where TView : class
         {
             return View as TView;
-        }        
+        }
 
         public IContainerHolder Application { get; set; }
         public IContainerProvider Container => Application.Container;

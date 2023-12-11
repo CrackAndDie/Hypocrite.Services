@@ -1,4 +1,5 @@
-﻿using Abdrakov.Engine.MVVM;
+﻿using Abdrakov.Container.Interfaces;
+using Abdrakov.Engine.MVVM;
 using Prism.Ioc;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -11,7 +12,7 @@ using System.Windows;
 
 namespace Abdrakov.CommonWPF.MVVM
 {
-    public class ViewModelBase : EngineViewModelBase, INavigationAware
+    public class ViewModelBase : EngineViewModelBase, INavigationAware, IRequireInjection
     {
         public ViewModelBase() 
         {
@@ -19,14 +20,22 @@ namespace Abdrakov.CommonWPF.MVVM
             LoggingService.Debug($"Constructing '{ViewModelName}'");
         }
 
-        public override void OnDependenciesReady()
+        public override void OnViewAttached()
         {
-            base.OnDependenciesReady();
+            base.OnViewAttached();
 
             if (View is FrameworkElement frameworkElement)
             {
                 frameworkElement.Loaded += (obj, args) => OnViewReady();
             }
+        }
+
+        public virtual void OnInjectionsReady()
+        {
+        }
+
+        public virtual void OnResolveReady()
+        {
         }
 
         public virtual void OnNavigatedTo(NavigationContext navigationContext)

@@ -10,12 +10,12 @@ namespace Abdrakov.Engine.Interfaces
     {
         object View { get; set; }
         /// <summary>
-        /// Called after constructor and after View is assigned
-        /// </summary>
-        void OnDependenciesReady();
-        /// <summary>
         /// Called after View is loaded
         /// </summary>
         void OnViewReady();
+        /// <summary>
+        /// Called after View in attached to the VM
+        /// </summary>
+        void OnViewAttached();
     }
 }

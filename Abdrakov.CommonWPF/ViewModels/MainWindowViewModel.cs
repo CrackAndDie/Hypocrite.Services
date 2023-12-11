@@ -100,9 +100,10 @@ namespace Abdrakov.CommonWPF.ViewModels
         public ICommand CloseWindowCommand { get; set; }
         #endregion
 
-        public override void OnDependenciesReady()
+        public override void OnViewAttached()
         {
-            base.OnDependenciesReady();
+            base.OnViewAttached();
+
             // command registranion here
             MinimizeWindowCommand = new DelegateCommand<object>(OnMinimizeWindowCommand);
             MaximizeWindowCommand = new DelegateCommand<object>(OnMaximizeWindowCommand);

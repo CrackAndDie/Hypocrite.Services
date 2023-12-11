@@ -25,7 +25,7 @@ namespace Abdrakov.CommonWPF.Services
             if (vm is IViewModel viewModel)
             {
                 viewModel.View = view;
-                viewModel.OnDependenciesReady();
+                viewModel.OnViewAttached();
             }
 
             return vm;

@@ -57,7 +57,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-	  <PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.1.7"/>
+    <PackageReference Include="Abdrakov.Container.PrismAdapter" Version="1.1.7" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -68,11 +68,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\DialogExtensions.cs" />
     <Compile Include="Modules\HeaderModule.cs" />
     <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Resources\Themes\Themes.cs" />
+    <Compile Include="ViewModels\DialogViewModels\MessageDialogViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModels\LeftControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\DialogViews\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HeaderViews\LeftControlView.xaml.cs">
       <DependentUpon>LeftControlView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DialogViews\MessageDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HeaderViews\LeftControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,5 +178,6 @@
   <ItemGroup>
     <Resource Include="Resources\AbdrakovSolutions.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

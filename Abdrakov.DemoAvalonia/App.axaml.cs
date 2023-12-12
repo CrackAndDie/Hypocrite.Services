@@ -19,6 +19,7 @@ using Abdrakov.CommonAvalonia.Localization;
 using System.Threading;
 using Abdrakov.Engine.Localization;
 using System.Collections.ObjectModel;
+using Abdrakov.DemoAvalonia.Views.DialogViews;
 
 namespace Abdrakov.DemoAvalonia
 {
@@ -69,6 +70,9 @@ namespace Abdrakov.DemoAvalonia
                     { Themes.Light, "avares://Abdrakov.DemoAvalonia/Resources/Themes/LightTheme.axaml" },
                 },
             });
+
+            containerRegistry.RegisterDialog<MessageDialogView>();
+            containerRegistry.RegisterDialogWindow<DialogWindowView>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

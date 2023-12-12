@@ -61,6 +61,42 @@ namespace Abdrakov.DemoAvalonia.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Dialog_CancelButton {
+            get {
+                return ResourceManager.GetString("Dialog.CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string Dialog_NoButton {
+            get {
+                return ResourceManager.GetString("Dialog.NoButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Dialog_OkButton {
+            get {
+                return ResourceManager.GetString("Dialog.OkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Dialog_YesButton {
+            get {
+                return ResourceManager.GetString("Dialog.YesButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a right text.
         /// </summary>
         internal static string Header_RightText {
@@ -75,6 +111,24 @@ namespace Abdrakov.DemoAvalonia.Localization {
         internal static string MainPage_ChangeTheme {
             get {
                 return ResourceManager.GetString("MainPage.ChangeTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a description.
+        /// </summary>
+        internal static string MessageDialog_Description {
+            get {
+                return ResourceManager.GetString("MessageDialog.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a title.
+        /// </summary>
+        internal static string MessageDialog_Title {
+            get {
+                return ResourceManager.GetString("MessageDialog.Title", resourceCulture);
             }
         }
     }

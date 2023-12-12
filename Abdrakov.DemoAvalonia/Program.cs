@@ -20,7 +20,6 @@ namespace Abdrakov.DemoAvalonia
             })
             .With(new Win32PlatformOptions())
             .UseSkia()
-            .UseReactiveUI()
             .UseManagedSystemDialogs();
 
         static int Main(string[] args)

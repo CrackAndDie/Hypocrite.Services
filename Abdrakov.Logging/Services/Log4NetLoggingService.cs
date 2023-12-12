@@ -5,12 +5,7 @@ using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
-using log4net.Repository.Hierarchy;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Abdrakov.Logging.Services
 {
@@ -28,7 +23,7 @@ namespace Abdrakov.Logging.Services
                 Name = "fileAppender",
                 Threshold = Level.All,
                 AppendToFile = false,
-                File = "cadlog.log",
+                File = "app.log",
             };
             fileAppender.ActivateOptions();
             BasicConfigurator.Configure(fileAppender);

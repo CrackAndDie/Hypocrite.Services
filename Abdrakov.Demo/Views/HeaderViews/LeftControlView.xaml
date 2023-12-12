@@ -56,9 +56,9 @@
     <Grid HorizontalAlignment="Right">
         <Button Style="{StaticResource HeaderLeftButton}"
                 x:Name="headerLeftButton"
-                Command="{Binding ChangeThemeCommand}">
+                Command="{Binding ShowDialogCommand}">
             <TextBlock Margin="8,0"
-                       Text="T">
+                       Text="D">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground"

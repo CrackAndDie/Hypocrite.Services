@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Dialog.CancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Dialog.NoButton" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Dialog.OkButton" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="Dialog.YesButton" xml:space="preserve">
+    <value>Да</value>
+  </data>
   <data name="Header.RightText" xml:space="preserve">
     <value>Это правый текст</value>
   </data>
   <data name="MainPage.ChangeTheme" xml:space="preserve">
     <value>Сменить тему</value>
+  </data>
+  <data name="MessageDialog.Description" xml:space="preserve">
+    <value>Это описание</value>
+  </data>
+  <data name="MessageDialog.Title" xml:space="preserve">
+    <value>Это заголовок</value>
   </data>
 </root>

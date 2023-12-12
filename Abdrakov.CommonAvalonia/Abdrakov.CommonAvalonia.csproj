@@ -52,4 +52,7 @@
 	<ItemGroup>
 	  <Folder Include="Styles\Styles\Converters\" />
 	</ItemGroup>
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Views\DialogWindowView.axaml" />
+	</ItemGroup>
 </Project>

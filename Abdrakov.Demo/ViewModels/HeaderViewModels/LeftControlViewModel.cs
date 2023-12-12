@@ -1,42 +1,33 @@
 ﻿using Abdrakov.CommonWPF.MVVM;
 using Abdrakov.Container;
+using Abdrakov.Demo.Extensions;
 using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.MVVM.Attributes;
 using Prism.Commands;
-using Prism.Ioc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI;
-using System.Windows.Controls;
 using System.Windows.Input;
+using Abdrakov.CommonWPF.Localization;
 
 namespace Abdrakov.Demo.ViewModels.HeaderViewModels
 {
     public class LeftControlViewModel : ViewModelBase
     {
-        [Injection]
-        private IThemeSwitcherService<Themes> ThemeSwitcherService { get; set; }
-
         #region Commands
         [Notify]
-        public ICommand ChangeThemeCommand { get; private set; }
+        public ICommand ShowDialogCommand { get; private set; }
         #endregion
 
         public override void OnViewAttached()
         {
             base.OnViewAttached();
             // command registranion here
-            ChangeThemeCommand = new DelegateCommand(ChangeTheme);
+            ShowDialogCommand = new DelegateCommand(ShowDialog);
         }
 
-        private void ChangeTheme()
+        private void ShowDialog()
         {
-            ThemeSwitcherService.ChangeTheme(ThemeSwitcherService.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
-            LoggingService.Info($"Current theme is {ThemeSwitcherService.CurrentTheme}");
+            DialogService.ShowMessageDialog(LocalizationManager.GetValue("MessageDialog.Title"), LocalizationManager.GetValue("MessageDialog.Description"), DialogButtons.OK);
+            LoggingService.Info($"Message dialog was shown");
         }
     }
 }

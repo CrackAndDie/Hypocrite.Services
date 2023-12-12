@@ -2,15 +2,16 @@
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows.Input;
 
-namespace Abdrakov.CommonWPF.MVVM
+namespace Abdrakov.CommonAvalonia.MVVM
 {
     public class DialogViewModelBase : ViewModelBase, IDialogAware
     {
         protected DialogViewModelBase()
         {
-            KeyDownCommand = new DelegateCommand(OnKeyDown);
         }
 
         protected void CloseDialog(ButtonResult result)
@@ -65,18 +66,11 @@ namespace Abdrakov.CommonWPF.MVVM
         {
         }
 
-        protected virtual void OnKeyDown()
+        protected virtual void OnKeyDown(Avalonia.Input.KeyEventArgs keyArgs)
         {
         }
 
         string IDialogAware.Title => "";
-
-        private ICommand keyDownCommand;
-        public ICommand KeyDownCommand 
-        { 
-            get { return keyDownCommand; }
-            set { SetProperty(ref keyDownCommand, value); } 
-        }
 
         public event Action<IDialogResult> RequestClose;
     }

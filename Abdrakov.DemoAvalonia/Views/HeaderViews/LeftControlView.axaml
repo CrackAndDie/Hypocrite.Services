@@ -45,9 +45,9 @@
 		<Button x:Name="headerLeftButton"
                 VerticalAlignment="Stretch"
 				Classes="LeftControlButtonStyle"
-                Command="{Binding ChangeThemeCommand}">
+                Command="{Binding ShowDialogCommand}">
 			<TextBlock Margin="8,0"
-                       Text="T"
+                       Text="D"
                        VerticalAlignment="Center"
 					   Foreground="{DynamicResource TextForegroundBrush}">
 			</TextBlock>

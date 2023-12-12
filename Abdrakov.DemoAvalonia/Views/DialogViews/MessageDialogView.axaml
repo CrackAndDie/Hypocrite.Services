@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Abdrakov.DemoAvalonia.Views.DialogViews.MessageDialogView"
+			 xmlns:converters="clr-namespace:Abdrakov.CommonAvalonia.Converters;assembly=Abdrakov.CommonAvalonia"
+			 xmlns:prismDialogs="clr-namespace:Prism.Services.Dialogs;assembly=Prism.Avalonia"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:dialog="clr-namespace:Abdrakov.DemoAvalonia.ViewModels.DialogViewModels"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Width="393" MinHeight="166"
+			 x:CompileBindings="False">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<converters:DialogButtonsToVisibilityConverter x:Key="DialogButtonsToVisibilityConverter"/>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Border BorderThickness="1" 
+			Background="{DynamicResource WindowBrush}" 
+			CornerRadius="8"
+			BorderBrush="{DynamicResource ButtonBorderBrush}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="12"/>
+				<RowDefinition Height="3*"/>
+				<RowDefinition Height="13"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="3*"/>
+				<RowDefinition Height="16"/>
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="16"/>
+				<ColumnDefinition Width="90*"/>
+				<ColumnDefinition Width="16"/>
+			</Grid.ColumnDefinitions>
+
+			<Rectangle Height="1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                       Fill="{DynamicResource ButtonBorderBrush}" VerticalAlignment="Bottom"/>
+
+			<TextBlock Grid.Row="1" Grid.Column="1" FontFamily="Roboto" FontSize="20"
+                       Foreground="{DynamicResource TextForegroundBrush}" Text="{Binding Title}"
+                       VerticalAlignment="Center" FontWeight="Medium"/>
+			<TextBlock Grid.Row="3" Grid.Column="1" FontFamily="Roboto" 
+					   Text="{Binding Message}"
+					   Foreground="{DynamicResource TextForegroundBrush}"
+                       TextWrapping="Wrap" VerticalAlignment="Center" 
+					   TextAlignment="Left" Margin="0,16"/>
+
+			<Button Margin="34,0,0,0"
+                    BorderThickness="0"
+                    Command="{Binding CancelCommand}"
+                    Width="32"
+                    Height="32"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right">
+				<Path Data="M17.7209 2.55764L16.0959 0.932617L9.65344 7.37509L3.21096 0.932617L1.58594 
+					  2.55764L8.02841 9.00012L1.58594 15.4426L3.21096 17.0676L9.65344 10.6251L16.0959 
+					  17.0676L17.7209 15.4426L11.2785 9.00012L17.7209 2.55764Z"
+                      Width="18"
+                      Height="18"
+                      Fill="{DynamicResource TextForegroundBrush}" />
+			</Button>
+			<Grid Grid.Row="5" Grid.Column="1">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+					<Button Grid.Column="0" Margin="12, 0, 0, 0" Command="{Binding NoCommand}" Height="48"
+                            IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.No}}">
+						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Text="{LocalizedResource Dialog.NoButton}" Margin="15, 0"
+								   Foreground="{DynamicResource TextForegroundBrush}"/>
+					</Button>
+					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding YesCommand}" Height="48"
+                            IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.Yes}}">
+						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Text="{LocalizedResource Dialog.YesButton}" Margin="15, 0"
+								   Foreground="{DynamicResource TextForegroundBrush}"/>
+					</Button>
+					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding CancelCommand}" Height="48"
+                            IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.Cancel}}">
+						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Text="{LocalizedResource Dialog.CancelButton}" Margin="15, 0"
+								   Foreground="{DynamicResource TextForegroundBrush}"/>
+					</Button>
+					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding OKCommand}" Height="48"
+                            IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.OK}}">
+						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Text="{LocalizedResource Dialog.OkButton}" Margin="15, 0"
+								   Foreground="{DynamicResource TextForegroundBrush}"/>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Grid>
+	</Border>
+</UserControl>

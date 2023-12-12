@@ -26,6 +26,7 @@ using log4net.Repository.Hierarchy;
 using Abdrakov.CommonWPF.MVVM;
 using Abdrakov.CommonWPF.Localization;
 using Abdrakov.CommonWPF.Services;
+using Abdrakov.Demo.Views.DialogViews;
 
 namespace Abdrakov.Demo
 {
@@ -81,6 +82,9 @@ namespace Abdrakov.Demo
                     { Themes.Light, "/Abdrakov.Demo;component/Resources/Themes/LightTheme.xaml" },
                 },
             });
+
+            containerRegistry.RegisterDialog<MessageDialogView>();
+            containerRegistry.RegisterDialogWindow<DialogWindowView>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

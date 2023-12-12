@@ -22,9 +22,10 @@
             <converters:DialogButtonsToVisibilityConverter x:Key="DialogButtonsToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border BorderThickness="0"
+    <Border BorderThickness="1"
             Background="{DynamicResource WindowBrush}"
-            CornerRadius="8">
+            CornerRadius="8"
+            BorderBrush="{DynamicResource ButtonBorderBrush}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="12" />
@@ -90,7 +91,7 @@
                             Margin="12, 0, 0, 0"
                             Style="{StaticResource OutlinedRoundedButton}"
                             Command="{Binding NoCommand}"
-                            Height="48"
+                            Height="42"
                             Visibility="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.No}}">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
@@ -102,7 +103,7 @@
                             Margin="12, 0, 0, 0"
                             Style="{StaticResource OutlinedRoundedButton}"
                             Command="{Binding YesCommand}"
-                            Height="48"
+                            Height="42"
                             Visibility="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.Yes}}">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
@@ -114,7 +115,7 @@
                             Margin="12, 0, 0, 0"
                             Style="{StaticResource OutlinedRoundedButton}"
                             Command="{Binding CancelCommand}"
-                            Height="48"
+                            Height="42"
                             Visibility="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.Cancel}}">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
@@ -126,7 +127,7 @@
                             Margin="12, 0, 0, 0"
                             Style="{StaticResource OutlinedRoundedButton}"
                             Command="{Binding OKCommand}"
-                            Height="48"
+                            Height="42"
                             Visibility="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.OK}}">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"

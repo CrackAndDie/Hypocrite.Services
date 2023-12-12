@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace Abdrakov.CommonAvalonia.MVVM
 {
@@ -43,7 +44,12 @@ namespace Abdrakov.CommonAvalonia.MVVM
                 Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
                 return Container.Resolve<IPreviewWindow>() as Window;
             }
-            return Container.Resolve<IBaseWindow>() as Window;
+            var window = Container.Resolve<IBaseWindow>() as Window;
+            if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.MainWindow = window;
+            }
+            return window;
         }
 
         private void OnPreviewDone()
@@ -51,6 +57,10 @@ namespace Abdrakov.CommonAvalonia.MVVM
             Dispatcher.UIThread.Invoke(() =>
             {
                 var window = Container.Resolve<IBaseWindow>() as Window;
+                if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    desktop.MainWindow = window;
+                }
                 window.Show();
             });
         }

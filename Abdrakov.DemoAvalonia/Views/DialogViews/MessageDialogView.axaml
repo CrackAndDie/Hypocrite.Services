@@ -66,25 +66,25 @@
 			</Button>
 			<Grid Grid.Row="5" Grid.Column="1">
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-					<Button Grid.Column="0" Margin="12, 0, 0, 0" Command="{Binding NoCommand}" Height="48"
+					<Button Grid.Column="0" Margin="12, 0, 0, 0" Command="{Binding NoCommand}" Height="42"
                             IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.No}}">
 						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Text="{LocalizedResource Dialog.NoButton}" Margin="15, 0"
 								   Foreground="{DynamicResource TextForegroundBrush}"/>
 					</Button>
-					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding YesCommand}" Height="48"
+					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding YesCommand}" Height="42"
                             IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.Yes}}">
 						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Text="{LocalizedResource Dialog.YesButton}" Margin="15, 0"
 								   Foreground="{DynamicResource TextForegroundBrush}"/>
 					</Button>
-					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding CancelCommand}" Height="48"
+					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding CancelCommand}" Height="42"
                             IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.Cancel}}">
 						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Text="{LocalizedResource Dialog.CancelButton}" Margin="15, 0"
 								   Foreground="{DynamicResource TextForegroundBrush}"/>
 					</Button>
-					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding OKCommand}" Height="48"
+					<Button Grid.Column="2" Margin="12, 0, 0, 0" Command="{Binding OKCommand}" Height="42"
                             IsVisible="{Binding Buttons, Converter={StaticResource DialogButtonsToVisibilityConverter}, ConverterParameter={x:Static prismDialogs:ButtonResult.OK}}">
 						<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Text="{LocalizedResource Dialog.OkButton}" Margin="15, 0"

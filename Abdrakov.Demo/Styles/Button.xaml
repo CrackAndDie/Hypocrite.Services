@@ -9,9 +9,9 @@
         <Setter Property="Height"
                 Value="46" />
         <Setter Property="FontFamily"
-                Value="Trebuchet MS" />
+                Value="Roboto" />
         <Setter Property="FontSize"
-                Value="18" />
+                Value="14" />
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="BorderThickness"

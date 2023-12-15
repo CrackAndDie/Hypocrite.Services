@@ -4,8 +4,31 @@
 	  <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
 	  <AppDesignerFolder>Properties</AppDesignerFolder>
 	  <RootNamespace>Abdrakov.CommonAvalonia</RootNamespace>
+      <AssemblyName>Abdrakov.CommonAvalonia</AssemblyName>
 	  <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+
+      <PackageId>Abdrakov.Solutions.Avalonia</PackageId>
+      <Authors>crackanddie</Authors>
+      <Product>Abdrakov.Solutions.Avalonia</Product>
+      <PackageDescription>A powerful base for MVVM apps with Prism</PackageDescription>
+      <Copyright>Copyright ©  2023</Copyright>
+      <PackageTags>Prism MVVM DI Reactive</PackageTags>
+      <PackageVersion>1.1.11</PackageVersion>
+      <PackageProjectUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</RepositoryUrl>
+      <PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
+      <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
+      <PackageLicenseFile>NUGET_LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    </PropertyGroup>
+    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+        <ItemGroup>
+            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+        </ItemGroup>
+    </Target>
 
   <ItemGroup>
     <None Remove="Resources\AbdrakovSolutions.png" />
@@ -35,10 +58,12 @@
 		<ProjectReference Include="..\Abdrakov.Engine\Abdrakov.Engine.csproj">
 			<Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
 			<Name>Abdrakov.Engine</Name>
+            <PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 		<ProjectReference Include="..\Abdrakov.Logging\Abdrakov.Logging.csproj">
 			<Project>{D63DB318-9033-4A78-A17F-333D08C2842E}</Project>
 			<Name>Abdrakov.Logging</Name>
+            <PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 	</ItemGroup>
 

@@ -50,7 +50,7 @@ namespace Abdrakov.CommonAvalonia.Services
             Uri uri = new Uri(ThemeSources[theme]);
             dic.MergedDictionaries.Add(new ResourceInclude(uri) { Source = uri });
 
-            PublishEvent(dic.MergedDictionaries[0], oldTheme, CurrentTheme);
+            PublishEvent(dic.MergedDictionaries[0], oldTheme, theme);
 
             _currentTheme = theme;
 

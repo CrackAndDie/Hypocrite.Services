@@ -54,7 +54,7 @@ namespace Abdrakov.CommonWPF.Services
             });
             dic.EndInit();
 
-            PublishEvent(dic.MergedDictionaries[0], oldTheme, CurrentTheme);
+            PublishEvent(dic.MergedDictionaries[0], oldTheme, theme);
 
             return true;
         }

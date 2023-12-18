@@ -11,7 +11,7 @@ namespace Abdrakov.Logging.Services
 {
     public class Log4netLoggingService : ILoggingService
     {
-        public Log4netLoggingService()
+        public Log4netLoggingService(string path = "app.log")
         {
             var patternLayout = new PatternLayout();
             patternLayout.ConversionPattern = "%date | %thread | %level | %message%newline";
@@ -23,7 +23,7 @@ namespace Abdrakov.Logging.Services
                 Name = "fileAppender",
                 Threshold = Level.All,
                 AppendToFile = false,
-                File = "app.log",
+                File = path,
             };
             fileAppender.ActivateOptions();
             BasicConfigurator.Configure(fileAppender);

@@ -1,6 +1,8 @@
 ﻿using Abdrakov.CommonAvalonia.Localization;
 using Abdrakov.CommonAvalonia.MVVM;
+using Abdrakov.Container;
 using Abdrakov.DemoAvalonia.Extensions;
+using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.MVVM.Attributes;
 using Prism.Commands;
 using System.Windows.Input;
@@ -9,6 +11,8 @@ namespace Abdrakov.DemoAvalonia.ViewModels.HeaderViewModels
 {
     public class LeftControlViewModel : ViewModelBase
     {
+        [Injection]
+        IWindowProgressService ProgressService { get; set; }
         #region Commands
         [Notify]
         public ICommand ShowDialogCommand { get; private set; }
@@ -23,8 +27,12 @@ namespace Abdrakov.DemoAvalonia.ViewModels.HeaderViewModels
 
         private void ShowDialog()
         {
-            DialogService.ShowMessageDialog(LocalizationManager.GetValue("MessageDialog.Title"), LocalizationManager.GetValue("MessageDialog.Description"), DialogButtons.OK);
-            LoggingService.Info($"Message dialog was shown");
+            ProgressService.AddWaiter();
+            DialogService.ShowMessageDialog(LocalizationManager.GetValue("MessageDialog.Title"), LocalizationManager.GetValue("MessageDialog.Description"), DialogButtons.OK, (result) =>
+            {
+                LoggingService.Info($"Message dialog was shown");
+                ProgressService.RemoveWaiter();
+            });
         }
     }
 }

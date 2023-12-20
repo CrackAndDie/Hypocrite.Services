@@ -1,30 +1,32 @@
 ﻿using Abdrakov.CommonAvalonia.MVVM;
 using Abdrakov.DemoAvalonia.Views.DialogViews;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Services.Dialogs;
+using System;
 
 namespace Abdrakov.DemoAvalonia.Extensions
 {
     public static class DialogExtensions
     {
-        public static ButtonResult ShowMessageDialog(this IDialogService dialogService, string title, string message, DialogButtons buttons)
+        public static void ShowMessageDialog(this IDialogService dialogService, string title, string message, DialogButtons buttons, Action<IDialogResult> callback = null)
         {
-            return dialogService.ShowCustomDialog<MessageDialogView>(new { Title = title, Message = message, Buttons = buttons });
+            dialogService.ShowCustomDialog<MessageDialogView>(new { Title = title, Message = message, Buttons = buttons }, callback);
         }
 
-        public static ButtonResult ShowCustomDialog<DialogType>(this IDialogService dialogService, object parameters = null)
+        public static void ShowCustomDialog<DialogType>(this IDialogService dialogService, object parameters = null, Action<IDialogResult> callback = null)
             where DialogType : Control
         {
-            var result = ButtonResult.None;
-            dialogService.ShowDialog(typeof(DialogType).Name, ParseParameters(parameters), r =>
+            if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                if (r is DialogResult userResult)
+                dialogService.ShowDialog(desktop.MainWindow, typeof(DialogType).Name, ParseParameters(parameters), r =>
                 {
-                    result = userResult.Result;
-                }
-            });
-
-            return result;
+                    if (r is DialogResult userResult)
+                    {
+                        callback?.Invoke(userResult);
+                    }
+                });
+            }
         }
 
         private static IDialogParameters ParseParameters(object value)

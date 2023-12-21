@@ -364,4 +364,8 @@ You should use [DynamicData](https://github.com/reactivemarbles/DynamicData) or 
 - *Abdrakov.Solutions*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
 - [Prism](https://github.com/PrismLibrary/Prism)
 - [log4net](https://github.com/apache/logging-log4net)
-- *Abdrakov.Engine.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)
+- *Abdrakov.Engine.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)  
+
+## SAST Tools
+
+[PVS-Studio](https://pvs-studio.com/pvs-studio/?utm_source=website&utm_medium=github&utm_campaign=open_source) - static analyzer for C, C++, C#, and Java code.

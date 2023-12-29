@@ -366,6 +366,3 @@ You should use [DynamicData](https://github.com/reactivemarbles/DynamicData) or 
 - [log4net](https://github.com/apache/logging-log4net)
 - *Abdrakov.Engine.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)  
 
-## SAST Tools
-
-[PVS-Studio](https://pvs-studio.com/pvs-studio/?utm_source=website&utm_medium=github&utm_campaign=open_source) - static analyzer for C, C++, C#, and Java code.

@@ -73,7 +73,7 @@ namespace Abdrakov.CommonAvalonia.MVVM
 
         protected virtual void RegisterDefaults(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<ILoggingService, Log4netLoggingService>();
+            containerRegistry.RegisterInstance<ILoggingService>(new Log4netLoggingService());
             containerRegistry.RegisterSingleton<IViewModelResolverService, ViewModelResolverService>();
             containerRegistry.RegisterSingleton<IWindowProgressService, WindowProgressService>();
         }

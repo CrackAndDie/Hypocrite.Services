@@ -20,12 +20,12 @@ namespace Abdrakov.CommonAvalonia.Views
             }
         }
 
-        private void Window_Loaded(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private void Window_Loaded(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             EventAggregator?.GetEvent<DialogClosedEvent>().Subscribe(OnDialogClosedEvent, ThreadOption.UIThread);
         }
 
-        private void Window_KeyDown(object? sender, Avalonia.Input.KeyEventArgs e)
+        private void Window_KeyDown(object sender, Avalonia.Input.KeyEventArgs e)
         {
             if (DataContext != null)
             {

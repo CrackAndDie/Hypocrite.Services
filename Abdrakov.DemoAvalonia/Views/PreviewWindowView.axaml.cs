@@ -29,8 +29,8 @@ namespace Abdrakov.DemoAvalonia.Views
         public void CallPreviewDoneEvent()
         {
             timer.Stop();
-            var cont = (Application.Current as AbdrakovApplication).Container;
-            cont.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Publish();
+            var cont = (Application.Current as AbdrakovApplication)?.Container;
+            cont?.Resolve<IEventAggregator>()?.GetEvent<PreviewDoneEvent>()?.Publish();
             this.Close();
         }
     }

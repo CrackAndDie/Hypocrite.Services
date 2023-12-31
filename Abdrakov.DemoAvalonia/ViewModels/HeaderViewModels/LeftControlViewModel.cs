@@ -12,10 +12,10 @@ namespace Abdrakov.DemoAvalonia.ViewModels.HeaderViewModels
     public class LeftControlViewModel : ViewModelBase
     {
         [Injection]
-        IWindowProgressService ProgressService { get; set; }
+        IWindowProgressService? ProgressService { get; set; }
         #region Commands
         [Notify]
-        public ICommand ShowDialogCommand { get; private set; }
+        public ICommand? ShowDialogCommand { get; private set; }
         #endregion
 
         public override void OnViewAttached()
@@ -27,7 +27,7 @@ namespace Abdrakov.DemoAvalonia.ViewModels.HeaderViewModels
 
         private void ShowDialog()
         {
-            ProgressService.AddWaiter();
+            ProgressService!.AddWaiter();
             DialogService.ShowMessageDialog(LocalizationManager.GetValue("MessageDialog.Title"), LocalizationManager.GetValue("MessageDialog.Description"), DialogButtons.OK, (result) =>
             {
                 LoggingService.Info($"Message dialog was shown");

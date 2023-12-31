@@ -24,14 +24,14 @@ namespace Abdrakov.DemoAvalonia
 
         static int Main(string[] args)
         {
-            double GetScaling()
-            {
-                var idx = Array.IndexOf(args, "--scaling");
-                if (idx != 0 && args.Length > idx + 1 &&
-                    double.TryParse(args[idx + 1], NumberStyles.Any, CultureInfo.InvariantCulture, out var scaling))
-                    return scaling;
-                return 1;
-            }
+            //double GetScaling()
+            //{
+            //    var idx = Array.IndexOf(args, "--scaling");
+            //    if (idx != 0 && args.Length > idx + 1 &&
+            //        double.TryParse(args[idx + 1], NumberStyles.Any, CultureInfo.InvariantCulture, out var scaling))
+            //        return scaling;
+            //    return 1;
+            //}
 
             var builder = BuildAvaloniaApp();
             //InitializeLogging();

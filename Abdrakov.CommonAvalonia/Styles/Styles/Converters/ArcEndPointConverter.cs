@@ -21,7 +21,7 @@ namespace Abdrakov.CommonAvalonia.Styles.Styles.Converters
         /// </summary>
         public const string ParameterMidPoint = "MidPoint";
 
-        public object Convert(IList<object?> values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
             var actualWidth = ExtractDouble(values[0]);
             var value = ExtractDouble(values[1]);

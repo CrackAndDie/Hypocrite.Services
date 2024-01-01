@@ -29,9 +29,13 @@
                                     RepeatBehavior="Forever"
                                     TargetProperty="Angle"
                                     TargetName="RotateTransform">
-                            <DoubleAnimation From="0"
-                                             To="359"
-                                             Duration="0:0:2" />
+                            <DoubleAnimationUsingKeyFrames>
+                                <LinearDoubleKeyFrame Value="0"
+                                                      KeyTime="0:0:0" />
+                                <SplineDoubleKeyFrame Value="359"
+                                                      KeyTime="0:0:2"
+                                                      KeySpline="0.4, 0, 0.2, 1" />
+                            </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                         <Storyboard x:Key="IsFullyIndeterminateStoryboard">
                             <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever"

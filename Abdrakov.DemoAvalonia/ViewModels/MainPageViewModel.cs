@@ -27,17 +27,17 @@ namespace Abdrakov.DemoAvalonia.ViewModels
         [Notify]
         public Language SelectedLanguage { get; set; }
         [Notify]
-        public IBrush BindableBrush { get; set; }
+        public IBrush? BindableBrush { get; set; }
 
         [Injection]
-        private IThemeSwitcherService<Themes> ThemeSwitcherService { get; set; }
+        private IThemeSwitcherService<Themes>? ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
         #region Commands
         [Notify]
-        public ICommand ChangeThemeCommand { get; private set; }
+        public ICommand? ChangeThemeCommand { get; private set; }
         #endregion
 
         public override void OnViewAttached()
@@ -61,7 +61,7 @@ namespace Abdrakov.DemoAvalonia.ViewModels
 
         private void SubscribeToThemeChange()
         {
-            SetTheme(ThemeSwitcherService.CurrentTheme);
+            SetTheme(ThemeSwitcherService!.CurrentTheme);
 
             EventAggregator.GetEvent<ThemeChangedEvent<Themes>>().Subscribe((a) =>
             {

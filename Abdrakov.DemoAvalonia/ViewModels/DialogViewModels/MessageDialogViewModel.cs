@@ -52,9 +52,9 @@ namespace Abdrakov.DemoAvalonia.ViewModels.DialogViewModels
         [Notify]
         public DialogButtons Buttons { get; set; }
         [Notify]
-        public string Title { get; set; }
+        public string? Title { get; set; }
         [Notify]
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         [Notify]
         public ICommand YesCommand { get; set; }

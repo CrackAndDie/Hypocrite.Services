@@ -9,12 +9,12 @@ namespace Abdrakov.DemoAvalonia.Extensions
 {
     public static class DialogExtensions
     {
-        public static void ShowMessageDialog(this IDialogService dialogService, string title, string message, DialogButtons buttons, Action<IDialogResult> callback = null)
+        public static void ShowMessageDialog(this IDialogService dialogService, string title, string message, DialogButtons buttons, Action<IDialogResult>? callback = null)
         {
             dialogService.ShowCustomDialog<MessageDialogView>(new { Title = title, Message = message, Buttons = buttons }, callback);
         }
 
-        public static void ShowCustomDialog<DialogType>(this IDialogService dialogService, object parameters = null, Action<IDialogResult> callback = null)
+        public static void ShowCustomDialog<DialogType>(this IDialogService dialogService, object? parameters = null, Action<IDialogResult>? callback = null)
             where DialogType : Control
         {
             if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -29,7 +29,7 @@ namespace Abdrakov.DemoAvalonia.Extensions
             }
         }
 
-        private static IDialogParameters ParseParameters(object value)
+        private static IDialogParameters? ParseParameters(object? value)
         {
             if (value == null)
             {

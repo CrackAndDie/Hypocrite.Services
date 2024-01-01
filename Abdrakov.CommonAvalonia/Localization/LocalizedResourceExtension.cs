@@ -71,10 +71,10 @@ namespace Abdrakov.CommonAvalonia.Localization
             return this;
         }
 
-        InstancedBinding? IBinding.Initiate(
+        InstancedBinding IBinding.Initiate(
             AvaloniaObject target,
-            AvaloniaProperty? targetProperty,
-            object? anchor,
+            AvaloniaProperty targetProperty,
+            object anchor,
             bool enableDataValidation)
         {
             if (Key is null && _binding == null)
@@ -86,7 +86,7 @@ namespace Abdrakov.CommonAvalonia.Localization
             return InstancedBinding.OneWay(source);
         }
 
-        private IObservable<object?> GetResourceObservable(string key, Binding b = null)
+        private IObservable<object> GetResourceObservable(string key, Binding b = null)
         {
             return new LocalizationChangedObservable(key, b);
         }

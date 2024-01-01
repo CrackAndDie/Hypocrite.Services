@@ -13,7 +13,7 @@
       <PackageDescription>A powerful base for MVVM apps with Prism</PackageDescription>
       <Copyright>Copyright ©  2023</Copyright>
       <PackageTags>Prism MVVM DI Reactive</PackageTags>
-      <PackageVersion>1.1.12</PackageVersion>
+      <PackageVersion>1.1.13</PackageVersion>
       <PackageProjectUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</PackageProjectUrl>
       <RepositoryUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</RepositoryUrl>
       <PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
@@ -49,7 +49,7 @@
 		<PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
 		<PackageReference Include="Prism.Avalonia" Version="8.1.97.11000" />
 		<PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11000" />
-		<PackageReference Include="Abdrakov.Container.AvaloniaPrismAdapter" Version="1.1.7" />
+		<PackageReference Include="Abdrakov.Container.AvaloniaPrismAdapter" Version="1.1.8" />
         <PackageReference Include="log4net">
             <Version>2.0.12</Version>
         </PackageReference>

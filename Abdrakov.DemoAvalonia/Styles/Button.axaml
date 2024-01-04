@@ -1,0 +1,57 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20" Width="200">
+            <!-- Add Controls for Previewer Here -->
+            <Button Margin="15, 0"
+                            Height="46"
+							Classes="OutlinedRoundedButton"
+                            HorizontalAlignment="Stretch">
+            </Button>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="Button.OutlinedRoundedButton">
+        <Setter Property="Foreground"
+            Value="AliceBlue" />
+        <Setter Property="FontWeight"
+            Value="Normal" />
+        <Setter Property="Height"
+            Value="46" />
+        <Setter Property="FontFamily"
+            Value="Roboto" />
+        <Setter Property="FontSize"
+            Value="14" />
+        <Setter Property="Background"
+            Value="Transparent" />
+        <Setter Property="BorderThickness"
+            Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="borderInside"
+                        CornerRadius="4"
+                        BorderThickness="1"
+                        Background="{DynamicResource ComboBoxBackgroundBrush}"
+                        BorderBrush="{DynamicResource ButtonBorderBrush}">
+                        <ContentPresenter x:Name="contentPresenter"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Content="{TemplateBinding Content}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style Selector="Button.OutlinedRoundedButton:pointerover /template/ Border">
+        <Setter Property="BorderThickness"
+            Value="2" />
+    </Style>
+    <Style Selector="Button.OutlinedRoundedButton:pressed /template/ Border">
+        <Setter Property="BorderThickness"
+            Value="3" />
+    </Style>
+</Styles>

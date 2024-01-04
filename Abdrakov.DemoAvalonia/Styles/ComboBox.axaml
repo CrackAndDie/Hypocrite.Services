@@ -1,0 +1,195 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20" Width="200">
+            <!-- Add Controls for Previewer Here -->
+            <ComboBox Margin="15, 0"
+                              Grid.Column="1"
+                              Height="46"
+                              FontSize="20"
+							  Classes="AbdrakovComboBox"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Center">
+            </ComboBox>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <!-- Styles: ComboBox -->
+    <Style Selector="ToggleButton#ToggleButton">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="32" />
+                    </Grid.ColumnDefinitions>
+                    <Border x:Name="Border"
+                            Grid.ColumnSpan="2"
+                            CornerRadius="4"
+                            Background="{DynamicResource ComboBoxBackgroundBrush}"
+                            BorderBrush="{DynamicResource ComboBoxBorderBrush}"
+                            BorderThickness="1" />
+                    <Path x:Name="Arrow"
+                          Grid.Column="1"
+                          Fill="{DynamicResource ArrowBrush}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Margin="0,1,0,0"
+                          Data="M0,0 L0,2 L8,10 L16,2 L16,0 L8,8 z" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="ToggleButton:pointerover /template/ Border">
+        <Setter Property="BorderThickness"
+                Value="2" />
+    </Style>
+    <Style Selector="ToggleButton:checked /template/ ContentControl">
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Path Data="M0,0 L0,-2 L8,-10 L16,-2 L16,0 L8,-8 z"
+                              Stroke="Black"
+                              StrokeThickness="2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="0,6,0,0" />
+    </Style>
+    <Style Selector="TextBox#PART_EditableTextBox">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_ContentHost"
+                        Background="{TemplateBinding Background}"
+                        Focusable="False"/>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="ComboBoxItem.AbdrakovComboBoxItem">
+        <Setter Property="UseLayoutRounding"
+                    Value="True" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource TextForegroundBrush}" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="TextBlock.TextAlignment"
+                Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="Border"
+                                Padding="2"
+                                UseLayoutRounding="True">
+                        <ContentPresenter HorizontalAlignment="Stretch" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--<Setter Property="OverridesDefaultStyle"
+						Value="True" />-->
+    </Style>
+    <Style Selector="ComboBoxItem.AbdrakovComboBoxItem:selected /template/ Border">
+        <Setter Property="Background"
+                Value="{DynamicResource ComboBoxHoverBackgroundBrush}" />
+    </Style>
+    <Style Selector="ComboBox.AbdrakovComboBox">
+        <Setter Property="UseLayoutRounding"
+            Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="MinWidth"
+                Value="30" />
+        <Setter Property="MinHeight"
+                Value="16" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource TextForegroundBrush}" />
+        <!--<Setter Property="ItemContainerStyle"
+					Value="{StaticResource AbdrakovComboBoxItem}" />-->
+        <!--<Setter Property="OverridesDefaultStyle"
+					Value="True" />-->
+        <!--<Setter Property="ScrollViewer.CanContentScroll"
+					Value="True" />-->
+        <!--<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ComboBox">
+						<Grid>
+							<ToggleButton x:Name="ToggleButton"
+									Focusable="false"
+									IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+									ClickMode="Press"
+									  MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}">
+								-->
+        <!--MinWidth="{TemplateBinding ActualWidth}"-->
+        <!--
+							</ToggleButton>
+							<ContentPresenter Name="ContentSite"
+									  IsHitTestVisible="False"
+									  Content="{TemplateBinding SelectionBoxItem}"
+                  
+									  Margin="3,2,18,3"
+									  VerticalAlignment="Center"
+									  HorizontalAlignment="Center" />
+							-->
+        <!--ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"-->
+        <!--
+							-->
+        <!--ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"-->
+        <!--
+
+							<TextBox x:Name="PART_EditableTextBox"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Center"
+								 Margin="3,3,34,3"
+								 Focusable="True"
+								 Background="#FF3F3F3F"
+								 IsVisible="False"
+								 Foreground="Green"
+								 IsReadOnly="True"/>
+							<Popup Name="Popup"
+								 Placement="Bottom"
+								 IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+								 Focusable="False">
+								-->
+        <!--PopupAnimation="Slide"-->
+        <!--
+								<Grid Name="DropDown"
+									MaxHeight="{TemplateBinding MaxDropDownHeight}"
+									MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+									UseLayoutRounding="True">
+									-->
+        <!--MinWidth="{TemplateBinding ActualWidth}"-->
+        <!--
+									<Border x:Name="DropDownBorder"
+										Background="{DynamicResource ComboBoxBackgroundBrush}"
+										BorderThickness="2"
+										CornerRadius="4"
+										BorderBrush="{DynamicResource ComboBoxBorderBrush}" />
+									<ScrollViewer Margin="4,6,4,6"
+											UseLayoutRounding="True">
+										<StackPanel Focusable="True"
+											  KeyboardNavigation.TabNavigation="Contained">
+											<ItemsControl>
+												<ItemsControl.ItemsPanel>
+													<ItemsPanelTemplate>
+														<StackPanel IsItemsHost="True"/>
+													</ItemsPanelTemplate>
+												</ItemsControl.ItemsPanel>
+											</ItemsControl>
+										</StackPanel>
+									</ScrollViewer>
+								</Grid>
+							</Popup>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>-->
+
+        <!-- Styles: ScrollViewer -->
+    </Style>
+</Styles>

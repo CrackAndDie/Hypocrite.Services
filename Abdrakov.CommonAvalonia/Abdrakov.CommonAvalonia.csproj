@@ -26,7 +26,7 @@
     </PropertyGroup>
     <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
         <ItemGroup>
-            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
         </ItemGroup>
     </Target>
 
@@ -78,9 +78,9 @@
 		<None Include="NUGET_LICENSE.txt" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Styles\Styles\Converters\" />
+	  <UpToDateCheckInput Remove="Views\DialogWindowView.axaml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <UpToDateCheckInput Remove="Views\DialogWindowView.axaml" />
+	  <UpToDateCheckInput Remove="Styles\Styles\ProgressBar.axaml" />
 	</ItemGroup>
 </Project>

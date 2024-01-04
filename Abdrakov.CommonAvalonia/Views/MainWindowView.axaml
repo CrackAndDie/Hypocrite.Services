@@ -17,6 +17,8 @@
 		Background="Transparent"
         WindowStartupLocation="CenterScreen"
 		SystemDecorations="None"
+        Title="{Binding ProductName}"
+        Icon="{Binding WindowLogoImage}"
 		mc:Ignorable="d">
 	<Grid RowDefinitions="3,*,3" ColumnDefinitions="3,*,3">
 		<Grid RowDefinitions="22,*" ColumnDefinitions="*" Grid.Column="1" Grid.Row="1">

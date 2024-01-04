@@ -36,6 +36,8 @@ namespace Abdrakov.CommonAvalonia.ViewModels
             set { SetProperty(ref logoImage, value); }
         }
 
+        public WindowIcon WindowLogoImage => new WindowIcon(logoImage);
+
         private string productName;
         public string ProductName
         {

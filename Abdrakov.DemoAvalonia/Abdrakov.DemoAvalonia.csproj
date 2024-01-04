@@ -6,12 +6,17 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationIcon>Resources\AbdrakovSolutions.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\AbdrakovSolutions.ico" />
     <None Remove="Resources\AbdrakovSolutions.png" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Resources\AbdrakovSolutions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\AbdrakovSolutions.ico" />
   </ItemGroup>
 
 

@@ -10,6 +10,7 @@
         Height="450" 
         Width="450"
         Background="Transparent"
+        ShowInTaskbar="False"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
     <Grid>

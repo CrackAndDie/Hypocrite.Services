@@ -13,6 +13,11 @@ namespace Abdrakov.CommonWPF.MVVM
             KeyDownCommand = new DelegateCommand(OnKeyDown);
         }
 
+        protected void ForceCloseDialog()
+        {
+            CloseDialog(ButtonResult.Abort);
+        }
+
         protected void CloseDialog(ButtonResult result)
         {
             RaiseRequestClose(new DialogResult(result));
@@ -33,19 +38,21 @@ namespace Abdrakov.CommonWPF.MVVM
             RequestClose?.Invoke(dialogResult);
         }
 
-        public bool CanCloseDialog()
+        public virtual bool CanCloseDialog()
         {
             return true;
         }
 
-        public void OnDialogClosed()
+        public virtual void OnDialogClosed()
         {
             EventAggregator.GetEvent<DialogClosedEvent>().Publish();
+            EventAggregator.GetEvent<CloseOpenedDialogsEvent>().Unsubscribe(ForceCloseDialog);
         }
 
-        public void OnDialogOpened(IDialogParameters parameters)
+        public virtual void OnDialogOpened(IDialogParameters parameters)
         {
             EventAggregator.GetEvent<DialogOpenedEvent>().Publish();
+            EventAggregator.GetEvent<CloseOpenedDialogsEvent>().Subscribe(ForceCloseDialog);
             if (parameters == null)
             {
                 return;

@@ -1,5 +1,5 @@
-﻿using Abdrakov.CommonWPF.MVVM;
-using Abdrakov.Engine.MVVM.Attributes;
+﻿using Abdrakov.CommonWPF.Mvvm;
+using Abdrakov.Engine.Mvvm.Attributes;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;

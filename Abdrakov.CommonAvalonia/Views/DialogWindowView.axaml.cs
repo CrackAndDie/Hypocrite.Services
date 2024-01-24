@@ -1,5 +1,5 @@
 using Abdrakov.Container;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm.Events;
 using Abdrakov.Logging.Interfaces;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;

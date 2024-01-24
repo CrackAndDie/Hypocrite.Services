@@ -1,6 +1,6 @@
 ﻿using Prism.Services.Dialogs;
 using System.Windows;
-using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.Demo.Views.DialogViews;
 
 namespace Abdrakov.Demo.Extensions

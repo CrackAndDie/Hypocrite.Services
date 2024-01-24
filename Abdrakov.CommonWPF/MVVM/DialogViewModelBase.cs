@@ -1,10 +1,10 @@
-﻿using Abdrakov.Engine.MVVM.Events;
+﻿using Abdrakov.Engine.Mvvm.Events;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Windows.Input;
 
-namespace Abdrakov.CommonWPF.MVVM
+namespace Abdrakov.CommonWPF.Mvvm
 {
     public class DialogViewModelBase : ViewModelBase, IDialogAware
     {

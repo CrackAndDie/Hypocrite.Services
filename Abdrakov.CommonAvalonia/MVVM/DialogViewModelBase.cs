@@ -1,4 +1,4 @@
-﻿using Abdrakov.Engine.MVVM.Events;
+﻿using Abdrakov.Engine.Mvvm.Events;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace Abdrakov.CommonAvalonia.MVVM
+namespace Abdrakov.CommonAvalonia.Mvvm
 {
     public class DialogViewModelBase : ViewModelBase, IDialogAware
     {

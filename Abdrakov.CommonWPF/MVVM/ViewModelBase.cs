@@ -1,5 +1,5 @@
 ﻿using Abdrakov.Container.Interfaces;
-using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.Mvvm;
 using Prism.Ioc;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Abdrakov.CommonWPF.MVVM
+namespace Abdrakov.CommonWPF.Mvvm
 {
     public class ViewModelBase : EngineViewModelBase, INavigationAware, IRequireInjection
     {

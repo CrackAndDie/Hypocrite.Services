@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 
-namespace Abdrakov.Engine.MVVM.Events
+namespace Abdrakov.Engine.Mvvm.Events
 {
     public class DialogClosedEvent : PubSubEvent
     {

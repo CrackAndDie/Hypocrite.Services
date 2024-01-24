@@ -1,4 +1,4 @@
-﻿using Abdrakov.CommonAvalonia.MVVM;
+﻿using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Logging.Interfaces;
 using Avalonia;

@@ -1,21 +1,8 @@
-﻿using Abdrakov.Engine.Localization.Extensions;
-using Abdrakov.Engine.Localization.Extensions.Deps;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia;
 using Avalonia.Data;
-using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
-using Avalonia.Markup.Xaml.MarkupExtensions;
-using Avalonia.Metadata;
-using Avalonia.Threading;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Abdrakov.CommonAvalonia.Localization
 {

@@ -1,8 +1,8 @@
-﻿using Abdrakov.CommonWPF.MVVM;
+﻿using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.CommonWPF.Styles.Events;
 using Abdrakov.Container;
 using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.Mvvm;
 using Prism.Events;
 using Prism.Ioc;
 using System;

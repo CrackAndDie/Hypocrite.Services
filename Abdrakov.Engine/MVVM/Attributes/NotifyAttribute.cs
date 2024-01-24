@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Engine.MVVM.Attributes
+namespace Abdrakov.Engine.Mvvm.Attributes
 {
     /// <summary>
     /// Attribute that marks property for INotifyPropertyChanged weaving. Provided by Abdrakov.Fody package.

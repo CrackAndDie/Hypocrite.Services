@@ -1,4 +1,4 @@
-﻿using Abdrakov.Engine.MVVM.ObserverLogics;
+﻿using Abdrakov.Engine.Mvvm.ObserverLogics;
 using Abdrakov.Engine.Utils;
 using System;
 using System.Collections.Generic;

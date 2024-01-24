@@ -1,7 +1,7 @@
-﻿using Abdrakov.CommonAvalonia.MVVM;
+﻿using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.Engine.Interfaces.Presentation;
-using Abdrakov.Engine.MVVM;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm;
+using Abdrakov.Engine.Mvvm.Events;
 using Abdrakov.Engine.Utils;
 using Abdrakov.Engine.Utils.Settings;
 using Avalonia.Controls;

@@ -1,40 +1,49 @@
 ﻿using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm.Events;
 using Prism.Events;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Abdrakov.Engine.Services
 {
     public class WindowProgressService : IWindowProgressService
     {
-        private readonly ObservableCollection<bool> waiterList = new ObservableCollection<bool>();
+        public bool IsDone
+        {
+            get
+            {
+                lock (_lock)
+                    return _waiterList.Count == 0;
+            } 
+        }
+
+        private readonly ObservableCollection<bool> _waiterList = new ObservableCollection<bool>();
         private readonly IEventAggregator _eventAggregator;
+
+        private readonly object _lock = new object();
 
         public WindowProgressService(IEventAggregator ea)
         {
             _eventAggregator = ea;
-            waiterList.CollectionChanged += (s, a) =>
+            _waiterList.CollectionChanged += (s, a) =>
             {
-                CallStateChangeEvent(waiterList.Count == 0);
+                lock (_lock)
+                    CallStateChangeEvent(_waiterList.Count == 0);
             };
         }
 
         public void AddWaiter()
         {
-            waiterList.Add(true);
+            lock (_lock)
+                _waiterList.Add(true);
         }
 
         public bool RemoveWaiter()
         {
-            return waiterList.Remove(true);
+            lock (_lock)
+                return _waiterList.Remove(true);
         }
 
-        public void CallStateChangeEvent(bool isEmpty)
+        private void CallStateChangeEvent(bool isEmpty)
         {
             _eventAggregator.GetEvent<WindowProgressChangedEvent>().Publish(isEmpty);
         }

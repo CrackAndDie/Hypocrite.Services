@@ -1,4 +1,4 @@
-﻿using Abdrakov.CommonAvalonia.MVVM;
+﻿using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.DemoAvalonia.Views.DialogViews;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;

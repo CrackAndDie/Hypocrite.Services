@@ -9,7 +9,7 @@ using Prism.Ioc;
 using System.Diagnostics;
 using System.Globalization;
 using Prism.Regions;
-using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Mvvm;
 
 namespace Abdrakov.CommonWPF.Views.Other
 {

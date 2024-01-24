@@ -1,7 +1,7 @@
-﻿using Abdrakov.CommonWPF.MVVM;
+﻿using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.Localization.Extensions;
-using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.Mvvm;
 using Abdrakov.Logging.Interfaces;
 using Prism.Ioc;
 using System;

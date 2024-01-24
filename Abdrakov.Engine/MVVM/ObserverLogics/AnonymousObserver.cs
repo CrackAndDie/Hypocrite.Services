@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Abdrakov.Engine.MVVM.ObserverLogics
+namespace Abdrakov.Engine.Mvvm.ObserverLogics
 {
     /// <summary>
     /// Class to create an <see cref="IObserver{T}"/> instance from delegate-based implementations of the On* methods.

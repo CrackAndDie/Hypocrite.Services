@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Abdrakov.Engine.MVVM.ObserverLogics
+namespace Abdrakov.Engine.Mvvm.ObserverLogics
 {
     internal class PropertyChangedObservable<T> : Observable<T>
     {

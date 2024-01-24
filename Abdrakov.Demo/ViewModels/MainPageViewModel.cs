@@ -1,4 +1,4 @@
-﻿using Abdrakov.Engine.MVVM;
+﻿using Abdrakov.Engine.Mvvm;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -19,9 +19,9 @@ using System.Globalization;
 using Abdrakov.Demo.Resources.Themes;
 using System.Windows.Media;
 using System.Security.Policy;
-using Abdrakov.Engine.MVVM.Events;
-using Abdrakov.Engine.MVVM.Attributes;
-using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.Engine.Mvvm.Events;
+using Abdrakov.Engine.Mvvm.Attributes;
+using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.CommonWPF.Localization;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.CommonWPF.Styles.Events;

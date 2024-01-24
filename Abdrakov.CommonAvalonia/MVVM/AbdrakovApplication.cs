@@ -4,7 +4,7 @@ using Abdrakov.Container.AvaloniaPrismAdapter;
 using Abdrakov.Container;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm.Events;
 using Abdrakov.Engine.Services;
 using Abdrakov.Logging.Interfaces;
 using Abdrakov.Logging.Services;
@@ -23,7 +23,7 @@ using System.Text;
 using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Services.Dialogs;
 
-namespace Abdrakov.CommonAvalonia.MVVM
+namespace Abdrakov.CommonAvalonia.Mvvm
 {
     public class AbdrakovApplication : PrismApplication, IContainerHolder
     {

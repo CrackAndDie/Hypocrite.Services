@@ -1,8 +1,8 @@
 ﻿using Avalonia.Input;
-using Abdrakov.CommonAvalonia.MVVM;
+using Abdrakov.CommonAvalonia.Mvvm;
 using Prism.Commands;
 using Prism.Services.Dialogs;
-using Abdrakov.Engine.MVVM.Attributes;
+using Abdrakov.Engine.Mvvm.Attributes;
 using System.Windows.Input;
 
 namespace Abdrakov.DemoAvalonia.ViewModels.DialogViewModels

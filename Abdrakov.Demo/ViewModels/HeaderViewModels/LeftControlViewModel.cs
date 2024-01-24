@@ -1,9 +1,9 @@
-﻿using Abdrakov.CommonWPF.MVVM;
+﻿using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.Container;
 using Abdrakov.Demo.Extensions;
 using Abdrakov.Demo.Resources.Themes;
 using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM.Attributes;
+using Abdrakov.Engine.Mvvm.Attributes;
 using Prism.Commands;
 using System.Windows.Input;
 using Abdrakov.CommonWPF.Localization;

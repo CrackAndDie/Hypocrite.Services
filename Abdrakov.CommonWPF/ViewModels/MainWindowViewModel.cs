@@ -1,10 +1,10 @@
-﻿using Abdrakov.CommonWPF.MVVM;
+﻿using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Localization;
-using Abdrakov.Engine.MVVM;
-using Abdrakov.Engine.MVVM.Attributes;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm;
+using Abdrakov.Engine.Mvvm.Attributes;
+using Abdrakov.Engine.Mvvm.Events;
 using Abdrakov.Engine.Utils.Settings;
 using Prism.Commands;
 using Prism.Ioc;

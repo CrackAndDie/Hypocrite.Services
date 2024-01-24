@@ -5,7 +5,7 @@ using Abdrakov.Container.PrismAdapter;
 using Abdrakov.Engine.Interfaces;
 using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Localization.Extensions;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm.Events;
 using Abdrakov.Engine.Services;
 using Abdrakov.Logging.Interfaces;
 using Abdrakov.Logging.Services;
@@ -20,7 +20,7 @@ using System.Text;
 using System.Windows;
 using System.Threading.Tasks;
 
-namespace Abdrakov.CommonWPF.MVVM
+namespace Abdrakov.CommonWPF.Mvvm
 {
     public class AbdrakovApplication : PrismApplication, IContainerHolder
     {

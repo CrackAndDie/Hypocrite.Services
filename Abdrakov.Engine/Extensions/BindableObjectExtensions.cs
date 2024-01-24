@@ -1,5 +1,5 @@
-﻿using Abdrakov.Engine.MVVM;
-using Abdrakov.Engine.MVVM.ObserverLogics;
+﻿using Abdrakov.Engine.Mvvm;
+using Abdrakov.Engine.Mvvm.ObserverLogics;
 using System;
 using System.Collections.Generic;
 using System.Linq;

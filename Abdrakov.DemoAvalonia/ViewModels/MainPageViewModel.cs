@@ -1,10 +1,10 @@
 ﻿using Abdrakov.CommonAvalonia.Localization;
-using Abdrakov.CommonAvalonia.MVVM;
+using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.CommonAvalonia.Styles.Events;
 using Abdrakov.Container;
 using Abdrakov.DemoAvalonia.Resources.Themes;
 using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM.Attributes;
+using Abdrakov.Engine.Mvvm.Attributes;
 using Avalonia.Media;
 using Prism.Commands;
 using Prism.Events;
@@ -19,6 +19,7 @@ using Abdrakov.Engine.Localization;
 using System.Collections.ObjectModel;
 using Abdrakov.Engine.Extensions;
 using Avalonia.Controls.Shapes;
+using Abdrakov.Engine.Mvvm;
 
 namespace Abdrakov.DemoAvalonia.ViewModels
 {
@@ -33,6 +34,7 @@ namespace Abdrakov.DemoAvalonia.ViewModels
         private IThemeSwitcherService<Themes>? ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
+
         public ObservableCollection<Language> Languages => LocalizationManager.Languages;
 
         #region Commands

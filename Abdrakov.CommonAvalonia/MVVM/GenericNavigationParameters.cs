@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Abdrakov.CommonAvalonia.MVVM
+namespace Abdrakov.CommonAvalonia.Mvvm
 {
     public class GenericNavigationParameters<T> : NavigationParameters
     {

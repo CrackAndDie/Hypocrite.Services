@@ -14,7 +14,7 @@ namespace Abdrakov.CommonWPF.Views
         }
 
         // all this cringe is to make the window not overlap Windows taskbar. I think it's Ok to do this
-        // because this doesn't contradict to the MVVM pattern
+        // because this doesn't contradict to the Mvvm pattern
         #region WindowResizeFixes
         void Window_SourceInitialized(object sender, EventArgs e)
         {

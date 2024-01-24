@@ -1,6 +1,6 @@
-using Abdrakov.CommonAvalonia.MVVM;
+using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.Engine.Interfaces.Presentation;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm.Events;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;

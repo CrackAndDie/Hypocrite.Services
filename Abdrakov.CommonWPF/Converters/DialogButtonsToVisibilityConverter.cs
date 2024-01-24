@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Mvvm;
 using System.Windows;
 
 namespace Abdrakov.CommonWPF.Converters

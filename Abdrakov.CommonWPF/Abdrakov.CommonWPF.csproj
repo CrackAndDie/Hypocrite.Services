@@ -11,10 +11,10 @@
 		<PackageId>Abdrakov.Solutions</PackageId>
 		<Authors>crackanddie</Authors>
 		<Product>Abdrakov.Solutions</Product>
-		<PackageDescription>A powerful base for MVVM apps with Prism</PackageDescription>
+		<PackageDescription>A powerful base for Mvvm apps with Prism</PackageDescription>
 		<Copyright>Copyright ©  2023</Copyright>
-		<PackageTags>Prism MVVM DI Reactive</PackageTags>
-		<PackageVersion>1.1.14</PackageVersion>
+		<PackageTags>Prism Mvvm DI Reactive</PackageTags>
+		<PackageVersion>1.1.16</PackageVersion>
 		<PackageProjectUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/CrackAndDie/Abdrakov.Solutions</RepositoryUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Abdrakov.Engine.MVVM.ObserverLogics
+namespace Abdrakov.Engine.Mvvm.ObserverLogics
 {
     public class Observable<T> : IObservable<T>, IDisposable
     {

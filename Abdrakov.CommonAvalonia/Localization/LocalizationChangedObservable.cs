@@ -1,15 +1,10 @@
-﻿using Abdrakov.Engine.MVVM;
-using Abdrakov.Engine.MVVM.ObserverLogics;
+﻿using Abdrakov.Engine.Mvvm;
+using Abdrakov.Engine.Mvvm.ObserverLogics;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Data;
-using Avalonia.Remote.Protocol.Viewport;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Reactive.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Abdrakov.CommonAvalonia.Localization
 {
@@ -33,13 +28,27 @@ namespace Abdrakov.CommonAvalonia.Localization
                 if (vm == null || !(vm is StyledElement))
                     return;
 
-                var dc = (vm as StyledElement).DataContext;
+                var el = (vm as StyledElement);
+                var dc = el.DataContext;
                 if (dc == null || !(dc is BindableObject))
+                {
+                    el.DataContextChanged += DataContextChangedPreparer;
                     return;
+                }  
 
                 _bindableObject = dc as BindableObject;
                 _bindableObject.PropertyChanged += PropertyChangedPreparer;
             }
+        }
+
+        private void DataContextChangedPreparer(object sender, EventArgs e)
+        {
+            var el = (sender as StyledElement);
+            var dc = el.DataContext;
+            _bindableObject = dc as BindableObject;
+            _bindableObject.PropertyChanged += PropertyChangedPreparer;
+
+            Preparer(sender, e);
         }
 
         private void PropertyChangedPreparer(object sender, PropertyChangedEventArgs e)

@@ -1,4 +1,4 @@
-﻿using Abdrakov.CommonAvalonia.MVVM;
+﻿using Abdrakov.CommonAvalonia.Mvvm;
 using Avalonia.Data.Converters;
 using Prism.Services.Dialogs;
 using System;

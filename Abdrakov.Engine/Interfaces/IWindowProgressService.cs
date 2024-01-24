@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Abdrakov.Engine.Interfaces
+﻿namespace Abdrakov.Engine.Interfaces
 {
     public interface IWindowProgressService
     {
+        bool IsDone { get; }
         void AddWaiter();
         bool RemoveWaiter();
-        void CallStateChangeEvent(bool isEmpty);
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Abdrakov.CommonAvalonia.Localization;
-using Abdrakov.CommonAvalonia.MVVM;
+using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.Container;
 using Abdrakov.DemoAvalonia.Extensions;
 using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM.Attributes;
+using Abdrakov.Engine.Mvvm.Attributes;
 using Prism.Commands;
 using System.Windows.Input;
 

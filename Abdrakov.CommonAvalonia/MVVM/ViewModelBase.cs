@@ -1,5 +1,5 @@
 ﻿using Abdrakov.Container.Interfaces;
-using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.Mvvm;
 using Avalonia.Controls;
 using Prism.Ioc;
 using Prism.Regions;
@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Abdrakov.CommonAvalonia.MVVM
+namespace Abdrakov.CommonAvalonia.Mvvm
 {
     public class ViewModelBase : EngineViewModelBase, INavigationAware, IRequireInjection
     {

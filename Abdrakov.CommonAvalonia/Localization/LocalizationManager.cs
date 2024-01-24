@@ -1,4 +1,4 @@
-﻿using Abdrakov.CommonAvalonia.MVVM;
+﻿using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.Engine.Localization;
 using Abdrakov.Engine.Localization.Extensions;
 using Abdrakov.Logging.Interfaces;

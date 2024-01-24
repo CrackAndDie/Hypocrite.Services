@@ -1,6 +1,6 @@
 ﻿using Prism.Regions;
 
-namespace Abdrakov.CommonWPF.MVVM
+namespace Abdrakov.CommonWPF.Mvvm
 {
     public class GenericNavigationParameters<T> : NavigationParameters
     {

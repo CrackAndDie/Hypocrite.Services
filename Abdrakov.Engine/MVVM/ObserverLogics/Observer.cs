@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Abdrakov.Engine.MVVM.ObserverLogics
+namespace Abdrakov.Engine.Mvvm.ObserverLogics
 {
     /// <summary>
     /// Abstract base class for implementations of the <see cref="IObserver{T}"/> interface.

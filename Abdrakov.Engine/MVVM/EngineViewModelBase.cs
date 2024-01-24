@@ -1,11 +1,11 @@
 ﻿using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM.Events;
+using Abdrakov.Engine.Mvvm.Events;
 using Abdrakov.Logging.Interfaces;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
 
-namespace Abdrakov.Engine.MVVM
+namespace Abdrakov.Engine.Mvvm
 {
     public class EngineViewModelBase : BindableObject, IViewModel
     {

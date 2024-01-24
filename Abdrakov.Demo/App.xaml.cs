@@ -1,6 +1,6 @@
 ﻿using Abdrakov.Engine.Interfaces.Presentation;
 using Abdrakov.Engine.Interfaces;
-using Abdrakov.Engine.MVVM;
+using Abdrakov.Engine.Mvvm;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ using Abdrakov.Engine.Localization.Extensions;
 using System.Threading;
 using Abdrakov.Demo.Resources.Themes;
 using log4net.Repository.Hierarchy;
-using Abdrakov.CommonWPF.MVVM;
+using Abdrakov.CommonWPF.Mvvm;
 using Abdrakov.CommonWPF.Localization;
 using Abdrakov.CommonWPF.Services;
 using Abdrakov.Demo.Views.DialogViews;

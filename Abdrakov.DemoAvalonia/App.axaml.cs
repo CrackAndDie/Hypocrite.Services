@@ -1,4 +1,4 @@
-using Abdrakov.CommonAvalonia.MVVM;
+using Abdrakov.CommonAvalonia.Mvvm;
 using Abdrakov.CommonAvalonia.Views;
 using Abdrakov.DemoAvalonia.Resources.Themes;
 using Abdrakov.Engine.Interfaces;

@@ -18,7 +18,10 @@ namespace Abdrakov.CommonWPF.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            EventAggregator?.GetEvent<DialogClosedEvent>().Subscribe(OnDialogClosedEvent, ThreadOption.UIThread);
+            if (DataContext != null)
+            {
+                (DataContext as IDialogAware).RequestClose += (r) => OnDialogClosedEvent();
+            }
         }
 
         private void OnDialogClosedEvent()

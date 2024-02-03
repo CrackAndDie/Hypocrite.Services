@@ -22,7 +22,11 @@ namespace Abdrakov.CommonAvalonia.Views
 
         private void Window_Loaded(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            EventAggregator?.GetEvent<DialogClosedEvent>().Subscribe(OnDialogClosedEvent, ThreadOption.UIThread);
+            // EventAggregator?.GetEvent<DialogClosedEvent>().Subscribe(OnDialogClosedEvent, ThreadOption.UIThread);
+            if (DataContext != null)
+            {
+                (DataContext as IDialogAware).RequestClose += (r) => OnDialogClosedEvent();
+            }
         }
 
         private void Window_KeyDown(object sender, Avalonia.Input.KeyEventArgs e)

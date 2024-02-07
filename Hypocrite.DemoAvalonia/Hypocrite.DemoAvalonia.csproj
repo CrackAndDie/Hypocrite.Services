@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationIcon>Resources\AbdrakovSolutions.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\AbdrakovSolutions.ico" />
+    <None Remove="Resources\AbdrakovSolutions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Resources\AbdrakovSolutions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\AbdrakovSolutions.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
+      <PackageReference Include="Hypocrite.Fody" Version="1.2.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+  <PackageReference Include="log4net">
+          <Version>2.0.12</Version>
+      </PackageReference>
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hypocrite.Core\Hypocrite.Core.csproj">
+			<Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
+			<Name>Hypocrite.Core</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Hypocrite.Avalonia\Hypocrite.Avalonia.csproj">
+			<Project>{729B4E8D-AF66-4604-9D7E-412B372820C1}</Project>
+			<Name>Hypocrite.Avalonia</Name>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Localization\Gui.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Gui.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Localization\Gui.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Gui.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+</Project>

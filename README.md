@@ -3,11 +3,11 @@
     <img src="https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png" alt="Abdrakov.Solutions logo" width="340" height="340">
   </a>
 </p>
-<h1 align="center">Abdrakov.Solutions</h1>  
+<h1 align="center">Hypocrite.Services</h1>  
 
-[![Nuget](https://img.shields.io/nuget/v/Abdrakov.Solutions.svg)](http://nuget.org/packages/Abdrakov.Solutions)
-[![Nuget](https://img.shields.io/nuget/dt/Abdrakov.Solutions.svg)](http://nuget.org/packages/Abdrakov.Solutions)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/CrackAndDie/Abdrakov.Solutions/blob/main/LICENSE)
+[![Nuget](https://img.shields.io/nuget/v/Hypocrite.Services.svg)](http://nuget.org/packages/Hypocrite.Services)
+[![Nuget](https://img.shields.io/nuget/dt/Hypocrite.Services.svg)](http://nuget.org/packages/Hypocrite.Services)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/CrackAndDie/Hypocrite.Services/blob/main/LICENSE)
 
 <h2>About:</h2>  
 
@@ -17,15 +17,15 @@ A package that helps You to create a powerful, flexible and loosely coupled WPF 
 
 <h3>.NET CLI:</h3>  
 
-```dotnet add package Abdrakov.Solutions```
+```dotnet add package Hypocrite.Services```
 
 <h3>Package Reference:</h3>  
 
-```<PackageReference Include="Abdrakov.Solutions" Version="*" />```  
+```<PackageReference Include="Hypocrite.Services" Version="*" />```  
 
 <h2>Demo:</h2>  
 
-Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov.Solutions/releases)  
+Demo could be downloaded from [releases](https://github.com/CrackAndDie/Hypocrite.Services/releases)  
 
 <img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/b35455e9-f6f4-4c3a-bd5a-b6b71dac4223" alt="image1" width="440">  
 <img src="https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/db299c87-7bb2-4489-972c-3065708d0b24" alt="image2" width="440">  
@@ -47,12 +47,12 @@ Demo could be downloaded from [releases](https://github.com/CrackAndDie/Abdrakov
 
 When you created your WPF app you should rewrite your *App.xaml* and *App.xaml.cs* files as follows:
 ```xaml
-<engine:AbdrakovApplication x:Class="YourNamespace.App"
+<engine:ApplicationBase x:Class="YourNamespace.App"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:local="clr-namespace:YourNamespace"
                             xmlns:engine="clr-namespace:Abdrakov.Engine.MVVM;assembly=Abdrakov.Engine">
-</engine:AbdrakovApplication>
+</engine:ApplicationBase>
 ```
 
 ```cs

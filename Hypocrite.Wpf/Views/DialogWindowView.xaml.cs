@@ -26,7 +26,7 @@ namespace Hypocrite.Views
 
         private void OnDialogClosedEvent()
         {
-            Close();
+            
         }
 
         public IDialogResult Result { get; set; }

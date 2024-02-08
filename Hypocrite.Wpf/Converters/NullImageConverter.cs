@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Converters
+namespace Hypocrite.Converters
 {
     // taken from https://stackoverflow.com/questions/5399601/imagesourceconverter-error-for-source-null
     public class NullImageConverter : IValueConverter

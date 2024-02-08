@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Abdrakov.Demo.Views
+namespace Hypocrite.DemoWpf.Views
 {
     public partial class MainPageView : UserControl, IView
     {

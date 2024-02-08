@@ -1,11 +1,11 @@
 ﻿using Avalonia.Input;
-using Hypocrite.Avalonia.Mvvm;
+using Hypocrite.Mvvm;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using Hypocrite.Core.Mvvm.Attributes;
 using System.Windows.Input;
 
-namespace Abdrakov.DemoAvalonia.ViewModels.DialogViewModels
+namespace Hypocrite.DemoAvalonia.ViewModels.DialogViewModels
 {
     public class MessageDialogViewModel : DialogViewModelBase
     {

@@ -1,8 +1,8 @@
-﻿using Hypocrite.Avalonia.Localization;
-using Hypocrite.Avalonia.Mvvm;
-using Hypocrite.Avalonia.Styles.Events;
+﻿using Hypocrite.Localization;
+using Hypocrite.Mvvm;
+using Hypocrite.Styles.Events;
 using Hypocrite.Core.Container;
-using Abdrakov.DemoAvalonia.Resources.Themes;
+using Hypocrite.DemoAvalonia.Resources.Themes;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Mvvm.Attributes;
 using Avalonia.Media;
@@ -21,7 +21,7 @@ using Hypocrite.Core.Extensions;
 using Avalonia.Controls.Shapes;
 using Hypocrite.Core.Mvvm;
 
-namespace Abdrakov.DemoAvalonia.ViewModels
+namespace Hypocrite.DemoAvalonia.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {

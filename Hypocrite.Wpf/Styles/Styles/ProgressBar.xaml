@@ -1,10 +1,10 @@
-﻿<ResourceDictionary x:Class="Hypocrite.Wpf.Styles.Styles.ProgressBar"
+﻿<ResourceDictionary x:Class="Hypocrite.Styles.Styles.ProgressBar"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:local="clr-namespace:Hypocrite.Wpf.Styles.Styles"
-                    xmlns:converters="clr-namespace:Hypocrite.Wpf.Styles.Styles.Converters"
+                    xmlns:local="clr-namespace:Hypocrite.Styles.Styles"
+                    xmlns:converters="clr-namespace:Hypocrite.Styles.Styles.Converters"
                     mc:Ignorable="d">
 
     <converters:StartPointConverter x:Key="StartPointConverter" />

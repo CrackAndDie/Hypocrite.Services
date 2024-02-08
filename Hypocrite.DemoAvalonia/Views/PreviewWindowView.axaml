@@ -5,7 +5,7 @@
         mc:Ignorable="d" 
 		Width="450" 
 		Height="450"
-        x:Class="Abdrakov.DemoAvalonia.Views.PreviewWindowView"
+        x:Class="Hypocrite.DemoAvalonia.Views.PreviewWindowView"
         Title="PreviewWindowView"
 		Background="Transparent"
 		SystemDecorations="None"

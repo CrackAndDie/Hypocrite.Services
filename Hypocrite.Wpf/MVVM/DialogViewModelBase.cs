@@ -4,7 +4,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Windows.Input;
 
-namespace Hypocrite.Wpf.Mvvm
+namespace Hypocrite.Mvvm
 {
     public class DialogViewModelBase : ViewModelBase, IDialogAware
     {

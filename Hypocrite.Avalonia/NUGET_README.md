@@ -1,3 +1,3 @@
-# Abdrakov.Solutions
+# Hypocrite.Services
 
-The original README source: https://github.com/CrackAndDie/Abdrakov.Solutions/blob/main/README.md
+The original README source: https://github.com/CrackAndDie/Hypocrite.Services/blob/main/README.md

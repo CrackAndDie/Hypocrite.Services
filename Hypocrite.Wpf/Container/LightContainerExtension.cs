@@ -6,7 +6,7 @@ using System.Linq;
 using Prism.Ioc.Internals;
 using Hypocrite.Core.Container;
 
-namespace Hypocrite.Wpf.Container.PrismAdapter
+namespace Hypocrite.Container.PrismAdapter
 {
     public class LightContainerExtension : IContainerExtension<ILightContainer>, IContainerInfo
     {

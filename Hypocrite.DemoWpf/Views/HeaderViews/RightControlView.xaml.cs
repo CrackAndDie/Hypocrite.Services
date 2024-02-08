@@ -1,7 +1,7 @@
 ﻿using Hypocrite.Core.Interfaces.Presentation;
 using System.Windows.Controls;
 
-namespace Abdrakov.Demo.Views.HeaderViews
+namespace Hypocrite.DemoWpf.Views.HeaderViews
 {
     public partial class RightControlView : UserControl, IView
     {

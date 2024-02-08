@@ -1,4 +1,4 @@
-﻿using Hypocrite.Wpf.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Mvvm;
 using Hypocrite.Core.Logging.Interfaces;
@@ -7,7 +7,7 @@ using Prism.Regions;
 using System;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Extensions
+namespace Hypocrite.Extensions
 {
     public static class RegionManagerExtensions
     {
@@ -29,7 +29,7 @@ namespace Hypocrite.Wpf.Extensions
         {
             if (result.Error != null)
             {
-                var loggingService = (Application.Current as AbdrakovApplication).Container.Resolve<ILoggingService>();
+                var loggingService = (Application.Current as ApplicationBase).Container.Resolve<ILoggingService>();
                 loggingService.Error($"Navigation failed! Target: {result.Context.Uri}");
 
                 throw result.Error;

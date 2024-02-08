@@ -1,4 +1,4 @@
-﻿using Hypocrite.Avalonia.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Avalonia.Data.Converters;
 using Prism.Services.Dialogs;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Converters
+namespace Hypocrite.Converters
 {
     public class DialogButtonsToVisibilityConverter : IValueConverter
     {

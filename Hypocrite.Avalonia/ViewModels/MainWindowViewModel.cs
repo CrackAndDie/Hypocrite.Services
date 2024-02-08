@@ -1,4 +1,4 @@
-﻿using Hypocrite.Avalonia.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Mvvm;
 using Hypocrite.Core.Mvvm.Events;
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
 
-namespace Hypocrite.Avalonia.ViewModels
+namespace Hypocrite.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

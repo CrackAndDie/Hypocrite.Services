@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Styles.Events
+namespace Hypocrite.Styles.Events
 {
     public class ThemeChangedEventArgs<T>
     {

@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Hypocrite.Wpf.Services
+namespace Hypocrite.Services
 {
     public class ViewModelResolverService : IViewModelResolverService
     {

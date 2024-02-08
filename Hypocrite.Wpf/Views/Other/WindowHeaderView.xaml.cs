@@ -9,9 +9,9 @@ using Prism.Ioc;
 using System.Diagnostics;
 using System.Globalization;
 using Prism.Regions;
-using Hypocrite.Wpf.Mvvm;
+using Hypocrite.Mvvm;
 
-namespace Hypocrite.Wpf.Views.Other
+namespace Hypocrite.Views.Other
 {
     public partial class WindowHeaderView : UserControl
     {
@@ -137,7 +137,7 @@ namespace Hypocrite.Wpf.Views.Other
             InitializeComponent();
 
             // cringe but I don't want to create a vm for the shite
-            RegionManager = (Application.Current as AbdrakovApplication)?.Container?.Resolve<IRegionManager>();
+            RegionManager = (Application.Current as ApplicationBase)?.Container?.Resolve<IRegionManager>();
         }
     }
 }

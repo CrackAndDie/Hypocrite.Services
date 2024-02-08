@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Hypocrite.Wpf.Styles.Events
+namespace Hypocrite.Styles.Events
 {
     public class ThemeChangedEventArgs<T>
     {

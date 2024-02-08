@@ -1,5 +1,5 @@
-﻿using Hypocrite.Avalonia.Views;
-using Abdrakov.DemoAvalonia.Views;
+﻿using Hypocrite.Views;
+using Hypocrite.DemoAvalonia.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.DemoAvalonia.Modules
+namespace Hypocrite.DemoAvalonia.Modules
 {
     internal class MainModule : IModule
     {

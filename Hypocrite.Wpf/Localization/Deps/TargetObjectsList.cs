@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypocrite.Wpf.Localization.Deps
+namespace Hypocrite.Localization.Deps
 {
     /// <summary>
     /// Defines a collection of assigned dependency objects.

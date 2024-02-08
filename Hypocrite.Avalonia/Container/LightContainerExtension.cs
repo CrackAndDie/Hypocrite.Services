@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Container
+namespace Hypocrite.Container
 {
     public class LightContainerExtension : IContainerExtension<ILightContainer>, IContainerInfo
     {

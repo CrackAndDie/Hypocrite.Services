@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Services
+namespace Hypocrite.Services
 {
     public class ViewModelResolverService : IViewModelResolverService
     {

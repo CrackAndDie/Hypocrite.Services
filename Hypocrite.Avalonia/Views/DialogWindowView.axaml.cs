@@ -9,7 +9,7 @@ using Avalonia.Interactivity;
 using Avalonia.Input;
 using Avalonia;
 
-namespace Hypocrite.Avalonia.Views
+namespace Hypocrite.Views
 {
     public partial class DialogWindowView : Window, IDialogWindow
     {

@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Windows;
 using Hypocrite.Core.Localization.Extensions.Deps;
 
-namespace Hypocrite.Wpf.Localization.Deps
+namespace Hypocrite.Localization.Deps
 {
     /// <summary>
     /// Implements a standard converter that calls itself all known type converters.

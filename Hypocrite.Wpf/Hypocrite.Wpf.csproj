@@ -5,18 +5,18 @@
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
 		<UseWPF>true</UseWPF>
-		<RootNamespace>Hypocrite.Wpf</RootNamespace>
+		<RootNamespace>Hypocrite</RootNamespace>
 		<AssemblyName>Hypocrite.Wpf</AssemblyName>
 
-		<PackageId>Hypocrite.Foundations</PackageId>
+		<PackageId>Hypocrite.Services</PackageId>
 		<Authors>crackanddie</Authors>
-		<Product>Hypocrite.Foundations</Product>
+		<Product>Hypocrite.Services</Product>
 		<PackageDescription>A powerful base for Mvvm apps with Prism</PackageDescription>
 		<Copyright>Copyright ©  2023</Copyright>
 		<PackageTags>Prism Mvvm DI Reactive</PackageTags>
 		<PackageVersion>1.2.0</PackageVersion>
-		<PackageProjectUrl>https://github.com/CrackAndDie/Hypocrite.Foundations</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/CrackAndDie/Hypocrite.Foundations</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/CrackAndDie/Hypocrite.Services</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/CrackAndDie/Hypocrite.Services</RepositoryUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
 		<PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
 		<PackageLicenseFile>NUGET_LICENSE.txt</PackageLicenseFile>

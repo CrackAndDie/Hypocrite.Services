@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Localization.Deps
+namespace Hypocrite.Localization.Deps
 {
     /// <summary>
     /// A class that helps listening to changes on the Parent property of FrameworkElement objects.

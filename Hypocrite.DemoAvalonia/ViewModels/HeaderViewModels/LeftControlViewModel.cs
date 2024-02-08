@@ -1,13 +1,13 @@
-﻿using Hypocrite.Avalonia.Localization;
-using Hypocrite.Avalonia.Mvvm;
+﻿using Hypocrite.Localization;
+using Hypocrite.Mvvm;
 using Hypocrite.Core.Container;
-using Abdrakov.DemoAvalonia.Extensions;
+using Hypocrite.DemoAvalonia.Extensions;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Mvvm.Attributes;
 using Prism.Commands;
 using System.Windows.Input;
 
-namespace Abdrakov.DemoAvalonia.ViewModels.HeaderViewModels
+namespace Hypocrite.DemoAvalonia.ViewModels.HeaderViewModels
 {
     public class LeftControlViewModel : ViewModelBase
     {

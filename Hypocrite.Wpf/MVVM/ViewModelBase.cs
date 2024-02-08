@@ -10,13 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Mvvm
+namespace Hypocrite.Mvvm
 {
     public class ViewModelBase : EngineViewModelBase, INavigationAware, IRequireInjection
     {
         public ViewModelBase() 
         {
-            Application = (System.Windows.Application.Current as AbdrakovApplication);
+            Application = (System.Windows.Application.Current as ApplicationBase);
             LoggingService.Debug($"Constructing '{ViewModelName}'");
         }
 

@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace Hypocrite.Wpf.Localization
+namespace Hypocrite.Localization
 {
 	public class ScopedTranslationProvider<T> : TranslationProviderBase<T>
 	{

@@ -2,10 +2,10 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using Hypocrite.Wpf.Mvvm;
+using Hypocrite.Mvvm;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Converters
+namespace Hypocrite.Converters
 {
     public class DialogButtonsToVisibilityConverter : IValueConverter
     {

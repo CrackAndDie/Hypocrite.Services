@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.DemoAvalonia.Resources.Themes
+namespace Hypocrite.DemoAvalonia.Resources.Themes
 {
     public enum Themes
     {

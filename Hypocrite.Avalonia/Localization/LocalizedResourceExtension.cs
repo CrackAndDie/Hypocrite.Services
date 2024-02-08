@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 using System;
 using System.ComponentModel;
 
-namespace Hypocrite.Avalonia.Localization
+namespace Hypocrite.Localization
 {
     public class LocalizedResourceExtension : IBinding
     {

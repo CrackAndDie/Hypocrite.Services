@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Demo.Resources.Themes
+namespace Hypocrite.DemoWpf.Resources.Themes
 {
     public enum Themes
     {

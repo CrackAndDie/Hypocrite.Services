@@ -4,7 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace Hypocrite.Wpf.Views
+namespace Hypocrite.Views
 {
     public partial class MainWindowView : Window, IBaseWindow
     {

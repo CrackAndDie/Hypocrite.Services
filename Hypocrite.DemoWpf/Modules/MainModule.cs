@@ -1,5 +1,5 @@
-﻿using Hypocrite.Wpf.Views;
-using Abdrakov.Demo.Views;
+﻿using Hypocrite.Views;
+using Hypocrite.DemoWpf.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Demo.Modules
+namespace Hypocrite.DemoWpf.Modules
 {
     internal class MainModule : IModule
     {

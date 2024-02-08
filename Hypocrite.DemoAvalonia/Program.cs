@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 
-namespace Abdrakov.DemoAvalonia
+namespace Hypocrite.DemoAvalonia
 {
     internal class Program
     {

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Styles.Styles
+namespace Hypocrite.Styles.Styles
 {
     public class Rotator : Panel
     {

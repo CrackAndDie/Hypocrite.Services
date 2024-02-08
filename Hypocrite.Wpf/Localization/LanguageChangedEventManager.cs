@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Localization
+namespace Hypocrite.Localization
 {
     public class LanguageChangedEventManager : WeakEventManager
     {

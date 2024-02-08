@@ -11,7 +11,7 @@
 		ShowInTaskbar="False"
 		SizeToContent="WidthAndHeight"
 		BorderThickness="0"
-        x:Class="Hypocrite.Avalonia.Views.DialogWindowView"
+        x:Class="Hypocrite.Views.DialogWindowView"
 		Loaded="Window_Loaded"
 		KeyDown="Window_KeyDown">
 </Window>

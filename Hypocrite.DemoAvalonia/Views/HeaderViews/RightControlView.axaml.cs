@@ -1,7 +1,7 @@
 using Hypocrite.Core.Interfaces.Presentation;
 using Avalonia.Controls;
 
-namespace Abdrakov.DemoAvalonia.Views.HeaderViews
+namespace Hypocrite.DemoAvalonia.Views.HeaderViews
 {
     public partial class RightControlView : UserControl, IView
     {

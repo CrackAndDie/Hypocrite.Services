@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Localization.Deps
+namespace Hypocrite.Localization.Deps
 {
     /// <summary>
     /// Extension methods for dependency objects.

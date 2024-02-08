@@ -1,5 +1,5 @@
-﻿using Hypocrite.Wpf.Mvvm;
-using Hypocrite.Wpf.Styles.Events;
+﻿using Hypocrite.Mvvm;
+using Hypocrite.Styles.Events;
 using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Mvvm;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace Hypocrite.Wpf.Services
+namespace Hypocrite.Services
 {
     public class ThemeSwitcherService<T> : IThemeSwitcherService<T>
     {

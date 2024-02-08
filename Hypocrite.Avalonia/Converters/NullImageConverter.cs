@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Converters
+namespace Hypocrite.Converters
 {
     public class NullImageConverter : IValueConverter
     {

@@ -1,5 +1,5 @@
-﻿using Hypocrite.Wpf.Localization;
-using Hypocrite.Wpf.Services;
+﻿using Hypocrite.Localization;
+using Hypocrite.Services;
 using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;
@@ -7,45 +7,68 @@ using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Services;
 using Hypocrite.Core.Logging.Interfaces;
 using Hypocrite.Core.Logging.Services;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
-using System.Windows;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Avalonia.Controls.ApplicationLifetimes;
+using Prism.Services.Dialogs;
 using Prism;
-using Hypocrite.Wpf.Container.PrismAdapter;
+using Hypocrite.Container;
 
-namespace Hypocrite.Wpf.Mvvm
+namespace Hypocrite.Mvvm
 {
-    public class AbdrakovApplication : PrismApplicationBase, IContainerHolder
+    public class ApplicationBase : PrismApplicationBase, IContainerHolder
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public static bool IsSingleViewLifetime =>
+            Environment.GetCommandLineArgs()
+            .Any(a => a == "--fbdev" || a == "--drm");
+
+        public override void Initialize()
         {
+            // AvaloniaXamlLoader.Load(this);
             LocalizationManager.Initialize();
-            base.OnStartup(e);
+            base.Initialize();              // <-- Required
         }
 
-        protected override Window CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             if (Container.IsRegistered<IPreviewWindow>())
             {
                 Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
                 return Container.Resolve<IPreviewWindow>() as Window;
             }
-            return Container.Resolve<IBaseWindow>() as Window;
+            var window = Container.Resolve<IBaseWindow>() as Window;
+            if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.MainWindow = window;
+            }
+            return window;
         }
 
         private void OnPreviewDone()
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Dispatcher.UIThread.Invoke(() =>
             {
                 var window = Container.Resolve<IBaseWindow>() as Window;
+                if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    desktop.MainWindow = window;
+                }
                 window.Show();
             });
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            
         }
 
         protected virtual void RegisterDefaults(IContainerRegistry containerRegistry)

@@ -1,4 +1,4 @@
-﻿using Hypocrite.Wpf.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Mvvm;
 using Hypocrite.Core.Mvvm.Events;
@@ -8,7 +8,7 @@ using System;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace Abdrakov.Demo.Views
+namespace Hypocrite.DemoWpf.Views
 {
     public partial class PreviewWindowView : Window, IPreviewWindow
     {
@@ -28,7 +28,7 @@ namespace Abdrakov.Demo.Views
         public void CallPreviewDoneEvent()
         {
             timer.Stop();
-            var cont = (Application.Current as AbdrakovApplication).Container;
+            var cont = (Application.Current as ApplicationBase).Container;
             cont.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Publish();
             this.Close();
         }

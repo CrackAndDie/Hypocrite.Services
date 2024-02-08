@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypocrite.Wpf.Styles.Events
+namespace Hypocrite.Styles.Events
 {
     public class ThemeChangedEvent<T> : PubSubEvent<ThemeChangedEventArgs<T>>
     {

@@ -1,4 +1,4 @@
-﻿namespace Hypocrite.Avalonia.Views
+﻿namespace Hypocrite.Views
 {
     public static class Regions
     {

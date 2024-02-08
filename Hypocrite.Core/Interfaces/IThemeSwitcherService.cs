@@ -16,7 +16,7 @@ namespace Hypocrite.Core.Interfaces
         /// </summary>
         string NameOfDictionary { get; set; }
         /// <summary>
-        /// Dictionary of themes and it's paths. See the Abdrakov.Demo 
+        /// Dictionary of themes and it's paths. See the Hypocrite.DemoWpf 
         /// </summary>
         IDictionary<T, string> ThemeSources { get; set; }
         /// <summary>

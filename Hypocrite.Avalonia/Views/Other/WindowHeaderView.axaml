@@ -3,8 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="22"
-             x:Class="Hypocrite.Avalonia.Views.Other.WindowHeaderView"
-			 xmlns:views="clr-namespace:Hypocrite.Avalonia.Views;assembly=Hypocrite.Avalonia"
+             x:Class="Hypocrite.Views.Other.WindowHeaderView"
+			 xmlns:views="clr-namespace:Hypocrite.Views;assembly=Hypocrite.Avalonia"
 			 xmlns:prism="http://prismlibrary.com/"
 			 xmlns:prismRegions="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
 			 x:Name="windowHeaderView">

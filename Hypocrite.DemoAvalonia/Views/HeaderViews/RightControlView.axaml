@@ -5,7 +5,7 @@
              mc:Ignorable="d" 
 			 d:DesignHeight="22" 
 			 d:DesignWidth="140"
-             x:Class="Abdrakov.DemoAvalonia.Views.HeaderViews.RightControlView">
+             x:Class="Hypocrite.DemoAvalonia.Views.HeaderViews.RightControlView">
 	<Grid>
 		<TextBlock Text="{LocalizedResource Header.RightText}"
                    Margin="10,0"

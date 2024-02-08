@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Mvvm
+namespace Hypocrite.Mvvm
 {
     public class GenericNavigationParameters<T> : NavigationParameters
     {

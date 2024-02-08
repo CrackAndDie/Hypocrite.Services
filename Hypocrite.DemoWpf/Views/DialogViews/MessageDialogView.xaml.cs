@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Abdrakov.Demo.Views.DialogViews
+namespace Hypocrite.DemoWpf.Views.DialogViews
 {
     public partial class MessageDialogView : UserControl
     {

@@ -1,4 +1,4 @@
-﻿using Hypocrite.Avalonia.Styles.Events;
+﻿using Hypocrite.Styles.Events;
 using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Avalonia;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Services
+namespace Hypocrite.Services
 {
     public class ThemeSwitcherService<T> : IThemeSwitcherService<T>
     {

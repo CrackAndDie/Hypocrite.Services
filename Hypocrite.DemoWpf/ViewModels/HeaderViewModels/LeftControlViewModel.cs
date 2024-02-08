@@ -1,14 +1,14 @@
-﻿using Hypocrite.Wpf.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Container;
-using Abdrakov.Demo.Extensions;
-using Abdrakov.Demo.Resources.Themes;
+using Hypocrite.DemoWpf.Extensions;
+using Hypocrite.DemoWpf.Resources.Themes;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Mvvm.Attributes;
 using Prism.Commands;
 using System.Windows.Input;
-using Hypocrite.Wpf.Localization;
+using Hypocrite.Localization;
 
-namespace Abdrakov.Demo.ViewModels.HeaderViewModels
+namespace Hypocrite.DemoWpf.ViewModels.HeaderViewModels
 {
     public class LeftControlViewModel : ViewModelBase
     {

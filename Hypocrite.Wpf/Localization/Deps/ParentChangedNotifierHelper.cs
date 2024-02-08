@@ -7,7 +7,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Media;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Localization.Deps
+namespace Hypocrite.Localization.Deps
 {
     /// <summary>
     /// Extension methods for <see cref="DependencyObject"/> in conjunction with the <see cref="XAMLMarkupExtensions.Base.ParentChangedNotifier"/>.

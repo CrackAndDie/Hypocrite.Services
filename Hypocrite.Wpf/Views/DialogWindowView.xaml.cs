@@ -5,7 +5,7 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Views
+namespace Hypocrite.Views
 {
     public partial class DialogWindowView : Window, IDialogWindow
     {

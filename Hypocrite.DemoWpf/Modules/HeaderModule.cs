@@ -1,6 +1,6 @@
-﻿using Hypocrite.Wpf.Views;
-using Abdrakov.Demo.Views;
-using Abdrakov.Demo.Views.HeaderViews;
+﻿using Hypocrite.Views;
+using Hypocrite.DemoWpf.Views;
+using Hypocrite.DemoWpf.Views.HeaderViews;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abdrakov.Demo.Modules
+namespace Hypocrite.DemoWpf.Modules
 {
     internal class HeaderModule : IModule
     {

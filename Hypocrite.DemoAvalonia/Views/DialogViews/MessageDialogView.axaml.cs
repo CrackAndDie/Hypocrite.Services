@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Abdrakov.DemoAvalonia.Views.DialogViews
+namespace Hypocrite.DemoAvalonia.Views.DialogViews
 {
     public partial class MessageDialogView : UserControl
     {

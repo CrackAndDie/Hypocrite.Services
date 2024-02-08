@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 
-namespace Hypocrite.Avalonia.Views
+namespace Hypocrite.Views
 {
     public partial class MainWindowView : Window, IBaseWindow
     {

@@ -9,26 +9,25 @@ using System.Windows.Input;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
-using Unity;
 using Hypocrite.Core.Logging.Interfaces;
 using System.Collections.ObjectModel;
 using Hypocrite.Core.Localization.Extensions;
 using Hypocrite.Core.Localization;
 using System.Globalization;
-using Abdrakov.Demo.Resources.Themes;
+using Hypocrite.DemoWpf.Resources.Themes;
 using System.Windows.Media;
 using System.Security.Policy;
 using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Mvvm.Attributes;
-using Hypocrite.Wpf.Mvvm;
-using Hypocrite.Wpf.Localization;
+using Hypocrite.Mvvm;
+using Hypocrite.Localization;
 using Hypocrite.Core.Interfaces;
-using Hypocrite.Wpf.Styles.Events;
+using Hypocrite.Styles.Events;
 using Hypocrite.Core.Extensions;
 using System.Diagnostics;
 using Hypocrite.Core.Container;
 
-namespace Abdrakov.Demo.ViewModels
+namespace Hypocrite.DemoWpf.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {

@@ -10,27 +10,27 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using Hypocrite.Wpf.Views;
+using Hypocrite.Views;
 using System.ComponentModel;
-using Abdrakov.Demo.Views;
+using Hypocrite.DemoWpf.Views;
 using Hypocrite.Core.Utils.Settings;
 using System.Windows.Media;
 using Prism.Modularity;
-using Abdrakov.Demo.Modules;
+using Hypocrite.DemoWpf.Modules;
 using Hypocrite.Core.Localization;
 using System.Collections.ObjectModel;
 using Hypocrite.Core.Localization.Extensions;
 using System.Threading;
-using Abdrakov.Demo.Resources.Themes;
+using Hypocrite.DemoWpf.Resources.Themes;
 using log4net.Repository.Hierarchy;
-using Hypocrite.Wpf.Mvvm;
-using Hypocrite.Wpf.Localization;
-using Hypocrite.Wpf.Services;
-using Abdrakov.Demo.Views.DialogViews;
+using Hypocrite.Mvvm;
+using Hypocrite.Localization;
+using Hypocrite.Services;
+using Hypocrite.DemoWpf.Views.DialogViews;
 
-namespace Abdrakov.Demo
+namespace Hypocrite.DemoWpf
 {
-    public partial class App : AbdrakovApplication
+    public partial class App : ApplicationBase
     {
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -67,8 +67,8 @@ namespace Abdrakov.Demo
 
             containerRegistry.RegisterInstance(new BaseWindowSettings()
             {
-                ProductName = "Abdrakov.Demo",
-                LogoImage = "pack://application:,,,/Abdrakov.Demo;component/Resources/AbdrakovSolutions.png",
+                ProductName = "Hypocrite.DemoWpf",
+                LogoImage = "pack://application:,,,/Hypocrite.DemoWpf;component/Resources/AbdrakovSolutions.png",
                 SmoothAppear = true,
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
@@ -78,8 +78,8 @@ namespace Abdrakov.Demo
                 NameOfDictionary = "ThemeHolder",
                 ThemeSources = new Dictionary<Themes, string>()
                 {
-                    { Themes.Dark, "/Abdrakov.Demo;component/Resources/Themes/DarkTheme.xaml" },
-                    { Themes.Light, "/Abdrakov.Demo;component/Resources/Themes/LightTheme.xaml" },
+                    { Themes.Dark, "/Hypocrite.DemoWpf;component/Resources/Themes/DarkTheme.xaml" },
+                    { Themes.Light, "/Hypocrite.DemoWpf;component/Resources/Themes/LightTheme.xaml" },
                 },
             });
 

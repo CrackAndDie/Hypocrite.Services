@@ -1,6 +1,6 @@
 ﻿using Prism.Regions;
 
-namespace Hypocrite.Wpf.Mvvm
+namespace Hypocrite.Mvvm
 {
     public class GenericNavigationParameters<T> : NavigationParameters
     {

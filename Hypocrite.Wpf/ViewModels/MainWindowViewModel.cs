@@ -1,4 +1,4 @@
-﻿using Hypocrite.Wpf.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Localization;
@@ -17,7 +17,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Hypocrite.Wpf.ViewModels
+namespace Hypocrite.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

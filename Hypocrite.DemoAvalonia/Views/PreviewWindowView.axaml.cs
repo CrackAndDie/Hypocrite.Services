@@ -1,4 +1,4 @@
-using Hypocrite.Avalonia.Mvvm;
+using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Mvvm.Events;
 using Avalonia;
@@ -8,7 +8,7 @@ using Prism.Events;
 using Prism.Ioc;
 using System;
 
-namespace Abdrakov.DemoAvalonia.Views
+namespace Hypocrite.DemoAvalonia.Views
 {
     public partial class PreviewWindowView : Window, IPreviewWindow
     {
@@ -29,7 +29,7 @@ namespace Abdrakov.DemoAvalonia.Views
         public void CallPreviewDoneEvent()
         {
             timer.Stop();
-            var cont = (Application.Current as AbdrakovApplication)?.Container;
+            var cont = (Application.Current as ApplicationBase)?.Container;
             cont?.Resolve<IEventAggregator>()?.GetEvent<PreviewDoneEvent>()?.Publish();
             this.Close();
         }

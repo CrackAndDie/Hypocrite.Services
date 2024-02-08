@@ -3,19 +3,19 @@
   <PropertyGroup>
 	  <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
 	  <AppDesignerFolder>Properties</AppDesignerFolder>
-	  <RootNamespace>Hypocrite.Avalonia</RootNamespace>
+	  <RootNamespace>Hypocrite</RootNamespace>
       <AssemblyName>Hypocrite.Avalonia</AssemblyName>
 	  <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 
-      <PackageId>Hypocrite.Foundations.Avalonia</PackageId>
+      <PackageId>Hypocrite.Services.Avalonia</PackageId>
       <Authors>crackanddie</Authors>
-      <Product>Hypocrite.Foundations.Avalonia</Product>
+      <Product>Hypocrite.Services.Avalonia</Product>
       <PackageDescription>A powerful base for Mvvm apps with Prism</PackageDescription>
       <Copyright>Copyright ©  2023</Copyright>
       <PackageTags>Prism Mvvm DI Reactive</PackageTags>
       <PackageVersion>1.2.0</PackageVersion>
-      <PackageProjectUrl>https://github.com/CrackAndDie/Hypocrite.Foundations</PackageProjectUrl>
-      <RepositoryUrl>https://github.com/CrackAndDie/Hypocrite.Foundations</RepositoryUrl>
+      <PackageProjectUrl>https://github.com/CrackAndDie/Hypocrite.Services</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/CrackAndDie/Hypocrite.Services</RepositoryUrl>
       <PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
       <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
       <PackageLicenseFile>NUGET_LICENSE.txt</PackageLicenseFile>
@@ -48,7 +48,7 @@
 		<PackageReference Include="Avalonia" Version="11.0.5" />
 		<PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
 		<PackageReference Include="Prism.Avalonia" Version="8.1.97.11000" />
-		<PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11000" />
+		<PackageReference Include="Prism.Core" Version="8.1.97" />
         <PackageReference Include="log4net">
             <Version>2.0.12</Version>
         </PackageReference>

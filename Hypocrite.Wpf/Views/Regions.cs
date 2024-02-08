@@ -1,4 +1,4 @@
-﻿namespace Hypocrite.Wpf.Views
+﻿namespace Hypocrite.Views
 {
     public static class Regions
     {

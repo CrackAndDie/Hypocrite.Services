@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Hypocrite.Wpf.Styles.Styles.Converters
+namespace Hypocrite.Styles.Styles.Converters
 {
     public class NotZeroConverter : IValueConverter
     {

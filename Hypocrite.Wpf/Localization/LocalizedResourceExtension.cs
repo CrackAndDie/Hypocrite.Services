@@ -14,10 +14,10 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
-using Hypocrite.Wpf.Localization.Deps;
+using Hypocrite.Localization.Deps;
 using Hypocrite.Core.Localization.Extensions;
 
-namespace Hypocrite.Wpf.Localization
+namespace Hypocrite.Localization
 {
     [ContentProperty("ResourceIdentifierKey")]
     public class LocalizedResourceExtension : NestedMarkupExtension, INotifyPropertyChanged, IWeakEventListener, IDisposable

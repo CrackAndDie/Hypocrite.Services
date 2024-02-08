@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Localization
+namespace Hypocrite.Localization
 {
     public class ScopedTranslationProvider<T> : TranslationProviderBase<T>
     {

@@ -1,11 +1,11 @@
-﻿using Hypocrite.Avalonia.Mvvm;
-using Abdrakov.DemoAvalonia.Views.DialogViews;
+﻿using Hypocrite.Mvvm;
+using Hypocrite.DemoAvalonia.Views.DialogViews;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Services.Dialogs;
 using System;
 
-namespace Abdrakov.DemoAvalonia.Extensions
+namespace Hypocrite.DemoAvalonia.Extensions
 {
     public static class DialogExtensions
     {

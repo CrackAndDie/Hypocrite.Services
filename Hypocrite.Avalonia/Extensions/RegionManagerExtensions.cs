@@ -1,4 +1,4 @@
-﻿using Hypocrite.Avalonia.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Logging.Interfaces;
 using Avalonia;
@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hypocrite.Avalonia.Extensions
+namespace Hypocrite.Extensions
 {
     public static class RegionManagerExtensions
     {
@@ -30,7 +30,7 @@ namespace Hypocrite.Avalonia.Extensions
         {
             if (result.Error != null)
             {
-                var loggingService = (Application.Current as AbdrakovApplication).Container.Resolve<ILoggingService>();
+                var loggingService = (Application.Current as ApplicationBase).Container.Resolve<ILoggingService>();
                 loggingService.Error($"Navigation failed! Target: {result.Context.Uri}");
 
                 throw result.Error;

@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Hypocrite.Avalonia.Localization
+namespace Hypocrite.Localization
 {
     public class LocalizationChangedObservable : Observable<object>
     {

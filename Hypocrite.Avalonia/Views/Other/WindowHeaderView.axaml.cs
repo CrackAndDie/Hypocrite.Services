@@ -6,7 +6,7 @@ using Prism.Regions;
 using ReactiveUI;
 using System.Windows.Input;
 
-namespace Hypocrite.Avalonia.Views.Other
+namespace Hypocrite.Views.Other
 {
     public partial class WindowHeaderView : UserControl
     {

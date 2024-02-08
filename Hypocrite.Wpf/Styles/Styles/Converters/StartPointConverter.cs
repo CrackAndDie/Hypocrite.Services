@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 
-namespace Hypocrite.Wpf.Styles.Styles.Converters
+namespace Hypocrite.Styles.Styles.Converters
 {
     public class StartPointConverter : IValueConverter
     {

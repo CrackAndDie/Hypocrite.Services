@@ -1,4 +1,4 @@
-﻿using Hypocrite.Avalonia.Mvvm;
+﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Localization;
 using Hypocrite.Core.Localization.Extensions;
 using Hypocrite.Core.Logging.Interfaces;
@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 
-namespace Hypocrite.Avalonia.Localization
+namespace Hypocrite.Localization
 {
     public static class LocalizationManager
     {
@@ -170,7 +170,7 @@ namespace Hypocrite.Avalonia.Localization
                 }
             }
 
-            var loggingService = (Application.Current as AbdrakovApplication)?.Container?.Resolve<ILoggingService>();
+            var loggingService = (Application.Current as ApplicationBase)?.Container?.Resolve<ILoggingService>();
             loggingService?.Error($"No translation provider for type {obj.GetType().AssemblyQualifiedName}");
 
             return string.Empty;

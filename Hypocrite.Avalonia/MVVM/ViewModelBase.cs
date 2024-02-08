@@ -5,13 +5,13 @@ using Prism.Ioc;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 
-namespace Hypocrite.Avalonia.Mvvm
+namespace Hypocrite.Mvvm
 {
     public class ViewModelBase : EngineViewModelBase, INavigationAware, IRequireInjection
     {
         public ViewModelBase()
         {
-            Application = (Avalonia.Application.Current as AbdrakovApplication);
+            Application = (Avalonia.Application.Current as ApplicationBase);
             LoggingService.Debug($"Constructing '{ViewModelName}'");
         }
 

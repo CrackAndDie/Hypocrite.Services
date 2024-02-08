@@ -11,7 +11,7 @@ using System.Windows;
 using System.Xaml;
 using Hypocrite.Core.Localization.Extensions.Deps;
 
-namespace Hypocrite.Wpf.Localization.Deps
+namespace Hypocrite.Localization.Deps
 {
     /// <summary>
     /// This class walks up the tree of markup extensions to support nesting.

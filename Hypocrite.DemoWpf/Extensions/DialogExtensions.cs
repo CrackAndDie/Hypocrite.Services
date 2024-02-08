@@ -1,9 +1,9 @@
 ﻿using Prism.Services.Dialogs;
 using System.Windows;
-using Hypocrite.Wpf.Mvvm;
-using Abdrakov.Demo.Views.DialogViews;
+using Hypocrite.Mvvm;
+using Hypocrite.DemoWpf.Views.DialogViews;
 
-namespace Abdrakov.Demo.Extensions
+namespace Hypocrite.DemoWpf.Extensions
 {
     public static class DialogExtensions
     {

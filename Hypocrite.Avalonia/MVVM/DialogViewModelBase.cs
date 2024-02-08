@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace Hypocrite.Avalonia.Mvvm
+namespace Hypocrite.Mvvm
 {
     public class DialogViewModelBase : ViewModelBase, IDialogAware
     {

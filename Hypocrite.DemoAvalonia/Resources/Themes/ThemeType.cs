@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypocrite.DemoWpf.Resources.Themes
+namespace Hypocrite.DemoAvalonia.Resources.Themes
 {
-    public enum Themes
+    public enum ThemeType
     {
         Dark,
         Light

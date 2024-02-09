@@ -60,13 +60,13 @@ namespace Hypocrite.DemoAvalonia
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
-            containerRegistry.RegisterInstance<IThemeSwitcherService<Themes>>(new ThemeSwitcherService<Themes>(Themes.Dark)
+            containerRegistry.RegisterInstance<IThemeSwitcherService<ThemeType>>(new ThemeSwitcherService<ThemeType>(ThemeType.Dark)
             {
                 NameOfDictionary = "ThemeHolder",
-                ThemeSources = new Dictionary<Themes, string>()
+                ThemeSources = new Dictionary<ThemeType, string>()
                 {
-                    { Themes.Dark, "avares://Hypocrite.DemoAvalonia/Resources/Themes/DarkTheme.axaml" },
-                    { Themes.Light, "avares://Hypocrite.DemoAvalonia/Resources/Themes/LightTheme.axaml" },
+                    { ThemeType.Dark, "avares://Hypocrite.DemoAvalonia/Resources/Themes/DarkTheme.axaml" },
+                    { ThemeType.Light, "avares://Hypocrite.DemoAvalonia/Resources/Themes/LightTheme.axaml" },
                 },
             });
 

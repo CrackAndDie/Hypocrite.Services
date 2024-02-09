@@ -31,7 +31,7 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         public IBrush? BindableBrush { get; set; }
 
         [Injection]
-        private IThemeSwitcherService<Themes>? ThemeSwitcherService { get; set; }
+        private IThemeSwitcherService<ThemeType>? ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
 
@@ -50,10 +50,10 @@ namespace Hypocrite.DemoAvalonia.ViewModels
 
             ChangeThemeCommand = new DelegateCommand(() =>
             {
-                if (Container.IsRegistered<IThemeSwitcherService<Themes>>())
+                if (Container.IsRegistered<IThemeSwitcherService<ThemeType>>())
                 {
-                    var service = Container.Resolve<IThemeSwitcherService<Themes>>();
-                    service.ChangeTheme(service.CurrentTheme == Themes.Light ? Themes.Dark : Themes.Light);
+                    var service = Container.Resolve<IThemeSwitcherService<ThemeType>>();
+                    service.ChangeTheme(service.CurrentTheme == ThemeType.Light ? ThemeType.Dark : ThemeType.Light);
                     LoggingService.Info($"Current theme is {service.CurrentTheme}");
                 }
             });
@@ -65,14 +65,14 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         {
             SetTheme(ThemeSwitcherService!.CurrentTheme);
 
-            EventAggregator.GetEvent<ThemeChangedEvent<Themes>>().Subscribe((a) =>
+            EventAggregator.GetEvent<ThemeChangedEvent<ThemeType>>().Subscribe((a) =>
             {
                 SetTheme(a.NewTheme);
             });
 
-            void SetTheme(Themes theme)
+            void SetTheme(ThemeType theme)
             {
-                BindableBrush = theme == Themes.Dark ? Brushes.Blue : Brushes.BlueViolet;
+                BindableBrush = theme == ThemeType.Dark ? Brushes.Blue : Brushes.BlueViolet;
             }
         }
 

@@ -72,13 +72,13 @@ namespace Hypocrite.DemoWpf
             });
             containerRegistry.RegisterSingleton<IBaseWindow, MainWindowView>();
 
-            containerRegistry.RegisterInstance<IThemeSwitcherService<Themes>>(new ThemeSwitcherService<Themes>()
+            containerRegistry.RegisterInstance<IThemeSwitcherService<ThemeType>>(new ThemeSwitcherService<ThemeType>()
             {
                 NameOfDictionary = "ThemeHolder",
-                ThemeSources = new Dictionary<Themes, string>()
+                ThemeSources = new Dictionary<ThemeType, string>()
                 {
-                    { Themes.Dark, "/Hypocrite.DemoWpf;component/Resources/Themes/DarkTheme.xaml" },
-                    { Themes.Light, "/Hypocrite.DemoWpf;component/Resources/Themes/LightTheme.xaml" },
+                    { ThemeType.Dark, "/Hypocrite.DemoWpf;component/Resources/Themes/DarkTheme.xaml" },
+                    { ThemeType.Light, "/Hypocrite.DemoWpf;component/Resources/Themes/LightTheme.xaml" },
                 },
             });
 

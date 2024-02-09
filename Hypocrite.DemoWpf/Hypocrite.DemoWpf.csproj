@@ -78,7 +78,7 @@
     <Compile Include="Extensions\DialogExtensions.cs" />
     <Compile Include="Modules\HeaderModule.cs" />
     <Compile Include="Modules\MainModule.cs" />
-    <Compile Include="Resources\Themes\Themes.cs" />
+    <Compile Include="Resources\Themes\ThemeType.cs" />
     <Compile Include="Styles\Converters\ArcEndPointConverter.cs" />
     <Compile Include="Styles\Converters\ArcSizeConverter.cs" />
     <Compile Include="Styles\Converters\NonZeroConverter.cs" />

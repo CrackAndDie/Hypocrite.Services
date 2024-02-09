@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://robocadsim.readthedocs.io/en/latest/index.html">
+  <a>
     <img src="https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png" alt="Abdrakov.Solutions logo" width="340" height="340">
   </a>
 </p>

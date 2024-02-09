@@ -45,12 +45,6 @@ namespace YourNamespace
 {
     public partial class App : ApplicationBase
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            // ...
-        }
-
         protected override Window CreateShell()
         {
             var viewModelService = Container.Resolve<IViewModelResolverService>();
@@ -58,24 +52,6 @@ namespace YourNamespace
             // ...
 
             return base.CreateShell();
-        }
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            base.OnExit(e);
-            // ...
-        }
-
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            base.RegisterTypes(containerRegistry);
-            // ...
-        }
-
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
-        {
-            base.ConfigureModuleCatalog(moduleCatalog);
-            // ...
         }
     }
 }
@@ -208,7 +184,7 @@ EventAggregator.GetEvent<ThemeChangedEvent>().Subscribe(YourHandler);
 
 *Hypocrite.Services* also provides you a great realtime localization solution. To use it you should create a folder *Localization* in your project and make some changes in your *App.xaml.cs* file:
 ```cs
-public partial class App : AbdrakovApplication
+public partial class App : ApplicationBase
 {
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -228,12 +204,12 @@ In the *Localization* folder you create Resource files with translations and cal
 Now you can use it like this:
 ```xaml
 <TextBlock Text="{LocalizedResource MainPage.TestText}"
-            Foreground="{DynamicResource TextForegroundBrush}" />
+           Foreground="{DynamicResource TextForegroundBrush}" />
 ```
 Or via *Binding*s:
 ```xaml
 <TextBlock Text="{LocalizedResource {Binding TestText}}"
-            Foreground="{DynamicResource TextForegroundBrush}" />
+           Foreground="{DynamicResource TextForegroundBrush}" />
 ```
 (I have this in my *.resx* files):  
 ![image](https://github.com/CrackAndDie/Abdrakov.Solutions/assets/52558686/d7e8969d-1f9e-4f2d-938a-d6e9c483f16c)

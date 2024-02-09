@@ -11,9 +11,15 @@
   <ItemGroup>
     <None Remove="Resources\AbdrakovSolutions.ico" />
     <None Remove="Resources\AbdrakovSolutions.png" />
+    <None Remove="Resources\error.png" />
+    <None Remove="Resources\info.png" />
+    <None Remove="Resources\warning.png" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Resources\AbdrakovSolutions.png" />
+    <AvaloniaResource Include="Resources\error.png" />
+    <AvaloniaResource Include="Resources\info.png" />
+    <AvaloniaResource Include="Resources\warning.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\AbdrakovSolutions.ico" />
@@ -51,6 +57,15 @@
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Gui.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\DialogWindowView.axaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MainWindowView.axaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\OtherViews\WindowHeaderView.axaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

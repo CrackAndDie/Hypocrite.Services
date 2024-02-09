@@ -22,10 +22,10 @@ using Hypocrite.Core.Mvvm.Attributes;
 using Hypocrite.Mvvm;
 using Hypocrite.Localization;
 using Hypocrite.Core.Interfaces;
-using Hypocrite.Styles.Events;
 using Hypocrite.Core.Extensions;
 using System.Diagnostics;
 using Hypocrite.Core.Container;
+using Hypocrite.Events;
 
 namespace Hypocrite.DemoWpf.ViewModels
 {

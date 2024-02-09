@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hypocrite.DemoWpf.Views.DialogViews"
-             xmlns:converters="clr-namespace:Hypocrite.Converters;assembly=Hypocrite.Wpf"
+             xmlns:converters="clr-namespace:Hypocrite.DemoWpf.Converters"
              xmlns:prismDialogs="clr-namespace:Prism.Services.Dialogs;assembly=Prism.Wpf"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:dialog="clr-namespace:Hypocrite.DemoWpf.ViewModels.DialogViewModels"

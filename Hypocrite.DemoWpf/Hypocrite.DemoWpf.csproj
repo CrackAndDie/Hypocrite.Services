@@ -73,15 +73,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\DialogButtonsToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullImageConverter.cs" />
     <Compile Include="Extensions\DialogExtensions.cs" />
     <Compile Include="Modules\HeaderModule.cs" />
     <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Resources\Themes\Themes.cs" />
+    <Compile Include="Styles\Converters\ArcEndPointConverter.cs" />
+    <Compile Include="Styles\Converters\ArcSizeConverter.cs" />
+    <Compile Include="Styles\Converters\NonZeroConverter.cs" />
+    <Compile Include="Styles\Converters\RotateTransformCentreConverter.cs" />
+    <Compile Include="Styles\Converters\StartPointConverter.cs" />
     <Compile Include="ViewModels\DialogViewModels\MessageDialogViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModels\LeftControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\DialogViews\MessageDialogView.xaml.cs">
       <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogWindowView.xaml.cs">
+      <DependentUpon>DialogWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HeaderViews\LeftControlView.xaml.cs">
       <DependentUpon>LeftControlView.xaml</DependentUpon>
@@ -92,9 +103,16 @@
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherViews\WindowHeaderView.xaml.cs">
+      <DependentUpon>WindowHeaderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PreviewWindowView.xaml.cs">
       <DependentUpon>PreviewWindowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Regions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -151,6 +169,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\ScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +180,10 @@
     <Page Include="Views\DialogViews\MessageDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\HeaderViews\LeftControlView.xaml">
       <SubType>Designer</SubType>
@@ -171,6 +197,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MainWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OtherViews\WindowHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\PreviewWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +215,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AbdrakovSolutions.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\error.png" />
+    <Resource Include="Resources\info.png" />
+    <Resource Include="Resources\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

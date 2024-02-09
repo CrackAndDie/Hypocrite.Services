@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Hypocrite.DemoAvalonia.Views.DialogViews.MessageDialogView"
-			 xmlns:converters="clr-namespace:Hypocrite.Converters;assembly=Hypocrite.Avalonia"
+			 xmlns:converters="clr-namespace:Hypocrite.DemoAvalonia.Converters"
 			 xmlns:prismDialogs="clr-namespace:Prism.Services.Dialogs;assembly=Prism.Avalonia"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:dialog="clr-namespace:Hypocrite.DemoAvalonia.ViewModels.DialogViewModels"

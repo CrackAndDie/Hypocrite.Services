@@ -1,5 +1,4 @@
-﻿using Hypocrite.Views;
-using Hypocrite.DemoAvalonia.Views;
+﻿using Hypocrite.DemoAvalonia.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;

@@ -10,7 +10,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using Hypocrite.Views;
 using System.ComponentModel;
 using Hypocrite.DemoWpf.Views;
 using Hypocrite.Core.Utils.Settings;

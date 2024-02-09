@@ -1,5 +1,4 @@
 using Hypocrite.Mvvm;
-using Hypocrite.Views;
 using Hypocrite.DemoAvalonia.Resources.Themes;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;

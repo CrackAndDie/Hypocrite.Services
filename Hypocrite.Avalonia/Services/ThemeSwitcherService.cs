@@ -1,5 +1,4 @@
-﻿using Hypocrite.Styles.Events;
-using Hypocrite.Core.Container;
+﻿using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Avalonia;
 using Avalonia.Controls;
@@ -9,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Hypocrite.Events;
 
 namespace Hypocrite.Services
 {

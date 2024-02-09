@@ -1,6 +1,5 @@
 ﻿using Hypocrite.Localization;
 using Hypocrite.Mvvm;
-using Hypocrite.Styles.Events;
 using Hypocrite.Core.Container;
 using Hypocrite.DemoAvalonia.Resources.Themes;
 using Hypocrite.Core.Interfaces;
@@ -20,6 +19,7 @@ using System.Collections.ObjectModel;
 using Hypocrite.Core.Extensions;
 using Avalonia.Controls.Shapes;
 using Hypocrite.Core.Mvvm;
+using Hypocrite.Events;
 
 namespace Hypocrite.DemoAvalonia.ViewModels
 {

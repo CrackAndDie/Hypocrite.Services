@@ -29,9 +29,6 @@
 			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
 		</ItemGroup>
 	</Target>
-	<PropertyGroup>
-		<ApplicationIcon>AbdrakovSolutions.ico</ApplicationIcon>
-	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Prism.Core" Version="8.1.97" />
 		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
@@ -43,14 +40,6 @@
 			<Name>Hypocrite.Core</Name>
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Resource Include="Resources\AbdrakovSolutions.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<Resource Include="Resources\error.png" />
-		<Resource Include="Resources\info.png" />
-		<Resource Include="Resources\warning.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="NUGET_README.md" Pack="true" PackagePath="\" />

@@ -1,0 +1,65 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		x:Class="Hypocrite.DemoAvalonia.Views.MainWindowView"
+        xmlns:otherViews="clr-namespace:Hypocrite.DemoAvalonia.Views.OtherViews"
+        xmlns:viewModels="clr-namespace:Hypocrite.DemoAvalonia.ViewModels"
+		xmlns:local="clr-namespace:Hypocrite.DemoAvalonia.Views"
+        xmlns:prism="http://prismlibrary.com/"
+		xmlns:prismRegions="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowState="{Binding CurrentWindowState, Mode=TwoWay}"
+        Height="600"
+        Width="900"
+        Opacity="{Binding WindowOpacity, Mode=TwoWay}"
+        x:Name="thisWindow"
+		Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+		SystemDecorations="None"
+        Title="{Binding ProductName}"
+        Icon="{Binding WindowLogoImage}"
+		mc:Ignorable="d"
+		x:CompileBindings="False">
+	<Grid RowDefinitions="3,*,3" ColumnDefinitions="3,*,3">
+		<Grid RowDefinitions="22,*" ColumnDefinitions="*" Grid.Column="1" Grid.Row="1">
+			<Border BorderThickness="0"
+					Background="{DynamicResource WindowBrush}"
+					Grid.Row="1">
+				<Image Source="../Resources/AbdrakovSolutions.png"
+					   Margin="100"
+					   Stretch="Uniform"/>
+			</Border>
+
+			<ContentControl x:Name="frame"
+							Grid.Row="1"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							prismRegions:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
+							prismRegions:RegionManager.RegionManager="{Binding RegionManager}" />
+
+			<otherViews:WindowHeaderView x:Name="WindowHeader"
+										 LogoImage="{Binding LogoImage}"
+										 ProductName="{Binding ProductName}"
+										 MinimizeWindowCommand="{Binding MinimizeWindowCommand}"
+										 MaximizeWindowCommand="{Binding MaximizeWindowCommand}"
+										 RestoreWindowCommand="{Binding RestoreWindowCommand}"
+										 CloseWindowCommand="{Binding CloseWindowCommand}"
+										 WindowParameter="{Binding ElementName=thisWindow}"
+										 MinimizeButtonVisibility="{Binding MinimizeButtonVisibility}"
+										 MaximizeButtonVisibility="{Binding MaximizeButtonVisibility}"
+										 RestoreButtonVisibility="{Binding RestoreButtonVisibility}"
+										 ProgressBarVisibility="{Binding ProgressBarVisibility}"
+										 CheckAllDoneVisibility="{Binding CheckAllDoneVisibility}"/>
+		</Grid>
+
+		<Border Name="TopLeft" Background="Transparent"/>
+		<Border Name="TopRight" Background="Transparent" Grid.Column="2" />
+		<Border Name="BottomLeft" Background="Transparent" Grid.Row="2" />
+		<Border Name="BottomRight" Background="Transparent"  Grid.Row="2" Grid.Column="2"/>
+		<Border Name="Top" Background="Transparent" Grid.Column="1" />
+		<Border Name="Right" Background="Transparent" Grid.Row="1"  Grid.Column="2" />
+		<Border Name="Bottom" Background="Transparent" Grid.Row="2" Grid.Column="1"  />
+		<Border Name="Left" Background="Transparent"  Grid.Row="1" />
+	</Grid>
+</Window>

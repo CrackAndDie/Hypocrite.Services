@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d" 
+		d:DesignHeight="450"
+        d:DesignWidth="800"
+		Background="Transparent"
+		SystemDecorations="None"
+		ShowInTaskbar="False"
+		SizeToContent="WidthAndHeight"
+		BorderThickness="0"
+        x:Class="Hypocrite.DemoAvalonia.Views.DialogWindowView"
+		Loaded="Window_Loaded"
+		KeyDown="Window_KeyDown">
+</Window>

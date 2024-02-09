@@ -1,0 +1,13 @@
+﻿<commonMvvm:ApplicationBase x:Class="Hypocrite.DemoWpf.App"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="clr-namespace:Hypocrite.DemoWpf"
+                            xmlns:commonMvvm="clr-namespace:Hypocrite.Mvvm;assembly=Hypocrite.Wpf">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Hypocrite.DemoWpf;component/Resources/Themes/ThemeHolder.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</commonMvvm:ApplicationBase>

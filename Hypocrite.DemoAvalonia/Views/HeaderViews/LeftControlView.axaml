@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+			 d:DesignHeight="22"
+             d:DesignWidth="30"
+			 xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+			 x:CompileBindings="False"
+             x:Class="Hypocrite.DemoAvalonia.Views.HeaderViews.LeftControlView">
+	<UserControl.Styles>
+		<Style Selector="Button.LeftControlButtonStyle">
+			<Setter Property="Padding"
+					Value="0" />
+			<Setter Property="IsTabStop"
+					Value="False" />
+		</Style>
+		<Style Selector="Button.LeftControlButtonStyle /template/ ContentPresenter">
+            <Setter Property="Background"
+					Value="Transparent" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+		<Style Selector="Button:pointerover.LeftControlButtonStyle /template/ ContentPresenter">
+			<Setter Property="Background"
+					Value="{DynamicResource WindowStatusBrush}" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+		<Style Selector="Button:pressed.LeftControlButtonStyle /template/ ContentPresenter">
+			<Setter Property="Background"
+					Value="{DynamicResource WindowStatusBrush}" />
+			<Setter Property="BorderThickness"
+					Value="0" />
+			<Setter Property="CornerRadius"
+					Value="0" />
+		</Style>
+	</UserControl.Styles>
+	<Grid HorizontalAlignment="Right">
+		<Button x:Name="headerLeftButton"
+                VerticalAlignment="Stretch"
+				Classes="LeftControlButtonStyle"
+                Command="{Binding ShowDialogCommand}">
+			<TextBlock Margin="8,0"
+                       Text="D"
+                       VerticalAlignment="Center"
+					   Foreground="{DynamicResource TextForegroundBrush}">
+			</TextBlock>
+		</Button>
+	</Grid>
+</UserControl>

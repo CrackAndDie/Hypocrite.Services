@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hypocrite.Core.Container.Registration
+﻿namespace Hypocrite.Core.Container.Registration
 {
     public enum RegistrationType : byte
     {

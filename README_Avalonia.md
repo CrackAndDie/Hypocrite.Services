@@ -1,14 +1,14 @@
-<h1>Hypocrite.Services for WPF</h1>
+<h1>Hypocrite.Services for Avalonia</h1>
 
 <h2>Download:</h2>  
 
 <h3>.NET CLI:</h3>  
 
-```dotnet add package Hypocrite.Services```
+```dotnet add package Hypocrite.Services.Avalonia```
 
 <h3>Package Reference:</h3>  
 
-```<PackageReference Include="Hypocrite.Services" Version="*" />```  
+```<PackageReference Include="Hypocrite.Services.Avalonia" Version="*" />```  
 
 <h2>Demo:</h2>  
 
@@ -30,22 +30,14 @@ Demo could be downloaded from [releases](https://github.com/CrackAndDie/Hypocrit
 
 <h3>First steps:</h3>  
 
-When you created your WPF app you should rewrite your *App.xaml* and *App.xaml.cs* files as follows:
-```xaml
-<mvvm:ApplicationBase x:Class="YourNamespace.App"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:local="clr-namespace:YourNamespace"
-                      xmlns:mvvm="clr-namespace:Hypocrite.Mvvm;assembly=Hypocrite.Wpf">
-</mvvm:ApplicationBase>
-```
+When you created your Avalonia app you should rewrite/update your *App.xaml.cs* file as follows:
 
 ```cs
 namespace YourNamespace
 {
     public partial class App : ApplicationBase
     {
-        protected override Window CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             var viewModelService = Container.Resolve<IViewModelResolverService>();
             viewModelService.RegisterViewModelAssembly(Assembly.GetExecutingAssembly());
@@ -94,13 +86,13 @@ Registered Window under *IBaseWindow* interface will be shown up after *PreviewD
 
 *Hypocrite.Services* supports realtime theme change and flexible object registrations. Here is the sample code to register *ThemeSwitcherService* in your App (if you don't want the theme change service in your project you can skip this registration):
 ```cs
-containerRegistry.RegisterInstance(new ThemeSwitcherService<ThemeType>()
+containerRegistry.RegisterInstance(new ThemeSwitcherService<ThemeType>(ThemeType.Dark)
 {
     NameOfDictionary = "ThemeHolder",
     ThemeSources = new Dictionary<ThemeType, string>()
     {
-        { ThemeType.Dark, "/Hypocrite.DemoWpf;component/Resources/Themes/DarkTheme.xaml" },
-        { ThemeType.Light, "/Hypocrite.DemoWpf;component/Resources/Themes/LightTheme.xaml" },
+        { ThemeType.Dark, "avares://Hypocrite.DemoAvalonia/Resources/Themes/DarkTheme.axaml" },
+        { ThemeType.Light, "avares://Hypocrite.DemoAvalonia/Resources/Themes/LightTheme.axaml" },
     },
 });
 ```
@@ -119,7 +111,7 @@ Using the *ThemeSwitcherService* you can change an App's theme in realtime using
 For proper work of *ThemeSwitcherService* You should create *ResourceDictionaries* for each theme You have and a *ResourceDictionary* that will hold all the changes of themes. So in my project I've created *DarkTheme.xaml*, *LightTheme.xaml* and *ThemeHolder.xaml*.  
 *DarkTheme.xaml*:
 ```xaml
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="TextForegroundBrushColor">AliceBlue</Color>
     <SolidColorBrush x:Key="TextForegroundBrush" 
@@ -132,7 +124,7 @@ For proper work of *ThemeSwitcherService* You should create *ResourceDictionarie
 ```
 *LightTheme.xaml*:
 ```xaml
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="TextForegroundBrushColor">Black</Color>
     <SolidColorBrush x:Key="TextForegroundBrush"
@@ -145,29 +137,27 @@ For proper work of *ThemeSwitcherService* You should create *ResourceDictionarie
 ```
 *ThemeHolder.xaml* (You should set here a default theme):
 ```xaml
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Hypocrite.DemoWpf;component/Resources/Themes/DarkTheme.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
+	  <ResourceDictionary.MergedDictionaries>
+		    <ResourceInclude Source="/Resources/Themes/DarkTheme.axaml"/>
+	  </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
 ```
 
 The holder of *.xaml* theme files (*ThemeHolder.xaml*) should be merged into Your app resources like this:
 ```xaml
-<mvvm:ApplicationBase x:Class="YourNamespace.App"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:local="clr-namespace:YourNamespace"
-                      xmlns:mvvm="clr-namespace:Hypocrite.Mvvm;assembly=Hypocrite.Wpf">
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Hypocrite.DemoWpf;component/Resources/Themes/ThemeHolder.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
-</mvvm:ApplicationBase>
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="YourNamespace.App">
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="/Resources/Themes/ThemeHolder.axaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>
 ```
   
 Registered colors and brushes could be used as DynamicResources like that:
@@ -186,7 +176,7 @@ EventAggregator.GetEvent<ThemeChangedEvent>().Subscribe(YourHandler);
 ```cs
 public partial class App : ApplicationBase
 {
-    protected override void OnStartup(StartupEventArgs e)
+    public override void Initialize()
     {
         LocalizationManager.InitializeExternal(Assembly.GetExecutingAssembly(), new ObservableCollection<Language>()
         {
@@ -246,6 +236,5 @@ You should use [DynamicData](https://github.com/reactivemarbles/DynamicData) or 
 <h2>Powered by:</h2>  
 
 - *Hypocrite.Services*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
-- [Prism](https://github.com/PrismLibrary/Prism)
+- [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia)
 - [log4net](https://github.com/apache/logging-log4net)
-- *Hypocrite.Core.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)  

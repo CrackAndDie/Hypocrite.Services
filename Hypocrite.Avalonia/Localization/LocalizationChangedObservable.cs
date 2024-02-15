@@ -65,13 +65,13 @@ namespace Hypocrite.Localization
 
             var currLang = LocalizationManager.CurrentLanguage;
             string translated = LocalizationManager.GetValue(_key);
-            if (currLang != null && translated != null)
+            if (currLang != null && !string.IsNullOrWhiteSpace(translated))
             {
                 OnNextOuter(translated);
             }
             else
             {
-                OnNextOuter(_key);
+                OnNextOuter($"Key not found: {_key}");
             }
         }
 

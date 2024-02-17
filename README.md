@@ -21,4 +21,4 @@ A package that helps You to create a powerful, flexible and loosely coupled WPF 
 
 <h2>Read more:</h2>  
 
-Read more about how to use the library with [WPF](https://github.com/CrackAndDie/Hypocrite.Services/blob/dev/README_Wpf.md) or [Avalonia](https://github.com/CrackAndDie/Hypocrite.Services/blob/dev/README_Avalonia.md).
+Read more about how to use the library with [WPF](https://github.com/CrackAndDie/Hypocrite.Services/blob/main/README_Wpf.md) or [Avalonia](https://github.com/CrackAndDie/Hypocrite.Services/blob/main/README_Avalonia.md).

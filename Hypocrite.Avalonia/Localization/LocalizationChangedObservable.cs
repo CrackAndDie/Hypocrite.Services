@@ -46,9 +46,11 @@ namespace Hypocrite.Localization
             var el = (sender as StyledElement);
             var dc = el.DataContext;
             _bindableObject = dc as BindableObject;
-            _bindableObject.PropertyChanged += PropertyChangedPreparer;
-
-            Preparer(sender, e);
+            if (_bindableObject != null)
+            {
+                _bindableObject.PropertyChanged += PropertyChangedPreparer;
+                Preparer(sender, e);
+            }
         }
 
         private void PropertyChangedPreparer(object sender, PropertyChangedEventArgs e)

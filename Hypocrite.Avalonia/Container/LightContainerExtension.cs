@@ -11,7 +11,7 @@ namespace Hypocrite.Container
 {
     public class LightContainerExtension : IContainerExtension<ILightContainer>, IContainerInfo
     {
-        private AbdrakovScopedProvider _currentScope;
+        private LightScopedProvider _currentScope;
 
         /// <summary>
         /// The instance of the wrapped container
@@ -197,13 +197,13 @@ namespace Hypocrite.Container
         protected IScopedProvider CreateScopeInternal()
         {
             var child = Instance;
-            _currentScope = new AbdrakovScopedProvider(child);
+            _currentScope = new LightScopedProvider(child);
             return _currentScope;
         }
 
-        private class AbdrakovScopedProvider : IScopedProvider
+        private class LightScopedProvider : IScopedProvider
         {
-            public AbdrakovScopedProvider(ILightContainer container)
+            public LightScopedProvider(ILightContainer container)
             {
                 Container = container;
             }

@@ -23,6 +23,6 @@ namespace Hypocrite.Core.Container.Interfaces
         object Resolve(Type type);
         object Resolve(Type type, bool withInjections);
         object Resolve(Type type, string name, bool withInjections);
-        void ResolveInjections(Type type);
+        void ResolveInjections(object instance);
     }
 }

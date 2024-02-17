@@ -151,24 +151,11 @@ namespace Hypocrite.Core.Container
             return null;
         }
 
-        public void ResolveInjections(Type type)
+        public void ResolveInjections(object instance)
         {
-            if (IsRegistered(type, out IContainerRegistration registration))
+            if (InstanceCreator.RequiresInjections(instance))
             {
-                switch (registration.RegistrationType)
-                {
-                    case RegistrationType.Type:
-                    case RegistrationType.Instance:
-                        {
-                            registration.GetInstance(this, true);
-                            break;
-                        }
-                    case RegistrationType.Func:
-                        {
-                            registration.GetFunc();
-                            break;
-                        }
-                }
+                InstanceCreator.ResolveInjections(instance, this);
             }
         }
 

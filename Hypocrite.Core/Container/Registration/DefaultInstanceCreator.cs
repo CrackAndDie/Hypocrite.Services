@@ -29,8 +29,20 @@ namespace Hypocrite.Core.Container.Registration
             }
 
             var instance = constructor?.Invoke(constructorParams.ToArray());
+            if (registration.RegistrationType == RegistrationType.Type)
+            {
+                // save the instance as cache
+                registration.Instance = instance;
+            }
+
             if (withInjections && RequiresInjections(instance))
                 ResolveInjections(instance, container);
+
+            if (registration.RegistrationType == RegistrationType.Type)
+            {
+                // remove the cached instance
+                registration.Instance = null;
+            }
             return instance;
         }
 
@@ -48,7 +60,7 @@ namespace Hypocrite.Core.Container.Registration
                         continue;
                     var dep = container.Resolve(f.FieldType, false);
                     f.SetValue(instance, dep);
-                    container.ResolveInjections(f.FieldType);
+                    container.ResolveInjections(dep);
                 }
             }
             // properties
@@ -62,19 +74,13 @@ namespace Hypocrite.Core.Container.Registration
                         continue;
                     var dep = container.Resolve(p.PropertyType, false);
                     p.SetValue(instance, dep, null);
-                    container.ResolveInjections(p.PropertyType);
+                    container.ResolveInjections(dep);
                 }
             }
 
             if (type.BaseType != null)
             {
                 ResolveInjections(instance, container, type.BaseType);
-            }
-
-            // callback
-            if (instance is IRequireInjection reqInj)
-            {
-                reqInj.OnInjectionsReady();
             }
         }
 

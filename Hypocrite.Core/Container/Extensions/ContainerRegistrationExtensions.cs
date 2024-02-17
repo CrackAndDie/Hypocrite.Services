@@ -8,6 +8,12 @@ namespace Hypocrite.Core.Container.Extensions
     {
         public static object GetInstance(this IContainerRegistration registration, ILightContainer container, bool withInjections = true)
         {
+            // this is for cached Type instances
+            if (registration.Instance != null && registration.RegistrationType == RegistrationType.Type)
+            {
+                return registration.Instance;
+            }
+
             if (registration.Instance != null && registration.RegistrationType == RegistrationType.Instance)
             {
                 // all the injections should be resolved in the instance on its first resolve
@@ -15,7 +21,6 @@ namespace Hypocrite.Core.Container.Extensions
                 {
                     container.InstanceCreator.ResolveInjections(registration.Instance, container);
                 }
-                if (registration.Instance is IRequireInjection reqInj2) reqInj2.OnResolveReady(); // callback
                 return registration.Instance;
             }
 
@@ -24,7 +29,6 @@ namespace Hypocrite.Core.Container.Extensions
             {
                 registration.Instance = instance;
             }
-            if (instance is IRequireInjection reqInj) reqInj.OnResolveReady(); // callback
             return instance;
         }
 

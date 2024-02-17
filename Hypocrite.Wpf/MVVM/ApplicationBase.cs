@@ -12,7 +12,7 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using System.Windows;
 using Prism;
-using Hypocrite.Container.PrismAdapter;
+using Hypocrite.Container;
 
 namespace Hypocrite.Mvvm
 {

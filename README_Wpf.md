@@ -248,4 +248,3 @@ You should use [DynamicData](https://github.com/reactivemarbles/DynamicData) or 
 - *Hypocrite.Services*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
 - [Prism](https://github.com/PrismLibrary/Prism)
 - [log4net](https://github.com/apache/logging-log4net)
-- *Hypocrite.Core.Localization* is a rewritten part of [WPFLocalizeExtension](https://github.com/XAMLMarkupExtensions/WPFLocalizeExtension)  

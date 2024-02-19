@@ -172,7 +172,7 @@ namespace Hypocrite.DemoAvalonia.ViewModels
             }
         }
 
-        private void OnPageChanged(EngineViewModelBase vm)
+        private void OnPageChanged(CoreViewModelBase vm)
         {
 
         }

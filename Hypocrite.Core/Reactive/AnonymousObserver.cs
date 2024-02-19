@@ -1,9 +1,7 @@
 ﻿using Hypocrite.Core.Utils;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Hypocrite.Core.Mvvm.ObserverLogics
+namespace Hypocrite.Core.Reactive
 {
     /// <summary>
     /// Class to create an <see cref="IObserver{T}"/> instance from delegate-based implementations of the On* methods.

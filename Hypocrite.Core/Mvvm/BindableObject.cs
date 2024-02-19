@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hypocrite.Core.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,10 +16,12 @@ namespace Hypocrite.Core.Mvvm
     public abstract class BindableObject : INotifyPropertyChanged
     {
         /// <summary>
-        /// Occurs when a property value changes.
+        /// Occurs when a property value changes/set.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertySetEventHandler PropertySet;
+        public event PropertySettingEventHandler PropertySetting;
 
         // public ObservableCollection<IObservable> PropertyChangedObservables { get; set; } = new ObservableCollection<System.IObservable>();
 
@@ -54,14 +57,19 @@ namespace Hypocrite.Core.Mvvm
         /// desired value.</returns>
         public virtual bool SetPropertyWithCallback<T>(ref T storage, T value, Action onChanged, [CallerMemberName] string propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(storage, value)) return false;
+            bool isDifferent = !EqualityComparer<T>.Default.Equals(storage, value);
 
-            RaisePropertyChanging(propertyName);
-            storage = value;
-            onChanged?.Invoke();
-            RaisePropertyChanged(propertyName);
+            RaisePropertySetting(propertyName);
+            if (isDifferent)
+            {
+                RaisePropertyChanging(propertyName);
+                storage = value;
+                onChanged?.Invoke();
+                RaisePropertyChanged(propertyName);
+            }
+            RaisePropertySet(propertyName);
 
-            return true;
+            return isDifferent;
         }
 
         /// <summary>
@@ -87,6 +95,28 @@ namespace Hypocrite.Core.Mvvm
         }
 
         /// <summary>
+        /// Raises this object's PropertySetting event.
+        /// </summary>
+        /// <param name="propertyName">Name of the property used to notify listeners. This
+        /// value is optional and can be provided automatically when invoked from compilers
+        /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        protected void RaisePropertySetting([CallerMemberName] string propertyName = null)
+        {
+            OnPropertySetting(new PropertySettingEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Raises this object's PropertySet event.
+        /// </summary>
+        /// <param name="propertyName">Name of the property used to notify listeners. This
+        /// value is optional and can be provided automatically when invoked from compilers
+        /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        protected void RaisePropertySet([CallerMemberName] string propertyName = null)
+        {
+            OnPropertySet(new PropertySetEventArgs(propertyName));
+        }
+
+        /// <summary>
         /// Raises this object's PropertyChanging event.
         /// </summary>
         /// <param name="args">The PropertyChangedEventArgs</param>
@@ -102,6 +132,24 @@ namespace Hypocrite.Core.Mvvm
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             PropertyChanged?.Invoke(this, args);
+        }
+
+        /// <summary>
+        /// Raises this object's PropertySetting event.
+        /// </summary>
+        /// <param name="args">The PropertySettingEventArgs</param>
+        protected virtual void OnPropertySetting(PropertySettingEventArgs args)
+        {
+            PropertySetting?.Invoke(this, args);
+        }
+
+        /// <summary>
+        /// Raises this object's PropertySet event.
+        /// </summary>
+        /// <param name="args">The PropertySetEventArgs</param>
+        protected virtual void OnPropertySet(PropertySetEventArgs args)
+        {
+            PropertySet?.Invoke(this, args);
         }
     }
 }

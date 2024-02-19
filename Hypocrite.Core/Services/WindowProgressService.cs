@@ -1,5 +1,5 @@
-﻿using Hypocrite.Core.Interfaces;
-using Hypocrite.Core.Mvvm.Events;
+﻿using Hypocrite.Core.Events;
+using Hypocrite.Core.Interfaces;
 using Prism.Events;
 using System.Collections.ObjectModel;
 

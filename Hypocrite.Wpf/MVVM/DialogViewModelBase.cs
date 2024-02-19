@@ -1,4 +1,4 @@
-﻿using Hypocrite.Core.Mvvm.Events;
+﻿using Hypocrite.Core.Events;
 using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;

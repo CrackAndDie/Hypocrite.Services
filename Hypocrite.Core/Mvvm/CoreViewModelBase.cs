@@ -1,5 +1,5 @@
-﻿using Hypocrite.Core.Interfaces;
-using Hypocrite.Core.Mvvm.Events;
+﻿using Hypocrite.Core.Events;
+using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Logging.Interfaces;
 using Prism.Events;
 using Prism.Ioc;
@@ -7,9 +7,9 @@ using Prism.Mvvm;
 
 namespace Hypocrite.Core.Mvvm
 {
-    public class EngineViewModelBase : BindableObject, IViewModel
+    public class CoreViewModelBase : BindableObject, IViewModel
     {
-        public EngineViewModelBase()
+        public CoreViewModelBase()
         {
             viewModelName = GetType().FullName;
         }

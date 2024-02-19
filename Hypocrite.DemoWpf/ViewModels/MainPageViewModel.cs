@@ -17,7 +17,6 @@ using System.Globalization;
 using Hypocrite.DemoWpf.Resources.Themes;
 using System.Windows.Media;
 using System.Security.Policy;
-using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Mvvm.Attributes;
 using Hypocrite.Mvvm;
 using Hypocrite.Localization;
@@ -32,7 +31,7 @@ namespace Hypocrite.DemoWpf.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         [Notify]
-        public Language SelectedLanguage { get; set; }
+        public Language SelectedLanguage { get; set; } = LocalizationManager.Languages.FirstOrDefault();
         [Notify]
         public SolidColorBrush BindableBrush { get; set; }
 
@@ -51,7 +50,7 @@ namespace Hypocrite.DemoWpf.ViewModels
         {
             base.OnViewAttached();
 
-            this.WhenPropertyChanged(x => x.SelectedLanguage).Subscribe(OnSelectedLanguageChanged);
+            this.WhenPropertyChanged(x => x.SelectedLanguage, true).Subscribe(OnSelectedLanguageChanged);
 
             ChangeThemeCommand = new DelegateCommand(() =>
             {

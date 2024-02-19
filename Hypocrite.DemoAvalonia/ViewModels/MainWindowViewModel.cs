@@ -1,7 +1,6 @@
 ﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Mvvm;
-using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Utils;
 using Hypocrite.Core.Utils.Settings;
 using Avalonia.Controls;
@@ -16,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
+using Hypocrite.Core.Events;
 
 namespace Hypocrite.DemoAvalonia.ViewModels
 {

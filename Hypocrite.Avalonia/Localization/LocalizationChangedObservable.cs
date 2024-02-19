@@ -1,10 +1,10 @@
 ﻿using Hypocrite.Core.Mvvm;
-using Hypocrite.Core.Mvvm.ObserverLogics;
 using Avalonia;
 using Avalonia.Data;
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using Hypocrite.Core.Reactive;
 
 namespace Hypocrite.Localization
 {

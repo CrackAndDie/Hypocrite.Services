@@ -1,12 +1,12 @@
 using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
-using Hypocrite.Core.Mvvm.Events;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using Prism.Events;
 using Prism.Ioc;
 using System;
+using Hypocrite.Core.Events;
 
 namespace Hypocrite.DemoAvalonia.Views
 {

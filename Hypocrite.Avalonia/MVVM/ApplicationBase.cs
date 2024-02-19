@@ -3,7 +3,6 @@ using Hypocrite.Services;
 using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;
-using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Services;
 using Hypocrite.Core.Logging.Interfaces;
 using Hypocrite.Core.Logging.Services;
@@ -22,6 +21,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Services.Dialogs;
 using Prism;
 using Hypocrite.Container;
+using Hypocrite.Core.Events;
 
 namespace Hypocrite.Mvvm
 {

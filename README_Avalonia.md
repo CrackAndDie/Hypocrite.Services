@@ -230,7 +230,7 @@ private class NormalClass
 
 <h4>Constructor injections:</h4>  
 
-Parametrised constructors could be used with *Abdrakov.Container*. For example after registering and resolving the class  
+Parametrised constructors could also be used. For example after registering and resolving the class  
 ```c#
 private class NormalClass
 {

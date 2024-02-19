@@ -224,7 +224,8 @@ In this examle *lang* is an instance of *Language* class.
 
 <h3>Light container:</h3>  
 
-*Hypocrite.Services* also provides registrations and resolves of services and other shite in the fast and lightweight container.   
+*Hypocrite.Services* also provides registrations and resolves of services and other shite in the fast and lightweight container.  
+
 <h4>Attribute injections:</h4>  
 
 All the registered shite could be resolved via *Injection* attribute (use the attribute only for properties and fields) like this:
@@ -240,7 +241,7 @@ private class NormalClass
 
 <h4>Constructor injections:</h4>  
 
-Parametrised constructors could be used with *Abdrakov.Container*. For example after registering and resolving the class  
+Parametrised constructors could also be used. For example after registering and resolving the class  
 ```c#
 private class NormalClass
 {

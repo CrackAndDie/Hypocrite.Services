@@ -1,15 +1,17 @@
-﻿using Hypocrite.Core.Container.Extensions;
+﻿using Hypocrite.Core.Container.Common;
+using Hypocrite.Core.Container.Extensions;
 using Hypocrite.Core.Container.Interfaces;
 using Hypocrite.Core.Container.Registration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Hypocrite.Core.Container
 {
     public class LightContainer : ILightContainer
     {
-        public IList<IContainerRegistration> Registrations { get; set; } = new List<IContainerRegistration>();
+        public QuickSet<IContainerRegistration> Registrations { get; set; } = new QuickSet<IContainerRegistration>();
 
         public IInstanceCreator InstanceCreator { get; set; } = new DefaultInstanceCreator();
 
@@ -20,24 +22,17 @@ namespace Hypocrite.Core.Container
 
         public bool IsRegistered(Type type)
         {
-            return IsRegistered(type, out IContainerRegistration _);
-        }
-
-        public bool IsRegistered(Type type, out IContainerRegistration registration)
-        {
-            return IsRegistered(type, string.Empty, out registration);
+            return IsRegistered(type, "");
         }
 
         public bool IsRegistered(Type type, string name)
         {
-            return IsRegistered(type, name, out IContainerRegistration _);
+            return Registrations.Get(type.GetHashCode(), name) != null;
         }
 
-        public bool IsRegistered(Type type, string name, out IContainerRegistration registration)
+        public IContainerRegistration GetRegistration(Type type, string name = "")
         {
-            var regs = string.IsNullOrWhiteSpace(name) ? Registrations : Registrations.Where(x => x.Name == name);
-            registration = regs.FirstOrDefault(x => x.RegisteredType == type);
-            return registration != null;
+            return Registrations.Get(type.GetHashCode(), name)?.Value;
         }
 
         public ILightContainer RegisterFactory(Type type, Func<ILightContainer, Type, object> factory)
@@ -49,7 +44,8 @@ namespace Hypocrite.Core.Container
                 Instance = factory,
                 RegistrationType = RegistrationType.Func,
             };
-            AddOrReplace(registration);
+            AddOrReplace(registration, string.Empty);
+            SetUpRegistration(registration);
             return this;
         }
 
@@ -66,9 +62,9 @@ namespace Hypocrite.Core.Container
                 MappedToType = instance.GetType(),
                 Instance = instance,
                 RegistrationType = RegistrationType.Instance,
-                Name = name,
             };
-            AddOrReplace(registration);
+            AddOrReplace(registration, name);
+            SetUpRegistration(registration);
             return this;
         }
 
@@ -79,18 +75,15 @@ namespace Hypocrite.Core.Container
 
         public ILightContainer RegisterType(Type registeredType, Type mappedToType, string name, bool isSingleton = false)
         {
-            var parametrizedConstructor = mappedToType.GetNormalConstructor();
-
             var registration = new ContainerRegistration()
             {
                 RegisteredType = registeredType,
                 MappedToType = mappedToType,
                 Instance = null,
                 RegistrationType = isSingleton ? RegistrationType.Instance : RegistrationType.Type,
-                InjectionMembers = parametrizedConstructor.GetParameters(),
-                Name = name,
             };
-            AddOrReplace(registration);
+            AddOrReplace(registration, name);
+            SetUpRegistration(registration);
             return this;
         }
 
@@ -106,8 +99,15 @@ namespace Hypocrite.Core.Container
 
         public object Resolve(Type type, string name, bool withInjections)
         {
-            if (IsRegistered(type, name, out IContainerRegistration registration))
+            return Resolve(type, string.Empty, withInjections, out IContainerRegistration _);
+        }
+
+        public object Resolve(Type type, string name, bool withInjections, out IContainerRegistration outRegistration)
+        {
+            if (IsRegistered(type, name))
             {
+                IContainerRegistration registration = GetRegistration(type, name);
+                outRegistration = registration;
                 switch (registration.RegistrationType)
                 {
                     case RegistrationType.Type:
@@ -125,8 +125,11 @@ namespace Hypocrite.Core.Container
             // try to resolve with empty name
             if (!string.IsNullOrWhiteSpace(name))
             {
-                return Resolve(type, string.Empty, withInjections);
+                return Resolve(type, string.Empty, withInjections, out outRegistration);
             }
+
+            // settings to null because it was not registered
+            outRegistration = null;
 
             // check for primitives
             if (type.IsPrimitive || type == typeof(string))
@@ -137,26 +140,37 @@ namespace Hypocrite.Core.Container
             // try to create it by my own
             if (type.IsClass)
             {
-                var parametrizedConstructor = type.GetNormalConstructor();
                 var tempRegistration = new ContainerRegistration()
                 {
                     RegisteredType = type,
                     MappedToType = type,
                     Instance = null,
                     RegistrationType = RegistrationType.Type,
-                    InjectionMembers = parametrizedConstructor.GetParameters(),
                 };
+                SetUpRegistration(tempRegistration);
                 return tempRegistration.GetInstance(this);
             }
             return null;
         }
 
-        public void ResolveInjections(object instance)
+        public void ResolveInjections(object instance, MemberInjectionInfo injectionInfo = null)
         {
-            if (InstanceCreator.RequiresInjections(instance))
+            if (injectionInfo == null)
             {
-                InstanceCreator.ResolveInjections(instance, this);
+                injectionInfo = new MemberInjectionInfo();
+                InternalGenerateInjectionInfo(instance, injectionInfo);
             }
+            InstanceCreator.ResolveInjections(instance, this, injectionInfo);
+        }
+
+        public bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo = null)
+        {
+            if (injectionInfo == null)
+            {
+                injectionInfo = new MemberInjectionInfo();
+                InternalGenerateInjectionInfo(instance, injectionInfo);
+            }
+            return InstanceCreator.RequiresInjections(instance, injectionInfo);
         }
 
         public void Dispose()
@@ -164,26 +178,63 @@ namespace Hypocrite.Core.Container
             
         }
 
-        private int IndexOfReg(IContainerRegistration registration)
+        private void AddOrReplace(IContainerRegistration registration, string name)
         {
-            if (IsRegistered(registration.RegisteredType, registration.Name))
-            {
-                int index = Registrations.Select(x => (x.RegisteredType, x.Name)).ToList().IndexOf((registration.RegisteredType, registration.Name));
-                return index;
-            }
-            return -1;
+            Registrations.AddOrReplace(registration.RegisteredType.GetHashCode(), name, registration);
         }
 
-        private void AddOrReplace(IContainerRegistration registration)
+        private void SetUpRegistration(IContainerRegistration registration)
         {
-            int ind;
-            if ((ind = IndexOfReg(registration)) != -1)
+            if (registration.Instance != null && registration.RegistrationType == RegistrationType.Instance) 
             {
-                Registrations[ind] = registration;
+                ResolveInjections(registration.Instance);
             }
-            else
+            else if (registration.RegistrationType == RegistrationType.Instance || registration.RegistrationType == RegistrationType.Type)
             {
-                Registrations.Add(registration);
+                InternalGenerateInjectionInfo(null, registration.MemberInjectionInfo, registration.MappedToType);
+
+                var ctor = registration.MappedToType.GetNormalConstructor();
+                registration.ConstructorInjectionInfo.InjectionMembers = ctor.GetParameters();
+
+                // prepare constructor info
+                if (registration.ConstructorInjectionInfo.InjectionMembers.Length > 0)
+                {
+                    registration.ConstructorInjectionInfo.DefaultConstructorInfo = ctor;
+                }
+                else
+                {
+                    NewExpression newExp = Expression.New(ctor);
+                    Expression<Func<object>> lambda = Expression.Lambda<Func<object>>(newExp);
+                    registration.ConstructorInjectionInfo.DefaultConstructorDelegate = lambda.Compile();
+                }
+            }
+        }
+
+        private void InternalGenerateInjectionInfo(object instance, MemberInjectionInfo injectionInfo, Type type = null)
+        {
+            type = type ?? instance.GetType();
+            // fields
+            foreach (var f in type.GetTypeInfo().DeclaredFields)
+            {
+                var attrs = f.GetCustomAttributes(typeof(InjectionAttribute), false);
+                if (attrs.Length > 0)
+                {
+                    injectionInfo.InjectionFields.Add(f);
+                }
+            }
+            // properties
+            foreach (var p in type.GetTypeInfo().DeclaredProperties)
+            {
+                var attrs = p.GetCustomAttributes(typeof(InjectionAttribute), false);
+                if (attrs.Length > 0)
+                {
+                    injectionInfo.InjectionProperties.Add(p);
+                }
+            }
+
+            if (type.BaseType != null)
+            {
+                InternalGenerateInjectionInfo(instance, injectionInfo, type.BaseType);
             }
         }
     }

@@ -56,13 +56,13 @@ namespace Hypocrite.Container
 
         public Type GetRegistrationType(string key)
         {
-            return Instance.Registrations.FirstOrDefault(x => x.Name == key)?.GetType();
+            return Instance.Registrations.Get(0, key)?.Value?.MappedToType;
         }
 
         public Type GetRegistrationType(Type serviceType)
         {
-            var matchingRegistration = Instance.Registrations.Where(x => x.RegisteredType == serviceType).FirstOrDefault();
-            return matchingRegistration?.MappedToType;
+            var matchingRegistration = Instance.Registrations.Get(serviceType.GetHashCode(), string.Empty);
+            return matchingRegistration?.Value?.MappedToType;
         }
 
         public bool IsRegistered(Type type)

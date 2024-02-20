@@ -14,22 +14,23 @@ namespace Hypocrite.Core.Container.Extensions
                 return registration.Instance;
             }
 
-            if (registration.Instance != null && registration.RegistrationType == RegistrationType.Instance)
+            if (registration.RegistrationType == RegistrationType.Instance)
             {
                 // all the injections should be resolved in the instance on its first resolve
-                if (container.InstanceCreator.RequiresInjections(registration.Instance) && withInjections)
+                if (!registration.MemberInjectionInfo.IsInjected && withInjections)
                 {
-                    container.InstanceCreator.ResolveInjections(registration.Instance, container);
+                    if (registration.Instance != null)
+                        container.InstanceCreator.ResolveInjections(registration.Instance, container, registration.MemberInjectionInfo);
+                    else
+                    {
+                        registration.Instance = container.InstanceCreator.CreateInstance(registration, container, withInjections);
+                    }
+                    registration.MemberInjectionInfo.IsInjected = true;
                 }
                 return registration.Instance;
             }
 
-            var instance = container.InstanceCreator.CreateInstance(registration, container, withInjections);
-            if (registration.RegistrationType == RegistrationType.Instance)
-            {
-                registration.Instance = instance;
-            }
-            return instance;
+            return container.InstanceCreator.CreateInstance(registration, container, withInjections);
         }
 
         public static Func<ILightContainer, Type, object> GetFunc(this IContainerRegistration registration)

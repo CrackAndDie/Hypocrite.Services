@@ -1,7 +1,9 @@
-﻿using Hypocrite.Core.Container.Extensions;
+﻿using Hypocrite.Core.Container.Common;
+using Hypocrite.Core.Container.Extensions;
 using Hypocrite.Core.Container.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace Hypocrite.Core.Container.Registration
@@ -10,13 +12,16 @@ namespace Hypocrite.Core.Container.Registration
     {
         public object CreateInstance(IContainerRegistration registration, ILightContainer container, bool withInjections = true)
         {
-            var constructor = registration.MappedToType.GetNormalConstructor();
-
-            List<object> constructorParams = new List<object>();
-            // injecting constructor parameters
-            if (registration.InjectionMembers != null)
+            // creating instance depending on constructor info
+            object instance = null;
+            if (registration.ConstructorInjectionInfo.DefaultConstructorDelegate != null)
             {
-                foreach (var param in registration.InjectionMembers)
+                instance = registration.ConstructorInjectionInfo.DefaultConstructorDelegate();
+            }
+            else if (registration.ConstructorInjectionInfo.DefaultConstructorInfo != null)
+            {
+                List<object> constructorParams = new List<object>();
+                foreach (var param in registration.ConstructorInjectionInfo.InjectionMembers)
                 {
                     var paramInstance = container.Resolve(param.ParameterType);
                     // if parameter has default value then it should be applied
@@ -26,17 +31,17 @@ namespace Hypocrite.Core.Container.Registration
                     }
                     constructorParams.Add(paramInstance);
                 }
+                instance = registration.ConstructorInjectionInfo.DefaultConstructorInfo.Invoke(constructorParams.ToArray());
             }
-
-            var instance = constructor?.Invoke(constructorParams.ToArray());
+            
             if (registration.RegistrationType == RegistrationType.Type)
             {
                 // save the instance as cache
                 registration.Instance = instance;
             }
 
-            if (withInjections && RequiresInjections(instance))
-                ResolveInjections(instance, container);
+            if (withInjections)
+                ResolveInjections(instance, container, registration.MemberInjectionInfo);
 
             if (registration.RegistrationType == RegistrationType.Type)
             {
@@ -46,73 +51,44 @@ namespace Hypocrite.Core.Container.Registration
             return instance;
         }
 
-        public void ResolveInjections(object instance, ILightContainer container, Type type = null)
+        public void ResolveInjections(object instance, ILightContainer container, MemberInjectionInfo injectionInfo)
         {
-            type = type ?? instance.GetType();
             // fields
-            foreach (var f in type.GetTypeInfo().DeclaredFields)
+            foreach (var f in injectionInfo.InjectionFields)
             {
-                var attrs = f.GetCustomAttributes(typeof(InjectionAttribute), false);
-                if (attrs.Length > 0)
-                {
-                    // recursion problem solver
-                    if (f.GetValue(instance) != null)
-                        continue;
-                    var dep = container.Resolve(f.FieldType, false);
-                    f.SetValue(instance, dep);
-                    container.ResolveInjections(dep);
-                }
+                // recursion problem solver
+                if (f.GetValue(instance) != null)
+                    continue;
+                var dep = container.Resolve(f.FieldType, string.Empty, false, out IContainerRegistration reg);
+                f.SetValue(instance, dep);
+                container.ResolveInjections(dep, reg?.MemberInjectionInfo);
             }
             // properties
-            foreach (var p in type.GetTypeInfo().DeclaredProperties)
+            foreach (var p in injectionInfo.InjectionProperties)
             {
-                var attrs = p.GetCustomAttributes(typeof(InjectionAttribute), false);
-                if (attrs.Length > 0)
-                {
-                    // recursion problem solver
-                    if (p.GetValue(instance) != null)
-                        continue;
-                    var dep = container.Resolve(p.PropertyType, false);
-                    p.SetValue(instance, dep, null);
-                    container.ResolveInjections(dep);
-                }
-            }
-
-            if (type.BaseType != null)
-            {
-                ResolveInjections(instance, container, type.BaseType);
+                // recursion problem solver
+                if (p.GetValue(instance) != null)
+                    continue;
+                var dep = container.Resolve(p.PropertyType, string.Empty, false, out IContainerRegistration reg);
+                p.SetValue(instance, dep, null);
+                container.ResolveInjections(dep, reg?.MemberInjectionInfo);
             }
         }
 
-        public bool RequiresInjections(object instance, Type type = null)
+        public bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo)
         {
-            type = type ?? instance.GetType();
             // fields
-            foreach (var f in type.GetTypeInfo().DeclaredFields)
+            foreach (var f in injectionInfo.InjectionFields)
             {
-                var attrs = f.GetCustomAttributes(typeof(InjectionAttribute), false);
-                if (attrs.Length > 0)
-                {
-                    if (f.GetValue(instance) == null)
-                        return true;
-                }
+                if (f.GetValue(instance) == null)
+                    return true;
             }
             // properties
-            foreach (var p in type.GetTypeInfo().DeclaredProperties)
+            foreach (var p in injectionInfo.InjectionProperties)
             {
-                var attrs = p.GetCustomAttributes(typeof(InjectionAttribute), false);
-                if (attrs.Length > 0)
-                {
-                    if (p.GetValue(instance) == null)
-                        return true;
-                }
+                if (p.GetValue(instance) == null)
+                    return true;
             }
-
-            if (type.BaseType != null)
-            {
-                return RequiresInjections(instance, type.BaseType);
-            }
-
             return false;
         }
     }

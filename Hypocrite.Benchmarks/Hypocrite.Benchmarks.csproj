@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.4" />
+
+		<PackageReference Include="Unity.Container" Version="5.11.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hypocrite.Core\Hypocrite.Core.csproj">
+			<Project>{9ACAC9D4-6F9D-4701-80F6-670B8ED30B2F}</Project>
+			<Name>Hypocrite.Core</Name>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Hypocrite.Core.Container.Common;
+using System;
 
 namespace Hypocrite.Core.Container.Interfaces
 {
     public interface ILightContainer : IDisposable
     {
-        IList<IContainerRegistration> Registrations { get; }
+        QuickSet<IContainerRegistration> Registrations { get; }
 
         IInstanceCreator InstanceCreator { get; }
 
@@ -17,12 +17,17 @@ namespace Hypocrite.Core.Container.Interfaces
         ILightContainer RegisterInstance(Type type, object instance, string name);
         ILightContainer RegisterFactory(Type type, Func<ILightContainer, Type, object> factory);
 
+        IContainerRegistration GetRegistration(Type type, string name = "");
+
         bool IsRegistered(Type type);
         bool IsRegistered(Type type, string name);
 
         object Resolve(Type type);
         object Resolve(Type type, bool withInjections);
         object Resolve(Type type, string name, bool withInjections);
-        void ResolveInjections(object instance);
+        object Resolve(Type type, string name, bool withInjections, out IContainerRegistration outRegistration);
+
+        void ResolveInjections(object instance, MemberInjectionInfo injectionInfo = null);
+        bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo = null);
     }
 }

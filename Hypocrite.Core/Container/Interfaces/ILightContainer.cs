@@ -9,8 +9,6 @@ namespace Hypocrite.Core.Container.Interfaces
 
         IInstanceCreator InstanceCreator { get; }
 
-        void SetInstanceCreator(IInstanceCreator creator);
-
         ILightContainer RegisterType(Type registeredType, Type mappedToType, bool isSingleton = false);
         ILightContainer RegisterType(Type registeredType, Type mappedToType, string name, bool isSingleton = false);
         ILightContainer RegisterInstance(Type type, object instance);
@@ -21,13 +19,16 @@ namespace Hypocrite.Core.Container.Interfaces
 
         bool IsRegistered(Type type);
         bool IsRegistered(Type type, string name);
+        bool IsRegistered(Type type, string name, out IContainerRegistration registration);
 
         object Resolve(Type type);
         object Resolve(Type type, bool withInjections);
         object Resolve(Type type, string name, bool withInjections);
         object Resolve(Type type, string name, bool withInjections, out IContainerRegistration outRegistration);
 
-        void ResolveInjections(object instance, MemberInjectionInfo injectionInfo = null);
-        bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo = null);
+        void ResolveInjections(object instance);
+        void ResolveInjections(object instance, MemberInjectionInfo injectionInfo);
+        bool RequiresInjections(object instance);
+        bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo);
     }
 }

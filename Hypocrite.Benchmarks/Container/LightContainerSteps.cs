@@ -12,7 +12,7 @@ namespace Hypocrite.Benchmarks.Container
         public LightContainerSteps()
         {
             _lightContainer = new LightContainer();
-            _lightContainer.RegisterType(typeof(ContainerTestClass2), typeof(ContainerTestClass2), true);
+            _lightContainer.RegisterType(typeof(ContainerTestClass2), typeof(ContainerTestClass2), false);
         }
 
         [Benchmark]
@@ -27,24 +27,22 @@ namespace Hypocrite.Benchmarks.Container
             _lightContainer.GetRegistration(typeof(ContainerTestClass2), string.Empty);
         }
 
-        [Benchmark]
-        public void GetConstructor()
-        {
-            var _ = typeof(ContainerTestClass2).GetNormalConstructor();
-        }
+        // it takes about 60ns
+        // var _ = reg.RegistrationPolicy.CreateInstance(true);
 
         [Benchmark]
-        public void CreateInstancePure()
+        public void CreatePureInstance()
         {
-            var constructor = typeof(ContainerTestClass2).GetNormalConstructor();
-            var _ = constructor.Invoke(null);
+            var reg = _lightContainer.GetRegistration(typeof(ContainerTestClass2), string.Empty);
+            var _ = _lightContainer.InstanceCreator.CreatePureInstance(reg);
         }
 
         [Benchmark]
         public void CreateInstance()
         {
             var reg = _lightContainer.GetRegistration(typeof(ContainerTestClass2), string.Empty);
-            var _ = _lightContainer.InstanceCreator.CreateInstance(reg, _lightContainer, true);
+            var inst = _lightContainer.InstanceCreator.CreatePureInstance(reg);
+            _lightContainer.InstanceCreator.ResolveInjections(inst, reg.MemberInjectionInfo);
         }
     }
 }

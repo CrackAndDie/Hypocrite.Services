@@ -1,7 +1,7 @@
 ﻿using Hypocrite.Core.Container.Common;
+using Hypocrite.Core.Container.InstancePolicy;
 using Hypocrite.Core.Container.Registration;
 using System;
-using System.Reflection;
 
 namespace Hypocrite.Core.Container.Interfaces
 {
@@ -15,5 +15,7 @@ namespace Hypocrite.Core.Container.Interfaces
 
         MemberInjectionInfo MemberInjectionInfo { get; }
         ConstructorInjectionInfo ConstructorInjectionInfo { get; }
+
+        BasePolicy RegistrationPolicy { get; set; }
     }
 }

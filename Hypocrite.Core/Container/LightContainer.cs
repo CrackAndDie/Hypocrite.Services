@@ -1,9 +1,9 @@
 ﻿using Hypocrite.Core.Container.Common;
 using Hypocrite.Core.Container.Extensions;
+using Hypocrite.Core.Container.InstancePolicy;
 using Hypocrite.Core.Container.Interfaces;
 using Hypocrite.Core.Container.Registration;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -13,11 +13,11 @@ namespace Hypocrite.Core.Container
     {
         public QuickSet<IContainerRegistration> Registrations { get; set; } = new QuickSet<IContainerRegistration>();
 
-        public IInstanceCreator InstanceCreator { get; set; } = new DefaultInstanceCreator();
+        public IInstanceCreator InstanceCreator { get; private set; }
 
-        public void SetInstanceCreator(IInstanceCreator creator)
+        public LightContainer()
         {
-            InstanceCreator = creator;
+            InstanceCreator = new DefaultInstanceCreator(this);
         }
 
         public bool IsRegistered(Type type)
@@ -30,7 +30,13 @@ namespace Hypocrite.Core.Container
             return Registrations.Get(type.GetHashCode(), name) != null;
         }
 
-        public IContainerRegistration GetRegistration(Type type, string name = "")
+        public bool IsRegistered(Type type, string name, out IContainerRegistration registration)
+        {
+            registration = Registrations.Get(type.GetHashCode(), name)?.Value;
+            return registration != null;
+        }
+
+        public IContainerRegistration GetRegistration(Type type, string name)
         {
             return Registrations.Get(type.GetHashCode(), name)?.Value;
         }
@@ -104,22 +110,9 @@ namespace Hypocrite.Core.Container
 
         public object Resolve(Type type, string name, bool withInjections, out IContainerRegistration outRegistration)
         {
-            if (IsRegistered(type, name))
+            if (IsRegistered(type, name, out outRegistration))
             {
-                IContainerRegistration registration = GetRegistration(type, name);
-                outRegistration = registration;
-                switch (registration.RegistrationType)
-                {
-                    case RegistrationType.Type:
-                    case RegistrationType.Instance:
-                        {
-                            return registration.GetInstance(this, withInjections);
-                        }
-                    case RegistrationType.Func:
-                        {
-                            return registration.GetFunc();
-                        }
-                }
+                return outRegistration.RegistrationPolicy.CreateInstance(withInjections);
             }
 
             // try to resolve with empty name
@@ -140,30 +133,33 @@ namespace Hypocrite.Core.Container
             // try to create it by my own
             if (type.IsClass)
             {
-                var tempRegistration = new ContainerRegistration()
-                {
-                    RegisteredType = type,
-                    MappedToType = type,
-                    Instance = null,
-                    RegistrationType = RegistrationType.Type,
-                };
-                SetUpRegistration(tempRegistration);
-                return tempRegistration.GetInstance(this);
+                RegisterType(type, type, name, false);
+                return Resolve(type, name, true);
             }
             return null;
         }
 
-        public void ResolveInjections(object instance, MemberInjectionInfo injectionInfo = null)
+        public void ResolveInjections(object instance)
+        {
+            ResolveInjections(instance, null);
+        }
+
+        public void ResolveInjections(object instance, MemberInjectionInfo injectionInfo)
         {
             if (injectionInfo == null)
             {
                 injectionInfo = new MemberInjectionInfo();
                 InternalGenerateInjectionInfo(instance, injectionInfo);
             }
-            InstanceCreator.ResolveInjections(instance, this, injectionInfo);
+            InstanceCreator.ResolveInjections(instance, injectionInfo);
         }
 
-        public bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo = null)
+        public bool RequiresInjections(object instance)
+        {
+            return RequiresInjections(instance, null);
+        }
+
+        public bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo)
         {
             if (injectionInfo == null)
             {
@@ -185,13 +181,16 @@ namespace Hypocrite.Core.Container
 
         private void SetUpRegistration(IContainerRegistration registration)
         {
-            if (registration.Instance != null && registration.RegistrationType == RegistrationType.Instance) 
+            // setting up constructor data
+            if (registration.Instance != null && registration.RegistrationType == RegistrationType.Instance)
             {
-                ResolveInjections(registration.Instance);
+                InternalGenerateInjectionInfo(registration.Instance, registration.MemberInjectionInfo);
+                registration.MemberInjectionInfo.CalcInjectionReq();
             }
             else if (registration.RegistrationType == RegistrationType.Instance || registration.RegistrationType == RegistrationType.Type)
             {
                 InternalGenerateInjectionInfo(null, registration.MemberInjectionInfo, registration.MappedToType);
+                registration.MemberInjectionInfo.CalcInjectionReq();
 
                 var ctor = registration.MappedToType.GetNormalConstructor();
                 registration.ConstructorInjectionInfo.InjectionMembers = ctor.GetParameters();
@@ -207,6 +206,20 @@ namespace Hypocrite.Core.Container
                     Expression<Func<object>> lambda = Expression.Lambda<Func<object>>(newExp);
                     registration.ConstructorInjectionInfo.DefaultConstructorDelegate = lambda.Compile();
                 }
+            }
+
+            // setting up policy
+            switch (registration.RegistrationType)
+            {
+                case RegistrationType.Instance:
+                    registration.RegistrationPolicy = new SingletonPolicy(this, registration);
+                    break;
+                case RegistrationType.Type:
+                    registration.RegistrationPolicy = new TypePolicy(this, registration);
+                    break;
+                case RegistrationType.Func:
+                    registration.RegistrationPolicy = new FuncPolicy(this, registration);
+                    break;
             }
         }
 

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Hypocrite.Core.Container.Extensions
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
-        public static ConstructorInfo GetNormalConstructor(this Type mappedToType)
+        internal static ConstructorInfo GetNormalConstructor(this Type mappedToType)
         {
             var parametrizedConstructor = mappedToType.GetTypeInfo().DeclaredConstructors.FirstOrDefault(x => x.GetParameters().Length > 0);
             // check if it exists
@@ -16,7 +16,7 @@ namespace Hypocrite.Core.Container.Extensions
             return parametrizedConstructor;
         }
 
-        public static object GetDefaultValue(this Type type)
+        internal static object GetDefaultValue(this Type type)
         {
             if (type.IsValueType)
                 return Activator.CreateInstance(type);

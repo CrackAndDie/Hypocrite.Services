@@ -28,7 +28,8 @@ namespace Hypocrite.Mvvm
         {
             if (Container.IsRegistered<IPreviewWindow>())
             {
-                Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
+                var ev = Container.Resolve<IEventAggregator>();
+                ev.GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
                 return Container.Resolve<IPreviewWindow>() as Window;
             }
             return Container.Resolve<IBaseWindow>() as Window;

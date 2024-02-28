@@ -19,6 +19,7 @@ namespace Hypocrite.DemoAvalonia.Extensions
         {
             if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                var a = typeof(DialogType).Name;
                 dialogService.ShowDialog(desktop.MainWindow, typeof(DialogType).Name, ParseParameters(parameters), r =>
                 {
                     if (r is DialogResult userResult)

@@ -32,7 +32,9 @@ namespace Hypocrite.Mvvm
                 ev.GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
                 return Container.Resolve<IPreviewWindow>() as Window;
             }
-            return Container.Resolve<IBaseWindow>() as Window;
+            var window = Container.Resolve<IBaseWindow>() as Window;
+            Application.Current.MainWindow = window;
+            return window;
         }
 
         private void OnPreviewDone()
@@ -40,6 +42,7 @@ namespace Hypocrite.Mvvm
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var window = Container.Resolve<IBaseWindow>() as Window;
+                Application.Current.MainWindow = window;
                 window.Show();
             });
         }

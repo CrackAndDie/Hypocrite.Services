@@ -28,10 +28,10 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         [Notify]
         public Language SelectedLanguage { get; set; } = LocalizationManager.Languages.FirstOrDefault();
         [Notify]
-        public IBrush? BindableBrush { get; set; }
+        public IBrush BindableBrush { get; set; }
 
         [Injection]
-        private IThemeSwitcherService<ThemeType>? ThemeSwitcherService { get; set; }
+        private IThemeSwitcherService<ThemeType> ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";
 
@@ -39,7 +39,7 @@ namespace Hypocrite.DemoAvalonia.ViewModels
 
         #region Commands
         [Notify]
-        public ICommand? ChangeThemeCommand { get; private set; }
+        public ICommand ChangeThemeCommand { get; private set; }
         #endregion
 
         public override void OnViewAttached()

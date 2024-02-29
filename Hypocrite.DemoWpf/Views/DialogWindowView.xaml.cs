@@ -11,7 +11,6 @@ namespace Hypocrite.DemoWpf.Views
         public DialogWindowView()
         {
             InitializeComponent();
-            Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 

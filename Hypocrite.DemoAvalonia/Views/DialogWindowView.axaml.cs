@@ -17,7 +17,6 @@ namespace Hypocrite.DemoAvalonia.Views
             InitializeComponent();
             if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                Owner = desktop.MainWindow;
                 WindowStartupLocation = WindowStartupLocation.CenterOwner;
             }
         }

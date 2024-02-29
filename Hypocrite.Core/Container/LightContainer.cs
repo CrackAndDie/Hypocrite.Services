@@ -105,7 +105,7 @@ namespace Hypocrite.Core.Container
 
         public object Resolve(Type type, string name, bool withInjections)
         {
-            return Resolve(type, string.Empty, withInjections, out IContainerRegistration _);
+            return Resolve(type, name, withInjections, out IContainerRegistration _);
         }
 
         public object Resolve(Type type, string name, bool withInjections, out IContainerRegistration outRegistration)

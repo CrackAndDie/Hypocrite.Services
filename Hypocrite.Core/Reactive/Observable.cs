@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hypocrite.Core.Mvvm.ObserverLogics
+namespace Hypocrite.Core.Reactive
 {
     public class Observable<T> : IObservable<T>, IDisposable
     {
@@ -48,7 +48,7 @@ namespace Hypocrite.Core.Mvvm.ObserverLogics
 
             if (exception == null)
             {
-                throw new ArgumentNullException("exception");
+                throw new ArgumentNullException(nameof(exception));
             }
 
             foreach (IObserver<T> observer in subscribers.Select(kv => kv.Value))
@@ -62,7 +62,6 @@ namespace Hypocrite.Core.Mvvm.ObserverLogics
             if (isDisposed)
             {
                 return;
-                // throw new ObjectDisposedException("Observable<T>");
             }
 
             foreach (IObserver<T> observer in subscribers.Select(kv => kv.Value))
@@ -75,7 +74,7 @@ namespace Hypocrite.Core.Mvvm.ObserverLogics
         {
             if (observer == null)
             {
-                throw new ArgumentNullException("observer");
+                throw new ArgumentNullException(nameof(observer));
             }
 
             lock (thisLock)
@@ -100,7 +99,8 @@ namespace Hypocrite.Core.Mvvm.ObserverLogics
 
     class AnonymousDisposable : IDisposable
     {
-        Action dispose;
+        readonly Action dispose;
+
         public AnonymousDisposable(Action dispose)
         {
             this.dispose = dispose;

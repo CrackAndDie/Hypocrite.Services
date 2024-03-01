@@ -1,5 +1,4 @@
 ﻿using Hypocrite.Core.Container;
-using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Logging.Interfaces;
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -12,7 +11,6 @@ namespace Hypocrite.DemoWpf.Views
         public DialogWindowView()
         {
             InitializeComponent();
-            Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 

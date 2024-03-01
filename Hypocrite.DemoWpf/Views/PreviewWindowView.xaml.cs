@@ -1,12 +1,11 @@
 ﻿using Hypocrite.Mvvm;
 using Hypocrite.Core.Interfaces.Presentation;
-using Hypocrite.Core.Mvvm;
-using Hypocrite.Core.Mvvm.Events;
 using Prism.Events;
 using Prism.Ioc;
 using System;
 using System.Windows;
 using System.Windows.Threading;
+using Hypocrite.Core.Events;
 
 namespace Hypocrite.DemoWpf.Views
 {

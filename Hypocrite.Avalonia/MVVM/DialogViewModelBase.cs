@@ -1,11 +1,7 @@
 ﻿using Avalonia.Input;
-using Hypocrite.Core.Mvvm.Events;
-using Prism.Commands;
+using Hypocrite.Core.Events;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 
 namespace Hypocrite.Mvvm
 {

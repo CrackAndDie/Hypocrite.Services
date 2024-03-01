@@ -12,10 +12,10 @@ namespace Hypocrite.DemoAvalonia.ViewModels.HeaderViewModels
     public class LeftControlViewModel : ViewModelBase
     {
         [Injection]
-        IWindowProgressService? ProgressService { get; set; }
+        IWindowProgressService ProgressService { get; set; }
         #region Commands
         [Notify]
-        public ICommand? ShowDialogCommand { get; private set; }
+        public ICommand ShowDialogCommand { get; private set; }
         #endregion
 
         public override void OnViewAttached()

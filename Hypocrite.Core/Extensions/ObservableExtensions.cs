@@ -1,4 +1,4 @@
-﻿using Hypocrite.Core.Mvvm.ObserverLogics;
+﻿using Hypocrite.Core.Reactive;
 using Hypocrite.Core.Utils;
 using System;
 using System.Collections.Generic;

@@ -7,7 +7,7 @@ using Prism.Services.Dialogs;
 
 namespace Hypocrite.Mvvm
 {
-    public class ViewModelBase : EngineViewModelBase, INavigationAware
+    public class ViewModelBase : CoreViewModelBase, INavigationAware
     {
         public ViewModelBase()
         {

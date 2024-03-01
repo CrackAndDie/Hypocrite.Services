@@ -3,7 +3,6 @@ using Hypocrite.Services;
 using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;
-using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Services;
 using Hypocrite.Core.Logging.Interfaces;
 using Hypocrite.Core.Logging.Services;
@@ -13,6 +12,7 @@ using Prism.Mvvm;
 using System.Windows;
 using Prism;
 using Hypocrite.Container;
+using Hypocrite.Core.Events;
 
 namespace Hypocrite.Mvvm
 {
@@ -28,10 +28,13 @@ namespace Hypocrite.Mvvm
         {
             if (Container.IsRegistered<IPreviewWindow>())
             {
-                Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
+                var ev = Container.Resolve<IEventAggregator>();
+                ev.GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
                 return Container.Resolve<IPreviewWindow>() as Window;
             }
-            return Container.Resolve<IBaseWindow>() as Window;
+            var window = Container.Resolve<IBaseWindow>() as Window;
+            Application.Current.MainWindow = window;
+            return window;
         }
 
         private void OnPreviewDone()
@@ -39,6 +42,7 @@ namespace Hypocrite.Mvvm
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var window = Container.Resolve<IBaseWindow>() as Window;
+                Application.Current.MainWindow = window;
                 window.Show();
             });
         }

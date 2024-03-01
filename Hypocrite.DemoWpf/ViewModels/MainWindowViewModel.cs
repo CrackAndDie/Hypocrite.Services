@@ -1,21 +1,15 @@
 ﻿using Hypocrite.Mvvm;
-using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;
-using Hypocrite.Core.Localization;
 using Hypocrite.Core.Mvvm;
-using Hypocrite.Core.Mvvm.Attributes;
-using Hypocrite.Core.Mvvm.Events;
 using Hypocrite.Core.Utils.Settings;
 using Prism.Commands;
 using Prism.Ioc;
 using System;
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
+using Hypocrite.Core.Events;
 
 namespace Hypocrite.DemoWpf.ViewModels
 {
@@ -167,7 +161,7 @@ namespace Hypocrite.DemoWpf.ViewModels
             }
         }
 
-        private void OnPageChanged(EngineViewModelBase vm)
+        private void OnPageChanged(CoreViewModelBase vm)
         {
             
         }

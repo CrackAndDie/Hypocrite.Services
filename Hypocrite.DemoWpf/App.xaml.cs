@@ -48,7 +48,6 @@ namespace Hypocrite.DemoWpf
             var viewModelService = Container.Resolve<IViewModelResolverService>();
             viewModelService.RegisterViewModelAssembly(Assembly.GetExecutingAssembly());
 
-
             return base.CreateShell();
         }
 

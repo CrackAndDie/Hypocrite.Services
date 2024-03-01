@@ -1,5 +1,4 @@
-﻿using Hypocrite.Core.Container.Interfaces;
-using Hypocrite.Core.Mvvm;
+﻿using Hypocrite.Core.Mvvm;
 using Prism.Ioc;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -7,7 +6,7 @@ using System.Windows;
 
 namespace Hypocrite.Mvvm
 {
-    public class ViewModelBase : EngineViewModelBase, INavigationAware
+    public class ViewModelBase : CoreViewModelBase, INavigationAware
     {
         public ViewModelBase() 
         {

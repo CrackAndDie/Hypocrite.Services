@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
-namespace Hypocrite.Core.Mvvm.ObserverLogics
+namespace Hypocrite.Core.Reactive
 {
     /// <summary>
     /// Abstract base class for implementations of the <see cref="IObserver{T}"/> interface.

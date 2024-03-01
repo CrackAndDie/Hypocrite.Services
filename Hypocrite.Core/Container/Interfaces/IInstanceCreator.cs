@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Hypocrite.Core.Container.Common;
 
 namespace Hypocrite.Core.Container.Interfaces
 {
     public interface IInstanceCreator
     {
-        object CreateInstance(IContainerRegistration registration, ILightContainer container, bool withInjections = true);
-        void ResolveInjections(object instance, ILightContainer container, Type type = null);
-        bool RequiresInjections(object instance, Type type = null);
+        object CreateInstance(IContainerRegistration registration, bool withInjections = true);
+        object CreatePureInstance(IContainerRegistration registration);
+        void ResolveInjections(object instance, MemberInjectionInfo injectionInfo);
+        bool RequiresInjections(object instance, MemberInjectionInfo injectionInfo);
     }
 }

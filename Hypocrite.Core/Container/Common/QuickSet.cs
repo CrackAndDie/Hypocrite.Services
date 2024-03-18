@@ -64,7 +64,7 @@ namespace Hypocrite.Core.Container.Common
             }
 
             // Expand if required
-            if (Count >= Entries.Length || 3 < collisions)
+            if (Count >= Buckets.Length || 3 < collisions)
             {
                 Expand();
                 targetBucket = (hashCode & HashMask) % Buckets.Length;

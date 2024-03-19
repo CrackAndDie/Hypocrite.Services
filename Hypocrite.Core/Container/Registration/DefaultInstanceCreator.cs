@@ -106,8 +106,8 @@ namespace Hypocrite.Core.Container.Registration
                     }
                     constructorParams.Add(paramInstance);
                 }
-                instance = registration.ConstructorInjectionInfo.DefaultConstructorInfo.Invoke(constructorParams.ToArray());
-            }
+				instance = registration.ConstructorInjectionInfo.DefaultConstructorInfo.Invoke(constructorParams.ToArray());
+			}
             return instance;
         }
     }

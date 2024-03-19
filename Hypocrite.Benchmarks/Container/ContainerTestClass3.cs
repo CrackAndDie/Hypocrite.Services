@@ -18,4 +18,20 @@ namespace Hypocrite.Benchmarks.Container
         [Dependency]
         public ContainerTestClass2 TestClass { get; set; }
     }
+
+	public class ContainerTestClass3Ninject
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		[Ninject.Inject]
+		public ContainerTestClass2 TestClass { get; set; }
+	}
+
+	public class ContainerTestClass3Stylet
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		[StyletIoC.Inject]
+		public ContainerTestClass2 TestClass { get; set; }
+	}
 }

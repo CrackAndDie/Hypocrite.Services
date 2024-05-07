@@ -7,33 +7,40 @@ namespace Hypocrite.Core.Reactive
 {
     public class Observable<T> : IObservable<T>, IDisposable
     {
-        private IDictionary<int, IObserver<T>> subscribers = new Dictionary<int, IObserver<T>>();
-        private readonly object thisLock = new object();
-        private int key;
-        private bool isDisposed;
+        private readonly IDictionary<int, IObserver<T>> _subscribers = new Dictionary<int, IObserver<T>>();
+        private readonly object _thisLock = new object();
+        private int _key;
+        private bool _isDisposed;
 
         public void Dispose()
         {
             Dispose(true);
-        }
+			// подавляем финализацию
+			GC.SuppressFinalize(this);
+		}
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && !isDisposed)
+            if (disposing && !_isDisposed)
             {
                 OnCompleted();
-                isDisposed = true;
+				_isDisposed = true;
             }
         }
 
-        protected void OnNext(T value)
+		~Observable()
+		{
+			Dispose(false);
+		}
+
+		protected void OnNext(T value)
         {
-            if (isDisposed)
+            if (_isDisposed)
             {
                 throw new ObjectDisposedException("Observable<T>");
             }
 
-            foreach (IObserver<T> observer in subscribers.Select(kv => kv.Value))
+            foreach (IObserver<T> observer in _subscribers.Select(kv => kv.Value))
             {
                 observer.OnNext(value);
             }
@@ -41,7 +48,7 @@ namespace Hypocrite.Core.Reactive
 
         protected void OnError(Exception exception)
         {
-            if (isDisposed)
+            if (_isDisposed)
             {
                 throw new ObjectDisposedException("Observable<T>");
             }
@@ -51,7 +58,7 @@ namespace Hypocrite.Core.Reactive
                 throw new ArgumentNullException(nameof(exception));
             }
 
-            foreach (IObserver<T> observer in subscribers.Select(kv => kv.Value))
+            foreach (IObserver<T> observer in _subscribers.Select(kv => kv.Value))
             {
                 observer.OnError(exception);
             }
@@ -59,12 +66,12 @@ namespace Hypocrite.Core.Reactive
 
         protected void OnCompleted()
         {
-            if (isDisposed)
+            if (_isDisposed)
             {
                 return;
             }
 
-            foreach (IObserver<T> observer in subscribers.Select(kv => kv.Value))
+            foreach (IObserver<T> observer in _subscribers.Select(kv => kv.Value))
             {
                 observer.OnCompleted();
             }
@@ -77,18 +84,18 @@ namespace Hypocrite.Core.Reactive
                 throw new ArgumentNullException(nameof(observer));
             }
 
-            lock (thisLock)
+            lock (_thisLock)
             {
-                int k = key++;
-                subscribers.Add(k, observer);
+                int k = _key++;
+				_subscribers.Add(k, observer);
 
                 OnSubscribed(observer);
 
                 return new AnonymousDisposable(() =>
                 {
-                    lock (thisLock)
+                    lock (_thisLock)
                     {
-                        subscribers.Remove(k);
+						_subscribers.Remove(k);
                     }
                 });
             }
@@ -99,16 +106,16 @@ namespace Hypocrite.Core.Reactive
 
     class AnonymousDisposable : IDisposable
     {
-        readonly Action dispose;
+        readonly Action _dispose;
 
         public AnonymousDisposable(Action dispose)
         {
-            this.dispose = dispose;
+            this._dispose = dispose;
         }
 
         public void Dispose()
         {
-            dispose();
+			_dispose();
         }
     }
 }

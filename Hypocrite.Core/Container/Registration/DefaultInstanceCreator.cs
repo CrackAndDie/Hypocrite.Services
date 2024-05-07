@@ -20,7 +20,10 @@ namespace Hypocrite.Core.Container.Registration
             object instance = CreatePureInstance(registration);
 
             if (withInjections && registration.MemberInjectionInfo.RequireInjection)
-                ResolveInjections(instance, registration.MemberInjectionInfo);
+            {
+				ResolveInjections(instance, registration.MemberInjectionInfo);
+                registration.MemberInjectionInfo.IsInjected = true;
+			}
 
             return instance;
         }

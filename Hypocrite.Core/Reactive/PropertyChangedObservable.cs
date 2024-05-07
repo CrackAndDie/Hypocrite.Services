@@ -12,7 +12,9 @@ namespace Hypocrite.Core.Reactive
         private readonly bool _onChanged;
         private readonly bool _initialCall;
 
-        public PropertyChangedObservable(BindableObject bindable, PropertyInfo property, bool initialCall, bool onChanged = true) 
+		private bool _isDisposed = false;
+
+		public PropertyChangedObservable(BindableObject bindable, PropertyInfo property, bool initialCall, bool onChanged = true) 
         {
             _onChanged = onChanged;
             _initialCall = initialCall;
@@ -67,12 +69,22 @@ namespace Hypocrite.Core.Reactive
 
         protected override void Dispose(bool disposing)
         {
+            if (_isDisposed)
+                return;
+
             if (_onChanged)
                 _bindable.PropertyChanged -= Preparer;
             else
                 _bindable.PropertyChanging -= Preparer;
 
             base.Dispose(disposing);
+
+			_isDisposed = true;
+		}
+
+        ~PropertyChangedObservable()
+        {
+            Dispose(false);
         }
-    }
+	}
 }

@@ -11,8 +11,9 @@ namespace Hypocrite.Core.Reactive
         private readonly PropertyInfo _property;
         private readonly bool _onSet;
         private readonly bool _initialCall;
+		private bool _isDisposed = false;
 
-        public PropertySetObservable(BindableObject bindable, PropertyInfo property, bool initialCall, bool onSet = true)
+		public PropertySetObservable(BindableObject bindable, PropertyInfo property, bool initialCall, bool onSet = true)
         {
             _onSet = onSet;
             _initialCall = initialCall;
@@ -67,12 +68,22 @@ namespace Hypocrite.Core.Reactive
 
         protected override void Dispose(bool disposing)
         {
-            if (_onSet)
+			if (_isDisposed)
+				return;
+
+			if (_onSet)
                 _bindable.PropertySet -= Preparer;
             else
                 _bindable.PropertySetting -= Preparer;
 
             base.Dispose(disposing);
-        }
-    }
+
+            _isDisposed = true;
+		}
+
+		~PropertySetObservable()
+		{
+			Dispose(false);
+		}
+	}
 }

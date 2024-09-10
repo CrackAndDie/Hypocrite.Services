@@ -5,8 +5,6 @@ using Avalonia;
 using Prism.Ioc;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hypocrite.Extensions
 {

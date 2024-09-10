@@ -45,7 +45,17 @@ namespace Hypocrite.Core.Container.Extensions
             return (container ?? throw new ArgumentNullException(nameof(container))).RegisterType(typeof(TFrom), typeof(TTo), name, true);
         }
 
-        public static bool IsRegistered<T>(this ILightContainer container)
+		public static ILightContainer RegisterInstance<T>(this ILightContainer container, object instance)
+		{
+			return (container ?? throw new ArgumentNullException(nameof(container))).RegisterInstance(typeof(T), instance);
+		}
+
+		public static ILightContainer RegisterInstance<T>(this ILightContainer container, object instance, string name)
+		{
+			return (container ?? throw new ArgumentNullException(nameof(container))).RegisterInstance(typeof(T), instance, name);
+		}
+
+		public static bool IsRegistered<T>(this ILightContainer container)
         {
             return (container ?? throw new ArgumentNullException(nameof(container))).IsRegistered(typeof(T), string.Empty);
         }

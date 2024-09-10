@@ -13,6 +13,7 @@ namespace Hypocrite.Localization
         private string _key;
         private Binding _binding;
 
+        private StyledElement _styledElement;
         private BindableObject _bindableObject;
 
         public LocalizationChangedObservable(string key, Binding binding)
@@ -28,18 +29,21 @@ namespace Hypocrite.Localization
                 if (vm == null || !(vm is StyledElement))
                     return;
 
-                var el = (vm as StyledElement);
-                var dc = el.DataContext;
+				_styledElement = (vm as StyledElement);
+				var dc = _styledElement.DataContext;
                 if (dc == null || !(dc is BindableObject))
                 {
-                    el.DataContextChanged += DataContextChangedPreparer;
+					_styledElement.DataContextChanged += DataContextChangedPreparer;
                     return;
                 }  
 
                 _bindableObject = dc as BindableObject;
                 _bindableObject.PropertyChanged += PropertyChangedPreparer;
             }
-        }
+
+			// first call preparer to init Value
+			Preparer(null, EventArgs.Empty);
+		}
 
         private void DataContextChangedPreparer(object sender, EventArgs e)
         {
@@ -82,11 +86,7 @@ namespace Hypocrite.Localization
             if (_binding == null)
                 return;
 
-            var vm = _binding.DefaultAnchor.Target;
-            if (vm == null)
-                return;
-
-            var dc = (vm as StyledElement).DataContext;
+            var dc = _styledElement.DataContext;
             if (dc == null || !(dc is BindableObject))
                 return;
 
@@ -119,6 +119,11 @@ namespace Hypocrite.Localization
             {
                 _bindableObject.PropertyChanged -= PropertyChangedPreparer;
             }
+            if (_styledElement != null)
+            {
+                _styledElement.DataContextChanged -= DataContextChangedPreparer;
+
+			}
 
             base.Dispose(disposing);
         }

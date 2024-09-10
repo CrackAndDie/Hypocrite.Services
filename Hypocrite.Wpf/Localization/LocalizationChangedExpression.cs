@@ -13,8 +13,8 @@ namespace Hypocrite.Localization
     {
         private string _key;
         private Binding _binding;
-        private FrameworkElement _bindingElement;
 
+        private FrameworkElement _bindingElement;
         private BindableObject _bindableObject;
 
         public LocalizationChangedExpression(string key, Binding binding, IServiceProvider serviceProvider)
@@ -117,6 +117,10 @@ namespace Hypocrite.Localization
             {
                 _bindableObject.PropertyChanged -= PropertyChangedPreparer;
             }
+            if (_bindingElement != null)
+            {
+                _bindingElement.DataContextChanged -= DataContextChangedPreparer;
+			}
         }
     }
 }

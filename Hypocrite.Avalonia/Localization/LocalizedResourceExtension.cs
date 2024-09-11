@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Markup.Xaml;
 using System;
@@ -6,12 +7,22 @@ using System.ComponentModel;
 
 namespace Hypocrite.Localization
 {
-    public class LocalizedResourceExtension : IBinding, IDisposable
-    {
-        /// <summary>
-        /// Gets or sets the Key to a .resx object
-        /// </summary>
-        public string Key
+    public class LocalizedResourceExtension : MarkupExtension, INotifyPropertyChanged
+	{
+		/// <summary>
+		/// Holds the Binding to get the key
+		/// </summary>
+		private Binding _binding = null;
+
+		/// <summary>
+		/// Holds the Key to a .resx object
+		/// </summary>
+		private string _key;
+
+		/// <summary>
+		/// Gets or sets the Key to a .resx object
+		/// </summary>
+		public string Key
         {
             get => _key;
             set
@@ -19,24 +30,10 @@ namespace Hypocrite.Localization
                 if (_key != value)
                 {
                     _key = value;
-                }
+					OnNotifyPropertyChanged(nameof(Key));
+				}
             }
-        }
-
-        /// <summary>
-        /// Holds the Key to a .resx object
-        /// </summary>
-        private string _key;
-
-        /// <summary>
-        /// Holds the Binding to get the key
-        /// </summary>
-        private Binding _binding = null;
-
-        /// <summary>
-        /// The observable that should be disposed
-        /// </summary>
-        private LocalizationChangedObservable _udpateSource;
+        }       
 
 		/// <summary>
 		/// Gets or sets the initialize value.
@@ -47,7 +44,19 @@ namespace Hypocrite.Localization
         [ConstructorArgument("key")]
         public object InitializeValue { get; set; }
 
-        public LocalizedResourceExtension(object key)
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		/// <summary>
+		///  Constructor that takes no parameters
+		/// </summary>
+		public LocalizedResourceExtension()
+		{
+		}
+
+		/// <summary>
+		///  Constructor that takes the resource key that this is a static reference to.
+		/// </summary>
+		public LocalizedResourceExtension(object key)
         {
             if (key is Binding binding)
             {
@@ -58,34 +67,41 @@ namespace Hypocrite.Localization
                 Key = key?.ToString();
             }
         }
-        public IBinding ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
 
-        InstancedBinding IBinding.Initiate(
-            AvaloniaObject target,
-            AvaloniaProperty targetProperty,
-            object anchor,
-            bool enableDataValidation)
-        {
-            if (Key is null && _binding == null)
-            {
-                return null;
-            }
-
-			_udpateSource = GetResourceObservable(Key, _binding);
-            return InstancedBinding.OneWay(_udpateSource);
-        }
-
-        private LocalizationChangedObservable GetResourceObservable(string key, Binding b = null)
-        {
-            return new LocalizationChangedObservable(key, b);
-        }
-
-		public void Dispose()
+		/// <summary>
+		///  Return an object that should be set on the targetObject's targetProperty
+		///  for this markup extension.  For DynamicResourceExtension, this is the object found in
+		///  a resource dictionary in the current parent chain that is keyed by ResourceKey
+		/// </summary>
+		/// <returns>
+		///  The object to set on this property.
+		/// </returns>
+		public override object ProvideValue(IServiceProvider serviceProvider)
 		{
-            _udpateSource?.Dispose();
+			if (Key is null && _binding == null)
+			{
+				return null;
+			}
+
+			// if in design mode
+			if (Design.IsDesignMode)
+			{
+				if (_binding != null)
+					_key = $"Binding: {_binding.Path}";
+				return $"Key: {_key}";
+			}
+
+			var locBinding = new Binding("Value")
+			{
+				Source = new LocalizationChangedExpression(Key, _binding, serviceProvider),
+			};
+
+			return locBinding;
+		}
+
+		internal void OnNotifyPropertyChanged(string property)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 		}
 	}
 }

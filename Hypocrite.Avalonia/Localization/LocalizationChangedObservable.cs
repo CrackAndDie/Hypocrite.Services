@@ -8,6 +8,7 @@ using Hypocrite.Core.Reactive;
 
 namespace Hypocrite.Localization
 {
+    [Obsolete("Use LocalizationChangedExpression instead")]
     public class LocalizationChangedObservable : Observable<object>
     {
         private string _key;

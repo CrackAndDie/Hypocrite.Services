@@ -5,6 +5,7 @@ using Avalonia;
 using Prism.Ioc;
 using Prism.Regions;
 using System;
+using System.Linq;
 
 namespace Hypocrite.Extensions
 {
@@ -13,16 +14,37 @@ namespace Hypocrite.Extensions
         public static void RequestNavigate<TView>(this IRegionManager regionManager, string regionName)
             where TView : IView
         {
-            regionManager.RequestNavigate(regionName, typeof(TView).Name, OnNavigationFinished);
+            regionManager.DisposeAndRemoveExistingViews(regionName);
+			regionManager.RequestNavigate(regionName, typeof(TView).Name, OnNavigationFinished);
         }
 
         public static void RequestNavigate<TView>(this IRegionManager regionManager, string regionName, object parameters)
             where TView : IView
         {
-            var navigationParametersType = typeof(GenericNavigationParameters<>).MakeGenericType(parameters.GetType());
+			regionManager.DisposeAndRemoveExistingViews(regionName);
+			var navigationParametersType = typeof(GenericNavigationParameters<>).MakeGenericType(parameters.GetType());
             var constructor = navigationParametersType.GetConstructor(new Type[] { parameters.GetType() });
             regionManager.RequestNavigate(regionName, typeof(TView).Name, OnNavigationFinished, constructor.Invoke(new object[] { parameters }) as NavigationParameters);
         }
+
+		public static void DisposeAndRemoveExistingViews(this IRegionManager regionManager, string regionName)
+        {
+            if (!regionManager.Regions.ContainsRegionWithName(regionName))
+                return;
+
+            var views = regionManager.Regions[regionName].Views as ViewsCollection;
+            foreach (var view in views)
+            {
+				if (view is IDisposable)
+					((IDisposable)view).Dispose();
+                if (!(view is StyledElement))
+                    continue;
+                var normalView = view as StyledElement;
+				if (normalView.DataContext is IDisposable)
+					((IDisposable)normalView.DataContext).Dispose();
+			}
+            regionManager.Regions[regionName].RemoveAll();
+		}
 
         private static void OnNavigationFinished(NavigationResult result)
         {

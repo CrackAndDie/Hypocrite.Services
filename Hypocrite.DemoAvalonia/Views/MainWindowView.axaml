@@ -31,12 +31,25 @@
 					   Stretch="Uniform"/>
 			</Border>
 
-			<ContentControl x:Name="frame"
-							Grid.Row="1"
-							HorizontalAlignment="Stretch"
-							VerticalAlignment="Stretch"
-							prismRegions:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
-							prismRegions:RegionManager.RegionManager="{Binding RegionManager}" />
+
+			<TabControl Grid.Row="1"
+					HorizontalAlignment="Stretch"
+					HorizontalContentAlignment="Stretch"
+					TabStripPlacement="Top">
+				<TabItem HorizontalAlignment="Left"
+						 DockPanel.Dock="Left"
+						 Header="Page 1">
+					<ContentControl prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
+									prism:RegionManager.RegionManager="{Binding RegionManager}" />
+				</TabItem>
+
+				<TabItem HorizontalAlignment="Left"
+						 DockPanel.Dock="Left"
+						 Header="Page 2">
+					<ContentControl prism:RegionManager.RegionName="{x:Static local:Regions.ADDITIONAL_REGION}"
+									prism:RegionManager.RegionManager="{Binding RegionManager}" />
+				</TabItem>
+			</TabControl>
 
 			<otherViews:WindowHeaderView x:Name="WindowHeader"
 										 LogoImage="{Binding LogoImage}"

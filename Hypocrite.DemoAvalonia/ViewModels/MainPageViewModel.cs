@@ -20,6 +20,7 @@ using Hypocrite.Core.Extensions;
 using Avalonia.Controls.Shapes;
 using Hypocrite.Core.Mvvm;
 using Hypocrite.Events;
+using Avalonia.Controls;
 
 namespace Hypocrite.DemoAvalonia.ViewModels
 {
@@ -46,7 +47,10 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         {
             base.OnViewAttached();
 
-            this.WhenPropertyChanged(x => x.SelectedLanguage, true).Subscribe(OnSelectedLanguageChanged);
+			if (Design.IsDesignMode)
+				return;
+
+			this.WhenPropertyChanged(x => x.SelectedLanguage, true).Subscribe(OnSelectedLanguageChanged);
 
             ChangeThemeCommand = new DelegateCommand(() =>
             {

@@ -84,10 +84,14 @@
     <Compile Include="Styles\Converters\NonZeroConverter.cs" />
     <Compile Include="Styles\Converters\RotateTransformCentreConverter.cs" />
     <Compile Include="Styles\Converters\StartPointConverter.cs" />
+    <Compile Include="ViewModels\AdditionalPageViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModels\MessageDialogViewModel.cs" />
     <Compile Include="ViewModels\HeaderViewModels\LeftControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\AdditionalPageView.xaml.cs">
+      <DependentUpon>AdditionalPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogViews\MessageDialogView.xaml.cs">
       <DependentUpon>MessageDialogView.xaml</DependentUpon>
     </Compile>
@@ -174,6 +178,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdditionalPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

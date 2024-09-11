@@ -106,8 +106,11 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         {
             base.OnViewAttached();
 
-            // command registranion here
-            MinimizeWindowCommand = new DelegateCommand<object>(OnMinimizeWindowCommand);
+			if (Design.IsDesignMode)
+				return;
+
+			// command registranion here
+			MinimizeWindowCommand = new DelegateCommand<object>(OnMinimizeWindowCommand);
             MaximizeWindowCommand = new DelegateCommand<object>(OnMaximizeWindowCommand);
             RestoreWindowCommand = new DelegateCommand<object>(OnRestoreWindowCommand);
             CloseWindowCommand = new DelegateCommand<object>(OnCloseWindowCommand);
@@ -139,7 +142,11 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         public override void OnViewReady()
         {
             base.OnViewReady();
-            EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
+
+			if (Design.IsDesignMode)
+				return;
+
+			EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
 
             if (SmoothAppear)
             {

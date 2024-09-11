@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Hypocrite.Localization
 {
-    public class LocalizedResourceExtension : IBinding
+    public class LocalizedResourceExtension : IBinding, IDisposable
     {
         /// <summary>
         /// Gets or sets the Key to a .resx object
@@ -34,11 +34,16 @@ namespace Hypocrite.Localization
         private Binding _binding = null;
 
         /// <summary>
-        /// Gets or sets the initialize value.
-        /// This is ONLY used to support the localize extension in blend!
+        /// The observable that should be disposed
         /// </summary>
-        /// <value>The initialize value.</value>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        private LocalizationChangedObservable _udpateSource;
+
+		/// <summary>
+		/// Gets or sets the initialize value.
+		/// This is ONLY used to support the localize extension in blend!
+		/// </summary>
+		/// <value>The initialize value.</value>
+		[EditorBrowsable(EditorBrowsableState.Never)]
         [ConstructorArgument("key")]
         public object InitializeValue { get; set; }
 
@@ -69,13 +74,18 @@ namespace Hypocrite.Localization
                 return null;
             }
 
-            var source = GetResourceObservable(Key, _binding);
-            return InstancedBinding.OneWay(source);
+			_udpateSource = GetResourceObservable(Key, _binding);
+            return InstancedBinding.OneWay(_udpateSource);
         }
 
-        private IObservable<object> GetResourceObservable(string key, Binding b = null)
+        private LocalizationChangedObservable GetResourceObservable(string key, Binding b = null)
         {
             return new LocalizationChangedObservable(key, b);
         }
-    }
+
+		public void Dispose()
+		{
+            _udpateSource?.Dispose();
+		}
+	}
 }

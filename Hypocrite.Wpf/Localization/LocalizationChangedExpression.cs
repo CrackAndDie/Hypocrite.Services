@@ -31,11 +31,21 @@ namespace Hypocrite.Localization
 
             object targetObject = service.TargetObject;
             var vm = targetObject;
-            if (vm == null || !(vm is FrameworkElement))
+            if (vm is FrameworkElement fe)
+            {
+                _bindingElement = fe;
+            }
+            else if (vm is Setter setter)
+            {
+                _bindingElement = null; // warning: idk what to do here
+            }
+            else
+            {
                 throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(FrameworkElement)}");
-
-            _bindingElement = (targetObject as FrameworkElement);
-            _bindingElement.Unloaded += OnElementDetached;
+            }
+           
+            if (_bindingElement != null)
+                _bindingElement.Unloaded += OnElementDetached;
 
             if (_binding != null && serviceProvider != null)
             {
@@ -122,7 +132,8 @@ namespace Hypocrite.Localization
 
         private void OnElementDetached(object sender, RoutedEventArgs args)
         {
-            _bindingElement.Unloaded -= OnElementDetached;
+            if (_bindingElement != null)
+                _bindingElement.Unloaded -= OnElementDetached;
             Dispose();
             Detaching?.Invoke();
         }

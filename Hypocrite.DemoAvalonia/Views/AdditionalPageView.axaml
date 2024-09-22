@@ -5,9 +5,9 @@
              mc:Ignorable="d" 
 			 d:DesignWidth="800" 
 			 d:DesignHeight="450"
-             x:Class="Hypocrite.DemoAvalonia.AdditionalPageView"
+             x:Class="Hypocrite.DemoAvalonia.Views.AdditionalPageView"
 			 xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
 			 x:CompileBindings="False">
-  Welcome to Avalonia!
+    Welcome to Avalonia!
 </UserControl>

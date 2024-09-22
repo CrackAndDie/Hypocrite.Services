@@ -11,8 +11,8 @@ namespace Hypocrite.DemoAvalonia.Modules
         {
             var region = containerProvider.Resolve<IRegionManager>();
             // the view to display on start up
-            region.RegisterViewWithRegion(Regions.MAIN_REGION, typeof(MainPageView));
-            region.RegisterViewWithRegion(Regions.ADDITIONAL_REGION, typeof(AdditionalPageView));
+            // region.RegisterViewWithRegion(Regions.MAIN_REGION, typeof(MainPageView));
+            // region.RegisterViewWithRegion(Regions.ADDITIONAL_REGION, typeof(AdditionalPageView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

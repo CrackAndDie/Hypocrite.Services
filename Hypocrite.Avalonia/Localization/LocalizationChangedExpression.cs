@@ -2,6 +2,7 @@
 using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
 using Hypocrite.Core.Mvvm;
 using System;
 using System.ComponentModel;
@@ -30,12 +31,23 @@ namespace Hypocrite.Localization
                 throw new ArgumentException($"{nameof(serviceProvider)} should contain {nameof(IProvideValueTarget)}");
 
             object targetObject = service.TargetObject;
+			Type typp = targetObject.GetType();
             var vm = targetObject;
-            if (vm == null || !(vm is StyledElement))
+            if (vm is StyledElement se)
+			{
+                _bindingElement = se;
+            }
+			else if (vm is Setter setter)
+			{
+				_bindingElement = null; // warning: idk what to do here
+            }
+			else
+			{
                 throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(StyledElement)}");
-
-            _bindingElement = (vm as StyledElement);
-			_bindingElement.DetachedFromLogicalTree += OnElementDetached;
+            }
+            
+			if (_bindingElement != null)
+				_bindingElement.DetachedFromLogicalTree += OnElementDetached;
 
             if (_binding != null)
 			{
@@ -122,7 +134,8 @@ namespace Hypocrite.Localization
 
 		private void OnElementDetached(object sender, LogicalTreeAttachmentEventArgs args)
 		{
-            _bindingElement.DetachedFromLogicalTree -= OnElementDetached;
+			if (_bindingElement != null)
+				_bindingElement.DetachedFromLogicalTree -= OnElementDetached;
 			Dispose();
             Detaching?.Invoke();
         }

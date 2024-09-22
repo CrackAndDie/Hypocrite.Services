@@ -41,7 +41,8 @@ namespace Hypocrite.Localization
             }
             else
             {
-                throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(FrameworkElement)}");
+                if (binding != null)
+                    throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(FrameworkElement)}");
             }
            
             if (_bindingElement != null)

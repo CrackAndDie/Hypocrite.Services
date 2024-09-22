@@ -43,7 +43,8 @@ namespace Hypocrite.Localization
             }
 			else
 			{
-                throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(StyledElement)}");
+				if (binding != null)
+					throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(StyledElement)}");
             }
             
 			if (_bindingElement != null)

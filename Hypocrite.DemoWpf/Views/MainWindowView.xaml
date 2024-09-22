@@ -33,12 +33,14 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="22" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Border BorderThickness="0"
                 Background="{DynamicResource WindowBrush}" 
-                Grid.Row="1">
+                Grid.Row="1"
+                Grid.RowSpan="2">
             <Image Source="../Resources/AbdrakovSolutions.png" 
                    RenderOptions.BitmapScalingMode="HighQuality" 
                    Margin="100"
@@ -48,21 +50,22 @@
         <TabControl Grid.Row="1"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
-                    TabStripPlacement="Top">
+                    TabStripPlacement="Top"
+                    SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
             <TabItem HorizontalAlignment="Left"
                      DockPanel.Dock="Left"
                      Header="Page 1">
-                <ContentControl prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
-                                prism:RegionManager.RegionManager="{Binding RegionManager}" />
             </TabItem>
 
             <TabItem HorizontalAlignment="Left"
                      DockPanel.Dock="Left"
                      Header="Page 2">
-                <ContentControl prism:RegionManager.RegionName="{x:Static local:Regions.ADDITIONAL_REGION}"
-                                prism:RegionManager.RegionManager="{Binding RegionManager}" />
             </TabItem>
         </TabControl>
+
+        <ContentControl Grid.Row="2"
+                        prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
+                        prism:RegionManager.RegionManager="{Binding RegionManager}" />
 
         <Rectangle Grid.Row="0"
                    Fill="{DynamicResource WindowBrush}" />

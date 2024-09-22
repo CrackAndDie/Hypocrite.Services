@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Hypocrite.Core.Events;
+using Hypocrite.Extensions;
+using Hypocrite.DemoAvalonia.Views;
 
 namespace Hypocrite.DemoAvalonia.ViewModels
 {
@@ -95,6 +97,13 @@ namespace Hypocrite.DemoAvalonia.ViewModels
             set { SetProperty(ref windowOpacity, value); }
         }
 
+        public int _selectedTabIndex = 0;
+        public int SelectedTabIndex
+        {
+            get { return _selectedTabIndex; }
+            set { SetProperty(ref _selectedTabIndex, value); OnSelectedTabIndexChanged(value); }
+        }
+
         #region Commands
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
@@ -146,7 +155,9 @@ namespace Hypocrite.DemoAvalonia.ViewModels
 			if (Design.IsDesignMode)
 				return;
 
-			EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
+            OnSelectedTabIndexChanged(SelectedTabIndex);
+
+            EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
 
             if (SmoothAppear)
             {
@@ -177,6 +188,14 @@ namespace Hypocrite.DemoAvalonia.ViewModels
             {
                 WindowOpacity = 1.0f;
             }
+        }
+
+        private void OnSelectedTabIndexChanged(int index)
+        {
+            if (index == 0)
+                RegionManager.RequestNavigate<MainPageView>(Regions.MAIN_REGION);
+            else if (index == 1)
+                RegionManager.RequestNavigate<AdditionalPageView>(Regions.MAIN_REGION);
         }
 
         private void OnPageChanged(CoreViewModelBase vm)

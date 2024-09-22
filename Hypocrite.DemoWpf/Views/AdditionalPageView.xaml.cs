@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Hypocrite.Core.Interfaces.Presentation;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hypocrite.DemoWpf.Views
 {
 	/// <summary>
 	/// Interaction logic for AdditionalPageView.xaml
 	/// </summary>
-	public partial class AdditionalPageView : UserControl
+	public partial class AdditionalPageView : UserControl, IView
 	{
 		public AdditionalPageView()
 		{

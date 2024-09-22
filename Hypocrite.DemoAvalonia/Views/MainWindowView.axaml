@@ -22,10 +22,11 @@
 		mc:Ignorable="d"
 		x:CompileBindings="False">
 	<Grid RowDefinitions="3,*,3" ColumnDefinitions="3,*,3">
-		<Grid RowDefinitions="22,*" ColumnDefinitions="*" Grid.Column="1" Grid.Row="1">
+		<Grid RowDefinitions="22,30,*" ColumnDefinitions="*" Grid.Column="1" Grid.Row="1">
 			<Border BorderThickness="0"
 					Background="{DynamicResource WindowBrush}"
-					Grid.Row="1">
+					Grid.Row="1"
+                    Grid.RowSpan="2">
 				<Image Source="../Resources/AbdrakovSolutions.png"
 					   Margin="100"
 					   Stretch="Uniform"/>
@@ -33,23 +34,24 @@
 
 
 			<TabControl Grid.Row="1"
-					HorizontalAlignment="Stretch"
-					HorizontalContentAlignment="Stretch"
-					TabStripPlacement="Top">
+						HorizontalAlignment="Stretch"
+						HorizontalContentAlignment="Stretch"
+						TabStripPlacement="Top"
+                        SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
 				<TabItem HorizontalAlignment="Left"
 						 DockPanel.Dock="Left"
 						 Header="Page 1">
-					<ContentControl prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
-									prism:RegionManager.RegionManager="{Binding RegionManager}" />
 				</TabItem>
 
 				<TabItem HorizontalAlignment="Left"
 						 DockPanel.Dock="Left"
 						 Header="Page 2">
-					<ContentControl prism:RegionManager.RegionName="{x:Static local:Regions.ADDITIONAL_REGION}"
-									prism:RegionManager.RegionManager="{Binding RegionManager}" />
 				</TabItem>
 			</TabControl>
+
+            <ContentControl Grid.Row="2"
+							prism:RegionManager.RegionName="{x:Static local:Regions.MAIN_REGION}"
+							prism:RegionManager.RegionManager="{Binding RegionManager}" />
 
 			<otherViews:WindowHeaderView x:Name="WindowHeader"
 										 LogoImage="{Binding LogoImage}"

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
+	  <TargetFrameworks>netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
 	  <AppDesignerFolder>Properties</AppDesignerFolder>
 	  <RootNamespace>Hypocrite</RootNamespace>
       <AssemblyName>Hypocrite.Avalonia</AssemblyName>
@@ -13,7 +13,7 @@
       <PackageDescription>A powerful base for Mvvm apps with Prism</PackageDescription>
       <Copyright>Copyright ©  2023</Copyright>
       <PackageTags>Prism Mvvm DI Reactive</PackageTags>
-      <PackageVersion>1.2.13</PackageVersion>
+      <PackageVersion>1.2.14</PackageVersion>
       <PackageProjectUrl>https://github.com/CrackAndDie/Hypocrite.Services</PackageProjectUrl>
       <RepositoryUrl>https://github.com/CrackAndDie/Hypocrite.Services</RepositoryUrl>
       <PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>

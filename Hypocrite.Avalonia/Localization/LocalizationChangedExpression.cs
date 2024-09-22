@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Data;
+using Avalonia.LogicalTree;
+using Avalonia.Markup.Xaml;
 using Hypocrite.Core.Mvvm;
 using System;
 using System.ComponentModel;
@@ -15,20 +17,28 @@ namespace Hypocrite.Localization
 		private StyledElement _bindingElement;
 		private BindableObject _bindableObject;
 
-		public LocalizationChangedExpression(string key, Binding binding, IServiceProvider serviceProvider)
+		public event Action Detaching;
+
+        public LocalizationChangedExpression(string key, Binding binding, IServiceProvider serviceProvider)
 		{
 			LocalizationManager.CurrentLanguageChanged += Preparer;
 
 			_key = key;
 			_binding = binding;
 
-			if (_binding != null)
-			{
-				var vm = _binding.DefaultAnchor.Target;
-				if (vm == null || !(vm is StyledElement))
-					return;
+			if (!(serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget service))
+                throw new ArgumentException($"{nameof(serviceProvider)} should contain {nameof(IProvideValueTarget)}");
 
-				_bindingElement = (vm as StyledElement);
+            object targetObject = service.TargetObject;
+            var vm = targetObject;
+            if (vm == null || !(vm is StyledElement))
+                throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(StyledElement)}");
+
+            _bindingElement = (vm as StyledElement);
+			_bindingElement.DetachedFromLogicalTree += OnElementDetached;
+
+            if (_binding != null)
+			{
 				var dc = _bindingElement.DataContext;
 				if (dc == null || !(dc is BindableObject))
 				{
@@ -46,7 +56,10 @@ namespace Hypocrite.Localization
 
 		private void DataContextChangedPreparer(object sender, EventArgs e)
 		{
-			var el = (sender as StyledElement);
+			if (_bindableObject != null)
+                _bindableObject.PropertyChanged -= PropertyChangedPreparer;
+
+            var el = (sender as StyledElement);
 			var dc = el.DataContext;
 			_bindableObject = dc as BindableObject;
 			_bindableObject.PropertyChanged += PropertyChangedPreparer;
@@ -107,6 +120,13 @@ namespace Hypocrite.Localization
 		public object Value { get; private set; }
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		private void OnElementDetached(object sender, LogicalTreeAttachmentEventArgs args)
+		{
+            _bindingElement.DetachedFromLogicalTree -= OnElementDetached;
+			Dispose();
+            Detaching?.Invoke();
+        }
+
 		public void Dispose()
 		{
 			LocalizationManager.CurrentLanguageChanged -= Preparer;
@@ -118,6 +138,6 @@ namespace Hypocrite.Localization
 			{
 				_bindingElement.DataContextChanged -= DataContextChangedPreparer;
 			}
-		}
+        }
 	}
 }

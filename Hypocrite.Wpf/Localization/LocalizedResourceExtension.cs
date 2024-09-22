@@ -45,6 +45,8 @@ namespace Hypocrite.Localization
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Binding _locBinding;
+
         /// <summary>
         ///  Constructor that takes no parameters
         /// </summary>
@@ -88,17 +90,28 @@ namespace Hypocrite.Localization
                 return $"Key: {_key}";
             }
 
-            var locBinding = new Binding("Value")
+            var expr = new LocalizationChangedExpression(Key, _binding, serviceProvider);
+            expr.Detaching += OnDetaching;
+            _locBinding = new Binding("Value")
             {
-                Source = new LocalizationChangedExpression(Key, _binding, serviceProvider),
+                Source = expr,
             };
 
-            return locBinding.ProvideValue(serviceProvider);
+            return _locBinding.ProvideValue(serviceProvider);
         }
 
         internal void OnNotifyPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+
+        private void OnDetaching()
+        {
+            if (_locBinding.Source is LocalizationChangedExpression expr)
+            {
+                expr.Detaching -= OnDetaching;
+            }
+            // _locBinding.Source = null; ??? 
         }
 
         /// <summary>

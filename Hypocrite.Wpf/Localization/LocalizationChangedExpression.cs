@@ -17,6 +17,8 @@ namespace Hypocrite.Localization
         private FrameworkElement _bindingElement;
         private BindableObject _bindableObject;
 
+        public event Action Detaching;
+
         public LocalizationChangedExpression(string key, Binding binding, IServiceProvider serviceProvider)
         {
             LocalizationManager.CurrentLanguageChanged += Preparer;
@@ -24,14 +26,19 @@ namespace Hypocrite.Localization
             _key = key;
             _binding = binding;
 
+            if (!(serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget service))
+                throw new ArgumentException($"{nameof(serviceProvider)} should contain {nameof(IProvideValueTarget)}");
+
+            object targetObject = service.TargetObject;
+            var vm = targetObject;
+            if (vm == null || !(vm is FrameworkElement))
+                throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(FrameworkElement)}");
+
+            _bindingElement = (targetObject as FrameworkElement);
+            _bindingElement.Unloaded += OnElementDetached;
+
             if (_binding != null && serviceProvider != null)
             {
-                if (!(serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget service))
-                    return;
-
-                object targetObject = service.TargetObject;
-
-                _bindingElement = (targetObject as FrameworkElement);
                 var dc = _bindingElement.DataContext;
                 if (dc == null || !(dc is BindableObject))
                 {
@@ -49,6 +56,9 @@ namespace Hypocrite.Localization
 
         private void DataContextChangedPreparer(object sender, DependencyPropertyChangedEventArgs e)
         {
+            if (_bindableObject != null)
+                _bindableObject.PropertyChanged -= PropertyChangedPreparer;
+
             var el = (sender as FrameworkElement);
             var dc = el.DataContext;
             _bindableObject = dc as BindableObject;
@@ -109,6 +119,13 @@ namespace Hypocrite.Localization
 
         public object Value { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnElementDetached(object sender, RoutedEventArgs args)
+        {
+            _bindingElement.Unloaded -= OnElementDetached;
+            Dispose();
+            Detaching?.Invoke();
+        }
 
         public void Dispose()
         {

@@ -33,9 +33,15 @@ namespace Hypocrite.DemoWpf.ViewModels
         [Notify]
         public Language SelectedLanguage { get; set; } = LocalizationManager.Languages.FirstOrDefault();
         [Notify]
+        [AlsoNotify(nameof(AlsoSameBindableBrush))]
         public SolidColorBrush BindableBrush { get; set; }
 
-        [Injection]
+        [NotifyWhen(nameof(BindableBrush))]
+        public SolidColorBrush SameBindableBrush => BindableBrush;
+
+        public SolidColorBrush AlsoSameBindableBrush => BindableBrush;
+
+		[Injection]
         private IThemeSwitcherService<ThemeType> ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";

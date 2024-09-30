@@ -68,9 +68,17 @@
                             <Rectangle Fill="{DynamicResource TestBrush}"
                                        Opacity="0.8" 
                                        RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                            <Rectangle Fill="{Binding BindableBrush}"
-                                       Opacity="0.8"
-                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <UniformGrid Columns="3">
+                                <Rectangle Fill="{Binding BindableBrush}"
+                                           Opacity="0.8"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                <Rectangle Fill="{Binding SameBindableBrush}"
+                                           Opacity="0.8"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                <Rectangle Fill="{Binding AlsoSameBindableBrush}"
+                                           Opacity="0.8"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            </UniformGrid>
                             <Rectangle Fill="Green"
                                        Opacity="0.8"
                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />

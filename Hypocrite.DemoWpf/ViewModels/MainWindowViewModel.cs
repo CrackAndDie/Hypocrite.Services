@@ -137,7 +137,10 @@ namespace Hypocrite.DemoWpf.ViewModels
         public override void OnViewReady()
         {
             base.OnViewReady();
-            EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
+
+			OnSelectedTabIndexChanged(SelectedTabIndex);
+
+			EventAggregator.GetEvent<NavigationEvent>().Subscribe(OnPageChanged);
 
             if (SmoothAppear)
             {

@@ -29,9 +29,15 @@ namespace Hypocrite.DemoAvalonia.ViewModels
         [Notify]
         public Language SelectedLanguage { get; set; } = LocalizationManager.Languages.FirstOrDefault();
         [Notify]
-        public IBrush BindableBrush { get; set; }
+		[AlsoNotify(nameof(AlsoSameBindableBrush))]
+		public IBrush BindableBrush { get; set; }
 
-        [Injection]
+		[NotifyWhen(nameof(BindableBrush))]
+		public IBrush SameBindableBrush => BindableBrush;
+
+		public IBrush AlsoSameBindableBrush => BindableBrush;
+
+		[Injection]
         private IThemeSwitcherService<ThemeType> ThemeSwitcherService { get; set; }
 
         public string ChangeThemeTag => "MainPage.ChangeTheme";

@@ -56,7 +56,7 @@
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
-    <PackageReference Include="Hypocrite.Fody" Version="1.2.0">
+    <PackageReference Include="Hypocrite.Fody" Version="1.2.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

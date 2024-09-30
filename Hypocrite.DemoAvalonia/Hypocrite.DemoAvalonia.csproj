@@ -31,7 +31,7 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
-      <PackageReference Include="Hypocrite.Fody" Version="1.2.0">
+      <PackageReference Include="Hypocrite.Fody" Version="1.2.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; compile; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>

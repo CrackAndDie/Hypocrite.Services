@@ -68,8 +68,14 @@
 							</UniformGrid.OpacityMask>-->
 								<Rectangle Fill="{DynamicResource TestBrush}"
 										   Opacity="0.8" />
-								<Rectangle Fill="{Binding BindableBrush}"
-										   Opacity="0.8"/>
+								<UniformGrid Columns="3" ClipToBounds="True">
+									<Rectangle Fill="{Binding BindableBrush}"
+											   Opacity="0.8"/>
+									<Rectangle Fill="{Binding SameBindableBrush}"
+											   Opacity="0.8"/>
+									<Rectangle Fill="{Binding AlsoSameBindableBrush}"
+											   Opacity="0.8"/>
+								</UniformGrid>
 								<Rectangle Fill="Green"
 										   Opacity="0.8" />
 							</UniformGrid>

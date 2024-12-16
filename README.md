@@ -19,4 +19,11 @@
 
 A package that helps You to create a powerful, flexible and loosely coupled WPF and Avalonia application. It fully supports Prism features and MVVM pattern.  
 
-Documentation is [here](https://softv.su/docshome/docs/hypocrite/)
+Documentation is [here](https://softv.su/docshome/docs/hypocrite/)  
+
+<h2>Powered by:</h2>  
+
+- *Hypocrite.Services*' logo - [Regina Danilkina](https://www.behance.net/reginadanilkina)
+- [Prism](https://github.com/PrismLibrary/Prism)
+- [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia)
+- [log4net](https://github.com/apache/logging-log4net)

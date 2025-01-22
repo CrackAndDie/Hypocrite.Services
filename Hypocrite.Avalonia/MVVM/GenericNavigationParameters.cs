@@ -1,7 +1,4 @@
 ﻿using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hypocrite.Mvvm
 {

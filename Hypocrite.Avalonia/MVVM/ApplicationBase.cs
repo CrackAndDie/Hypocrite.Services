@@ -45,24 +45,42 @@ namespace Hypocrite.Mvvm
                 Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
                 return Container.Resolve<IPreviewWindow>() as Window;
             }
-            var window = Container.Resolve<IBaseWindow>() as Window;
-            if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            else if (Container.IsRegistered<IPreviewView>())
             {
-                desktop.MainWindow = window;
+                Container.Resolve<IEventAggregator>().GetEvent<PreviewDoneEvent>().Subscribe(OnPreviewDone);
+                return Container.Resolve<IPreviewView>() as UserControl;
             }
-            return window;
+            
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var window = Container.Resolve<IBaseWindow>() as Window;
+                desktop.MainWindow = window;
+                return window;
+            }
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+            {
+                var view = Container.Resolve<IBaseView>() as UserControl;
+                singleViewPlatform.MainView = view;
+                return view;
+            }
+            return null;
         }
 
         private void OnPreviewDone()
         {
             Dispatcher.UIThread.Invoke(() =>
             {
-                var window = Container.Resolve<IBaseWindow>() as Window;
-                if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 {
+                    var window = Container.Resolve<IBaseWindow>() as Window;
                     desktop.MainWindow = window;
+                    window.Show();
                 }
-                window.Show();
+                else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+                {
+                    var view = Container.Resolve<IBaseView>() as UserControl;
+                    singleViewPlatform.MainView = view;
+                }
             });
         }
 

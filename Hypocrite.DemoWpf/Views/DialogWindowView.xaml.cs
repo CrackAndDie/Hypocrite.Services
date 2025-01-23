@@ -1,4 +1,4 @@
-﻿using Hypocrite.Core.Container;
+﻿using Hypocrite.Container;
 using Hypocrite.Core.Logging.Interfaces;
 using Prism.Events;
 using Prism.Services.Dialogs;

@@ -1,5 +1,4 @@
-﻿using Hypocrite.Core.Container;
-using Hypocrite.Core.Interfaces;
+﻿using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Mvvm;
 using Prism.Events;
 using Prism.Ioc;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using Hypocrite.Events;
+using Hypocrite.Container;
 
 namespace Hypocrite.Services
 {

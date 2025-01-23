@@ -1,6 +1,5 @@
 ﻿using Hypocrite.Localization;
 using Hypocrite.Services;
-using Hypocrite.Core.Container;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Interfaces.Presentation;
 using Hypocrite.Core.Services;
@@ -22,6 +21,7 @@ using Prism.Services.Dialogs;
 using Prism;
 using Hypocrite.Container;
 using Hypocrite.Core.Events;
+using Hypocrite.Container.PrismAvalonia;
 
 namespace Hypocrite.Mvvm
 {
@@ -116,7 +116,7 @@ namespace Hypocrite.Mvvm
         protected override IContainerExtension CreateContainerExtension()
         {
             var container = new LightContainer();
-            return new LightContainerExtension(container);
+            return new HypocriteContainerExtension(container);
         }
     }
 }

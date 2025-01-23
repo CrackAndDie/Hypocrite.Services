@@ -19,6 +19,7 @@ using System.Threading;
 using Hypocrite.Core.Localization;
 using System.Collections.ObjectModel;
 using Hypocrite.DemoAvalonia.Views.DialogViews;
+using Avalonia.Controls;
 
 namespace Hypocrite.DemoAvalonia
 {
@@ -34,6 +35,10 @@ namespace Hypocrite.DemoAvalonia
             });
 
             AvaloniaXamlLoader.Load(this);
+
+            if (Design.IsDesignMode)
+                return;
+
             base.Initialize();              // <-- Required
         }
 

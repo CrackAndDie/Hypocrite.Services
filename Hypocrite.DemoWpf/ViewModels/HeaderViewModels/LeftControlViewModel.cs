@@ -1,5 +1,5 @@
 ﻿using Hypocrite.Mvvm;
-using Hypocrite.Core.Container;
+using Hypocrite.Container;
 using Hypocrite.DemoWpf.Extensions;
 using Hypocrite.DemoWpf.Resources.Themes;
 using Hypocrite.Core.Interfaces;

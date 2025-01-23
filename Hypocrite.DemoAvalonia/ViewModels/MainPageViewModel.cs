@@ -1,6 +1,6 @@
 ﻿using Hypocrite.Localization;
 using Hypocrite.Mvvm;
-using Hypocrite.Core.Container;
+using Hypocrite.Container;
 using Hypocrite.DemoAvalonia.Resources.Themes;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Mvvm.Attributes;

@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Hypocrite.Core.Container;
+using Hypocrite.Container;
 using Hypocrite.Core.Logging.Interfaces;
 using Prism.Events;
 using Prism.Services.Dialogs;

@@ -23,7 +23,7 @@ using Hypocrite.Localization;
 using Hypocrite.Core.Interfaces;
 using Hypocrite.Core.Extensions;
 using System.Diagnostics;
-using Hypocrite.Core.Container;
+using Hypocrite.Container;
 using Hypocrite.Events;
 
 namespace Hypocrite.DemoWpf.ViewModels

@@ -1,5 +1,5 @@
-﻿using Hypocrite.Core.Container;
-using Hypocrite.Core.Container.Interfaces;
+﻿using Hypocrite.Container;
+using Hypocrite.Container.Interfaces;
 using Hypocrite.Core.Interfaces;
 using System;
 using System.Collections.Generic;

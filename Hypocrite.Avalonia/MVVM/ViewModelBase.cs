@@ -1,5 +1,4 @@
-﻿using Hypocrite.Core.Container.Interfaces;
-using Hypocrite.Core.Mvvm;
+﻿using Hypocrite.Core.Mvvm;
 using Avalonia.Controls;
 using Prism.Ioc;
 using Prism.Regions;

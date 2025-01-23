@@ -13,7 +13,7 @@
       <PackageDescription>A powerful base for Mvvm apps with Prism</PackageDescription>
       <Copyright>Copyright ©  2023</Copyright>
       <PackageTags>Prism Mvvm DI Reactive</PackageTags>
-      <PackageVersion>1.2.19</PackageVersion>
+      <PackageVersion>1.2.20</PackageVersion>
       <PackageProjectUrl>https://github.com/CrackAndDie/Hypocrite.Services</PackageProjectUrl>
       <RepositoryUrl>https://github.com/CrackAndDie/Hypocrite.Services</RepositoryUrl>
       <PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
@@ -31,7 +31,7 @@
     </Target>
 
 	<ItemGroup>
-		<PackageReference Include="Hypocrite.Container.AvaloniaPrism" Version="1.2.1" />
+		<PackageReference Include="Hypocrite.Container.AvaloniaPrism" Version="1.2.2" />
 		<PackageReference Include="Avalonia" Version="11.0.5" />
 		<PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
 		<PackageReference Include="Prism.Avalonia" Version="8.1.97.11000" />

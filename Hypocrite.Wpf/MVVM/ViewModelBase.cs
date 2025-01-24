@@ -11,7 +11,7 @@ namespace Hypocrite.Mvvm
         public ViewModelBase() 
         {
             Application = (System.Windows.Application.Current as ApplicationBase);
-            LoggingService.Debug($"Constructing '{ViewModelName}'");
+            LoggingService?.Debug($"Constructing '{ViewModelName}'");
         }
 
         public override void OnViewAttached()

@@ -11,18 +11,18 @@ namespace Hypocrite.Core.Mvvm
     {
         public CoreViewModelBase()
         {
-            viewModelName = GetType().FullName;
+            viewModelName = GetType()?.FullName;
         }
 
         public virtual void OnViewAttached()
         {
-            LoggingService.Debug($"OnViewAttached '{ViewModelName}'");
+            LoggingService?.Debug($"OnViewAttached '{ViewModelName}'");
         }
 
         public virtual void OnViewReady()
         {
-            LoggingService.Debug($"OnViewReady '{ViewModelName}'");
-            EventAggregator.GetEvent<NavigationEvent>().Publish(this);
+            LoggingService?.Debug($"OnViewReady '{ViewModelName}'");
+            EventAggregator?.GetEvent<NavigationEvent>().Publish(this);
         }
 
         public TView GetView<TView>()

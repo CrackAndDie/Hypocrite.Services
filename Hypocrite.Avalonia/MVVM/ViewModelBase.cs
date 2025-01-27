@@ -58,8 +58,8 @@ namespace Hypocrite.Mvvm
             return parameters;
         }
 
-        public IRegionManager RegionManager => Container.Resolve<IRegionManager>();
-        public IDialogService DialogService => Container.Resolve<IDialogService>();
+        public IRegionManager RegionManager => Container?.Resolve<IRegionManager>();
+        public IDialogService DialogService => Container?.Resolve<IDialogService>();
         public NavigationParameters CurrentNavigationParameters { get; private set; }
     }
 }

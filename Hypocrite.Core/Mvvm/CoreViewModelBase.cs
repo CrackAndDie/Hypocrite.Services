@@ -32,10 +32,10 @@ namespace Hypocrite.Core.Mvvm
         }
 
         public IContainerHolder Application { get; set; }
-        public IContainerProvider Container => Application.Container;
-        public IEventAggregator EventAggregator => Container.Resolve<IEventAggregator>();
-        public ILoggingService LoggingService => Container.Resolve<ILoggingService>();
-        public IWindowProgressService WindowProgressService => Container.Resolve<IWindowProgressService>();
+        public IContainerProvider Container => Application?.Container;
+        public IEventAggregator EventAggregator => Container?.Resolve<IEventAggregator>();
+        public ILoggingService LoggingService => Container?.Resolve<ILoggingService>();
+        public IWindowProgressService WindowProgressService => Container?.Resolve<IWindowProgressService>();
         public string ViewModelName => viewModelName;
         
         public object View { get; set; }

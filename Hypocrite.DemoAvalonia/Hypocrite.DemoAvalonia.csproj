@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Hypocrite.Container.AvaloniaPrism" Version="1.2.4" />
+	<PackageReference Include="Hypocrite.Container.AvaloniaPrism" Version="1.2.5" />
     <PackageReference Include="Avalonia" Version="11.0.5" />
     <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />

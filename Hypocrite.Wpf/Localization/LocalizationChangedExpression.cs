@@ -17,6 +17,7 @@ namespace Hypocrite.Localization
         private FrameworkElement _bindingElement;
         private BindableObject _bindableObject;
 
+        public event Action Attaching;
         public event Action Detaching;
 
         public LocalizationChangedExpression(string key, Binding binding, IServiceProvider serviceProvider)
@@ -44,9 +45,12 @@ namespace Hypocrite.Localization
                 if (binding != null)
                     throw new ArgumentException($"TargetObject of {nameof(IProvideValueTarget)} has to be {nameof(FrameworkElement)}");
             }
-           
+
             if (_bindingElement != null)
+            {
                 _bindingElement.Unloaded += OnElementDetached;
+                _bindingElement.Loaded += OnElementAttached;
+            }
 
             if (_binding != null && serviceProvider != null)
             {
@@ -131,6 +135,15 @@ namespace Hypocrite.Localization
         public object Value { get; private set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private void OnElementAttached(object sender, RoutedEventArgs args)
+        {
+            // when loaded back
+            if (_bindingElement != null)
+                _bindingElement.Loaded -= OnElementAttached;
+            SetUpBack();
+            Attaching?.Invoke();
+        }
+
         private void OnElementDetached(object sender, RoutedEventArgs args)
         {
             if (_bindingElement != null)
@@ -149,7 +162,22 @@ namespace Hypocrite.Localization
             if (_bindingElement != null)
             {
                 _bindingElement.DataContextChanged -= DataContextChangedPreparer;
-			}
+            }
+        }
+
+        public void SetUpBack()
+        {
+            LocalizationManager.CurrentLanguageChanged += Preparer;
+            if (_bindableObject != null)
+            {
+                _bindableObject.PropertyChanged += PropertyChangedPreparer;
+            }
+            if (_bindingElement != null)
+            {
+                _bindingElement.DataContextChanged += DataContextChangedPreparer;
+            }
+            // first call preparer to init Value
+            Preparer(null, EventArgs.Empty);
         }
     }
 }

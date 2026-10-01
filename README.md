@@ -19,7 +19,7 @@
 
 A package that helps You to create a powerful, flexible and loosely coupled WPF and Avalonia application. It fully supports Prism features and MVVM pattern.  
 
-Documentation is [here](https://softv.su/docshome/docs/hypocrite/)  
+Documentation is [here](https://crackanddie.github.io/Hypocrite.Docs/)  
 
 <h2>Powered by:</h2>  
 
